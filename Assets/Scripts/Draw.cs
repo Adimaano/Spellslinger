@@ -131,12 +131,12 @@ public class Draw : MonoBehaviour {
         }
         Debug.Log(globalPoints.Count + "global Points");
 
-        List<Vector3> savedPoints = GenerateNormalizedList(globalPoints, lineRendererParent.transform);
+        Vector3[] savedPoints = GenerateNormalizedList(globalPoints, lineRendererParent.transform);
 
-        Debug.Log(savedPoints.Count + " normalized points");
+        Debug.Log(savedPoints.Length + " normalized points");
 
         // save to file if length condition is met
-        if (savedPoints.Count == 20) {
+        if (savedPoints.Length == 20) {
             string filepath = "Assets/Ressources/Runes.txt";
             //string shapeName = "hourglass";
             
@@ -151,73 +151,68 @@ public class Draw : MonoBehaviour {
             ID++;
 
         } else {
-            Debug.Log("Length Condition not met: " + savedPoints.Count + " Points");
+            Debug.Log("Length Condition not met: " + savedPoints.Length + " Points");
         }
 
+        // NOTE: only for debugging to check if the created pointcloud matches the expectations
         // create new gameobject with linerenderer and draw the points in savedPoints
         GameObject newLineRendererParent = new GameObject();
         LineRenderer newLineRenderer = newLineRendererParent.AddComponent<LineRenderer>();
         newLineRenderer.material = drawMaterial;
         newLineRenderer.startWidth = 0.05f;
         newLineRenderer.endWidth = lineWidth;
-        newLineRenderer.positionCount = savedPoints.Count;
+        newLineRenderer.positionCount = savedPoints.Length;
 
-        for (int i = 0; i < savedPoints.Count; i++) {
-            Debug.Log("Point " + i + ": " + savedPoints[i]);
+        for (int i = 0; i < savedPoints.Length; i++) {
+            // Debug.Log("Point " + i + ": " + savedPoints[i]);
             newLineRenderer.SetPosition(i, savedPoints[i]);
         }
     }
 
 
-    List<Vector3> GenerateNormalizedList(List<Vector3> originalPoints, Transform transform) {
-        //List<Vector3> normalizedPoints = new List<Vector3>();
-        //normalizedPoints.Add(originalPoints[0] - transform.position);
-
-        Vector3[] cameraPoints = new Vector3[originalPoints.Count];
-        for (int i = 0; i < originalPoints.Count; i++) {
-            cameraPoints[i] = Camera.main.WorldToScreenPoint(transform.TransformPoint(originalPoints[i]));
-        }
-
+    Vector3[] GenerateNormalizedList(List<Vector3> originalPoints, Transform transform) {
         List<Vector3> normalizedPoints = new List<Vector3>();
-        normalizedPoints.Add(cameraPoints[0]); // Always add the first point
-        
+        normalizedPoints.Add(originalPoints[0] - transform.position); // Always add the first point
+
         float totalLength = 0f;
-        for (int i = 1; i < cameraPoints.Length; i++) {
-            totalLength += Vector3.Distance(cameraPoints[i], cameraPoints[i - 1]);
+        for (int i = 1; i < originalPoints.Count; i++) {
+            totalLength += Vector3.Distance(originalPoints[i], originalPoints[i - 1]);
         }
 
-        float segmentLength = totalLength / (19f);
+        float segmentLength = totalLength / (20f);
         float distanceToNextPoint = segmentLength;
-        Vector3 lastPoint = cameraPoints[0];
+        Vector3 lastPoint = originalPoints[0];
+        float distanceBetweenPoints = 0.0f;
 
-        //Debug.Log("total length: " + totalLength);
-        //Debug.Log("segment length: " + segmentLength);
+        for (int i = 1; i < originalPoints.Count - 1 && normalizedPoints.Count < 20; i++) {
+            Vector3 currentPoint = originalPoints[i];
 
-        for (int i = 1; i < cameraPoints.Length - 1 && normalizedPoints.Count < 19; i++) {
-            Vector3 currentPoint = cameraPoints[i];
-            float distanceBetweenPoints = Vector3.Distance(lastPoint, currentPoint);
+            distanceBetweenPoints += Vector3.Distance(originalPoints[i - 1], originalPoints[i]);
 
             if (distanceBetweenPoints >= distanceToNextPoint) {
                 Vector3 pointOnSegment = lastPoint + distanceToNextPoint * (currentPoint - lastPoint).normalized;
                 normalizedPoints.Add(pointOnSegment - transform.position);
-
-                distanceToNextPoint = segmentLength;
+                
+                distanceBetweenPoints = 0.0f;
                 lastPoint = pointOnSegment;
             }
         }
 
-        normalizedPoints.Add(cameraPoints[cameraPoints.Length - 1] - transform.position);
+        normalizedPoints.Add(originalPoints[originalPoints.Count - 1] - transform.position);
 
         while (normalizedPoints.Count < 20) {
-            normalizedPoints.Add(normalizedPoints[normalizedPoints.Count - 1]);
+            normalizedPoints.Add(originalPoints[originalPoints.Count - 1] - transform.position);
         }
 
+        Vector3[] cameraPoints = new Vector3[normalizedPoints.Count];
+        for (int i = 0; i < normalizedPoints.Count; i++) {
+            cameraPoints[i] = Camera.main.WorldToScreenPoint(transform.TransformPoint(normalizedPoints[i]));
+        }
 
-        return NormalizeList(normalizedPoints);
+        return NormalizeList(cameraPoints);
     }
 
-
-    private List<Vector3> NormalizeList(List<Vector3> standarizedPositions) {
+    private Vector3[] NormalizeList(Vector3[] standarizedPositions) {
         float smallestX = 10000;
         float smallestY = 10000;
         float smallestZ = 10000;
@@ -233,7 +228,7 @@ public class Draw : MonoBehaviour {
             }
         }
         Vector3 correction = new Vector3(smallestX, smallestY, smallestZ);
-        for (int i = 0; i < standarizedPositions.Count; i++) {
+        for (int i = 0; i < standarizedPositions.Length; i++) {
             standarizedPositions[i] -= correction;
         }
 
@@ -247,7 +242,7 @@ public class Draw : MonoBehaviour {
                 biggestComponent = Mathf.Abs(pos.z);
         }
 
-        for (int i = 0; i < standarizedPositions.Count; i++) {
+        for (int i = 0; i < standarizedPositions.Length; i++) {
             standarizedPositions[i] /= biggestComponent;
         }
 
