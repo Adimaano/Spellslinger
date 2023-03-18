@@ -9,6 +9,9 @@ public class Draw : MonoBehaviour {
     [SerializeField]
     private XRNode xrNode = XRNode.RightHand;
 
+    [SerializeField]
+    private bool saveRunes = true;
+
     private List<InputDevice> devices = new List<InputDevice>();
     private InputDevice device;
 
@@ -63,8 +66,12 @@ public class Draw : MonoBehaviour {
         } else if (isDrawing) {
             isDrawing = false;
             if (lineRendererParent != null) {
-                SaveRuneToFile();
-                //lineRendererParent.AddComponent<Rune>();
+                if (saveRunes) {
+                    SaveRuneToFile();
+                    lineRendererParent.AddComponent<Rune>();
+                } else {
+                    
+                }
             }
         }
 
@@ -122,6 +129,10 @@ public class Draw : MonoBehaviour {
         lineRenderer.SetPosition(1, drawPoint.transform.position);
     }
 
+    private void GetRuneEffect() {
+        
+    }
+
     private void SaveRuneToFile() {
         // generate a list from the linerenderer points
         List<Vector3> globalPoints = new List<Vector3>();
@@ -141,7 +152,7 @@ public class Draw : MonoBehaviour {
             foreach (Vector3 point in savedPoints) {
                 line += point.x + "," + point.y + "," + point.z + ";";
             }
-            line += "\n";
+            line += "1;\n";
 
             System.IO.File.AppendAllText(FILEPATH, line);
         } else {
