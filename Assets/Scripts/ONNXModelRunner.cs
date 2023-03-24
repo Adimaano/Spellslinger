@@ -8,29 +8,73 @@ public class ONNXModelRunner : MonoBehaviour {
     public TMP_Text resultText;
 
     private IWorker worker;
+    
+    private Tensor input = new Tensor(1, 60);
 
     void Start() {
         var model = ModelLoader.Load(modelAsset);
         worker = WorkerFactory.CreateWorker(WorkerFactory.Type.ComputePrecompiled, model);
     }
 
-    void Update() {
-        // Input data
-        var input = new Tensor(1, 28, 28, 1);
-        // Set input data here...
+    void OnDestroy() {
+        worker.Dispose();
+    }
+
+    public void IdentifyRune(Vector3[] pointCloud) {
+        // pointCloud has 20 values -> 60 floats. Use each float as an input
+        for (int i = 0; i < pointCloud.Length;i++) {
+            int startIndex = i * 3;
+            input[startIndex] = pointCloud[i].x;
+            input[startIndex + 1] = pointCloud[i].y;
+            input[startIndex + 2] = pointCloud[i].z;
+        }
 
         // Run model
         worker.Execute(input);
 
-        // Get output
-        var output = worker.PeekOutput();
-        var outputData = output.ToReadOnlyArray();
+        // get the output tensor
+        Tensor output = worker.PeekOutput();
+        float[] outputData = output.ToReadOnlyArray();
 
-        // Display result
-        resultText.text = $"Output: {outputData[0]}";
-    }
+        Debug.Log(output);
+        Debug.Log(outputData);
 
-    void OnDestroy() {
-        worker.Dispose();
+        for (int i = 0; i < outputData.Length;i++) {
+            Debug.Log(outputData[i]);
+        }
+
+        float[] probs = output.ToReadOnlyArray();
+
+        // find the index of the class with the highest probability
+        int maxIndex = 0;
+        float maxValue = float.NegativeInfinity;
+        for (int i = 0; i < probs.Length; i++) {
+            if (probs[i] > maxValue) {
+                maxIndex = i;
+                maxValue = probs[i];
+            }
+        }
+
+        // log the most probable class and its probability
+        Debug.Log("Most probable class: " + maxIndex + " (probability = " + maxValue + ")");
+
+        string className = "other";
+        
+        switch (maxIndex) {
+            case 0: 
+                className = "Time Spell";
+                break;
+            case 1:
+                className = "Wind Spell";
+                break;
+            case 2:
+                className = "EPIC FAIL";
+                break;
+            default:
+                className = "other";
+                break;
+        }
+
+        resultText.text = "Rune: " + className;
     }
 }

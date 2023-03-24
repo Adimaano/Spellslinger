@@ -29,6 +29,8 @@ public class Draw : MonoBehaviour {
     private const string FILEPATH = "Runes.txt";
     private int numberOfRunesSaved = 0;
 
+    private ONNXModelRunner modelRunner;
+
     void GetDevice() {
         InputDevices.GetDevicesAtXRNode(xrNode, devices);
         device = devices.FirstOrDefault();
@@ -50,6 +52,8 @@ public class Draw : MonoBehaviour {
 
         // get how many lines are currently in the file
         numberOfRunesSaved = System.IO.File.ReadAllLines(FILEPATH).Length;
+
+        modelRunner = GameObject.Find("ModelRunner").GetComponent<ONNXModelRunner>();
     }
 
     void Update() {
@@ -66,11 +70,19 @@ public class Draw : MonoBehaviour {
         } else if (isDrawing) {
             isDrawing = false;
             if (lineRendererParent != null) {
+                lineRendererParent.AddComponent<Rune>();
                 if (saveRunes) {
                     SaveRuneToFile();
-                    lineRendererParent.AddComponent<Rune>();
-                } else {
                     
+                } else {
+                    List<Vector3> globalPoints = new List<Vector3>();
+                    for (int i = 0; i < lineRenderer.positionCount; i++) {
+                        globalPoints.Add(lineRenderer.GetPosition(i));
+                    }
+
+                    Vector3[] savedPoints = GenerateNormalizedList(globalPoints, lineRendererParent.transform);
+
+                    modelRunner.IdentifyRune(savedPoints);
                 }
             }
         }
