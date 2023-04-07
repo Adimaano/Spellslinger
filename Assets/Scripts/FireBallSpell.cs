@@ -23,6 +23,7 @@ public class FireBallSpell : MonoBehaviour {
             if (visualEffect != null) {
                 if (!visualEffect.enabled) {
                     visualEffect.enabled = true;
+                    other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
         }
