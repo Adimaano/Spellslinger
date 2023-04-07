@@ -1467,6 +1467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xrNode: 5
+  saveRunes: 1
   drawMaterial: {fileID: 2100000, guid: 99cbbf2d079218e4888739d29e0e25f3, type: 2}
 --- !u!120 &1487510049
 LineRenderer:

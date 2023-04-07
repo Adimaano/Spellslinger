@@ -5,22 +5,25 @@ using TMPro;
 
 public class ONNXModelRunner : MonoBehaviour {
     public NNModel modelAsset;
-    public TMP_Text resultText;
-
     private IWorker worker;
-    
     private Tensor input = new Tensor(1, 60);
 
-    void Start() {
+    private void Start() {
         var model = ModelLoader.Load(modelAsset);
         worker = WorkerFactory.CreateWorker(WorkerFactory.Type.ComputePrecompiled, model);
     }
 
-    void OnDestroy() {
+    private void OnDestroy() {
         worker.Dispose();
     }
 
-    public void IdentifyRune(Vector3[] pointCloud) {
+    /// <summary>
+    /// Identifies a rune based on a point cloud. 
+    /// The Rune is identified by an ANN integrated with Unity Barracuda. The model returns the index of the class with the highest probability.
+    /// </summary>
+    /// <param name="pointCloud">The point cloud of the rune</param>
+    /// <returns>The index/class of the identified rune</returns>
+    public int IdentifyRune(Vector3[] pointCloud) {
         // pointCloud has 20 values -> 60 floats. Use each float as an input
         for (int i = 0; i < pointCloud.Length;i++) {
             int startIndex = i * 3;
@@ -35,14 +38,6 @@ public class ONNXModelRunner : MonoBehaviour {
         // get the output tensor
         Tensor output = worker.PeekOutput();
         float[] outputData = output.ToReadOnlyArray();
-
-        Debug.Log(output);
-        Debug.Log(outputData);
-
-        for (int i = 0; i < outputData.Length;i++) {
-            Debug.Log(outputData[i]);
-        }
-
         float[] probs = output.ToReadOnlyArray();
 
         // find the index of the class with the highest probability
@@ -55,26 +50,6 @@ public class ONNXModelRunner : MonoBehaviour {
             }
         }
 
-        // log the most probable class and its probability
-        Debug.Log("Most probable class: " + maxIndex + " (probability = " + maxValue + ")");
-
-        string className = "other";
-        
-        switch (maxIndex) {
-            case 0: 
-                className = "Time Spell";
-                break;
-            case 1:
-                className = "Wind Spell";
-                break;
-            case 2:
-                className = "EPIC FAIL";
-                break;
-            default:
-                className = "other";
-                break;
-        }
-
-        resultText.text = "Rune: " + className;
+        return maxIndex;
     }
 }
