@@ -359,17 +359,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.50503
+      value: 0.7738353
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.111898564
+      value: 0.15095522
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.50503
+      value: 0.7738353
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.501
+      value: -0.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b70d82ac1024f0540adc02e0cb9bb6b6,
         type: 3}
@@ -481,22 +481,21 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.4973258
+  - screenRelativeHeight: 0.70319885
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1477957734667751150}
-  - screenRelativeHeight: 0.17816938
+  - screenRelativeHeight: 0.30424514
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6047274502630466722}
-  - screenRelativeHeight: 0.13056491
+  - screenRelativeHeight: 0.15286736
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6384945234318225252}
   - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 6384945234318225252}
     - renderer: {fileID: 2793656082364640358}
   m_Enabled: 1
 --- !u!23 &6047274502630466722 stripped
