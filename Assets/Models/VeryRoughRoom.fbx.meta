@@ -17,6 +17,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: MetalOrnament
+    second: {fileID: 2100000, guid: 886fcaf2318f9e2449a2e32f24078292, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OrnamentalHeader
+    second: {fileID: 2100000, guid: 1979ac99ed898424585c7575caeb2dbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: WindowOrnamentsBig2
     second: {fileID: 2100000, guid: a6fe5f08e7b970743982a1885c374d48, type: 2}
   - first:
