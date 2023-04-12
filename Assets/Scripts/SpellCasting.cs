@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellCasting : MonoBehaviour {
     // Spells / Particle Effects
-    [SerializeField] private GameObject fireballParticles;
+    [SerializeField] private GameObject fireballPrefab;
 
     private GameObject spellCastingRight;
     private GameObject spellCastingLeft;
@@ -26,7 +24,7 @@ public class SpellCasting : MonoBehaviour {
     }
 
     private void CastFireSpell1(GameObject spellOrigin) {
-        GameObject fireball = Instantiate(fireballParticles, spellOrigin.transform.position, Quaternion.identity);
+        GameObject fireball = Instantiate(fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
         fireball.transform.LookAt(spellOrigin.transform.parent.transform.position);
 
         FireBallSpell spell = fireball.GetComponentInChildren<FireBallSpell>();

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.VFX;
 using UnityEngine;
 
@@ -16,7 +14,6 @@ public class FireBallSpell : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger entered");
         if (other.gameObject.CompareTag("Inflammable")) {
             // Check if the object has a Visual Effect component and enable it if not already enabled
             VisualEffect visualEffect = other.gameObject.GetComponent<VisualEffect>();

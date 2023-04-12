@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Unity.Barracuda;
-using TMPro;
 
 public class ONNXModelRunner : MonoBehaviour {
     public NNModel modelAsset;

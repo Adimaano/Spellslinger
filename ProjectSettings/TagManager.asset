@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rune
-  - PlayerBullet
   - Inflammable
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2429915625
     locked: 0

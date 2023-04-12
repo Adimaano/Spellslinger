@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -179,7 +178,7 @@ public class SaveRunes : MonoBehaviour {
             //string line = ID + ";" + shapeName + ";";
             string line = "";
             foreach (Vector3 point in savedPoints) {
-                line += point.x + "," + point.y + "," + point.z + "";
+                line += point.x + "," + point.y + "," + point.z + ";";
             }
             line += "Time\n";
 
