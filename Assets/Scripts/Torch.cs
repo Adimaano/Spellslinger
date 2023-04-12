@@ -26,9 +26,6 @@ public class Torch : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject.name);
-        Debug.Log(other.gameObject.tag);
-
         if (other.gameObject.tag == "Fire" && !isLit) {
             LightTorch();
         }

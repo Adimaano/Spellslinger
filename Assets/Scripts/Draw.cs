@@ -64,12 +64,8 @@ public class Draw : MonoBehaviour {
         if (controller == XRInputManager.Controller.Left && isDrawingLeft) {
             isDrawingLeft = false;
 
-            // add particlescript to draw effect (destroy particle after given time, default 1.5f)
-            GameObject drawEffect = drawPointLeft.transform.GetChild(0).gameObject;
-            drawEffect.AddComponent<ParticleScript>();
-
-            // detach draw effect from draw point
-            drawEffect.transform.parent = null;
+            // destroy drawing particles
+            Destroy(drawPointRight.transform.GetChild(0).gameObject);
 
             // emit event and reset drawing points
             Vector3[] normalizedPoints = GenerateNormalizedList(drawingPointsLeft);
@@ -78,12 +74,8 @@ public class Draw : MonoBehaviour {
         } else if (controller == XRInputManager.Controller.Right && isDrawingRight) {
             isDrawingRight = false;
 
-            // add particlescript to draw effect (destroy particle after given time, default 1.5f)
-            GameObject drawEffect = drawPointRight.transform.GetChild(0).gameObject;
-            drawEffect.AddComponent<ParticleScript>();
-
-            // detach draw effect from draw point
-            drawEffect.transform.parent = null;
+            // destroy drawing particles
+            Destroy(drawPointRight.transform.GetChild(0).gameObject);
 
             // emit event and reset drawing points
             Vector3[] normalizedPoints = GenerateNormalizedList(drawingPointsRight);
@@ -98,7 +90,7 @@ public class Draw : MonoBehaviour {
     /// <param name="originalPoints"><c>List<Vector3></c> with original point list (should be larger than the MAX_POINTS variable)</param>
     /// <returns></returns>
     Vector3[] GenerateNormalizedList(List<Vector3> originalPoints) {
-        // make sure the list has at least 20 points
+        // interpolate additional points if originalPoints is smaller than MAX_POINTS
         List<Vector3> pointList = originalPoints.Count < MAX_POINTS ? InterpoalateMissingPoints(originalPoints) : originalPoints;
 
         // create Transform from first point of pointList
