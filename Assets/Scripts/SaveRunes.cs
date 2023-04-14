@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.XR;
 
 public class SaveRunes : MonoBehaviour {
+    private const int MAX_POINTS = 20;
+    private const string FILEPATH = "Runes.txt";
 
     [SerializeField] private GameObject fireballParticles;
 
@@ -16,7 +18,7 @@ public class SaveRunes : MonoBehaviour {
 
     private GameObject drawPoint;
 
-    public Material drawMaterial;
+    [SerializeField] private Material drawMaterial;
 
     private LineRenderer lineRenderer;
     private GameObject lineRendererParent;
@@ -24,75 +26,70 @@ public class SaveRunes : MonoBehaviour {
     private bool isDrawing = false;
     private float lineWidth = 0.035f;
 
-    private const int MAX_POINTS = 20;
-    private const string FILEPATH = "Runes.txt";
     private int numberOfRunesSaved = 0;
 
     private ONNXModelRunner modelRunner;
 
-    void GetDevice() {
-        InputDevices.GetDevicesAtXRNode(xrNode, devices);
-        device = devices.FirstOrDefault();
+    private void GetDevice() {
+        InputDevices.GetDevicesAtXRNode(this.xrNode, this.devices);
+        this.device = this.devices.FirstOrDefault();
     }
 
     private void OnEnable() {
-        if (!device.isValid) {
-            GetDevice();
+        if (!this.device.isValid) {
+            this.GetDevice();
         }
     }
 
     private void Start() {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.material = drawMaterial;
+        this.lineRenderer = this.GetComponent<LineRenderer>();
+        this.lineRenderer.material = this.drawMaterial;
 
-        // For Testing Purposes only RightHandController 
+        // For Testing Purposes only RightHandController
         // TODO: implement for both controllers
-        drawPoint = GameObject.Find("DrawPointRight");
+        this.drawPoint = GameObject.Find("DrawPointRight");
 
         // get how many lines are currently in the file
-        numberOfRunesSaved = !System.IO.File.Exists(FILEPATH) ? 0 : System.IO.File.ReadAllLines(FILEPATH).Length;
+        this.numberOfRunesSaved = !System.IO.File.Exists(FILEPATH) ? 0 : System.IO.File.ReadAllLines(FILEPATH).Length;
 
         // TODO
-        if (!saveRunes) {
-            modelRunner = GameObject.Find("ModelRunner").GetComponent<ONNXModelRunner>();
+        if (!this.saveRunes) {
+            this.modelRunner = GameObject.Find("ModelRunner").GetComponent<ONNXModelRunner>();
         }
     }
 
-    void Update() {
-        if (!device.isValid) {
-            GetDevice();
+    private void Update() {
+        if (!this.device.isValid) {
+            this.GetDevice();
         }
 
         // Capture TriggerButton
         bool triggerButtonAction = false;
-        if (device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonAction) && triggerButtonAction) {
-            if (!isDrawing) {
-                Drawing();
+        if (this.device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonAction) && triggerButtonAction) {
+            if (!this.isDrawing) {
+                this.Drawing();
             }
-        } else if (isDrawing) {
-            isDrawing = false;
-            if (lineRendererParent != null) {
-                lineRendererParent.AddComponent<Rune>();
-                if (saveRunes) {
-                    SaveRuneToFile();
-                    
+        } else if (this.isDrawing) {
+            this.isDrawing = false;
+            if (this.lineRendererParent != null) {
+                this.lineRendererParent.AddComponent<Rune>();
+                if (this.saveRunes) {
+                    this.SaveRuneToFile();
                 } else {
                     List<Vector3> globalPoints = new List<Vector3>();
-                    for (int i = 0; i < lineRenderer.positionCount; i++) {
-                        globalPoints.Add(lineRenderer.GetPosition(i));
+                    for (int i = 0; i < this.lineRenderer.positionCount; i++) {
+                        globalPoints.Add(this.lineRenderer.GetPosition(i));
                     }
 
-                    Vector3[] savedPoints = GenerateNormalizedList(globalPoints, lineRendererParent.transform);
+                    Vector3[] savedPoints = this.GenerateNormalizedList(globalPoints, this.lineRendererParent.transform);
 
-                    int spellClass = modelRunner.IdentifyRune(savedPoints);
-                    //Debug.Log("Detected Spellclass: " + spellClass);
+                    int spellClass = this.modelRunner.IdentifyRune(savedPoints);
 
                     // spawn fireball particles from drawpoint in the direction of the controller
-                    GameObject fireball = Instantiate(fireballParticles, drawPoint.transform.position, Quaternion.identity);
-                    fireball.transform.LookAt(transform.parent.transform.position);
-                    //fireball.transform.Rotate(0, 180, 0);
+                    GameObject fireball = Instantiate(this.fireballParticles, this.drawPoint.transform.position, Quaternion.identity);
+                    fireball.transform.LookAt(this.transform.parent.transform.position);
                     FireBallSpell spell1 = fireball.GetComponentInChildren<FireBallSpell>();
-                    spell1.SpellDirection = drawPoint.transform.forward;
+                    spell1.SpellDirection = this.drawPoint.transform.forward;
                 }
             }
         }
@@ -101,37 +98,37 @@ public class SaveRunes : MonoBehaviour {
         // NOTE: (Vive: No idea wihch button this is supposed to be?)
         bool primaryButtonAction = false;
         InputFeatureUsage<bool> primaryButtonUsage = CommonUsages.primaryButton;
-        if (device.TryGetFeatureValue(primaryButtonUsage, out primaryButtonAction) && primaryButtonAction) {
+        if (this.device.TryGetFeatureValue(primaryButtonUsage, out primaryButtonAction) && primaryButtonAction) {
             Debug.Log($"PrimaryButton activated {primaryButtonAction}");
         }
 
         // Capture Primary 2D Axis
         Vector2 primary2DAxisValue = Vector2.zero;
         InputFeatureUsage<Vector2> primary2DAxisUsage = CommonUsages.primary2DAxis;
-        if (device.TryGetFeatureValue(primary2DAxisUsage, out primary2DAxisValue) && primary2DAxisValue != Vector2.zero) {
+        if (this.device.TryGetFeatureValue(primary2DAxisUsage, out primary2DAxisValue) && primary2DAxisValue != Vector2.zero) {
             Debug.Log($"primary2DAxis value {primary2DAxisValue}");
         }
 
-        // Capture Grip Value 
+        // Capture Grip Value
         // NOTE: (Vive: 0 or 1)
         float gripActionValue = 0;
         InputFeatureUsage<float> gripUsage = CommonUsages.grip;
-        if (device.TryGetFeatureValue(gripUsage, out gripActionValue)) {
+        if (this.device.TryGetFeatureValue(gripUsage, out gripActionValue)) {
             Debug.Log($"Grip value {gripActionValue}");
         }
 
-        if (isDrawing) {
-            lineRenderer.SetPosition(lineRenderer.positionCount++, drawPoint.transform.position);
+        if (this.isDrawing) {
+            this.lineRenderer.SetPosition(this.lineRenderer.positionCount++, this.drawPoint.transform.position);
 
             GameObject spell = new GameObject();
-            spell.transform.position = drawPoint.transform.position;
-            spell.transform.parent = lineRendererParent.transform;
+            spell.transform.position = this.drawPoint.transform.position;
+            spell.transform.parent = this.lineRendererParent.transform;
             SphereCollider sc = spell.AddComponent(typeof(SphereCollider)) as SphereCollider;
-            sc.radius = lineWidth / 5;
+            sc.radius = this.lineWidth / 5;
         }
 
         List<InputFeatureUsage> features = new List<InputFeatureUsage>();
-        device.TryGetFeatureUsages(features);
+        this.device.TryGetFeatureUsages(features);
 
         foreach (var feature in features) {
             if (feature.name == "primary2DAxisClick") {
@@ -141,45 +138,43 @@ public class SaveRunes : MonoBehaviour {
     }
 
     private void Drawing() {
+        this.isDrawing = true;
 
-        isDrawing = true;
+        this.lineRendererParent = new GameObject("Original Rune " + ++this.numberOfRunesSaved);
 
-        lineRendererParent = new GameObject("Original Rune " + ++numberOfRunesSaved);
-        
         // Add Collider
-        SphereCollider sc = lineRendererParent.AddComponent(typeof(SphereCollider)) as SphereCollider;
-        sc.radius = lineWidth / 5;
-        
-        // Draw Line
-        lineRendererParent.transform.position = transform.position;
-        lineRenderer = lineRendererParent.AddComponent<LineRenderer>();
-        lineRenderer.material = drawMaterial;
-        lineRenderer.startWidth = lineWidth;
-        lineRenderer.endWidth = lineWidth;
-        lineRenderer.SetPosition(0, drawPoint.transform.position);
-        lineRenderer.SetPosition(1, drawPoint.transform.position);
-    }
+        SphereCollider sc = this.lineRendererParent.AddComponent(typeof(SphereCollider)) as SphereCollider;
+        sc.radius = this.lineWidth / 5;
 
+        // Draw Line
+        this.lineRendererParent.transform.position = this.transform.position;
+        this.lineRenderer = this.lineRendererParent.AddComponent<LineRenderer>();
+        this.lineRenderer.material = this.drawMaterial;
+        this.lineRenderer.startWidth = this.lineWidth;
+        this.lineRenderer.endWidth = this.lineWidth;
+        this.lineRenderer.SetPosition(0, this.drawPoint.transform.position);
+        this.lineRenderer.SetPosition(1, this.drawPoint.transform.position);
+    }
 
     private void SaveRuneToFile() {
         // generate a list from the linerenderer points
         List<Vector3> globalPoints = new List<Vector3>();
-        for (int i = 0; i < lineRenderer.positionCount; i++) {
-            globalPoints.Add(lineRenderer.GetPosition(i));
+        for (int i = 0; i < this.lineRenderer.positionCount; i++) {
+            globalPoints.Add(this.lineRenderer.GetPosition(i));
         }
 
-        Vector3[] savedPoints = GenerateNormalizedList(globalPoints, lineRendererParent.transform);
-
+        Vector3[] savedPoints = this.GenerateNormalizedList(globalPoints, this.lineRendererParent.transform);
 
         // save to file if length condition is met
         if (savedPoints.Length == MAX_POINTS) {
-            //string shapeName = "hourglass";
-            
-            //string line = ID + ";" + shapeName + ";";
-            string line = "";
+            // string shapeName = "hourglass";
+
+            // string line = ID + ";" + shapeName + ";";
+            string line = string.Empty;
             foreach (Vector3 point in savedPoints) {
                 line += point.x + "," + point.y + "," + point.z + ";";
             }
+
             line += "Time\n";
 
             System.IO.File.AppendAllText(FILEPATH, line);
@@ -189,11 +184,11 @@ public class SaveRunes : MonoBehaviour {
 
         // NOTE: only for debugging to check if the created pointcloud matches the expectations
         // create new gameobject with linerenderer and draw the points in savedPoints
-        GameObject newLineRendererParent = new GameObject("Normalized Rune " + numberOfRunesSaved);
+        GameObject newLineRendererParent = new GameObject("Normalized Rune " + this.numberOfRunesSaved);
         LineRenderer newLineRenderer = newLineRendererParent.AddComponent<LineRenderer>();
-        newLineRenderer.material = drawMaterial;
+        newLineRenderer.material = this.drawMaterial;
         newLineRenderer.startWidth = 0.05f;
-        newLineRenderer.endWidth = lineWidth;
+        newLineRenderer.endWidth = this.lineWidth;
         newLineRenderer.positionCount = savedPoints.Length;
 
         for (int i = 0; i < savedPoints.Length; i++) {
@@ -203,12 +198,12 @@ public class SaveRunes : MonoBehaviour {
     }
 
     /// <summary>
-    /// Generate a Normalized List of points, that are in camera space in a 1x1x1 cube
+    /// Generate a Normalized List of points, that are in camera space in a 1x1x1 cube.
     /// </summary>
-    /// <param name="originalPoints"><c>List<Vector3></c> with original point list (should be larger than the MAX_POINTS variable)</param>
+    /// <param name="originalPoints"><c>List<Vector3></c> with original point list (should be larger than the MAX_POINTS variable)</param>.
     /// <param name="transform">Transform of the parent. This is necessary to sutract position to move the points from global to local space</param>
     /// <returns></returns>
-    Vector3[] GenerateNormalizedList(List<Vector3> originalPoints, Transform transform) {
+    private Vector3[] GenerateNormalizedList(List<Vector3> originalPoints, Transform transform) {
         List<Vector3> normalizedPoints = new List<Vector3>();
         normalizedPoints.Add(originalPoints[0] - transform.position); // Always add the first point
 
@@ -227,14 +222,14 @@ public class SaveRunes : MonoBehaviour {
         for (int i = 1; i < originalPoints.Count - 1 && normalizedPoints.Count < MAX_POINTS; i++) {
             Vector3 currentPoint = originalPoints[i];
 
-            // add the distance between this point and the previous point to distanceBetweenPoints (-> distance between last added point and current point) 
+            // add the distance between this point and the previous point to distanceBetweenPoints (-> distance between last added point and current point)
             distanceBetweenPoints += Vector3.Distance(originalPoints[i - 1], originalPoints[i]);
 
             // if distanceBetweenPoints is greater than the segmentLength, add a normalized point and reset distanceBetweenPoints
             if (distanceBetweenPoints >= segmentLength) {
-                Vector3 pointOnSegment = lastPoint + segmentLength * (currentPoint - lastPoint).normalized;
+                Vector3 pointOnSegment = lastPoint + (segmentLength * (currentPoint - lastPoint).normalized);
                 normalizedPoints.Add(pointOnSegment - transform.position);
-                
+
                 distanceBetweenPoints = 0.0f;
                 lastPoint = pointOnSegment;
             }
@@ -254,15 +249,15 @@ public class SaveRunes : MonoBehaviour {
             cameraPoints[i] = Camera.main.WorldToScreenPoint(transform.TransformPoint(normalizedPoints[i]));
         }
 
-        return NormalizeList(cameraPoints);
+        return this.NormalizeList(cameraPoints);
     }
 
     /// <summary>
     /// Method <c>NormalizeList</c> takes a Vector3[] and normalizes it to a range between -1 and 1.
-    /// First the displacement of the positions are corrected and then the data is normalized to a 1x1x1 cube
+    /// First the displacement of the positions are corrected and then the data is normalized to a 1x1x1 cube.
     /// </summary>
-    /// <param name="standarizedPositions">Vector3[]</param>
-    /// <returns></returns>
+    /// <param name="standarizedPositions">Vector3[].</param>
+    /// <returns>normalized Vector3[] inside 1x1 cube.</returns>
     private Vector3[] NormalizeList(Vector3[] standarizedPositions) {
         float smallestX = 10000;
         float smallestY = 10000;
@@ -271,13 +266,16 @@ public class SaveRunes : MonoBehaviour {
             if (pos.x < smallestX) {
                 smallestX = pos.x;
             }
+
             if (pos.y < smallestY) {
                 smallestY = pos.y;
             }
+
             if (pos.z < smallestZ) {
                 smallestZ = pos.z;
             }
         }
+
         Vector3 correction = new Vector3(smallestX, smallestY, smallestZ);
         for (int i = 0; i < standarizedPositions.Length; i++) {
             standarizedPositions[i] -= correction;
@@ -285,12 +283,17 @@ public class SaveRunes : MonoBehaviour {
 
         float biggestComponent = -1000;
         foreach (Vector3 pos in standarizedPositions) {
-            if (Mathf.Abs(pos.x) > biggestComponent)
+            if (Mathf.Abs(pos.x) > biggestComponent) {
                 biggestComponent = Mathf.Abs(pos.x);
-            if (Mathf.Abs(pos.y) > biggestComponent)
+            }
+
+            if (Mathf.Abs(pos.y) > biggestComponent) {
                 biggestComponent = Mathf.Abs(pos.y);
-            if (Mathf.Abs(pos.z) > biggestComponent)
+            }
+
+            if (Mathf.Abs(pos.z) > biggestComponent) {
                 biggestComponent = Mathf.Abs(pos.z);
+            }
         }
 
         for (int i = 0; i < standarizedPositions.Length; i++) {
@@ -300,55 +303,59 @@ public class SaveRunes : MonoBehaviour {
         return standarizedPositions;
     }
 
-
     /// <summary>
     /// This is a helper functionb for retrieving and logging Actions/Usages of various VR Setups. This might be helpuful as we
     /// don't know what device the player might use (oculus/vive/index...)
     /// <param name="type"><c>string</c> optional parameter. Define which Actions/Usages should be logged. possible parameters: "bool", "byte[]", "uint", "float", "Vector2", "Vector3". Default: Log Everything</param>
     /// </summary>
-    void LogFeatures(string type = "") {
+    private void LogFeatures(string type = "") {
         List<InputFeatureUsage> features = new List<InputFeatureUsage>();
-        device.TryGetFeatureUsages(features);
+        this.device.TryGetFeatureUsages(features);
 
         foreach (var feature in features) {
-
-            switch(type) {
+            switch (type) {
                 case "bool":
                     if (feature.type == typeof(bool)) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 case "byte[]":
                     if (feature.type == typeof(byte[])) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 case "uint":
                     if (feature.type == typeof(uint)) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 case "float":
                     if (feature.type == typeof(float)) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 case "Vector2":
                     if (feature.type == typeof(Vector2)) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 case "Vector3":
                     if (feature.type == typeof(Vector3)) {
                         Debug.Log($"feature {feature.name} type {feature.type}");
                     }
+
                     break;
-                    
+
                 default:
                     Debug.Log($"feature {feature.name} type {feature.type}");
                     break;

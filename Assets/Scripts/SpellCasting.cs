@@ -8,23 +8,23 @@ public class SpellCasting : MonoBehaviour {
     private GameObject spellCastingLeft;
 
     // enum with all possible Spells
-    public enum Spell { 
+    public enum Spell {
         Water,
         Fire,
         Earth,
         Air,
         Lightning,
         Time,
-        None
+        None,
     }
 
     private void Start() {
-        spellCastingRight = GameObject.Find("DrawPointRight");
-        spellCastingLeft = GameObject.Find("DrawPointLeft");
+        this.spellCastingRight = GameObject.Find("DrawPointRight");
+        this.spellCastingLeft = GameObject.Find("DrawPointLeft");
     }
 
     private void CastFireSpell1(GameObject spellOrigin) {
-        GameObject fireball = Instantiate(fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
+        GameObject fireball = Instantiate(this.fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
         fireball.transform.LookAt(spellOrigin.transform.parent.transform.position);
 
         FireBallSpell spell = fireball.GetComponentInChildren<FireBallSpell>();
@@ -32,14 +32,14 @@ public class SpellCasting : MonoBehaviour {
     }
 
     public void CastSpell(Spell spell, XRInputManager.Controller controller) {
-        GameObject spellOrigin = controller == XRInputManager.Controller.Right ? spellCastingRight : spellCastingLeft;
+        GameObject spellOrigin = controller == XRInputManager.Controller.Right ? this.spellCastingRight : this.spellCastingLeft;
 
         switch (spell) {
             case Spell.Fire:
-                CastFireSpell1(spellOrigin);
+                this.CastFireSpell1(spellOrigin);
                 break;
             default:
-                CastFireSpell1(spellOrigin);
+                this.CastFireSpell1(spellOrigin);
                 break;
         }
 

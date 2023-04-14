@@ -18,122 +18,123 @@ public class Player : MonoBehaviour {
     [SerializeField] private Sprite airRune;
     [SerializeField] private Sprite lightningRune;
     [SerializeField] private Sprite timeRune;
-    
+
     // Start is called before the first frame update
     private void Start() {
         // find dependencies in scene
-        input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
-        drawScript = GameObject.Find("-- XR --").GetComponent<Draw>();
-        modelRunner = GameObject.Find("-- XR --").GetComponent<ONNXModelRunner>();
-        spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
-        runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
+        this.input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
+        this.drawScript = GameObject.Find("-- XR --").GetComponent<Draw>();
+        this.modelRunner = GameObject.Find("-- XR --").GetComponent<ONNXModelRunner>();
+        this.spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
+        this.runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
 
         // initialize eventlisteners
-        drawScript.OnDrawFinished += ChargeSpell;
-        input.OnControllerTrigger += CastSpell;
-        input.OnControllerTouchpad += DrawRune;
+        this.drawScript.OnDrawFinished += this.ChargeSpell;
+        this.input.OnControllerTrigger += this.CastSpell;
+        this.input.OnControllerTouchpad += this.DrawRune;
     }
 
     /// <summary>
-    /// Charges spell based on drawn rune
+    /// Charges spell based on drawn rune.
     /// </summary>
-    /// <param name="drawingPoints">List of points that were drawn</param>
-    /// <param name="controller">Controller that was used to draw</param>
+    /// <param name="drawingPoints">List of points that were drawn.</param>
+    /// <param name="controller">Controller that was used to draw.</param>
     private void ChargeSpell(Vector3[] drawingPoints, XRInputManager.Controller controller) {
-        if (drawingPoints.Length != 20) { return; }
-        int runeClass = modelRunner.IdentifyRune(drawingPoints);
-        
-        // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
-        // Debug.Log("Identified Rune: " + runeClass);
+        if (drawingPoints.Length != 20) {
+            return;
+        }
 
+        int runeClass = this.modelRunner.IdentifyRune(drawingPoints);
+
+        // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
         switch (runeClass) {
             case 0:
                 // Time Spell
-                currentSpell = SpellCasting.Spell.Time;
+                this.currentSpell = SpellCasting.Spell.Time;
                 break;
             case 1:
-                // Air Spell 
-                currentSpell = SpellCasting.Spell.Air;
+                // Air Spell
+                this.currentSpell = SpellCasting.Spell.Air;
                 break;
             case 2:
                 // Earth Spell
-                currentSpell = SpellCasting.Spell.Earth;
+                this.currentSpell = SpellCasting.Spell.Earth;
                 break;
             case 3:
                 // Fire Spell
-                currentSpell = SpellCasting.Spell.Fire;
+                this.currentSpell = SpellCasting.Spell.Fire;
                 break;
             case 4:
                 // Lightning Spell
-                currentSpell = SpellCasting.Spell.Lightning;
+                this.currentSpell = SpellCasting.Spell.Lightning;
                 break;
             case 5:
                 // Water Spell
-                currentSpell = SpellCasting.Spell.Water;
+                this.currentSpell = SpellCasting.Spell.Water;
                 break;
             default:
                 // Unknown Rune
-                currentSpell = SpellCasting.Spell.None;
+                this.currentSpell = SpellCasting.Spell.None;
                 break;
         }
 
-        if (currentSpell != SpellCasting.Spell.None) {
-            StartCoroutine(ShowRune());
+        if (this.currentSpell != SpellCasting.Spell.None) {
+            this.StartCoroutine(this.ShowRune());
             GameManager.Instance.PlaySound("RuneRecognized");
         }
     }
 
     // IEnumerator to show the rune for a short time with fade out and scale up animation
     private IEnumerator ShowRune() {
-        switch (currentSpell) {
+        switch (this.currentSpell) {
             case SpellCasting.Spell.Water:
-                runeSpriteRenderer.sprite = waterRune;
+                this.runeSpriteRenderer.sprite = this.waterRune;
                 break;
             case SpellCasting.Spell.Fire:
-                runeSpriteRenderer.sprite = fireRune;
+                this.runeSpriteRenderer.sprite = this.fireRune;
                 break;
             case SpellCasting.Spell.Earth:
-                runeSpriteRenderer.sprite = earthRune;
+                this.runeSpriteRenderer.sprite = this.earthRune;
                 break;
             case SpellCasting.Spell.Air:
-                runeSpriteRenderer.sprite = airRune;
+                this.runeSpriteRenderer.sprite = this.airRune;
                 break;
             case SpellCasting.Spell.Lightning:
-                runeSpriteRenderer.sprite = lightningRune;
+                this.runeSpriteRenderer.sprite = this.lightningRune;
                 break;
             case SpellCasting.Spell.Time:
-                runeSpriteRenderer.sprite = timeRune;
+                this.runeSpriteRenderer.sprite = this.timeRune;
                 break;
             default:
-                runeSpriteRenderer.sprite = null;
+                this.runeSpriteRenderer.sprite = null;
                 break;
         }
 
         // fade out and scale down animation
-        for (float i=1, j=1; i >= 0; i -= 0.03f, j -= 0.01f) {
-            runeSpriteRenderer.color = new Color(1, 1, 1, i);
-            runeSpriteRenderer.transform.localScale = new Vector3(j, j, j);
+        for (float i = 1, j = 1; i >= 0; i -= 0.03f, j -= 0.01f) {
+            this.runeSpriteRenderer.color = new Color(1, 1, 1, i);
+            this.runeSpriteRenderer.transform.localScale = new Vector3(j, j, j);
             yield return new WaitForSeconds(0.005f);
         }
 
-        runeSpriteRenderer.sprite = null;
+        this.runeSpriteRenderer.sprite = null;
     }
 
     private void CastSpell(bool triggerPressed, XRInputManager.Controller controller) {
         if (triggerPressed) {
-            if (currentSpell != SpellCasting.Spell.None) {
+            if (this.currentSpell != SpellCasting.Spell.None) {
                 // cast spell
-                spellCasting.CastSpell(currentSpell, controller);
-                currentSpell = SpellCasting.Spell.None;
+                this.spellCasting.CastSpell(this.currentSpell, controller);
+                this.currentSpell = SpellCasting.Spell.None;
             }
         }
     }
 
     private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller) {
         if (clicked) {
-            drawScript.StartDrawing(controller);
+            this.drawScript.StartDrawing(controller);
         } else {
-            drawScript.StopDrawing(controller);
+            this.drawScript.StopDrawing(controller);
         }
     }
 }

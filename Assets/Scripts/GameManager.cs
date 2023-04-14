@@ -14,31 +14,30 @@ public class GameManager : MonoBehaviour {
     // A dictionary to map sound effect names to audio clips
     private Dictionary<string, AudioClip> soundEffectDictionary;
 
-    void Awake() {
+    private void Awake() {
         if (Instance == null) {
             Instance = this;
         } else {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
-    void Start() {
-        soundEffectSource = transform.Find("Sounds").GetComponent<AudioSource>();
-        musicSource = transform.Find("Music").GetComponent<AudioSource>();
+    private void Start() {
+        this.soundEffectSource = this.transform.Find("Sounds").GetComponent<AudioSource>();
+        this.musicSource = this.transform.Find("Music").GetComponent<AudioSource>();
 
         // Initialize the sound effect dictionary
-        soundEffectDictionary = new Dictionary<string, AudioClip>();
-        for (int i = 0; i < soundEffects.Length; i++) {
-            soundEffectDictionary.Add(soundEffects[i].name, soundEffects[i]);
+        this.soundEffectDictionary = new Dictionary<string, AudioClip>();
+        for (int i = 0; i < this.soundEffects.Length; i++) {
+            this.soundEffectDictionary.Add(this.soundEffects[i].name, this.soundEffects[i]);
         }
     }
 
-
-    public void PlaySound(string soundName, float volume=1.0f) {
-        AudioClip clip = soundEffectDictionary[soundName];
-        soundEffectSource.PlayOneShot(clip, volume);
+    public void PlaySound(string soundName, float volume = 1.0f) {
+        AudioClip clip = this.soundEffectDictionary[soundName];
+        this.soundEffectSource.PlayOneShot(clip, volume);
     }
 }

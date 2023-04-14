@@ -1,16 +1,19 @@
-using UnityEngine.VFX;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class FireBallSpell : MonoBehaviour {
     [SerializeField] private ParticleSystem onCollisionParticleSystem;
 
     private float speed = 8.0f;
-    private Vector3 spellDirection = Vector3.forward;
 
-    public Vector3 SpellDirection { get => spellDirection; set => spellDirection = value; }
+    public Vector3 SpellDirection { get; set; }
+
+    private void Awake() {
+        this.SpellDirection = Vector3.forward;
+    }
 
     private void Update() {
-        transform.position += SpellDirection * speed * Time.deltaTime;
+        this.transform.position += this.SpellDirection * this.speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -24,11 +27,10 @@ public class FireBallSpell : MonoBehaviour {
                 }
             }
         }
-        
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Instantiate(onCollisionParticleSystem, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        Instantiate(this.onCollisionParticleSystem, this.transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

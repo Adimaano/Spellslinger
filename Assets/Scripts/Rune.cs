@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class Rune : MonoBehaviour {
     private float timeAlive = 5.0f;
-    
-    void Start() {
-        StartCoroutine("DestroyAfterTime", timeAlive);
+
+    private void Start() {
+        this.StartCoroutine("DestroyAfterTime", this.timeAlive);
     }
 
-    IEnumerator DestroyAfterTime(float time) {
+    private IEnumerator DestroyAfterTime(float time) {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }
-

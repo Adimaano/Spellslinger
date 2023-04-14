@@ -4,30 +4,30 @@ using UnityEngine.VFX;
 public class Torch : MonoBehaviour {
     private VisualEffect fire;
     [SerializeField] private bool isLit = false;
-    
-    void Start() {
-        fire = transform.Find("Fire").GetComponent<VisualEffect>();
 
-        if (isLit) {
-            LightTorch();
+    private void Start() {
+        this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
+
+        if (this.isLit) {
+            this.LightTorch();
         } else {
-            ExtinguishTorch();
+            this.ExtinguishTorch();
         }
     }
 
     private void LightTorch() {
-        isLit = true;
-        fire.Play();
+        this.isLit = true;
+        this.fire.Play();
     }
 
     private void ExtinguishTorch() {
-        isLit = false;
-        fire.Stop();
+        this.isLit = false;
+        this.fire.Stop();
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Fire" && !isLit) {
-            LightTorch();
+        if (other.gameObject.tag == "Fire" && !this.isLit) {
+            this.LightTorch();
         }
     }
 }

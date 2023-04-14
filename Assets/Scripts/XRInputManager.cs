@@ -22,70 +22,72 @@ public class XRInputManager : MonoBehaviour {
     private bool lastTouchPadClickStateRight = false;
     private bool lastTouchPadClickStateLeft = false;
 
+    public enum Controller {
+        Left,
+        Right,
+    }
+
     // Events
     public System.Action<bool, Controller> OnControllerTrigger { get; internal set; }
     public System.Action<float, Controller> OnControllerGrip { get; internal set; }
     public System.Action<Vector2, bool, Controller> OnControllerTouchpad { get; internal set; }
     public System.Action<Vector2, bool> OnLeftControllerTouchpad { get; internal set; }
 
-    public enum Controller { Left, Right }
-
     /// <summary>
-    /// Gets all relevant XR devices (Right Controller, Left Controller, Headset)
+    /// Gets all relevant XR devices (Right Controller, Left Controller, Headset).
     /// </summary>
-    /// <returns></returns>
     private void GetDevices() {
-        if (!rightController.isValid) {
-            rightController = InputDevices.GetDeviceAtXRNode(xrNodeRight);
+        if (!this.rightController.isValid) {
+            this.rightController = InputDevices.GetDeviceAtXRNode(this.xrNodeRight);
         }
 
-        if (!leftController.isValid) {
-            leftController = InputDevices.GetDeviceAtXRNode(xrNodeLeft);
+        if (!this.leftController.isValid) {
+            this.leftController = InputDevices.GetDeviceAtXRNode(this.xrNodeLeft);
         }
 
-        if (!headset.isValid) {
-            headset = InputDevices.GetDeviceAtXRNode(xrNodeHead);
+        if (!this.headset.isValid) {
+            this.headset = InputDevices.GetDeviceAtXRNode(this.xrNodeHead);
         }
     }
 
     // Called when the object is enabled and active
     private void OnEnable() {
-        if (!rightController.isValid || !leftController.isValid) {
-            GetDevices();
+        if (!this.rightController.isValid || !this.leftController.isValid) {
+            this.GetDevices();
         }
     }
 
     // Called every frame
     private void Update() {
         // Check Events of Right Controller
-        if (!rightController.isValid) {
-            GetDevices();
+        if (!this.rightController.isValid) {
+            this.GetDevices();
         } else {
             // Capture TriggerButton
             bool triggerButtonPressed = false;
             bool triggerButtonReleased = false;
 
-            if (rightController.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonPressed)) {
-                triggerButtonReleased = !triggerButtonPressed && lastTriggerButtonStateRight;
-                lastTriggerButtonStateRight = triggerButtonPressed;
-                
+            if (this.rightController.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonPressed)) {
+                triggerButtonReleased = !triggerButtonPressed && this.lastTriggerButtonStateRight;
+                this.lastTriggerButtonStateRight = triggerButtonPressed;
+
                 if (triggerButtonPressed) {
-                    OnControllerTrigger?.Invoke(true, Controller.Right);
+                    this.OnControllerTrigger?.Invoke(true, Controller.Right);
                 } else if (triggerButtonReleased) {
-                    OnControllerTrigger?.Invoke(false, Controller.Right);
+                    this.OnControllerTrigger?.Invoke(false, Controller.Right);
                 }
             }
 
             // Capture GripButton
             float gripActionValue = 0;
             bool gripButtonReleased = false;
-            
-            if (rightController.TryGetFeatureValue(CommonUsages.grip, out gripActionValue)) {
-                gripButtonReleased = gripActionValue < 0.5f && lastGripButtonStateRight;
-                lastGripButtonStateRight = gripActionValue > 0.5f;
+
+            if (this.rightController.TryGetFeatureValue(CommonUsages.grip, out gripActionValue)) {
+                gripButtonReleased = gripActionValue < 0.5f && this.lastGripButtonStateRight;
+                this.lastGripButtonStateRight = gripActionValue > 0.5f;
 
                 if (gripActionValue > 0.5f || gripButtonReleased) {
-                    OnControllerGrip?.Invoke(gripActionValue, Controller.Right);
+                    this.OnControllerGrip?.Invoke(gripActionValue, Controller.Right);
                 }
             }
 
@@ -93,35 +95,35 @@ public class XRInputManager : MonoBehaviour {
             Vector2 touchpadAxis = Vector2.zero;
             bool touchpadClickPressed = false;
             bool touchpadClickReleased = false;
-            
-            if (rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out touchpadAxis)) {
-                if (rightController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out touchpadClickPressed)) {
-                    touchpadClickReleased = !touchpadClickPressed && lastTouchPadClickStateRight;
-                    lastTouchPadClickStateRight = touchpadClickPressed;
+
+            if (this.rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out touchpadAxis)) {
+                if (this.rightController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out touchpadClickPressed)) {
+                    touchpadClickReleased = !touchpadClickPressed && this.lastTouchPadClickStateRight;
+                    this.lastTouchPadClickStateRight = touchpadClickPressed;
 
                     if (touchpadClickPressed || touchpadClickReleased) {
-                        OnControllerTouchpad?.Invoke(touchpadAxis, touchpadClickPressed, Controller.Right);
+                        this.OnControllerTouchpad?.Invoke(touchpadAxis, touchpadClickPressed, Controller.Right);
                     }
                 }
             }
         }
 
         // Check Events of Left Controller
-        if (!leftController.isValid) {
-            GetDevices();
+        if (!this.leftController.isValid) {
+            this.GetDevices();
         } else {
             // Capture TriggerButton
             bool triggerButtonPressed = false;
             bool triggerButtonReleased = false;
 
-            if (leftController.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonPressed)) {
-                triggerButtonReleased = !triggerButtonPressed && lastTriggerButtonStateLeft;
-                lastTriggerButtonStateLeft = triggerButtonPressed;
+            if (this.leftController.TryGetFeatureValue(CommonUsages.triggerButton, out triggerButtonPressed)) {
+                triggerButtonReleased = !triggerButtonPressed && this.lastTriggerButtonStateLeft;
+                this.lastTriggerButtonStateLeft = triggerButtonPressed;
 
                 if (triggerButtonPressed) {
-                    OnControllerTrigger?.Invoke(true, Controller.Left);
+                    this.OnControllerTrigger?.Invoke(true, Controller.Left);
                 } else if (triggerButtonReleased) {
-                    OnControllerTrigger?.Invoke(false, Controller.Left);
+                    this.OnControllerTrigger?.Invoke(false, Controller.Left);
                 }
             }
 
@@ -129,12 +131,12 @@ public class XRInputManager : MonoBehaviour {
             float gripActionValue = 0;
             bool gripButtonReleased = false;
 
-            if (leftController.TryGetFeatureValue(CommonUsages.grip, out gripActionValue)) {
-                gripButtonReleased = gripActionValue < 0.5f && lastGripButtonStateLeft;
-                lastGripButtonStateLeft = gripActionValue > 0.5f;
+            if (this.leftController.TryGetFeatureValue(CommonUsages.grip, out gripActionValue)) {
+                gripButtonReleased = gripActionValue < 0.5f && this.lastGripButtonStateLeft;
+                this.lastGripButtonStateLeft = gripActionValue > 0.5f;
 
                 if (gripActionValue > 0.5f || gripButtonReleased) {
-                    OnControllerGrip?.Invoke(gripActionValue, Controller.Left);
+                    this.OnControllerGrip?.Invoke(gripActionValue, Controller.Left);
                 }
             }
 
@@ -143,13 +145,13 @@ public class XRInputManager : MonoBehaviour {
             bool touchpadClickPressed = false;
             bool touchpadClickReleased = false;
 
-            if (leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out touchpadAxis)) {
-                if (leftController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out touchpadClickPressed)) {
-                    touchpadClickReleased = !touchpadClickPressed && lastTouchPadClickStateLeft;
-                    lastTouchPadClickStateLeft = touchpadClickPressed;
+            if (this.leftController.TryGetFeatureValue(CommonUsages.primary2DAxis, out touchpadAxis)) {
+                if (this.leftController.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out touchpadClickPressed)) {
+                    touchpadClickReleased = !touchpadClickPressed && this.lastTouchPadClickStateLeft;
+                    this.lastTouchPadClickStateLeft = touchpadClickPressed;
 
                     if (touchpadClickPressed || touchpadClickReleased) {
-                        OnControllerTouchpad?.Invoke(touchpadAxis, touchpadClickPressed, Controller.Left);
+                        this.OnControllerTouchpad?.Invoke(touchpadAxis, touchpadClickPressed, Controller.Left);
                     }
                 }
             }
