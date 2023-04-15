@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class XRInputManager : MonoBehaviour {
     // XR Nodes
@@ -14,6 +13,16 @@ public class XRInputManager : MonoBehaviour {
     private InputDevice leftController;
     private InputDevice headset;
 
+    // XR Components
+    [SerializeField] private XRRayInteractor rightControllerRayInteractor;
+    [SerializeField] private XRRayInteractor leftControllerRayInteractor;
+    [SerializeField] private XRInteractorLineVisual leftControllerLineVisual;
+    [SerializeField] private XRInteractorLineVisual rightControllerLineVisual;
+    [SerializeField] private ActionBasedSnapTurnProvider snapTurnProvider;
+    [SerializeField] private UnityEngine.InputSystem.InputActionProperty rightHandTurn;
+    [SerializeField] private UnityEngine.InputSystem.InputActionProperty leftHandTurn;
+    private UnityEngine.InputSystem.InputActionProperty emptyAction;
+
     // XR Device States
     private bool lastTriggerButtonStateRight = false;
     private bool lastTriggerButtonStateLeft = false;
@@ -21,6 +30,11 @@ public class XRInputManager : MonoBehaviour {
     private bool lastGripButtonStateLeft = false;
     private bool lastTouchPadClickStateRight = false;
     private bool lastTouchPadClickStateLeft = false;
+    private bool lastMenuButtonStateRight = false;
+    private bool lastMenuButtonStateLeft = false;
+    private Gradient invisibleGradient;
+    private Gradient redGradient;
+    private Gradient spellActiveGradient;
 
     public enum Controller {
         Left,
@@ -31,7 +45,30 @@ public class XRInputManager : MonoBehaviour {
     public System.Action<bool, Controller> OnControllerTrigger { get; internal set; }
     public System.Action<float, Controller> OnControllerGrip { get; internal set; }
     public System.Action<Vector2, bool, Controller> OnControllerTouchpad { get; internal set; }
-    public System.Action<Vector2, bool> OnLeftControllerTouchpad { get; internal set; }
+    public System.Action OnControllerMenu { get; internal set; }
+
+    private void Start() {
+        // Create Gradient Colors for Line Visuals
+        this.invisibleGradient = new Gradient();
+        this.invisibleGradient.SetKeys(new[] { new GradientColorKey(Color.clear, 0f) }, new[] { new GradientAlphaKey(0f, 0f) });
+        this.redGradient = new Gradient();
+        this.redGradient.SetKeys(new[] { new GradientColorKey(Color.red, 0f) }, new[] { new GradientAlphaKey(1f, 0f) });
+        this.spellActiveGradient = new Gradient();
+        this.spellActiveGradient.SetKeys(new[] { new GradientColorKey(Color.yellow, 0f) }, new[] { new GradientAlphaKey(1f, 0f) });
+
+        // Create empty Action (no turn based movement)
+        this.emptyAction = default(UnityEngine.InputSystem.InputActionProperty);
+
+        // Initialize Preferred Controller
+        this.SetPreferredController((Controller)PlayerPrefs.GetInt("preferredController", 1));
+    }
+
+    // Called when the object is enabled and active
+    private void OnEnable() {
+        if (!this.rightController.isValid || !this.leftController.isValid) {
+            this.GetDevices();
+        }
+    }
 
     /// <summary>
     /// Gets all relevant XR devices (Right Controller, Left Controller, Headset).
@@ -47,13 +84,6 @@ public class XRInputManager : MonoBehaviour {
 
         if (!this.headset.isValid) {
             this.headset = InputDevices.GetDeviceAtXRNode(this.xrNodeHead);
-        }
-    }
-
-    // Called when the object is enabled and active
-    private void OnEnable() {
-        if (!this.rightController.isValid || !this.leftController.isValid) {
-            this.GetDevices();
         }
     }
 
@@ -75,6 +105,19 @@ public class XRInputManager : MonoBehaviour {
                     this.OnControllerTrigger?.Invoke(true, Controller.Right);
                 } else if (triggerButtonReleased) {
                     this.OnControllerTrigger?.Invoke(false, Controller.Right);
+                }
+            }
+
+            // Capture MenuButton
+            bool menuButtonPressed = false;
+            bool menuButtonReleased = false;
+
+            if (this.rightController.TryGetFeatureValue(CommonUsages.menuButton, out menuButtonPressed)) {
+                menuButtonReleased = !menuButtonPressed && this.lastMenuButtonStateRight;
+                this.lastMenuButtonStateRight = menuButtonPressed;
+
+                if ((menuButtonPressed && !this.lastMenuButtonStateRight) || menuButtonReleased) {
+                    this.OnControllerMenu?.Invoke();
                 }
             }
 
@@ -127,6 +170,19 @@ public class XRInputManager : MonoBehaviour {
                 }
             }
 
+            // Capture MenuButton
+            bool menuButtonPressed = false;
+            bool menuButtonReleased = false;
+
+            if (this.leftController.TryGetFeatureValue(CommonUsages.menuButton, out menuButtonPressed)) {
+                menuButtonReleased = !menuButtonPressed && this.lastMenuButtonStateLeft;
+                this.lastMenuButtonStateLeft = menuButtonPressed;
+
+                if ((menuButtonPressed && !this.lastMenuButtonStateLeft) || menuButtonReleased) {
+                    this.OnControllerMenu?.Invoke();
+                }
+            }
+
             // Capture GripButton
             float gripActionValue = 0;
             bool gripButtonReleased = false;
@@ -155,6 +211,60 @@ public class XRInputManager : MonoBehaviour {
                     }
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Set the preferred controller for casting spells. The other controller will be used for movement/teleporting.
+    /// </summary>
+    /// <param name="controller">The preferred controller.</param>
+    public void SetPreferredController(Controller controller) {
+        if (controller == Controller.Left) {
+            // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
+            this.rightControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
+
+            // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
+            this.leftControllerRayInteractor.interactionLayers &= ~(1 << LayerMask.NameToLayer("Teleport"));
+
+            // Set Line Type for controllers
+            this.leftControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
+            this.rightControllerRayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
+            this.rightControllerRayInteractor.velocity = 8.0f;
+
+            // Set Invalid Line Visual Gradient for controllers
+            this.leftControllerLineVisual.invalidColorGradient = this.invisibleGradient;
+            this.rightControllerLineVisual.invalidColorGradient = this.redGradient;
+
+            // Enable Turning for Left Controller and Disable for right Controller
+            this.snapTurnProvider.leftHandSnapTurnAction = this.emptyAction;
+            this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
+        } else {
+            // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
+            this.leftControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
+
+            // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
+            this.rightControllerRayInteractor.interactionLayers &= ~(1 << LayerMask.NameToLayer("Teleport"));
+
+            // Set Line Type for controllers
+            this.rightControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
+            this.leftControllerRayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
+            this.leftControllerRayInteractor.velocity = 8.0f;
+
+            // Set Invalid Line Visual Gradient for controllers
+            this.rightControllerLineVisual.invalidColorGradient = this.invisibleGradient;
+            this.leftControllerLineVisual.invalidColorGradient = this.redGradient;
+
+            // Enable Turning for Right Controller and Disable for left Controller
+            this.snapTurnProvider.rightHandSnapTurnAction = this.emptyAction;
+            this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
+        }
+    }
+
+    public void SetVisualGradientForActiveSpell(SpellCasting.Spell spell) {
+        if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
+            this.leftControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
+        } else {
+            this.rightControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
         }
     }
 }

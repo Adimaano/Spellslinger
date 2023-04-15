@@ -19,6 +19,8 @@ public class Player : MonoBehaviour {
     [SerializeField] private Sprite lightningRune;
     [SerializeField] private Sprite timeRune;
 
+    public XRInputManager.Controller PreferredController { get; set; }
+
     // Start is called before the first frame update
     private void Start() {
         // find dependencies in scene
@@ -32,6 +34,9 @@ public class Player : MonoBehaviour {
         this.drawScript.OnDrawFinished += this.ChargeSpell;
         this.input.OnControllerTrigger += this.CastSpell;
         this.input.OnControllerTouchpad += this.DrawRune;
+
+        // set preferred controller from player prefs (default: right)
+        this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
     }
 
     /// <summary>
@@ -81,6 +86,7 @@ public class Player : MonoBehaviour {
         if (this.currentSpell != SpellCasting.Spell.None) {
             this.StartCoroutine(this.ShowRune());
             GameManager.Instance.PlaySound("RuneRecognized");
+            this.input.SetVisualGradientForActiveSpell(this.currentSpell);
         }
     }
 
@@ -126,11 +132,16 @@ public class Player : MonoBehaviour {
                 // cast spell
                 this.spellCasting.CastSpell(this.currentSpell, controller);
                 this.currentSpell = SpellCasting.Spell.None;
+                this.input.SetVisualGradientForActiveSpell(this.currentSpell);
             }
         }
     }
 
     private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller) {
+        if (controller != this.PreferredController) {
+            return;
+        }
+
         if (clicked) {
             this.drawScript.StartDrawing(controller);
         } else {
