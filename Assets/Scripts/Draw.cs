@@ -66,7 +66,7 @@ public class Draw : MonoBehaviour {
             this.isDrawingLeft = false;
 
             // destroy drawing particles
-            Destroy(this.drawPointRight.transform.GetChild(0).gameObject);
+            Destroy(this.drawPointLeft.transform.GetChild(0).gameObject);
 
             // emit event and reset drawing points
             Vector3[] normalizedPoints = this.GenerateNormalizedList(this.drawingPointsLeft);
