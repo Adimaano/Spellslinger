@@ -81,17 +81,6 @@ private bool andAnotherOne = false;
 [SerializeField] private bool andAnotherOne = false;
 ```
 
- - SA1401: Fields must be private -> **Suggestion**
-
-Reason/Example:
-In general fields should be private. However, there are some exceptions. For example, the instance of a singleton class should be public.
-```csharp
-public class GameManager : MonoBehaviour {
-    public static GameManager Instance;
-		// ...
-}
-```
-
  - SA1602: Enumeration items should be documented -> **Suggestion**
 
 Reason/Example:

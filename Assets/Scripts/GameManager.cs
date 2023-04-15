@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    public static GameManager Instance;
-
     private AudioSource soundEffectSource;
     private AudioSource musicSource;
 
@@ -13,6 +11,8 @@ public class GameManager : MonoBehaviour {
 
     // A dictionary to map sound effect names to audio clips
     private Dictionary<string, AudioClip> soundEffectDictionary;
+
+    public static GameManager Instance { get; private set; }
 
     private void Awake() {
         if (Instance == null) {
