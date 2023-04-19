@@ -238,6 +238,35 @@ public class XRInputManager : MonoBehaviour {
             // Enable Turning for Left Controller and Disable for right Controller
             this.snapTurnProvider.leftHandSnapTurnAction = this.emptyAction;
             this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
+
+            // Switch Prefabs (Hand with Wand and Hand without Wand)
+            
+            if (this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)")) {
+                this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+
+                this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+                this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+            } else {
+                if (this.leftControllerRayInteractor.transform.Find("XRControllerLeft").gameObject.activeSelf) {
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                } else {
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                }
+            }
         } else {
             // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
             this.leftControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
@@ -257,6 +286,34 @@ public class XRInputManager : MonoBehaviour {
             // Enable Turning for Right Controller and Disable for left Controller
             this.snapTurnProvider.rightHandSnapTurnAction = this.emptyAction;
             this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
+
+            // Switch Prefabs (Hand with Wand and Hand without Wand)
+            if (this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)")) {
+                this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+
+                this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+                this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+            } else {
+                if (this.rightControllerRayInteractor.transform.Find("XRControllerRight").gameObject.activeSelf) {
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                } else {
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                }
+            }
         }
     }
 
