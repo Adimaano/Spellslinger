@@ -62,10 +62,10 @@ public class GameManager : MonoBehaviour {
 
             // set pause menu position to 2.5 meters in front of player
             Vector3 lookDirection = Camera.main.transform.forward;
-            this.pauseMenuPrefab.transform.position = this.player.transform.position + (lookDirection * 2.5f) + (Vector3.up * 1.5f);
+            this.pauseMenuPrefab.transform.position = Camera.main.transform.position + (lookDirection * 2.5f);
 
             // set pause menu rotation to look at player but keep it upright
-            Quaternion lookRotation = Quaternion.LookRotation(this.player.transform.position - this.pauseMenuPrefab.transform.position);
+            Quaternion lookRotation = Quaternion.LookRotation(Camera.main.transform.position - this.pauseMenuPrefab.transform.position);
             this.pauseMenuPrefab.transform.rotation = Quaternion.Euler(0.0f, lookRotation.eulerAngles.y, 0.0f);
         }
     }
