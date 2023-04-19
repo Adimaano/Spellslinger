@@ -14,6 +14,7 @@ public class XRInputManager : MonoBehaviour {
     private InputDevice headset;
 
     // XR Components
+    [Header("XR Components")]
     [SerializeField] private XRRayInteractor rightControllerRayInteractor;
     [SerializeField] private XRRayInteractor leftControllerRayInteractor;
     [SerializeField] private XRInteractorLineVisual leftControllerLineVisual;
@@ -35,6 +36,11 @@ public class XRInputManager : MonoBehaviour {
     private Gradient invisibleGradient;
     private Gradient redGradient;
     private Gradient spellActiveGradient;
+
+    // Draw Point (LineCast Origin)
+    [Header("Draw Points")]
+    [SerializeField] private GameObject drawPointLeft;
+    [SerializeField] private GameObject drawPointRight;
 
     public enum Controller {
         Left,
@@ -267,6 +273,9 @@ public class XRInputManager : MonoBehaviour {
                     this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
                 }
             }
+
+            this.leftControllerRayInteractor.rayOriginTransform = this.drawPointLeft.transform;
+            this.rightControllerRayInteractor.rayOriginTransform = this.rightControllerRayInteractor.gameObject.transform;
         } else {
             // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
             this.leftControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
@@ -314,6 +323,9 @@ public class XRInputManager : MonoBehaviour {
                     this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
                 }
             }
+
+            this.leftControllerRayInteractor.rayOriginTransform = this.leftControllerRayInteractor.gameObject.transform;
+            this.rightControllerRayInteractor.rayOriginTransform = this.drawPointRight.transform;
         }
     }
 
