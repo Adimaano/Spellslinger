@@ -1,7 +1,7 @@
 # ~~SpellSlinger_Prototyping~~ That 1 Wizard Game
 Includes some basic setups and experiments for the upcoming VR Project "That 1 Wizard Game"
 ## Saving Runes
-Open the *Draw_Prototype_01* scene and hit the play button. 
+Open the *Scenes/DataCollection/Draw_Prototype_01* scene and hit the play button. 
 
 On startup the necessary VR Software should automatically start (e.g. steamVR for index/vive).
 
@@ -12,6 +12,16 @@ Everytime a rune is drawn, several things happen:
  - A second GameObject called "Normalized Rune X" with a LineRenderer is created. This LineRenderer draws the rune as it was saved to the file. This can be helpful for debugging.
 
  After you drew a couple of runes click the *Pause Button* (do not Stop the game only Pause!). With the game stopped switch to the scene tab and click on each "Normalized Rune X". If for example *Normalized Rune 9* looks off (e.g. tracking glitch), you can just remove the 9th line in the file
+
+## Project Structure
+### Scripts Folder
+Scripts folder is seen as one namespace for the project.
+
+### ThirdParty Folder
+Here go all third party assets, plugins, etc.
+
+### Scenes Folder
+Should be sorted in subfolders (Rune-Test, World-Test, etc.), except for the main scenes like menu and level.
 
 ## Coding Style
 To create a consistent coding style, the Analyzer Tool [StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) can be used. It can be installed via the NuGet Package Manager.
