@@ -8,7 +8,7 @@ public class Level0Manager : MonoBehaviour
     public GameObject lastTorches, walkableArea1, walkableArea2, reflectiveProbeObject;
     public Light spotlight1, spotlight2, ambientLight;
     private Torches lastFire;
-    private bool bookTriggered = false, initTrigger = true;
+    private bool bookTriggered = false;
 
     private void Start()
     {
@@ -32,20 +32,20 @@ public class Level0Manager : MonoBehaviour
     
     private IEnumerator lightOn(Light spotlight, float maxIntensity)
     {
-        bookTriggered = false;
-        for (int i = 0; i < 100; i++)
+        if(spotlight.intensity < maxIntensity)
         {
-            spotlight.intensity += maxIntensity/100;
-            yield return new WaitForSeconds(0.05f);
+            for (spotlight.intensity = 0; spotlight.intensity < maxIntensity; spotlight.intensity += maxIntensity/100)
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
         }
     }
 
     private IEnumerator lightOff(Light spotlight)
     {
         float maxIntensity = spotlight.intensity;
-        for (int i = 0; i < 100; i++)
+        for (spotlight.intensity = maxIntensity; spotlight.intensity > 0; spotlight.intensity -= maxIntensity/100)
         {
-            spotlight.intensity -= maxIntensity/100;
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -53,14 +53,9 @@ public class Level0Manager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger Enter for Book");
-        if (initTrigger)
+        if (other.CompareTag("Player"))
         {
-            if (other.CompareTag("Player"))
-            {
-                bookTriggered = true;
-                initTrigger = false;
-            }
-
+            bookTriggered = true;
         }
         
     }
@@ -72,14 +67,14 @@ public class Level0Manager : MonoBehaviour
             StartCoroutine(reflectionProbeOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
             StartCoroutine(lightOff(spotlight1));
             StartCoroutine(lightOff(spotlight2));
-            StartCoroutine(lightOn(ambientLight, 22.0f));
+            StartCoroutine(lightOn(ambientLight, 10.0f));
 
             walkableArea1.SetActive(false);
             walkableArea2.SetActive(true);
         }
         if(bookTriggered)
         {
-            StartCoroutine(lightOn(spotlight2, 100.0f));
+            StartCoroutine(lightOn(spotlight2, 50.0f));
         }
     }
 }
