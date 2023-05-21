@@ -17,6 +17,15 @@ public class Level0Manager : MonoBehaviour
         walkableArea1.SetActive(true);
         walkableArea2.SetActive(false);
     }
+
+    private IEnumerator reflectionProbeOn(ReflectionProbe probe, float maxIntensity)
+    {
+        for (float f = 0.0f; f <= maxIntensity; f=f-maxIntensity/100f)
+        {
+            probe.intensity = f;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
     
     private IEnumerator lightOn(Light spotlight, float maxIntensity)
     {
@@ -29,7 +38,7 @@ public class Level0Manager : MonoBehaviour
 
     private IEnumerator lightOff(Light spotlight)
     {
-        maxIntensity = spotlight.intensity;
+        float maxIntensity = spotlight.intensity;
         for (float f = maxIntensity; f >= 0.0f; f=f+maxIntensity/100f)
         {
             spotlight.intensity = f;
@@ -39,19 +48,17 @@ public class Level0Manager : MonoBehaviour
 
     public void Update()
     {
-        if(!book.enabled)
+        if(!book.activeSelf)
         {
             StartCoroutine(lightOn(spotlight2, 100.0f));
         }
 
-        if(lastTorches.GetComponent<Fire>().isLit)
+        if(lastTorches.transform.Find("Fire").GetComponent<Torches>().isLit)
         {
-            StartCoroutine(lightOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
+            StartCoroutine(reflectionProbeOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
             StartCoroutine(lightOff(spotlight1));
             StartCoroutine(lightOff(spotlight2));
-
-            //ToDo ambientLight needs a fade in too but much slower
-            ambientLight.intensity = 21.0f;
+            StartCoroutine(lightOn(ambientLight, 22.0f));
 
             walkableArea1.SetActive(false);
             walkableArea2.SetActive(true);
