@@ -96,7 +96,7 @@ namespace Spellslinger.Game.Control
             if (this.currentSpell != SpellCasting.Spell.None)
             {
                 this.StartCoroutine(this.ShowRune());
-                GameManager.Instance.PlaySound("RuneRecognized");
+                //GameManager.Instance.PlaySound("RuneRecognized");
                 this.input.SetVisualGradientForActiveSpell(this.currentSpell);
             }
         }
