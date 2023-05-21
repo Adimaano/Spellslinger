@@ -27,8 +27,9 @@ public class Level0Manager : MonoBehaviour
         }
     }
 
-    private IEnumerator lightOff(Light spotlight, float intensity)
+    private IEnumerator lightOff(Light spotlight)
     {
+        maxIntensity = spotlight.intensity;
         for (float f = maxIntensity; f >= 0.0f; f=f+maxIntensity/100f)
         {
             spotlight.intensity = f;
@@ -42,10 +43,16 @@ public class Level0Manager : MonoBehaviour
         {
             StartCoroutine(lightOn(spotlight2, 100.0f));
         }
-        
+
         if(lastTorches.GetComponent<Fire>().isLit)
         {
             StartCoroutine(lightOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
+            StartCoroutine(lightOff(spotlight1));
+            StartCoroutine(lightOff(spotlight2));
+
+            //ToDo ambientLight needs a fade in too but much slower
+            ambientLight.intensity = 21.0f;
+
             walkableArea1.SetActive(false);
             walkableArea2.SetActive(true);
         }
