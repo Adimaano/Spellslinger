@@ -5,8 +5,10 @@ using UnityEngine;
 public class Level0Manager : MonoBehaviour
 {
     [SerializeField]
-    public GameObject lastTorches, walkableArea1, walkableArea2, reflectiveProbeObject, book;
+    public GameObject lastTorches, walkableArea1, walkableArea2, reflectiveProbeObject;
     public Light spotlight1, spotlight2, ambientLight;
+    private Torches lastFire;
+    private bool bookTriggered = false, initTrigger = true;
 
     private void Start()
     {
@@ -16,6 +18,7 @@ public class Level0Manager : MonoBehaviour
         reflectiveProbeObject.GetComponent<ReflectionProbe>().intensity = 0.0f;
         walkableArea1.SetActive(true);
         walkableArea2.SetActive(false);
+        lastFire = lastTorches.GetComponent<Torches>();
     }
 
     private IEnumerator reflectionProbeOn(ReflectionProbe probe, float maxIntensity)
@@ -29,9 +32,10 @@ public class Level0Manager : MonoBehaviour
     
     private IEnumerator lightOn(Light spotlight, float maxIntensity)
     {
-        for (float f = 0.0f; f <= maxIntensity; f=f-maxIntensity/100f)
+        bookTriggered = false;
+        for (int i = 0; i < 100; i++)
         {
-            spotlight.intensity = f;
+            spotlight.intensity += maxIntensity/100;
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -39,21 +43,31 @@ public class Level0Manager : MonoBehaviour
     private IEnumerator lightOff(Light spotlight)
     {
         float maxIntensity = spotlight.intensity;
-        for (float f = maxIntensity; f >= 0.0f; f=f+maxIntensity/100f)
+        for (int i = 0; i < 100; i++)
         {
-            spotlight.intensity = f;
+            spotlight.intensity -= maxIntensity/100;
             yield return new WaitForSeconds(0.05f);
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Enter for Book");
+        if (initTrigger)
+        {
+            if (other.CompareTag("Player"))
+            {
+                bookTriggered = true;
+                initTrigger = false;
+            }
+
+        }
+        
+    }
+
     public void Update()
     {
-        if(!book.activeSelf)
-        {
-            StartCoroutine(lightOn(spotlight2, 100.0f));
-        }
-
-        if(lastTorches.transform.Find("Fire").GetComponent<Torches>().isLit)
+        if(this.lastFire.isLit)
         {
             StartCoroutine(reflectionProbeOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
             StartCoroutine(lightOff(spotlight1));
@@ -62,6 +76,10 @@ public class Level0Manager : MonoBehaviour
 
             walkableArea1.SetActive(false);
             walkableArea2.SetActive(true);
+        }
+        if(bookTriggered)
+        {
+            StartCoroutine(lightOn(spotlight2, 100.0f));
         }
     }
 }
