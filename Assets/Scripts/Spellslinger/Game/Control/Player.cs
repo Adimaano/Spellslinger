@@ -9,7 +9,7 @@ namespace Spellslinger.Game.Control
     {
         private XRInputManager input;
         private Draw drawScript;
-        private ONNXModelRunner modelRunner;
+        private ModelRunner modelRunner;
         private SpellCasting spellCasting;
 
         private SpriteRenderer runeSpriteRenderer;
@@ -32,7 +32,7 @@ namespace Spellslinger.Game.Control
             // find dependencies in scene
             this.input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
             this.drawScript = GameObject.Find("-- XR --").GetComponent<Draw>();
-            this.modelRunner = GameObject.Find("-- XR --").GetComponent<ONNXModelRunner>();
+            this.modelRunner = GameObject.Find("-- XR --").GetComponent<ModelRunner>();
             this.spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
             this.runeSpriteRenderer =
                 GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
@@ -41,9 +41,57 @@ namespace Spellslinger.Game.Control
             this.drawScript.OnDrawFinished += this.ChargeSpell;
             this.input.OnControllerTrigger += this.CastSpell;
             this.input.OnControllerTouchpad += this.DrawRune;
+            this.modelRunner.OnPredictionReceived += this.PredictionReceived;
 
             // set preferred controller from player prefs (default: right)
             this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
+        }
+
+        private void PredictionReceived(int runeClass)
+        {
+            Debug.Log(runeClass);
+            
+            // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
+            switch (runeClass)
+            {
+                case 0:
+                    // Time Spell
+                    this.currentSpell = SpellCasting.Spell.Time;
+                    break;
+                case 1:
+                    // Air Spell
+                    this.currentSpell = SpellCasting.Spell.Air;
+                    break;
+                case 2:
+                    // Fire Spell
+                    this.currentSpell = SpellCasting.Spell.Fire;
+                    break;
+                case 3:
+                    // Earth Spell
+                    this.currentSpell = SpellCasting.Spell.Earth;
+                    break;
+                case 4:
+                    // Water Spell
+                    this.currentSpell = SpellCasting.Spell.Water;
+                    break;
+                case 5:
+                    // Lightning Spell
+                    this.currentSpell = SpellCasting.Spell.Lightning;
+                    break;
+                default:
+                    // Unknown Rune
+                    this.currentSpell = SpellCasting.Spell.None;
+                    break;
+            }
+
+            if (this.currentSpell != SpellCasting.Spell.None)
+            {
+                this.StartCoroutine(this.ShowRune());
+                //GameManager.Instance.PlaySound("RuneRecognized");
+                this.input.SetVisualGradientForActiveSpell(this.currentSpell);
+            }
+            
+            this.spellCasting.ChargeSpell(this.currentSpell, this.PreferredController);
         }
 
         /// <summary>
@@ -58,52 +106,54 @@ namespace Spellslinger.Game.Control
                 return;
             }
 
-            int runeClass = this.modelRunner.IdentifyRune(drawingPoints);
-
-            // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
-            switch (runeClass)
-            {
-                case 0:
-                    // Time Spell
-                    this.currentSpell = SpellCasting.Spell.Time;
-                    break;
-                case 1:
-                    // Air Spell
-                    this.currentSpell = SpellCasting.Spell.Air;
-                    break;
-                case 2:
-                    // Earth Spell
-                    this.currentSpell = SpellCasting.Spell.Earth;
-                    break;
-                case 3:
-                    // Fire Spell
-                    this.currentSpell = SpellCasting.Spell.Fire;
-                    break;
-                case 4:
-                    // Lightning Spell
-                    this.currentSpell = SpellCasting.Spell.Lightning;
-                    break;
-                case 5:
-                    // Water Spell
-                    this.currentSpell = SpellCasting.Spell.Water;
-                    break;
-                default:
-                    // Unknown Rune
-                    this.currentSpell = SpellCasting.Spell.None;
-                    break;
-            }
-
-            if (this.currentSpell != SpellCasting.Spell.None)
-            {
-                this.StartCoroutine(this.ShowRune());
-                //GameManager.Instance.PlaySound("RuneRecognized");
-                this.input.SetVisualGradientForActiveSpell(this.currentSpell);
-            }
+            this.modelRunner.IdentifyRune(drawingPoints);
+            // int runeClass = this.modelRunner.IdentifyRune(drawingPoints);
+            //
+            // // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
+            // switch (runeClass)
+            // {
+            //     case 0:
+            //         // Time Spell
+            //         this.currentSpell = SpellCasting.Spell.Time;
+            //         break;
+            //     case 1:
+            //         // Air Spell
+            //         this.currentSpell = SpellCasting.Spell.Air;
+            //         break;
+            //     case 2:
+            //         // Earth Spell
+            //         this.currentSpell = SpellCasting.Spell.Earth;
+            //         break;
+            //     case 3:
+            //         // Fire Spell
+            //         this.currentSpell = SpellCasting.Spell.Fire;
+            //         break;
+            //     case 4:
+            //         // Lightning Spell
+            //         this.currentSpell = SpellCasting.Spell.Lightning;
+            //         break;
+            //     case 5:
+            //         // Water Spell
+            //         this.currentSpell = SpellCasting.Spell.Water;
+            //         break;
+            //     default:
+            //         // Unknown Rune
+            //         this.currentSpell = SpellCasting.Spell.None;
+            //         break;
+            // }
+            //
+            // if (this.currentSpell != SpellCasting.Spell.None)
+            // {
+            //     this.StartCoroutine(this.ShowRune());
+            //     //GameManager.Instance.PlaySound("RuneRecognized");
+            //     this.input.SetVisualGradientForActiveSpell(this.currentSpell);
+            // }
         }
 
         // IEnumerator to show the rune for a short time with fade out and scale up animation
         private IEnumerator ShowRune()
         {
+            Debug.Log("Show");
             switch (this.currentSpell)
             {
                 case SpellCasting.Spell.Water:
@@ -150,6 +200,7 @@ namespace Spellslinger.Game.Control
                     this.spellCasting.CastSpell(this.currentSpell, controller);
                     this.currentSpell = SpellCasting.Spell.None;
                     this.input.SetVisualGradientForActiveSpell(this.currentSpell);
+                    this.spellCasting.ChargeSpell(this.currentSpell, controller);
                 }
             }
         }

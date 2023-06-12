@@ -7,6 +7,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "03353e7a94bd01ef6daa80e3a5fd85c7f5fa4725"
+    },
     "com.unity.barracuda": {
       "version": "3.0.0",
       "depth": 0,
