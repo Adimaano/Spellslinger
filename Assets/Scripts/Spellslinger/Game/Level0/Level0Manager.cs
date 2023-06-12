@@ -34,7 +34,7 @@ public class Level0Manager : MonoBehaviour
     {
         if(spotlight.intensity < maxIntensity)
         {
-            for (spotlight.intensity = 0; spotlight.intensity < maxIntensity; spotlight.intensity += maxIntensity/100)
+            for (; spotlight.intensity < maxIntensity; spotlight.intensity += maxIntensity/100)
             {
                 yield return new WaitForSeconds(0.05f);
             }
@@ -46,7 +46,7 @@ public class Level0Manager : MonoBehaviour
         float maxIntensity = spotlight.intensity;
         for (spotlight.intensity = maxIntensity; spotlight.intensity > 0; spotlight.intensity -= maxIntensity/100)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.005f);
         }
     }
 
