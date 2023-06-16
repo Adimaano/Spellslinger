@@ -8,6 +8,14 @@ namespace Spellslinger.AI
     {
         public ModelRunner modelRunner;
 
+        private void Start()
+        {
+            modelRunner.OnPredictionReceived += (prediction) =>
+            {
+                Debug.Log($"Prediction: {prediction}");
+            };
+        }
+
         private void Update()
         {
             // if P is pressed, test the model
