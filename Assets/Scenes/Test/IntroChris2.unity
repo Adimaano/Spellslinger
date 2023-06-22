@@ -5336,7 +5336,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
-  m_CustomReticle: {fileID: 3340015867465844193, guid: d312580106ff2c6439a95c9581e22278,
+  m_CustomReticle: {fileID: 278877886688400851, guid: bbfeb11231bb0144eb204d1bab811937,
     type: 3}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -5433,7 +5433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853245395}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0023075228}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.002, y: 0.0329646, z: 0.0019999994}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5517,7 +5517,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
-  m_CustomReticle: {fileID: 3340015867465844193, guid: d312580106ff2c6439a95c9581e22278,
+  m_CustomReticle: {fileID: 278877886688400851, guid: bbfeb11231bb0144eb204d1bab811937,
     type: 3}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -5652,6 +5652,9 @@ MonoBehaviour:
   spotlight1: {fileID: 1019269573}
   spotlight2: {fileID: 1324658907}
   ambientLight: {fileID: 1623874569}
+  directionalSpotlight: {fileID: 1471882609}
+  pointLight1: {fileID: 2035774774}
+  pointLight2: {fileID: 736772649}
 --- !u!1001 &865413422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11685,6 +11688,9 @@ MonoBehaviour:
   spotlight1: {fileID: 966020567}
   spotlight2: {fileID: 1846700737}
   ambientLight: {fileID: 1166299204}
+  directionalSpotlight: {fileID: 0}
+  pointLight1: {fileID: 0}
+  pointLight2: {fileID: 0}
 --- !u!65 &1476715408
 BoxCollider:
   m_ObjectHideFlags: 0

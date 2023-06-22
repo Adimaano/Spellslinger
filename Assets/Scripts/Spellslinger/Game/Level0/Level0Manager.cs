@@ -7,6 +7,7 @@ public class Level0Manager : MonoBehaviour
     [SerializeField]
     public GameObject lastTorches, walkableArea1, walkableArea2, reflectiveProbeObject;
     public Light spotlight1, spotlight2, ambientLight;
+    public Light directionalSpotlight, pointLight1, pointLight2;
     private Torches lastFire;
     private bool bookTriggered = false;
 
@@ -16,9 +17,13 @@ public class Level0Manager : MonoBehaviour
         spotlight1.intensity = 400.0f;
         ambientLight.intensity = 0.0f;
         reflectiveProbeObject.GetComponent<ReflectionProbe>().intensity = 0.0f;
+        reflectiveProbeObject.SetActive(false);
         walkableArea1.SetActive(true);
         walkableArea2.SetActive(false);
         lastFire = lastTorches.GetComponent<Torches>();
+        directionalSpotlight.intensity = 0.0f;
+        pointLight1.intensity = 0.0f;
+        pointLight2.intensity = 0.0f;
     }
 
     private IEnumerator reflectionProbeOn(ReflectionProbe probe, float maxIntensity)
@@ -64,10 +69,14 @@ public class Level0Manager : MonoBehaviour
     {
         if(this.lastFire.isLit)
         {
+            reflectiveProbeObject.SetActive(true);
             StartCoroutine(reflectionProbeOn(reflectiveProbeObject.GetComponent<ReflectionProbe>(), 2.0f));
             StartCoroutine(lightOff(spotlight1));
             StartCoroutine(lightOff(spotlight2));
             StartCoroutine(lightOn(ambientLight, 10.0f));
+            StartCoroutine(lightOn(directionalSpotlight, 100.0f));
+            StartCoroutine(lightOn(pointLight1, 1.0f));
+            StartCoroutine(lightOn(pointLight2, 1.0f));
 
             walkableArea1.SetActive(false);
             walkableArea2.SetActive(true);
