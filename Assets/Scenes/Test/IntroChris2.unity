@@ -5333,7 +5333,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_CustomReticle: {fileID: 278877886688400851, guid: bbfeb11231bb0144eb204d1bab811937,
@@ -5514,7 +5514,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 2147483648
   m_DistanceCalculationMode: 1
   m_SelectMode: 1
   m_CustomReticle: {fileID: 278877886688400851, guid: bbfeb11231bb0144eb204d1bab811937,
