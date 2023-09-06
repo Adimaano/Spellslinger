@@ -45,6 +45,10 @@ namespace Spellslinger.Game.XR
         [SerializeField] private GameObject drawPointLeft;
         [SerializeField] private GameObject drawPointRight;
 
+        // Wand Material
+        [Header("Wand Material")]
+        [SerializeField] private Material wandMaterial;
+
         public enum Controller {
             Left,
             Right,
@@ -70,6 +74,10 @@ namespace Spellslinger.Game.XR
 
             // Initialize Preferred Controller
             this.SetPreferredController((Controller)PlayerPrefs.GetInt("preferredController", 1));
+
+            // remove emission map from wand material
+            this.wandMaterial.SetTexture("_EmissionMap", null);
+            this.wandMaterial.SetColor("_EmissionColor", Color.black);
         }
 
         // Called when the object is enabled and active

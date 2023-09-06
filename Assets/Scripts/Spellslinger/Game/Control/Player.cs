@@ -17,6 +17,7 @@ namespace Spellslinger.Game.Control
         private SpellCasting.Spell currentSpell = SpellCasting.Spell.None;
 
         // Rune Sprites
+        [Header("Rune Sprites")]
         [SerializeField] private Sprite waterRune;
         [SerializeField] private Sprite fireRune;
         [SerializeField] private Sprite earthRune;
