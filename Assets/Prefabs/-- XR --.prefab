@@ -2133,6 +2133,12 @@ MonoBehaviour:
   drawPointLeft: {fileID: 72995138311377683}
   drawPointRight: {fileID: 72995138334716533}
   wandMaterial: {fileID: 2100000, guid: f1f85681653652f4c9c92c33d0ce8df6, type: 2}
+  wandGlowWater: {fileID: 2800000, guid: a05c097390bfbb74b91950b8214cbb2b, type: 3}
+  wandGlowFire: {fileID: 2800000, guid: ab02fbf96b7e9fe4c914f20e7eb60d7e, type: 3}
+  wandGlowEarth: {fileID: 2800000, guid: 0a33798e52a0707428401e461f28a2c0, type: 3}
+  wandGlowAir: {fileID: 2800000, guid: e4e2a8d64cde37e49893ae1c9ad17fc4, type: 3}
+  wandGlowLightning: {fileID: 2800000, guid: 9aca8a4ab88619644884f1d45372fd64, type: 3}
+  wandGlowTime: {fileID: 2800000, guid: 91f92529ea27c7349bf1458053119868, type: 3}
 --- !u!114 &72995140200250155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,12 +2354,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b158b94c373d4b4f9e98cdb92789343, type: 3}
---- !u!1 &7787004098668074299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7859813006384745094, guid: 5b158b94c373d4b4f9e98cdb92789343,
-    type: 3}
-  m_PrefabInstance: {fileID: 72995138876596157}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8341985745801261138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8270855663187062767, guid: 5b158b94c373d4b4f9e98cdb92789343,
@@ -2437,12 +2437,6 @@ PrefabInstance:
 --- !u!4 &3546950933974539020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3475118261464492563, guid: 1f4d373a613d0466fbd8849470265852,
-    type: 3}
-  m_PrefabInstance: {fileID: 72995139770560799}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4354020410208150960 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4426971157188269231, guid: 1f4d373a613d0466fbd8849470265852,
     type: 3}
   m_PrefabInstance: {fileID: 72995139770560799}
   m_PrefabAsset: {fileID: 0}

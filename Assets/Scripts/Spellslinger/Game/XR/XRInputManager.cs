@@ -46,8 +46,14 @@ namespace Spellslinger.Game.XR
         [SerializeField] private GameObject drawPointRight;
 
         // Wand Material
-        [Header("Wand Material")]
+        [Header("Wands & Wand Material")]
         [SerializeField] private Material wandMaterial;
+        [SerializeField] private Texture2D wandGlowWater;
+        [SerializeField] private Texture2D wandGlowFire;
+        [SerializeField] private Texture2D wandGlowEarth;
+        [SerializeField] private Texture2D wandGlowAir;
+        [SerializeField] private Texture2D wandGlowLightning;
+        [SerializeField] private Texture2D wandGlowTime;
 
         public enum Controller {
             Left,
@@ -345,6 +351,44 @@ namespace Spellslinger.Game.XR
                 this.leftControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
             } else {
                 this.rightControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
+            }
+
+            switch (spell) {
+                case SpellCasting.Spell.Fire:
+                    // set emission map for fire spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowFire);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.Water:
+                    // set emission map for water spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowWater);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.Earth:
+                    // set emission map for earth spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowEarth);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.Air:
+                    // set emission map for air spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowAir);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.Lightning:
+                    // set emission map for lightning spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowLightning);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.Time:
+                    // set emission map for time spell
+                    this.wandMaterial.SetTexture("_EmissionMap", this.wandGlowTime);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.white);
+                    break;
+                case SpellCasting.Spell.None:
+                    // set emission map for no spell
+                    this.wandMaterial.SetTexture("_EmissionMap", null);
+                    this.wandMaterial.SetColor("_EmissionColor", Color.black);
+                    break;
             }
         }
     }
