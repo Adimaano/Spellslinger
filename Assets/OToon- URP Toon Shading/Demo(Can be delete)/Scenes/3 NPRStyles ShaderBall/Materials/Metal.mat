@@ -24,6 +24,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
   m_ValidKeywords:
   - _HALFTONESHAPE_DOT
+  - _OUTLINE
   - _RECEIVE_SHADOWS_OFF
   - _RIMLIGHTING_ON
   - _SPECULAR_COLOR
@@ -191,9 +192,9 @@ Material:
     - _NoiseScale: 3
     - _NoiseStrength: 0.31
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 15
     - _OverrideShadowColor: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -237,7 +238,7 @@ Material:
     - _HatchColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 0.44705883}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.5}
