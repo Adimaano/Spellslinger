@@ -23,7 +23,7 @@ Material:
   m_Name: lab_assets25_Chest_barrel_chandelier
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
-  - _HALFTONESHAPE_DOT
+  - _HALFTONESHAPE_CROSS
   - _NORMALMAP
   - _OUTLINE
   - _TOON_SHADING_ON
@@ -130,8 +130,8 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0
-    - _BrushSize: 0.8
+    - _BrushLowerCut: 0.15
+    - _BrushSize: 1.436
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -155,15 +155,15 @@ Material:
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
-    - _HalfToneDiffuseStep: 0
-    - _HalfToneEnabled: 0
+    - _HalfToneDiffuseStep: 0.073
+    - _HalfToneEnabled: 1
     - _HalfToneIncludeReceivedShadow: 0
-    - _HalfToneShape: 0
+    - _HalfToneShape: 2
     - _HalfToneUvMode: 0
-    - _HalftoneFadeDistance: 10
-    - _HalftoneFadeToColor: 0
+    - _HalftoneFadeDistance: 100
+    - _HalftoneFadeToColor: 1
     - _HalftoneNoiseClip: 0.8
-    - _HalftoneTilling: 8
+    - _HalftoneTilling: 60
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
     - _HatchingDrawStrength: 1
@@ -185,7 +185,7 @@ Material:
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
-    - _SizeFalloff: 0
+    - _SizeFalloff: 0.513
     - _Smoothness: 0.25123277
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1

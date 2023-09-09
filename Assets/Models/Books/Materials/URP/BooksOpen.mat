@@ -10,14 +10,13 @@ Material:
   m_Name: BooksOpen
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
-  - _EMISSION
-  - _HALFTONESHAPE_DOT
+  - _HALFTONESHAPE_CROSS
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OUTLINE
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -119,8 +118,8 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0
-    - _BrushSize: 0.8
+    - _BrushLowerCut: 0.243
+    - _BrushSize: 0.982
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -144,15 +143,15 @@ Material:
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
-    - _HalfToneDiffuseStep: 0
+    - _HalfToneDiffuseStep: 0.036
     - _HalfToneEnabled: 1
-    - _HalfToneIncludeReceivedShadow: 0
-    - _HalfToneShape: 0
+    - _HalfToneIncludeReceivedShadow: 1
+    - _HalfToneShape: 2
     - _HalfToneUvMode: 0
-    - _HalftoneFadeDistance: 10
-    - _HalftoneFadeToColor: 0
-    - _HalftoneNoiseClip: 0.8
-    - _HalftoneTilling: 8
+    - _HalftoneFadeDistance: 100
+    - _HalftoneFadeToColor: 0.405
+    - _HalftoneNoiseClip: 5.34
+    - _HalftoneTilling: 100
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
     - _HatchingDrawStrength: 1
@@ -202,7 +201,7 @@ Material:
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HalfToneColor: {r: 0.3679245, g: 0.24832156, b: 0.0925596, a: 0.409}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: -200, g: 16.487457, b: 0, a: 0}

@@ -10,7 +10,7 @@ Material:
   m_Name: WoodWall_TS
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
-  - _HALFTONESHAPE_DOT
+  - _HALFTONESHAPE_CROSS
   - _NORMALMAP
   - _TOON_SHADING_ON
   m_InvalidKeywords:
@@ -114,12 +114,12 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0
-    - _BrushSize: 0.8
+    - _BrushLowerCut: 0.209
+    - _BrushSize: 0.518
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DiffuseStep: 0.362
+    - _DiffuseStep: -1
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
@@ -136,22 +136,22 @@ Material:
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
-    - _HalfToneDiffuseStep: 0
-    - _HalfToneEnabled: 0
+    - _HalfToneDiffuseStep: 0.154
+    - _HalfToneEnabled: 1
     - _HalfToneIncludeReceivedShadow: 0
-    - _HalfToneShape: 0
+    - _HalfToneShape: 2
     - _HalfToneUvMode: 0
-    - _HalftoneFadeDistance: 10
-    - _HalftoneFadeToColor: 0
-    - _HalftoneNoiseClip: 0.8
-    - _HalftoneTilling: 8
+    - _HalftoneFadeDistance: 100
+    - _HalftoneFadeToColor: 1
+    - _HalftoneNoiseClip: 6.8
+    - _HalftoneTilling: 30
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
     - _HatchingDrawStrength: 1
     - _HatchingEnabled: 0
     - _HatchingRotation: 0
     - _HatchingSmoothness: 0.1
-    - _Metallic: 0.618
+    - _Metallic: 0.123
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
@@ -166,17 +166,17 @@ Material:
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
     - _Shininess: 0.48421296
-    - _SizeFalloff: 0
-    - _Smoothness: 0.432
+    - _SizeFalloff: 0.355
+    - _Smoothness: 0.359
     - _SmoothnessSource: 1
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0
+    - _SpecularFalloff: 0.309
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.914
+    - _SpecularSize: 0.8
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
