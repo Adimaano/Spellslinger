@@ -61,3 +61,7 @@ crashlytics-build.properties
 
 # JetBrains
 .idea
+Assets/SpaceNavigator
+Assets/SpaceNavigator.meta
+Assets/Packages/Microsoft.ML.OnnxRuntime.1.15.0/Microsoft.ML.OnnxRuntime.1.15.0.nupkg
+Assets/Packages/Microsoft.ML.OnnxRuntime.1.15.0/Microsoft.ML.OnnxRuntime.1.15.0.nupkg.meta
