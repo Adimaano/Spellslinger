@@ -1289,7 +1289,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193704884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1732,7 +1732,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -2052,7 +2052,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -2577,7 +2577,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -2888,7 +2888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &424833952
 Transform:
   m_ObjectHideFlags: 0
@@ -3784,7 +3784,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538080555}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5766,7 +5766,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -8116,7 +8116,7 @@ PrefabInstance:
     - target: {fileID: 5508510302275390782, guid: 6bd181c60bc0b8a4f8369239fca2a9cf,
         type: 3}
       propertyPath: m_ScaleInLightmap
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5571824664608633965, guid: 6bd181c60bc0b8a4f8369239fca2a9cf,
         type: 3}
@@ -11015,7 +11015,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -11095,7 +11095,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -12104,8 +12104,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.41194963, g: 0.63891643, b: 1, a: 1}
-  m_Intensity: 400
+  m_Color: {r: 0.3023614, g: 0.5429327, b: 0.9245283, a: 1}
+  m_Intensity: 300
   m_Range: 1000
   m_SpotAngle: 21.180735
   m_InnerSpotAngle: 11.538166
@@ -12862,7 +12862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1377042143
 Transform:
   m_ObjectHideFlags: 0
@@ -12871,7 +12871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377042142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3533, y: -3.09, z: 4.5784}
+  m_LocalPosition: {x: -2.3533, y: -3.095, z: 4.5784}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13051,7 +13051,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -15510,7 +15510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1623874567
 Transform:
   m_ObjectHideFlags: 0
@@ -16348,7 +16348,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
@@ -17584,7 +17584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1797097765
 Transform:
   m_ObjectHideFlags: 0
@@ -17775,7 +17775,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823959689}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -20574,7 +20574,7 @@ PrefabInstance:
     - target: {fileID: 4931042603517576893, guid: 4431d19c7d478384b98e5f089f27e943,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4431d19c7d478384b98e5f089f27e943, type: 3}
