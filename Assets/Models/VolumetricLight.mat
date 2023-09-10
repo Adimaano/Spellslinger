@@ -113,7 +113,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.15
+    - _Alpha: 0.3
     - _AlphaClip: 0
     - _Blend: 0
     - _BrushLowerCut: 0
@@ -191,10 +191,10 @@ Material:
     - _UseRampColor: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
-    - _edgeBlend: 1.15
+    - _edgeBlend: 0.3
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    - _Color: {r: 0.6666666, g: 0.84449744, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.5294118, b: 1, a: 1}
     - _EmissionColor: {r: 0.13035648, g: 0.16173859, b: 0.2208818, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
