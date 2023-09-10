@@ -13,7 +13,6 @@ Material:
   - _HALFTONESHAPE_CROSS
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
-  - _OUTLINE
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   - _SPECGLOSSMAP
   - _SPECULAR_SETUP
@@ -33,7 +32,7 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: f379316b0fd7fc8458813f8e65f306e7, type: 3}
-        m_Scale: {x: 6, y: 6}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 7b7d63b2a3ac7b94583464699f82337b, type: 3}
@@ -85,7 +84,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: f379316b0fd7fc8458813f8e65f306e7, type: 3}
-        m_Scale: {x: 6, y: 6}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 2eb0377a96ca9cb42879227a817c7455, type: 3}
@@ -138,9 +137,9 @@ Material:
     - _AllToon_OverrideShadowColor: 0
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0.428
-    - _BrushSize: 0.409
-    - _BumpScale: 20
+    - _BrushLowerCut: 0.327
+    - _BrushSize: 0.96
+    - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -167,8 +166,8 @@ Material:
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
-    - _HalfToneDiffuseStep: 0.151
-    - _HalfToneEnabled: 0
+    - _HalfToneDiffuseStep: -0.242
+    - _HalfToneEnabled: 1
     - _HalfToneIncludeReceivedShadow: 1
     - _HalfToneShape: 2
     - _HalfToneUvMode: 0
@@ -176,10 +175,10 @@ Material:
     - _HalftoneFadeDistance: 100
     - _HalftoneFadeToColor: 1
     - _HalftoneLightSizeFactor: 0
-    - _HalftoneNoiseClip: 1.72
+    - _HalftoneNoiseClip: 0
     - _HalftoneScale: 0
     - _HalftoneSize: 0.3
-    - _HalftoneTilling: 171.9
+    - _HalftoneTilling: 80
     - _HalftoneUseScreenSpaceUV: 0
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
@@ -191,7 +190,7 @@ Material:
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineMode: 0
     - _OutlineWidth: 15
     - _OverrideShadowColor: 0
@@ -208,8 +207,8 @@ Material:
     - _SPECULARHIGHLIGHTS: 0
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
-    - _SizeFalloff: 0.534
-    - _Smoothness: 0.321
+    - _SizeFalloff: 0.226
+    - _Smoothness: 0.34
     - _SmoothnessSource: 1
     - _SmoothnessTextureChannel: 1
     - _SpecClipMaskScale: 1
@@ -219,16 +218,16 @@ Material:
     - _SpecShadowStrenth: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0.777
+    - _SpecularFalloff: 0.412
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.182
+    - _SpecularSize: 0.606
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 0
     - _Surface: 0
-    - _ToonBlending: 0.791
+    - _ToonBlending: 1
     - _ToonEnabled: 1
     - _USERAMPCOLOR: 0
     - _UseClipPattern: 0
@@ -237,13 +236,13 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.7490196}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HalfToneColor: {r: 0.4150901, g: 0.4150901, b: 0.4150901, a: 0.436}
+    - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalftoneColor: {r: 0.517647, g: 0.517647, b: 0.517647, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}
