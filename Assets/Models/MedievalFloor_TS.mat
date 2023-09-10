@@ -208,7 +208,7 @@ Material:
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
     - _SizeFalloff: 0.226
-    - _Smoothness: 0.326
+    - _Smoothness: 0.293
     - _SmoothnessSource: 1
     - _SmoothnessTextureChannel: 1
     - _SpecClipMaskScale: 1
@@ -218,9 +218,9 @@ Material:
     - _SpecShadowStrenth: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0.412
+    - _SpecularFalloff: 0.167
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.606
+    - _SpecularSize: 0.549
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
