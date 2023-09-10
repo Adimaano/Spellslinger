@@ -16640,7 +16640,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aaace34181e70064287bb6bf7f8778aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 711cdd19897ee2342b53458e03ea6e8c, type: 2}
     - target: {fileID: -514414016300397092, guid: 655bdb2a6aedd034c98e580c2b642d4b,
         type: 3}
       propertyPath: m_IsActive
@@ -16705,7 +16705,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: aaace34181e70064287bb6bf7f8778aa, type: 2}
+      objectReference: {fileID: 2100000, guid: 711cdd19897ee2342b53458e03ea6e8c, type: 2}
     - target: {fileID: 5955275613503775673, guid: 655bdb2a6aedd034c98e580c2b642d4b,
         type: 3}
       propertyPath: m_IsActive
@@ -18728,6 +18728,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 72995139949544728, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_RootOrder
