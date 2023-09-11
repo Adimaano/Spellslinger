@@ -139,7 +139,7 @@ Material:
     - _Blend: 0
     - _BrushLowerCut: 0.327
     - _BrushSize: 0.96
-    - _BumpScale: 1
+    - _BumpScale: 10
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
