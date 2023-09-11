@@ -208,7 +208,7 @@ Material:
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
     - _SizeFalloff: 0.226
-    - _Smoothness: 0.293
+    - _Smoothness: 0.131
     - _SmoothnessSource: 1
     - _SmoothnessTextureChannel: 1
     - _SpecClipMaskScale: 1

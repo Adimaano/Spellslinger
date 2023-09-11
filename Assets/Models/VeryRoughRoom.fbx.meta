@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: FadeInCylinder1
+    second: {fileID: 2100000, guid: 2665ec49137d3394ca7a4fc1e57f763a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 2209e552147ac0c4dae00d1038984c32, type: 2}
   - first:
