@@ -6,6 +6,9 @@ public class IntroManager : MonoBehaviour {
     [Header("Initially Disabled Objects")]
     [SerializeField] private GameObject[] initiallyDisabledObjects;
 
+    [Header("Initially Enabled Objects")]
+    [SerializeField] private GameObject[] initiallyEnabledObjects;
+
     [Header("Torches")]
     [SerializeField] private GameObject firstTorchGO;
     [SerializeField] private Light spotlightFirstTorch;
@@ -37,6 +40,11 @@ public class IntroManager : MonoBehaviour {
             // Enable all initially disabled objects
             for (int i = 0; i < this.initiallyDisabledObjects.Length; i++) {
                 this.initiallyDisabledObjects[i].SetActive(true);
+            }
+
+            // Disable all initially enabled objects
+            for (int i = 0; i < this.initiallyEnabledObjects.Length; i++) {
+                this.initiallyEnabledObjects[i].SetActive(false);
             }
 
             // Set Background Type of Main Camera to Skybox
