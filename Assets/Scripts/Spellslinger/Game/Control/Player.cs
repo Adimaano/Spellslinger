@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace Spellslinger.Game.Control
 {
-    public class Player : MonoBehaviour
-    {
+    public class Player : MonoBehaviour {
         private XRInputManager input;
         private Draw drawScript;
         private ModelRunner modelRunner;
@@ -28,15 +27,13 @@ namespace Spellslinger.Game.Control
         public XRInputManager.Controller PreferredController { get; set; }
 
         // Start is called before the first frame update
-        private void Start()
-        {
+        private void Start() {
             // find dependencies in scene
             this.input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
             this.drawScript = GameObject.Find("-- XR --").GetComponent<Draw>();
             this.modelRunner = GameObject.Find("-- XR --").GetComponent<ModelRunner>();
             this.spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
-            this.runeSpriteRenderer =
-                GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
+            this.runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
 
             // initialize eventlisteners
             this.drawScript.OnDrawFinished += this.ChargeSpell;
@@ -48,13 +45,11 @@ namespace Spellslinger.Game.Control
             this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
         }
 
-        private void PredictionReceived(int runeClass)
-        {
+        private void PredictionReceived(int runeClass) {
             Debug.Log(runeClass);
             
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
-            switch (runeClass)
-            {
+            switch (runeClass) {
                 case 0:
                     // Time Spell
                     this.currentSpell = SpellCasting.Spell.Time;
@@ -85,10 +80,9 @@ namespace Spellslinger.Game.Control
                     break;
             }
 
-            if (this.currentSpell != SpellCasting.Spell.None)
-            {
+            if (this.currentSpell != SpellCasting.Spell.None) {
                 this.StartCoroutine(this.ShowRune());
-                //GameManager.Instance.PlaySound("RuneRecognized");
+                GameManager.Instance.PlaySound("RuneRecognized");
                 this.input.SetVisualGradientForActiveSpell(this.currentSpell);
             }
             
@@ -100,10 +94,8 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="drawingPoints">List of points that were drawn.</param>
         /// <param name="controller">Controller that was used to draw.</param>
-        private void ChargeSpell(Vector3[] drawingPoints, XRInputManager.Controller controller)
-        {
-            if (drawingPoints.Length != 20)
-            {
+        private void ChargeSpell(Vector3[] drawingPoints, XRInputManager.Controller controller) {
+            if (drawingPoints.Length != 20) {
                 return;
             }
 
@@ -146,17 +138,14 @@ namespace Spellslinger.Game.Control
             // if (this.currentSpell != SpellCasting.Spell.None)
             // {
             //     this.StartCoroutine(this.ShowRune());
-            //     //GameManager.Instance.PlaySound("RuneRecognized");
+            //     GameManager.Instance.PlaySound("RuneRecognized");
             //     this.input.SetVisualGradientForActiveSpell(this.currentSpell);
             // }
         }
 
         // IEnumerator to show the rune for a short time with fade out and scale up animation
-        private IEnumerator ShowRune()
-        {
-            Debug.Log("Show");
-            switch (this.currentSpell)
-            {
+        private IEnumerator ShowRune() {
+            switch (this.currentSpell) {
                 case SpellCasting.Spell.Water:
                     this.runeSpriteRenderer.sprite = this.waterRune;
                     break;
@@ -181,8 +170,7 @@ namespace Spellslinger.Game.Control
             }
 
             // fade out and scale down animation
-            for (float i = 1, j = 1; i >= 0; i -= 0.03f, j -= 0.01f)
-            {
+            for (float i = 1, j = 1; i >= 0; i -= 0.03f, j -= 0.01f) {
                 this.runeSpriteRenderer.color = new Color(1, 1, 1, i);
                 this.runeSpriteRenderer.transform.localScale = new Vector3(j, j, j);
                 yield return new WaitForSeconds(0.005f);
@@ -191,12 +179,9 @@ namespace Spellslinger.Game.Control
             this.runeSpriteRenderer.sprite = null;
         }
 
-        private void CastSpell(bool triggerPressed, XRInputManager.Controller controller)
-        {
-            if (triggerPressed)
-            {
-                if (this.currentSpell != SpellCasting.Spell.None)
-                {
+        private void CastSpell(bool triggerPressed, XRInputManager.Controller controller) {
+            if (triggerPressed) {
+                if (this.currentSpell != SpellCasting.Spell.None) {
                     // cast spell
                     this.spellCasting.CastSpell(this.currentSpell, controller);
                     this.currentSpell = SpellCasting.Spell.None;
@@ -206,19 +191,14 @@ namespace Spellslinger.Game.Control
             }
         }
 
-        private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller)
-        {
-            if (controller != this.PreferredController)
-            {
+        private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller) {
+            if (controller != this.PreferredController) {
                 return;
             }
 
-            if (clicked)
-            {
+            if (clicked) {
                 this.drawScript.StartDrawing(controller);
-            }
-            else
-            {
+            } else {
                 this.drawScript.StopDrawing(controller);
             }
         }
