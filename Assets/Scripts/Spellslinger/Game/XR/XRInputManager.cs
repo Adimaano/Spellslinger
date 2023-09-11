@@ -2,6 +2,8 @@ using Spellslinger.Game.Control;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using System.Collections;
+
 
 namespace Spellslinger.Game.XR
 {
@@ -20,6 +22,8 @@ namespace Spellslinger.Game.XR
         [Header("XR Components")]
         [SerializeField] private XRRayInteractor rightControllerRayInteractor;
         [SerializeField] private XRRayInteractor leftControllerRayInteractor;
+        [SerializeField] private XRRayInteractor rightGrabRayInteractor;
+        [SerializeField] private XRRayInteractor leftGrabRayInteractor;
         [SerializeField] private XRInteractorLineVisual leftControllerLineVisual;
         [SerializeField] private XRInteractorLineVisual rightControllerLineVisual;
         [SerializeField] private ActionBasedSnapTurnProvider snapTurnProvider;
@@ -66,7 +70,7 @@ namespace Spellslinger.Game.XR
         public System.Action<Vector2, bool, Controller> OnControllerTouchpad { get; internal set; }
         public System.Action OnControllerMenu { get; internal set; }
 
-        private void Start() {
+        private IEnumerator Start() {
             // Create Gradient Colors for Line Visuals
             this.invisibleGradient = new Gradient();
             this.invisibleGradient.SetKeys(new[] { new GradientColorKey(Color.clear, 0f) }, new[] { new GradientAlphaKey(0f, 0f) });
@@ -77,6 +81,11 @@ namespace Spellslinger.Game.XR
 
             // Create empty Action (no turn based movement)
             this.emptyAction = default(UnityEngine.InputSystem.InputActionProperty);
+
+            // Wait for Controllers to be initialized
+            while (!this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)")) {
+                yield return new WaitForSeconds(0.025f);
+            }
 
             // Initialize Preferred Controller
             this.SetPreferredController((Controller)PlayerPrefs.GetInt("preferredController", 1));
@@ -244,10 +253,10 @@ namespace Spellslinger.Game.XR
         public void SetPreferredController(Controller controller) {
             if (controller == Controller.Left) {
                 // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
-                this.rightControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
+                this.rightControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Teleport");
 
                 // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
-                this.leftControllerRayInteractor.interactionLayers &= ~(1 << LayerMask.NameToLayer("Teleport"));
+                this.leftControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
 
                 // Set Line Type for controllers
                 this.leftControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
@@ -263,42 +272,27 @@ namespace Spellslinger.Game.XR
                 this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
 
                 // Switch Prefabs (Hand with Wand and Hand without Wand)
-            
-                if (this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)")) {
-                    this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                    this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+                if (this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").gameObject.activeSelf) {
+                    this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").Find("HandPlaceholder").gameObject.SetActive(false);
 
-                    this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                    this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").Find("HandPlaceholder").gameObject.SetActive(true);
 
-                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-                } else {
-                    if (this.leftControllerRayInteractor.transform.Find("XRControllerLeft").gameObject.activeSelf) {
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(true);
-                    } else {
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
-                    }
+                    // Add Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Right Controller
+                    this.rightGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Grabbable");
+                    // Remove Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Left Controller
+                    this.leftGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
                 }
 
                 this.leftControllerRayInteractor.rayOriginTransform = this.drawPointLeft.transform;
                 this.rightControllerRayInteractor.rayOriginTransform = this.rightControllerRayInteractor.gameObject.transform;
             } else {
                 // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
-                this.leftControllerRayInteractor.interactionLayers |= 1 << LayerMask.NameToLayer("Teleport");
+                this.leftControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Teleport");
 
                 // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
-                this.rightControllerRayInteractor.interactionLayers &= ~(1 << LayerMask.NameToLayer("Teleport"));
+                this.rightControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
 
                 // Set Line Type for controllers
                 this.rightControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
@@ -314,31 +308,17 @@ namespace Spellslinger.Game.XR
                 this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
 
                 // Switch Prefabs (Hand with Wand and Hand without Wand)
-                if (this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)")) {
-                    this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                    this.rightControllerRayInteractor.transform.Find("[RightController] Model Parent").transform.Find("XRControllerRight(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(false);
+                if (this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").gameObject.activeSelf) {
+                    this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").Find("HandWandPlaceholder").gameObject.SetActive(true);
+                    this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").Find("HandPlaceholder").gameObject.SetActive(false);
 
-                    this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.leftControllerRayInteractor.transform.Find("[LeftController] Model Parent").transform.Find("XRControllerLeft(Clone)").transform.Find("HandPlaceholder").gameObject.SetActive(true);
+                    this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").Find("HandWandPlaceholder").gameObject.SetActive(false);
+                    this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").Find("HandPlaceholder").gameObject.SetActive(true);
 
-                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                    this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-                } else {
-                    if (this.rightControllerRayInteractor.transform.Find("XRControllerRight").gameObject.activeSelf) {
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRight").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeft").transform.Find("HandPlaceholder").gameObject.SetActive(true);
-                    } else {
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(true);
-                        this.rightControllerRayInteractor.transform.Find("XRControllerRightOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(false);
-
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandWandPlaceholder").gameObject.SetActive(false);
-                        this.leftControllerRayInteractor.transform.Find("XRControllerLeftOculusPackage").transform.Find("HandPlaceholder").gameObject.SetActive(true);
-                    }
+                    // Add Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Left Controller
+                    this.leftGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Grabbable");
+                    // Remove Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Right Controller
+                    this.rightGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
                 }
 
                 this.leftControllerRayInteractor.rayOriginTransform = this.leftControllerRayInteractor.gameObject.transform;
