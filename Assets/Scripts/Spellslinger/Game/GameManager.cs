@@ -91,5 +91,14 @@ namespace Spellslinger.Game
             AudioClip clip = this.soundEffectDictionary[soundName];
             this.soundEffectSource.PlayOneShot(clip, volume);
         }
+
+        /// <summary>
+        /// Play an audio clip.
+        /// </summary>
+        /// <param name="clip">The audio clip to play.</param>
+        /// <param name="volume">[optional] The volume to play the audio clip at. Default: 1.0f.</param>
+        public void PlayAudioClip(AudioClip clip, float volume = 1.0f) {
+            this.soundEffectSource.PlayOneShot(clip, volume);
+        }
     }
 }
