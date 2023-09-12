@@ -77,17 +77,7 @@ public class IntroManager : MonoBehaviour {
         StartCoroutine(this.LightDomeFadeEffect());
         GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
 
-        yield return new WaitForSeconds(1.45f);
-
-        // Enable all initially disabled objects
-        for (int i = 0; i < this.initiallyDisabledObjects.Length; i++) {
-            this.initiallyDisabledObjects[i].SetActive(true);
-        }
-
-        // Disable all initially enabled objects
-        for (int i = 0; i < this.initiallyEnabledObjects.Length; i++) {
-            this.initiallyEnabledObjects[i].SetActive(false);
-        }
+        yield return new WaitForSeconds(2.0f);
 
         this.torches[0].LightTorch();
         GameManager.Instance.PlayAudioClip(this.igniteSound);
@@ -99,23 +89,20 @@ public class IntroManager : MonoBehaviour {
             this.torches[i+1].LightTorch();
             this.torches[i+1].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
         }
-
-        // Set Background Type of Main Camera to Skybox
-        Camera.main.clearFlags = CameraClearFlags.Skybox;
     }
 
     /// <summary>
     /// Coroutine that fades in (and out) the volumetric light and the cylinder.
     /// </summary>
     private IEnumerator LightDomeFadeEffect() {
-        float fadeDuration = 1.0f;
+        float fadeDuration = 1.5f;
         float elapsedTime = 0f;
 
         // Fade volumetric light to alpha 0 and fade in cylinder to alpha 1 over 1 second
         while (elapsedTime < fadeDuration) {
             this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(this.volumetricLightInitialMaterialAlpha, 0.0f, elapsedTime / fadeDuration));
             
-            int fadeInCylinderAlpha = (int)Mathf.Lerp(this.fadeInCylinderIntialMaterialAlpha, 255.0f, elapsedTime / fadeDuration);
+            float fadeInCylinderAlpha = Mathf.Lerp(this.fadeInCylinderIntialMaterialAlpha, 1.0f, elapsedTime / fadeDuration);
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
             this.fadeInCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
@@ -129,12 +116,25 @@ public class IntroManager : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
+        // Set Background Type of Main Camera to Skybox
+        Camera.main.clearFlags = CameraClearFlags.Skybox;
+
+        // Enable all initially disabled objects
+        for (int i = 0; i < this.initiallyDisabledObjects.Length; i++) {
+            this.initiallyDisabledObjects[i].SetActive(true);
+        }
+
+        // Disable all initially enabled objects
+        for (int i = 0; i < this.initiallyEnabledObjects.Length; i++) {
+            this.initiallyEnabledObjects[i].SetActive(false);
+        }
+
         elapsedTime = 0f;
 
         while (elapsedTime < fadeDuration) {
             this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(0.0f, this.volumetricLightInitialMaterialAlpha, elapsedTime / fadeDuration));
 
-            int fadeInCylinderAlpha = (int)Mathf.Lerp(255.0f, this.fadeInCylinderIntialMaterialAlpha, elapsedTime / fadeDuration);
+            float fadeInCylinderAlpha = Mathf.Lerp(1.0f, this.fadeInCylinderIntialMaterialAlpha, elapsedTime / fadeDuration);
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
             this.fadeInCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
@@ -143,7 +143,7 @@ public class IntroManager : MonoBehaviour {
         }
 
         this.volumetricLightInitialMaterial.SetFloat("_Alpha", this.volumetricLightInitialMaterialAlpha);
-        this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, (int)this.fadeInCylinderIntialMaterialAlpha);
+        this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, this.fadeInCylinderIntialMaterialAlpha);
         this.fadeInCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
     }
 
