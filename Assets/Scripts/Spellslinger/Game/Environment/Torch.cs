@@ -11,6 +11,8 @@ namespace Spellslinger.Game.Environment
 
         private VisualEffect fire;
         private AudioSource audioSource;
+        private Light light;
+        private float lightIntensity;
 
         public bool IsLit { get; private set; }
 
@@ -19,13 +21,17 @@ namespace Spellslinger.Game.Environment
 
         private void Awake() {
             this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
+            this.light = this.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
+            this.lightIntensity = this.light.intensity;
             this.audioSource = this.GetComponent<AudioSource>();
 
             if (this.initiallyLit) {
                 this.fire.Play();
+                this.light.intensity = this.lightIntensity;
                 this.IsLit = true;
             } else {
                 this.fire.Stop();
+                this.light.intensity = 0f;
                 this.IsLit = false;
             }
         }
@@ -46,11 +52,26 @@ namespace Spellslinger.Game.Environment
         }
 
         /// <summary>
+        /// Coroutine to turn on the point light by gradually increasing its intensity.
+        /// </summary>
+        private IEnumerator LightTorchCoroutine() {
+            float fadeDuration = .3f;
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration) {
+                this.light.intensity = Mathf.Lerp(0f, this.lightIntensity, elapsedTime / fadeDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        /// <summary>
         /// Extinguish the torch.
         /// </summary>
         public void ExtinguishTorch() {
             this.fire.Stop();
             this.IsLit = false;
+            this.light.intensity = 0f;
         }
 
         /// <summary>
@@ -61,6 +82,8 @@ namespace Spellslinger.Game.Environment
             this.fire.Play();
             this.IsLit = true;
             this.OnTorchLit?.Invoke();
+
+            StartCoroutine(this.LightTorchCoroutine());
         }
     }
 }
