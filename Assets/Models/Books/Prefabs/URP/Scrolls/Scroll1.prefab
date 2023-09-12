@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2556625028360446137}
   - component: {fileID: 4714358301248036683}
   - component: {fileID: 3004386443683777950}
-  - component: {fileID: 8205252602923642791}
   - component: {fileID: 5385753186256361399}
   - component: {fileID: 7794415861406398488}
+  - component: {fileID: 2864964235242665527}
   m_Layer: 0
   m_Name: Scroll1
   m_TagString: Untagged
@@ -102,19 +102,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7646989145683643290, guid: 3a3113843c2d00240862fe10887715f3, type: 3}
---- !u!65 &8205252602923642791
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5656390309712644849}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.17305458, y: 1.3377473, z: 0.15954202}
-  m_Center: {x: -0.0023439536, y: -0.007029175, z: -0.00093672116}
 --- !u!54 &5385753186256361399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -256,3 +243,17 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!64 &2864964235242665527
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656390309712644849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7646989145683643290, guid: 3a3113843c2d00240862fe10887715f3, type: 3}

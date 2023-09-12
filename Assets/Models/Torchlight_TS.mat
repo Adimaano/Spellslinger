@@ -233,16 +233,16 @@ Material:
     - _SpecShadowStrenth: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0.461
+    - _SpecularFalloff: 0.221
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.629
+    - _SpecularSize: 0.732
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 0
     - _Surface: 0
-    - _ToonBlending: 0.971
+    - _ToonBlending: 1
     - _ToonEnabled: 1
     - _USERAMPCOLOR: 0
     - _UseClipPattern: 0
