@@ -21,7 +21,11 @@ public class IntroManager : MonoBehaviour {
     [Header("First Torch")]
     [SerializeField] private Torch firstTorch;
     [SerializeField] private Light spotlightFirstTorch;
+    private Light firstTorchPointLight1;
+    private Light firstTorchPointLight2;
     private float initialfirstTorchSpotlightIntensity;
+    private float firstTorchPointLight1InitialIntensity;
+    private float firstTorchPointLight2InitialIntensity;
 
     [Header("Torches")]
     [SerializeField] private Torch[] torches;
@@ -36,6 +40,12 @@ public class IntroManager : MonoBehaviour {
     [SerializeField] private AudioClip igniteSound;
     [SerializeField] private AudioClip puzzleSolvedSound;
 
+    [Header("Scene Settings")]
+    [Tooltip("The duration of the fade in and fade out effect after the player hits the frist torch.")]
+    [SerializeField] private float sceneFadeDuration = 1.5f;
+    [Tooltip("The time between the wallTorches lighting up after the room is revealed.")]
+    [SerializeField] private float timeBetweenTorches = 1.5f;
+
     private bool bookTriggered = false;
 
     private void Start() {
@@ -48,9 +58,16 @@ public class IntroManager : MonoBehaviour {
         this.initialfirstTorchSpotlightIntensity = this.spotlightFirstTorch.intensity;
         this.spotlightFirstTorch.intensity = 0.0f;
 
+        // get point lights of first torch
+        this.firstTorchPointLight1 = this.firstTorch.transform.Find("Fire").Find("Point Light Big").GetComponent<Light>();
+        this.firstTorchPointLight2 = this.firstTorch.transform.Find("Fire").Find("Point Light Small").GetComponent<Light>();
+        this.firstTorchPointLight1InitialIntensity = this.firstTorchPointLight1.intensity;
+        this.firstTorchPointLight2InitialIntensity = this.firstTorchPointLight2.intensity;
+
         // Get initial alpha values of fade effects
         this.volumetricLightInitialMaterialAlpha = 0.4f;
         this.volumetricLightInitialMaterial.SetFloat("_Alpha", this.volumetricLightInitialMaterialAlpha);
+
         // get initial alpha value of base map of material
         this.fadeInCylinderMaterialColor = this.fadeInCylinderMaterial.GetColor("_BaseColor");
         this.fadeInCylinderIntialMaterialAlpha = 0.0f;
@@ -77,13 +94,13 @@ public class IntroManager : MonoBehaviour {
         StartCoroutine(this.LightDomeFadeEffect());
         GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(this.sceneFadeDuration + 0.5f);
 
         this.torches[0].LightTorch();
         GameManager.Instance.PlayAudioClip(this.igniteSound);
 
         for(int i = 1; i < torches.Length; i += 2) {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(this.timeBetweenTorches);
             this.torches[i].LightTorch();
             this.torches[i].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
             this.torches[i+1].LightTorch();
@@ -95,16 +112,22 @@ public class IntroManager : MonoBehaviour {
     /// Coroutine that fades in (and out) the volumetric light and the cylinder.
     /// </summary>
     private IEnumerator LightDomeFadeEffect() {
-        float fadeDuration = 1.5f;
         float elapsedTime = 0f;
 
         // Fade volumetric light to alpha 0 and fade in cylinder to alpha 1 over 1 second
-        while (elapsedTime < fadeDuration) {
-            this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(this.volumetricLightInitialMaterialAlpha, 0.0f, elapsedTime / fadeDuration));
+        while (elapsedTime < this.sceneFadeDuration) {
+            // fade out volumetric light (cone in the middle of the room)
+            this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(this.volumetricLightInitialMaterialAlpha, 0.0f, elapsedTime / this.sceneFadeDuration));
             
-            float fadeInCylinderAlpha = Mathf.Lerp(this.fadeInCylinderIntialMaterialAlpha, 1.0f, elapsedTime / fadeDuration);
+            // fade in cylinder (shortly blacken everything around the player)
+            float fadeInCylinderAlpha = Mathf.Lerp(this.fadeInCylinderIntialMaterialAlpha, 1.0f, elapsedTime / this.sceneFadeDuration);
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
             this.fadeInCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
+
+            // fade out spotlight of first torch
+            this.spotlightFirstTorch.intensity = Mathf.Lerp(this.initialfirstTorchSpotlightIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
+            this.firstTorchPointLight1.intensity = Mathf.Lerp(this.firstTorchPointLight1InitialIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
+            this.firstTorchPointLight2.intensity = Mathf.Lerp(this.firstTorchPointLight2InitialIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -131,10 +154,10 @@ public class IntroManager : MonoBehaviour {
 
         elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration) {
-            this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(0.0f, this.volumetricLightInitialMaterialAlpha, elapsedTime / fadeDuration));
+        while (elapsedTime < this.sceneFadeDuration) {
+            this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(0.0f, this.volumetricLightInitialMaterialAlpha, elapsedTime / this.sceneFadeDuration));
 
-            float fadeInCylinderAlpha = Mathf.Lerp(1.0f, this.fadeInCylinderIntialMaterialAlpha, elapsedTime / fadeDuration);
+            float fadeInCylinderAlpha = Mathf.Lerp(1.0f, this.fadeInCylinderIntialMaterialAlpha, elapsedTime / this.sceneFadeDuration);
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
             this.fadeInCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
