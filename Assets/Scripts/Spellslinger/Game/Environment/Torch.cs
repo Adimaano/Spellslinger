@@ -21,7 +21,7 @@ namespace Spellslinger.Game.Environment
 
         private void Awake() {
             this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
-            this.light = this.transform.Find("Fire").Find("Point Light Big").GetComponent<Light>();
+            this.light = this.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
             this.lightIntensity = this.light.intensity;
             this.audioSource = this.GetComponent<AudioSource>();
 

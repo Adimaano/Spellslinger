@@ -22,10 +22,8 @@ public class IntroManager : MonoBehaviour {
     [SerializeField] private Torch firstTorch;
     [SerializeField] private Light spotlightFirstTorch;
     private Light firstTorchPointLight1;
-    private Light firstTorchPointLight2;
     private float initialfirstTorchSpotlightIntensity;
     private float firstTorchPointLight1InitialIntensity;
-    private float firstTorchPointLight2InitialIntensity;
 
     [Header("Torches")]
     [SerializeField] private Torch[] torches;
@@ -59,10 +57,8 @@ public class IntroManager : MonoBehaviour {
         this.spotlightFirstTorch.intensity = 0.0f;
 
         // get point lights of first torch
-        this.firstTorchPointLight1 = this.firstTorch.transform.Find("Fire").Find("Point Light Big").GetComponent<Light>();
-        this.firstTorchPointLight2 = this.firstTorch.transform.Find("Fire").Find("Point Light Small").GetComponent<Light>();
-        this.firstTorchPointLight1InitialIntensity = this.firstTorchPointLight1.intensity;
-        this.firstTorchPointLight2InitialIntensity = this.firstTorchPointLight2.intensity;
+        this.firstTorchPointLight = this.firstTorch.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
+        this.firstTorchPointLight1InitialIntensity = this.firstTorchPointLight.intensity;
 
         // Get initial alpha values of fade effects
         this.volumetricLightInitialMaterialAlpha = 0.4f;
@@ -126,8 +122,7 @@ public class IntroManager : MonoBehaviour {
 
             // fade out spotlight of first torch
             this.spotlightFirstTorch.intensity = Mathf.Lerp(this.initialfirstTorchSpotlightIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
-            this.firstTorchPointLight1.intensity = Mathf.Lerp(this.firstTorchPointLight1InitialIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
-            this.firstTorchPointLight2.intensity = Mathf.Lerp(this.firstTorchPointLight2InitialIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
+            this.firstTorchPointLight.intensity = Mathf.Lerp(this.firstTorchPointLightInitialIntensity, 0.0f, elapsedTime / this.sceneFadeDuration);
 
             elapsedTime += Time.deltaTime;
             yield return null;
