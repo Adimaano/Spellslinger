@@ -17,9 +17,9 @@ TagManager:
   - UI
   - Environment
   - PostProcessing
-  - 
-  - 
-  - 
+  - InitialFloor
+  - ExcludeFromLight1
+  - ExcludeFromLight2
   - 
   - 
   - 
