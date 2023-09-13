@@ -249,7 +249,7 @@ Material:
     - _HatchingColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -73.72043, g: 84.55196, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -16.083542, g: 3.8603287, b: 0, a: 0}
     - _RimColor: {r: 0.098433584, g: 0.15202849, b: 0.1981132, a: 0.411}
     - _ShadowColor: {r: 0.16980919, g: 0.16980919, b: 0.16980919, a: 1}
     - _SpecColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.903}

@@ -245,9 +245,9 @@ Material:
     - _RemapOutputMax: 0.95
     - _RemapOutputMin: -2
     - _RimEnabled: 1
-    - _RimLightAlign: -0.054
-    - _RimLightSmoothness: 0
-    - _RimPower: 0.281
+    - _RimLightAlign: 0.097
+    - _RimLightSmoothness: 0.548
+    - _RimPower: 0.119
     - _SSOutlineDepthThredshold: 1
     - _SSOutlineNdotVThredshold: 0.2
     - _SSOutlineNormalThredshold: 0.305
@@ -264,9 +264,9 @@ Material:
     - _SpecShadowStrength: 1
     - _SpecularClipStrength: 0
     - _SpecularEnabled: 0
-    - _SpecularFalloff: 0.217
+    - _SpecularFalloff: 0.538
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.204
+    - _SpecularSize: 0.922
     - _SpecularSmoothness: 1
     - _SpecularStepThreshold: 0.013
     - _SpherizeNormalEnabled: 0
@@ -314,7 +314,7 @@ Material:
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
-    - _RimColor: {r: 0.13622876, g: 0.14737388, b: 0.26415092, a: 0.645}
+    - _RimColor: {r: 0.13622876, g: 0.14737388, b: 0.26415092, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 1}
