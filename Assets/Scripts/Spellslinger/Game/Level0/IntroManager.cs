@@ -21,9 +21,9 @@ public class IntroManager : MonoBehaviour {
     [Header("First Torch")]
     [SerializeField] private Torch firstTorch;
     [SerializeField] private Light spotlightFirstTorch;
-    private Light firstTorchPointLight1;
+    private Light firstTorchPointLight;
     private float initialfirstTorchSpotlightIntensity;
-    private float firstTorchPointLight1InitialIntensity;
+    private float firstTorchPointLightInitialIntensity;
 
     [Header("Torches")]
     [SerializeField] private Torch[] torches;
@@ -58,7 +58,7 @@ public class IntroManager : MonoBehaviour {
 
         // get point lights of first torch
         this.firstTorchPointLight = this.firstTorch.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
-        this.firstTorchPointLight1InitialIntensity = this.firstTorchPointLight.intensity;
+        this.firstTorchPointLightInitialIntensity = this.firstTorchPointLight.intensity;
 
         // Get initial alpha values of fade effects
         this.volumetricLightInitialMaterialAlpha = 0.4f;
