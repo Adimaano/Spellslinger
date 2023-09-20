@@ -914,7 +914,7 @@ PrefabInstance:
     - target: {fileID: 8595401304802272216, guid: 0e5d40cc139b598409684567ae10e03c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8595401304802272216, guid: 0e5d40cc139b598409684567ae10e03c,
         type: 3}
@@ -25828,7 +25828,7 @@ Transform:
   - {fileID: 915094546}
   - {fileID: 917616299}
   m_Father: {fileID: 1797097765}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &812246046
 PrefabInstance:
@@ -26672,7 +26672,7 @@ MonoBehaviour:
   - {fileID: 1547527964}
   - {fileID: 1389312466}
   - {fileID: 402411632}
-  exitDoorAnimator: {fileID: 0}
+  exitDoorAnimator: {fileID: 872988373}
 --- !u!1001 &859030739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26770,7 +26770,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1797097765}
     m_Modifications:
     - target: {fileID: 3632053011896293862, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
@@ -26780,7 +26780,22 @@ PrefabInstance:
     - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.285557
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4285713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4285713
       objectReference: {fileID: 0}
     - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
@@ -26790,7 +26805,7 @@ PrefabInstance:
     - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6831985
+      value: -2.683198
       objectReference: {fileID: 0}
     - target: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
@@ -26837,6 +26852,12 @@ PrefabInstance:
 --- !u!1 &872988371 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3632053011896293862, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 872988370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &872988372 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3632053011896293863, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
     type: 3}
   m_PrefabInstance: {fileID: 872988370}
   m_PrefabAsset: {fileID: 0}
@@ -33780,7 +33801,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1249085785
 AudioSource:
@@ -35837,7 +35858,7 @@ Transform:
   m_Children:
   - {fileID: 642961960}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1344585862
 PrefabInstance:
@@ -35953,7 +35974,7 @@ Transform:
   - {fileID: 1602484215}
   - {fileID: 1129963600}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1352443198
 MeshCollider:
@@ -43019,6 +43040,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 872988372}
   - {fileID: 809628642}
   - {fileID: 8168748473908238564}
   m_Father: {fileID: 642961960}
@@ -51439,7 +51461,7 @@ Transform:
   - {fileID: 1374009762}
   - {fileID: 1946941518}
   m_Father: {fileID: 1797097765}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8633152049047280967
 MeshFilter:
