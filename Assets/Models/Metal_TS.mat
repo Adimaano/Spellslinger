@@ -14,11 +14,8 @@ Material:
   - _METALLICSPECGLOSSMAP
   - _OUTLINE
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
-  - _SPECGLOSSMAP
   - _TOON_SHADING_ON
-  m_InvalidKeywords:
-  - _HAFTONESHAPES_DOT
-  - _SPECULARHIGHLIGHTS
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -238,7 +235,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
-    - _Color: {r: 0.36792448, g: 0.36792448, b: 0.36792448, a: 1}
+    - _Color: {r: 0.57547164, g: 0.57547164, b: 0.57547164, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
