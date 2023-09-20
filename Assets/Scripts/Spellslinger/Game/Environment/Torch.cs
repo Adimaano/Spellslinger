@@ -11,7 +11,7 @@ namespace Spellslinger.Game.Environment
 
         private VisualEffect fire;
         private AudioSource audioSource;
-        private Light light;
+        private Light lightSource;
         private float lightIntensity;
 
         public bool IsLit { get; private set; }
@@ -21,17 +21,17 @@ namespace Spellslinger.Game.Environment
 
         private void Awake() {
             this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
-            this.light = this.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
-            this.lightIntensity = this.light.intensity;
+            this.lightSource = this.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
+            this.lightIntensity = this.lightSource.intensity;
             this.audioSource = this.GetComponent<AudioSource>();
 
             if (this.initiallyLit) {
                 this.fire.Play();
-                this.light.intensity = this.lightIntensity;
+                this.lightSource.intensity = this.lightIntensity;
                 this.IsLit = true;
             } else {
                 this.fire.Stop();
-                this.light.intensity = 0f;
+                this.lightSource.intensity = 0f;
                 this.IsLit = false;
             }
         }
@@ -59,7 +59,7 @@ namespace Spellslinger.Game.Environment
             float elapsedTime = 0f;
 
             while (elapsedTime < fadeDuration) {
-                this.light.intensity = Mathf.Lerp(0f, this.lightIntensity, elapsedTime / fadeDuration);
+                this.lightSource.intensity = Mathf.Lerp(0f, this.lightIntensity, elapsedTime / fadeDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
@@ -71,7 +71,7 @@ namespace Spellslinger.Game.Environment
         public void ExtinguishTorch() {
             this.fire.Stop();
             this.IsLit = false;
-            this.light.intensity = 0f;
+            this.lightSource.intensity = 0f;
         }
 
         /// <summary>
