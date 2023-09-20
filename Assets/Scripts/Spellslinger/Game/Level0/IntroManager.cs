@@ -205,7 +205,7 @@ public class IntroManager : MonoBehaviour {
             bool puzzleSolved = this.puzzleTorchesLitOrder.Select((value, index) => value == index).All(result => result);
 
             if (puzzleSolved) {
-                // this.exitDoorAnimator.SetTrigger("openDoor");
+                this.exitDoorAnimator.SetTrigger("openDoor");
                 GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
             } else {
                 // Reset puzzle and play sound
