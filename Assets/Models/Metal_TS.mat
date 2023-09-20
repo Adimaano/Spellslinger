@@ -12,7 +12,6 @@ Material:
   m_ValidKeywords:
   - _HALFTONESHAPE_STRIPE
   - _METALLICSPECGLOSSMAP
-  - _OUTLINE
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
@@ -187,7 +186,7 @@ Material:
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineMode: 0
     - _OutlineWidth: 12
     - _OverrideShadowColor: 0
