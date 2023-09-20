@@ -217,6 +217,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Grip",
+                    "type": "Button",
+                    "id": "1b8f33c2-892c-4f45-ba4d-2cf70f5c874b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Value",
                     "type": "Value",
                     "id": "e6005f29-e4c1-4f3b-8bf7-3a28bab5ca9c",
@@ -283,7 +292,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "20355c69-2dfd-4f64-83ed-6e051671ae85",
+                    "id": "f9252730-03fa-4177-8245-676149025e78",
                     "path": "<XRController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
@@ -456,6 +465,17 @@
                     "action": "Translate Anchor",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e4e22cda-0770-4e47-854f-5782a978e8fc",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -735,6 +755,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Grip",
+                    "type": "Button",
+                    "id": "638523d4-24d3-48f5-b063-0bca7867cb8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Value",
                     "type": "Value",
                     "id": "39bbf1ac-21a3-413d-90f6-6dbf6efeaabe",
@@ -966,12 +995,23 @@
                 },
                 {
                     "name": "",
-                    "id": "79ad1508-9230-4dcc-80da-6d1f4ef30017",
+                    "id": "a28c7713-c9a8-486b-9a0e-0d28b63db98a",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "161cb268-2e61-43d7-9d71-ec0527801996",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
