@@ -69,7 +69,11 @@ namespace Spellslinger.Game.Environment
         /// Extinguish the torch.
         /// </summary>
         public void ExtinguishTorch() {
+            // force the fire to stop playing immediately by disabling and re-enabling the component
             this.fire.Stop();
+            this.fire.enabled = false;
+            this.fire.enabled = true;
+
             this.IsLit = false;
             this.lightSource.intensity = 0f;
         }
