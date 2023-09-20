@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Spellslinger.Game;
 using Spellslinger.Game.Environment;
@@ -37,12 +38,19 @@ public class IntroManager : MonoBehaviour {
     [Header("Sounds")]
     [SerializeField] private AudioClip igniteSound;
     [SerializeField] private AudioClip puzzleSolvedSound;
+    [SerializeField] private AudioClip puzzleFailSound;
 
     [Header("Scene Settings")]
     [Tooltip("The duration of the fade in and fade out effect after the player hits the frist torch.")]
     [SerializeField] private float sceneFadeDuration = 1.5f;
     [Tooltip("The time between the wallTorches lighting up after the room is revealed.")]
     [SerializeField] private float timeBetweenTorches = 1.5f;
+
+    [Header("Second Puzzle")]
+    [SerializeField] private Torch[] puzzleTorches;
+    private int[] puzzleTorchesLitOrder;
+    private int puzzleTorchesLit = 0;
+    [SerializeField] private Animator exitDoorAnimator;
 
     private bool bookTriggered = false;
 
@@ -73,12 +81,24 @@ public class IntroManager : MonoBehaviour {
             StartCoroutine(OnFirstTorchLit());
         };
         
+        // Eventlisteners First Puzzle (lit both standing torches)
         foreach(Torch torch in this.floorTorches) {
             torch.OnTorchLit = () => {
                 this.numberOfFloorTorchesLit++;
                 if (this.numberOfFloorTorchesLit == this.floorTorches.Length) {
                     StartCoroutine(this.OpenDoor());
                 }
+            };
+        }
+
+        // Setup second puzzle
+        this.puzzleTorchesLitOrder = new int[this.puzzleTorches.Length];
+
+        // Eventlisteners Second Puzzle (lit torches in correct order)
+        for(int i = 0; i < this.puzzleTorches.Length; i++) {
+            int index = i;
+            this.puzzleTorches[i].OnTorchLit = () => {
+                this.PuzzleTorchLit(index);
             };
         }
     }
@@ -173,6 +193,33 @@ public class IntroManager : MonoBehaviour {
             spotlight.intensity += maxIntensity/100;
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    private void PuzzleTorchLit(int torchIndex) {
+        this.puzzleTorchesLitOrder[this.puzzleTorchesLit] = torchIndex;
+        this.puzzleTorchesLit++;
+
+        // All puzzle torches are lit
+        if (this.puzzleTorchesLit == this.puzzleTorches.Length) {
+            // Check if the puzzle was solved correctly puzzleTorchesLitOrder should be {0, 1, 2, 3}
+            bool puzzleSolved = this.puzzleTorchesLitOrder.Select((value, index) => value == index).All(result => result);
+
+            if (puzzleSolved) {
+                // this.exitDoorAnimator.SetTrigger("openDoor");
+                GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
+            } else {
+                // Reset puzzle and play sound
+                this.puzzleTorchesLit = 0;
+                this.puzzleTorchesLitOrder = new int[this.puzzleTorches.Length];
+                GameManager.Instance.PlayAudioClip(this.puzzleFailSound);
+
+                foreach (Torch torch in this.puzzleTorches) {
+                    torch.ExtinguishTorch();
+                }
+            }
+
+        }
+
     }
 
     /// <summary>
