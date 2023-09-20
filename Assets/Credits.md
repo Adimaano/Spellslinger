@@ -5,6 +5,7 @@
 - [Polygon Dungeon Realms - By "**Synty Studios**"](https://assetstore.unity.com/packages/3d/environments/dungeons/polygon-dungeon-realms-low-poly-3d-art-by-synty-189093)
 - [Polygon Horror Mansion - By "**Synty Studios**"](https://assetstore.unity.com/packages/3d/environments/fantasy/polygon-horror-mansion-low-poly-3d-art-by-synty-213346)
 - [Magical Arsenal - By "**Archanor VFX**"](https://assetstore.unity.com/packages/vfx/particles/spells/magic-arsenal-20869)
+- [Magic Portals and Props - By "**LaikaBossGames**"](https://assetstore.unity.com/packages/vfx/particles/spells/magic-portals-and-props-168472)
 
 <br />
 
