@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4873025279718826860}
   - component: {fileID: 8363093494132944073}
   - component: {fileID: 6047026365100480515}
-  - component: {fileID: 7114571413246826926}
   - component: {fileID: 7967242564113347381}
+  - component: {fileID: 5487570989380672389}
   m_Layer: 0
   m_Name: ModularFloor6x6
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d5000e992fccfd64bbd1840218d0cdd1, type: 2}
+  - {fileID: 2100000, guid: 71d8be00e9745a54181d638739950b83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7114571413246826926
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5254475913241033174}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.000001, y: 0.107664704, z: 6.000001}
-  m_Center: {x: 2.9999993, y: -0.05383128, z: -3.0000002}
 --- !u!114 &7967242564113347381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +175,17 @@ MonoBehaviour:
   m_Teleporting:
     m_PersistentCalls:
       m_Calls: []
+--- !u!64 &5487570989380672389
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254475913241033174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7821793715895104387, guid: 90b8ce6e66c0c5b4f86d1baa81b64869, type: 3}
