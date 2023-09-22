@@ -23,7 +23,7 @@ Material:
   m_Name: WindowOrnamentsPointy_TS
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
-  - _HALFTONESHAPE_STRIPE
+  - _HALFTONESHAPE_CROSS
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
   - _OUTLINE
@@ -151,8 +151,8 @@ Material:
     - _AllToon_OverrideShadowColor: 0
     - _AlphaClip: 0
     - _Blend: 1
-    - _BrushLowerCut: 0
-    - _BrushSize: 0.8
+    - _BrushLowerCut: 0.372
+    - _BrushSize: 0.66
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -182,17 +182,17 @@ Material:
     - _HairSpecularSmoothness: 0.1
     - _HalfToneDiffuseStep: 0
     - _HalfToneEnabled: 1
-    - _HalfToneIncludeReceivedShadow: 0
-    - _HalfToneShape: 1
+    - _HalfToneIncludeReceivedShadow: 1
+    - _HalfToneShape: 2
     - _HalfToneUvMode: 0
     - _HalftoneDiffuseOffest: 0
-    - _HalftoneFadeDistance: 10
-    - _HalftoneFadeToColor: 0
+    - _HalftoneFadeDistance: 100
+    - _HalftoneFadeToColor: 0.662
     - _HalftoneLightSizeFactor: 0
     - _HalftoneNoiseClip: 0.8
     - _HalftoneScale: 0
     - _HalftoneSize: 0.3
-    - _HalftoneTilling: 8
+    - _HalftoneTilling: 40
     - _HalftoneUseScreenSpaceUV: 0
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
@@ -222,7 +222,7 @@ Material:
     - _SPECULARHIGHLIGHTS: 0
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
-    - _SizeFalloff: 0
+    - _SizeFalloff: 0.195
     - _Smoothness: 1
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
@@ -258,7 +258,7 @@ Material:
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HalfToneColor: {r: 0.20754719, g: 0.13640678, b: 0.13640678, a: 1}
     - _HalftoneColor: {r: 0.517647, g: 0.517647, b: 0.517647, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}
