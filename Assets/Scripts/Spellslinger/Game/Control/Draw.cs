@@ -94,6 +94,11 @@ namespace Spellslinger.Game.Control
         /// <param name="originalPoints"><c>List<Vector3></c> with original point list (should be larger than the MAX_POINTS variable)</param>.
         /// <returns></returns>
         private Vector3[] GenerateNormalizedList(List<Vector3> originalPoints) {
+            // return empty list if originalPoints is smaller than MAX_POINTS/2. If the list is too small, the interpolation will not work properly and the result will be very inaccurate/random.
+            if (originalPoints.Count < MAX_POINTS/2) {
+                return new Vector3[0];
+            }
+
             // interpolate additional points if originalPoints is smaller than MAX_POINTS
             List<Vector3> pointList = originalPoints.Count < MAX_POINTS ? this.InterpoalateMissingPoints(originalPoints) : originalPoints;
 
