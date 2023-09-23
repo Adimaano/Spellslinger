@@ -252,7 +252,7 @@ namespace Spellslinger.Game {
 
             while (elapsedTime < this.portalActivationDuration) {
                 elapsedTime += Time.deltaTime;
-                float currentIntensity = Mathf.Lerp(0.0f, 20.0f, elapsedTime / this.portalActivationDuration);
+                float currentIntensity = Mathf.Lerp(0.0f, 150.0f, elapsedTime / this.portalActivationDuration);
 
                 this.portalMaterialColor = baseEmissionColor * currentIntensity;
                 this.portalMaterial.SetColor("_EmissionColor", this.portalMaterialColor);
@@ -261,7 +261,7 @@ namespace Spellslinger.Game {
             }
 
             // Set the final intensity value
-            Color finalEmissionColor = baseEmissionColor * 20.0f;
+            Color finalEmissionColor = baseEmissionColor * 150.0f;
             this.portalMaterial.SetColor("_EmissionColor", finalEmissionColor);
 
             

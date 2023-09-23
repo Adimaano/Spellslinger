@@ -30,7 +30,7 @@ Material:
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 6
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -209,7 +209,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: -1.3166361, g: -1.3166361, b: -1.3166361, a: 6.94575e+9}
+    - _EmissionColor: {r: 0.029258579, g: 0.029258579, b: 0.029258579, a: 2.7783e+11}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
