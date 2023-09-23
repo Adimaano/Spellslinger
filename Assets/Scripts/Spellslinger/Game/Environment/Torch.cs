@@ -63,6 +63,11 @@ namespace Spellslinger.Game.Environment
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
+
+            // In case torch was extinguished before coroutine finished
+            if (!this.IsLit) {
+                this.ExtinguishTorch();
+            }
         }
 
         /// <summary>
