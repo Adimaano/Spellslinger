@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalMaterial: {fileID: 2100000, guid: fa2e792f372ca414dafc2f1cc07cc979, type: 2}
+  portalMaterialDefault: {fileID: 2100000, guid: 195ff2338e71a474e91a85433cfc5a14,
+    type: 2}
   IsActive: 0
 --- !u!65 &1960762779707948026
 BoxCollider:

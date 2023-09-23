@@ -42,3 +42,5 @@
 - [Open Chest - By "**spookymodem**"](https://opengameart.org/content/open-chest)
 - [Foot Walking Step Sounds On Stone Water Snow Wood And Dirt - By "**Jute**"](https://opengameart.org/content/foot-walking-step-sounds-on-stone-water-snow-wood-and-dirt)
 - [No more Magic - By "**HorrorPen**"](https://opengameart.org/content/no-more-magic)
+- [Rumble FX - By "**cinameng**"](https://opengameart.org/content/rumble-fx)
+- [Knife Sharpening Slice 2 - By "**The Berklee College Music**"](https://opengameart.org/content/knife-sharpening-slice-2)
