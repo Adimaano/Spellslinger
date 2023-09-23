@@ -1194,6 +1194,7 @@ MonoBehaviour:
   pauseMenuPrefab: {fileID: 3727962549094358051}
   soundEffects:
   - {fileID: 8300000, guid: bc15ea42dc627424fb0fca57c0663ddd, type: 3}
+  - {fileID: 8300000, guid: b9f2d41f892556c44a731668e630e97d, type: 3}
 --- !u!1 &7743223039908947541
 GameObject:
   m_ObjectHideFlags: 0

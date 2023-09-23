@@ -17,6 +17,8 @@ namespace Spellslinger.Game
 
         [SerializeField] private GameObject pauseMenuPrefab;
 
+        // TODO: Maybe move the audio stuff to a separate class? Maybe a SoundManager?
+
         [Header("Audio")]
         [SerializeField] private AudioClip[] soundEffects;
 
@@ -114,6 +116,15 @@ namespace Spellslinger.Game
         /// <param name="levelIndex">The index of the level to load.</param>
         public void LoadLevel(int levelIndex) {
             SceneManager.LoadScene(levelIndex);
+        }
+
+        /// <summary>
+        /// Get an audio clip from the sound effect dictionary.
+        /// </summary>
+        /// <param name="soundName">The name of the audio clip to get.</param>
+        /// <returns>The audio clip.</returns>
+        public AudioClip GetAudioClipFromDictionary(string soundName) {
+            return this.soundEffectDictionary[soundName];
         }
     }
 }
