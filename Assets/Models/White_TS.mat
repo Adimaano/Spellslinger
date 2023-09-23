@@ -171,7 +171,7 @@ Material:
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
     - _SizeFalloff: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.215
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
