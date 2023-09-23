@@ -72,20 +72,26 @@ namespace Spellslinger.Game.Environment
             if (!other.gameObject.CompareTag("Player")) {
                 switch (this.option) {
                     case ObjectType.Glass:
-                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_glass"), 0.85f);
+                        int random = Random.Range(1, 10);
+                        this.PlaySound("Glass0" + random);
                         break;
                     case ObjectType.Hard:
-                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_short"), 0.85f);
+                        this.PlaySound("Hard01");
                         break;
                     case ObjectType.Soft:
-                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_soft"), 0.85f);
+                        this.PlaySound("Hard01");
                         break;
                     default:
-                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_short"), 0.85f);
+                        this.PlaySound("Hard01");
                         break;
                 }
                 
             }
+        }
+
+        private void PlaySound(string soundName, float volume = 0.85f) {
+            AudioClip clip = GameManager.Instance.GetAudioClipFromDictionary(soundName);
+            this.audioSourceComponent.PlayOneShot(clip, 0.85f);
         }
     }
 }
