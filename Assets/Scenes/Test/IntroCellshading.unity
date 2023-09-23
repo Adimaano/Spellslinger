@@ -1360,6 +1360,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e5d40cc139b598409684567ae10e03c, type: 3}
+--- !u!82 &68679545 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8595401304802272217, guid: 0e5d40cc139b598409684567ae10e03c,
+    type: 3}
+  m_PrefabInstance: {fileID: 68679544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &74526620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13868,6 +13874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!1001 &596891113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15472,6 +15479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!1001 &698864861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16866,6 +16874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 4
   throwVelocityScale: 0.2
+  option: 0
 --- !u!65 &757641717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19190,6 +19199,20 @@ MonoBehaviour:
   - {fileID: 2024869814}
   - {fileID: 1213510960}
   - {fileID: 1018949297}
+  wizardVoiceAudioSource: {fileID: 68679545}
+  wizardVoiceIntro: {fileID: 8300000, guid: 2ea6fada0ff34164ebbb3a89573fb13a, type: 3}
+  wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
+    type: 3}
+  wizardVoiceFirstPuzzleHintTwo: {fileID: 8300000, guid: a5551ca32be249645b03604d88483506,
+    type: 3}
+  wizardVoiceFirstPuzzleHintThree: {fileID: 8300000, guid: b29c7f8e13780ed4bbd08292d5610b10,
+    type: 3}
+  wizardVoiceSecondPuzzleHint: {fileID: 8300000, guid: 35f39960151946d45b3630da67fdd79d,
+    type: 3}
+  wizardVoiceSecondPuzzleFailedHintOne: {fileID: 8300000, guid: 0ef4938ec96f0df4b8dd4130c0452bc9,
+    type: 3}
+  wizardVoiceSecondPuzzleFailedHintTwo: {fileID: 8300000, guid: 997cae4c31aef7b4b8888a12918c6ec8,
+    type: 3}
 --- !u!1001 &859030739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27123,6 +27146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!1001 &1178403220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28283,6 +28307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!65 &1230829219
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30136,6 +30161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!65 &1302725926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35081,6 +35107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!1 &1617611661
 GameObject:
   m_ObjectHideFlags: 0
@@ -36768,6 +36795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 1
   throwVelocityScale: 0.7
+  option: 0
 --- !u!1001 &1678868874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37987,6 +38015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 1.5
   throwVelocityScale: 1
+  option: 0
 --- !u!1001 &1723647356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51976,6 +52005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 4
   throwVelocityScale: 1.5
+  option: 0
 --- !u!65 &7928514342110020328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52486,6 +52516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!33 &8518480105789975826
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -52849,6 +52880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectMass: 0.5
   throwVelocityScale: 1.5
+  option: 0
 --- !u!65 &9051870028527131164
 BoxCollider:
   m_ObjectHideFlags: 0
