@@ -51,6 +51,14 @@ public class IntroManager : MonoBehaviour {
     private int[] puzzleTorchesLitOrder;
     private int puzzleTorchesLit = 0;
     [SerializeField] private Animator exitDoorAnimator;
+    [SerializeField] private AudioClip exitDoorOpenSound;
+
+    [Header("Portal Room")]
+    [SerializeField] private GameObject portal;
+    [SerializeField] private Material portalMaterial;
+    [SerializeField] private GameObject[] portalRoomTorches;
+    private Color portalMaterialColor;
+    private float portalActivationDuration = 1.0f;
 
     private bool bookTriggered = false;
 
@@ -206,8 +214,9 @@ public class IntroManager : MonoBehaviour {
 
             if (puzzleSolved) {
                 this.exitDoorAnimator.SetBool("isFenceDown", true);
-                Debug.Log("Puzzle solved");
+                this.exitDoorAnimator.gameObject.GetComponent<AudioSource>().PlayOneShot(this.exitDoorOpenSound);
                 GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
+                StartCoroutine(this.ActivatePortal());
             } else {
                 // Reset puzzle and play sound
                 this.puzzleTorchesLit = 0;
@@ -218,9 +227,38 @@ public class IntroManager : MonoBehaviour {
                     torch.ExtinguishTorch();
                 }
             }
+        }
+    }
 
+    /// <summary>
+    /// Coroutine that activates the portal. Enables the portal GameObject, fades the emission 
+    /// intensity of the portal material to 7 and lights all torches.
+    /// </summary>
+    private IEnumerator ActivatePortal() {
+        yield return new WaitForSeconds(1.5f);
+        this.portal.SetActive(true);
+        this.portal.transform.parent.gameObject.GetComponent<Portal>().IsActive = true;
+
+        float elapsedTime = 0.0f;
+        Color baseEmissionColor = this.portalMaterial.GetColor("_EmissionColor");
+
+        while (elapsedTime < this.portalActivationDuration) {
+            elapsedTime += Time.deltaTime;
+            float currentIntensity = Mathf.Lerp(0.0f, 20.0f, elapsedTime / this.portalActivationDuration);
+
+            this.portalMaterialColor = baseEmissionColor * currentIntensity;
+            this.portalMaterial.SetColor("_EmissionColor", this.portalMaterialColor);
+
+            yield return null;
         }
 
+        // Set the final intensity value
+        Color finalEmissionColor = baseEmissionColor * 20.0f;
+        this.portalMaterial.SetColor("_EmissionColor", finalEmissionColor);
+
+        foreach (GameObject torch in this.portalRoomTorches) {
+            torch.SetActive(true);
+        }
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Spellslinger.Game.Control;
 using Spellslinger.Game.XR;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Spellslinger.Game
 {
@@ -77,12 +78,10 @@ namespace Spellslinger.Game
             if (controller == "left") {
                 PlayerPrefs.SetInt("preferredController", 0);
 
-                this.player.PreferredController = XRInputManager.Controller.Left;
                 this.input.SetPreferredController(XRInputManager.Controller.Left);
             } else if (controller == "right") {
                 PlayerPrefs.SetInt("preferredController", 1);
 
-                this.player.PreferredController = XRInputManager.Controller.Right;
                 this.input.SetPreferredController(XRInputManager.Controller.Right);
             }
         }
@@ -99,6 +98,22 @@ namespace Spellslinger.Game
         /// <param name="volume">[optional] The volume to play the audio clip at. Default: 1.0f.</param>
         public void PlayAudioClip(AudioClip clip, float volume = 1.0f) {
             this.soundEffectSource.PlayOneShot(clip, volume);
+        }
+
+        /// <summary>
+        /// Load Level by name.
+        /// </summary>
+        /// <param name="levelName">The name of the level to load.</param>
+        public void LoadLevel(string levelName) {
+            SceneManager.LoadScene(levelName);
+        }
+
+        /// <summary>
+        /// Load Level by index.
+        /// </summary>
+        /// <param name="levelIndex">The index of the level to load.</param>
+        public void LoadLevel(int levelIndex) {
+            SceneManager.LoadScene(levelIndex);
         }
     }
 }
