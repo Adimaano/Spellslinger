@@ -180,6 +180,10 @@ namespace Spellslinger.Game.Control
         }
 
         private void CastSpell(bool triggerPressed, XRInputManager.Controller controller) {
+            if (controller != this.PreferredController) {
+                return;
+            }
+
             if (triggerPressed) {
                 if (this.currentSpell != SpellCasting.Spell.None) {
                     // cast spell
