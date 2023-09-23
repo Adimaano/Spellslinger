@@ -13,6 +13,14 @@ namespace Spellslinger.Game.Environment
         [SerializeField] private float objectMass = .5f;
         [SerializeField] private float throwVelocityScale = 1.5f;
         private float waitForCollisionDetection = 0.1f;
+        [SerializeField] private ObjectType option;
+
+        private enum ObjectType
+        {
+            Hard,
+            Soft,
+            Glass,
+        }
 
         // // Start is called before the first frame update
         private void Awake() {
@@ -62,7 +70,21 @@ namespace Spellslinger.Game.Environment
             }
 
             if (!other.gameObject.CompareTag("Player")) {
-                this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_short"), 0.85f);
+                switch (this.option) {
+                    case ObjectType.Glass:
+                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_glass"), 0.85f);
+                        break;
+                    case ObjectType.Hard:
+                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_short"), 0.85f);
+                        break;
+                    case ObjectType.Soft:
+                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_soft"), 0.85f);
+                        break;
+                    default:
+                        this.audioSourceComponent.PlayOneShot(GameManager.Instance.GetAudioClipFromDictionary("impact_short"), 0.85f);
+                        break;
+                }
+                
             }
         }
     }
