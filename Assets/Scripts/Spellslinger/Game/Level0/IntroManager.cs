@@ -240,6 +240,10 @@ namespace Spellslinger.Game {
         /// </summary>
         private IEnumerator ActivatePortal() {
             yield return new WaitForSeconds(1.5f);
+            foreach (GameObject torch in this.portalRoomTorches) {
+                torch.SetActive(true);
+            }
+            yield return new WaitForSeconds(1.5f);
             this.portal.SetActive(true);
             this.portal.transform.parent.gameObject.GetComponent<Portal>().IsActive = true;
 
@@ -260,9 +264,7 @@ namespace Spellslinger.Game {
             Color finalEmissionColor = baseEmissionColor * 20.0f;
             this.portalMaterial.SetColor("_EmissionColor", finalEmissionColor);
 
-            foreach (GameObject torch in this.portalRoomTorches) {
-                torch.SetActive(true);
-            }
+            
         }
 
         /// <summary>
