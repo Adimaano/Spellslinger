@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Test/IntroCellshading.unity
+    guid: be74d38145f573a438f1dcda0cf05c1c
+  - enabled: 1
+    path: Assets/Scenes/Test/Runes_Test.unity
+    guid: 5bfa02867e6804d46a7ca0feae186783
   - enabled: 1
     path: Assets/Scenes/Test/Intro.unity
     guid: 9fa8f521cbf99154283947ba885128ab
