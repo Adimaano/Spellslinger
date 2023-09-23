@@ -1195,6 +1195,15 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: bc15ea42dc627424fb0fca57c0663ddd, type: 3}
   - {fileID: 8300000, guid: b9f2d41f892556c44a731668e630e97d, type: 3}
+  - {fileID: 8300000, guid: 4a719e3ac5616f048b572403d5baae70, type: 3}
+  - {fileID: 8300000, guid: ea8a9017ee937e34094491ddce856a21, type: 3}
+  - {fileID: 8300000, guid: 1838d2970796b364caeb19593bee9f21, type: 3}
+  - {fileID: 8300000, guid: 1ee5bb9571d0d0a47a096d7dacd6e450, type: 3}
+  - {fileID: 8300000, guid: 77f3f5addc50e9549b36317d0bbd2968, type: 3}
+  - {fileID: 8300000, guid: c014d9b7e0923d643b00679b6cde0212, type: 3}
+  - {fileID: 8300000, guid: c3af9a8c3b9927f40a678c7502414db0, type: 3}
+  - {fileID: 8300000, guid: 1d204cea91eb83044afa5cc00f4d38fc, type: 3}
+  - {fileID: 8300000, guid: 592d06aa39f1543479d5ed9358530705, type: 3}
 --- !u!1 &7743223039908947541
 GameObject:
   m_ObjectHideFlags: 0
