@@ -145,7 +145,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DiffuseStep: -0.169
-    - _DitherTexelSize: 8.9
+    - _DitherTexelSize: 9.38
     - _DitherThreshold: 1
     - _DstBlend: 0
     - _EnabledHairSpec: 0
@@ -207,19 +207,19 @@ Material:
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
     - _SizeFalloff: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.453
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecColor_1: 0.1
     - _SpecFalloff: 0
-    - _SpecShadowStrength: 0.662
+    - _SpecShadowStrength: 0.649
     - _SpecShadowStrenth: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0.295
+    - _SpecularFalloff: 0.873
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.742
+    - _SpecularSize: 0.623
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
@@ -247,7 +247,7 @@ Material:
     - _HatchingColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -16.083542, g: 3.8603287, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -36.422523, g: 6.572193, b: 0, a: 0}
     - _RimColor: {r: 0.098433584, g: 0.15202849, b: 0.1981132, a: 0.411}
     - _ShadowColor: {r: 0.16980919, g: 0.16980919, b: 0.16980919, a: 1}
     - _SpecColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.903}

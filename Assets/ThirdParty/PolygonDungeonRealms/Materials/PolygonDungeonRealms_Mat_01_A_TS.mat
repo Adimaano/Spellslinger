@@ -120,7 +120,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0
+    - _BrushLowerCut: 0.044
     - _BrushSize: 0.62
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -151,9 +151,9 @@ Material:
     - _HalfToneShape: 2
     - _HalfToneUvMode: 0
     - _HalftoneFadeDistance: 10
-    - _HalftoneFadeToColor: 0
+    - _HalftoneFadeToColor: 0.238
     - _HalftoneNoiseClip: 0.8
-    - _HalftoneTilling: 60.42
+    - _HalftoneTilling: 200
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
     - _HatchingDrawStrength: 1
@@ -206,7 +206,7 @@ Material:
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -60.29412, g: 118.23528, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

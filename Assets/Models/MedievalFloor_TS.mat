@@ -137,7 +137,7 @@ Material:
     - _AllToon_OverrideShadowColor: 0
     - _AlphaClip: 0
     - _Blend: 0
-    - _BrushLowerCut: 0.327
+    - _BrushLowerCut: 0.134
     - _BrushSize: 0.96
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -146,7 +146,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseStep: -0.333
+    - _DiffuseStep: 0.377
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
@@ -166,9 +166,9 @@ Material:
     - _HairSpecNoiseStrength: 1
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
-    - _HalfToneDiffuseStep: -0.242
+    - _HalfToneDiffuseStep: -0.324
     - _HalfToneEnabled: 1
-    - _HalfToneIncludeReceivedShadow: 1
+    - _HalfToneIncludeReceivedShadow: 0
     - _HalfToneShape: 2
     - _HalfToneUvMode: 0
     - _HalftoneDiffuseOffest: 0
@@ -178,7 +178,7 @@ Material:
     - _HalftoneNoiseClip: 0
     - _HalftoneScale: 0
     - _HalftoneSize: 0.3
-    - _HalftoneTilling: 80
+    - _HalftoneTilling: 60
     - _HalftoneUseScreenSpaceUV: 0
     - _HatchingDensity: 1
     - _HatchingDiffuseOffset: 0
@@ -227,7 +227,7 @@ Material:
     - _StencilRef: 0
     - _StepViaRampTexture: 0
     - _Surface: 0
-    - _ToonBlending: 1
+    - _ToonBlending: 0.585
     - _ToonEnabled: 1
     - _USERAMPCOLOR: 0
     - _UseClipPattern: 0
@@ -242,7 +242,7 @@ Material:
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HalfToneColor: {r: 0.41509432, g: 0.3860721, b: 0.2532336, a: 1}
     - _HalftoneColor: {r: 0.517647, g: 0.517647, b: 0.517647, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}

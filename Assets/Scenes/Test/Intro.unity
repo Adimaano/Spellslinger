@@ -97,8 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 5b2b6fadf7193f0468050d7b906bb2af,
+  m_LightingDataAsset: {fileID: 112000000, guid: 3ea91d2c142057c49bf48bc30158c22f,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 669648b373d99ec48a8eeee4bf732c06,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2879,7 +2880,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 971565633}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -18, y: 0, z: 0}
 --- !u!1001 &865413422
 PrefabInstance:
@@ -5636,6 +5637,9 @@ MonoBehaviour:
   spotlight1: {fileID: 966020567}
   spotlight2: {fileID: 1846700737}
   ambientLight: {fileID: 1166299204}
+  directionalSpotlight: {fileID: 0}
+  pointLight1: {fileID: 0}
+  pointLight2: {fileID: 0}
 --- !u!65 &1476715408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6039,7 +6043,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1356392251}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -18, y: 0, z: 0}
 --- !u!120 &1585847214
 LineRenderer:
