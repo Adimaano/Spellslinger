@@ -73,7 +73,7 @@ namespace Spellslinger.Game.Environment
                 switch (this.option) {
                     case ObjectType.Glass:
                         int random = Random.Range(1, 10);
-                        this.PlayRandomSound("Glass0" + random);
+                        this.PlaySound("Glass0" + random);
                         break;
                     case ObjectType.Hard:
                         this.PlaySound("Hard01");
