@@ -20542,6 +20542,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3824327542554009355, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8706678729283691395, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
 --- !u!4 &837800937 stripped
@@ -20871,6 +20881,7 @@ MonoBehaviour:
   wizardVoiceIntro: {fileID: 8300000, guid: 2ea6fada0ff34164ebbb3a89573fb13a, type: 3}
   wizardVoiceTeleportHint: {fileID: 8300000, guid: 0f015171aba42514ca6a6e275e6d87c8,
     type: 3}
+  wizardVoicePedestal: {fileID: 0}
   wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
     type: 3}
   wizardVoiceFirstPuzzleHintTwo: {fileID: 8300000, guid: a5551ca32be249645b03604d88483506,
