@@ -39,6 +39,8 @@ namespace Spellslinger.Game.Environment
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.tag == "Fire" && !this.IsLit) {
                 this.LightTorch();
+            } else if (other.gameObject.tag == "Water" && this.IsLit) {
+                this.ExtinguishTorch();
             }
         }
 

@@ -10,6 +10,7 @@ TagManager:
   - Book
   - StonePlatform
   - Floor
+  - Water
   layers:
   - Default
   - TransparentFX
