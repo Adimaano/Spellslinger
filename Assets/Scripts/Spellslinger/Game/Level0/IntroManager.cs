@@ -64,6 +64,7 @@ namespace Spellslinger.Game {
         [Header("Wizard Voice")]
         [SerializeField] private AudioSource wizardVoiceAudioSource;
         [SerializeField] private AudioClip wizardVoiceIntro;
+        [SerializeField] private AudioClip wizardVoiceTeleportHint;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintOne;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintTwo;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintThree;
@@ -107,7 +108,7 @@ namespace Spellslinger.Game {
             foreach(Torch torch in this.floorTorches) {
                 torch.OnTorchLit = () => {
                     this.numberOfFloorTorchesLit++;
-                    this.wizardVoiceHintTimer = Time.time + 20.0f;
+                    this.wizardVoiceHintTimer = Time.time + 60.0f;
                     if (this.numberOfFloorTorchesLit == this.floorTorches.Length) {
                         StartCoroutine(this.OpenDoor());
                         this.PuzzleHintsPlayed = 0;
@@ -134,38 +135,41 @@ namespace Spellslinger.Game {
 
         private void Update() {
             if (Time.time > this.wizardVoiceHintTimer) {
-                if (this.numberOfFloorTorchesLit != this.floorTorches.Length) {
+                if (!this.bookTriggered) {
+                    this.PlayWizardVoice(this.wizardVoiceTeleportHint);
+                    this.wizardVoiceHintTimer = Time.time + 30.0f;
+                } else if (this.numberOfFloorTorchesLit != this.floorTorches.Length) {
                     switch (this.PuzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
-                            this.wizardVoiceHintTimer = Time.time + 45.0f;
+                            this.wizardVoiceHintTimer = Time.time + 60.0f;
                             this.PuzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
-                            this.wizardVoiceHintTimer = Time.time + 30.0f;
+                            this.wizardVoiceHintTimer = Time.time + 45.0f;
                             this.PuzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintThree);
-                            this.wizardVoiceHintTimer = Time.time + 30.0f;
+                            this.wizardVoiceHintTimer = Time.time + 45.0f;
                             break;
                     }
                 } else if (!this.failedSecondPuzzle) {
                     switch (this.PuzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceSecondPuzzleHint);
-                            this.wizardVoiceHintTimer = Time.time + 30.0f;
+                            this.wizardVoiceHintTimer = Time.time + 50.0f;
                             this.PuzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
-                            this.wizardVoiceHintTimer = Time.time + 45.0f;
+                            this.wizardVoiceHintTimer = Time.time + 60.0f;
                             this.PuzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
-                            this.wizardVoiceHintTimer = Time.time + 30.0f;
+                            this.wizardVoiceHintTimer = Time.time + 60.0f;
                             break;
                     }
                 }
@@ -300,8 +304,10 @@ namespace Spellslinger.Game {
 
                     if (this.failedSecondPuzzle) {
                         this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintOne);
+                        this.wizardVoiceHintTimer = Time.time + 60.0f;
                     } else {
                         this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintTwo);
+                        this.wizardVoiceHintTimer = Time.time + 60.0f;
                     }
                     this.failedSecondPuzzle = true;
                 }
@@ -355,6 +361,7 @@ namespace Spellslinger.Game {
                 this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
                 StartCoroutine(SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
                 this.bookTriggered = true;
+                this.wizardVoiceHintTimer = Time.time + 60.0f;
             }
         }
     }

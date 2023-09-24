@@ -27,21 +27,21 @@ namespace Spellslinger.Game.Environment
             this.grabInteractable = this.gameObject.GetComponent<XRGrabInteractable>();
 
             if (this.grabInteractable == null) {
-                Debug.Log("Adding XRGrabInteractable to " + this.gameObject.name);
+                // Debug.Log("Adding XRGrabInteractable to " + this.gameObject.name);
                 this.grabInteractable = this.gameObject.AddComponent<XRGrabInteractable>();
             }
 
             this.rigidbodyComponent = this.gameObject.GetComponent<Rigidbody>();
 
             if (this.rigidbodyComponent == null) {
-                Debug.Log("Adding rigidbody to " + this.gameObject.name);
+                // Debug.Log("Adding rigidbody to " + this.gameObject.name);
                 this.rigidbodyComponent = this.gameObject.AddComponent<Rigidbody>();
             }
 
             this.audioSourceComponent = this.gameObject.GetComponent<AudioSource>();
 
             if (this.audioSourceComponent == null) {
-                Debug.Log("Adding audio source to " + this.gameObject.name);
+                // Debug.Log("Adding audio source to " + this.gameObject.name);
                 this.audioSourceComponent = this.gameObject.AddComponent<AudioSource>();
             }
 
