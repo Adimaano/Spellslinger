@@ -129,7 +129,7 @@ namespace Spellslinger.Game.Control
             // grow earth gameobject in y direction for 2 seconds or until interrupted
             float time = 0;
             while (time < 1.5f && this.isCasting) {
-                earth.transform.localScale += new Vector3(0, 0.75f, 0);
+                earth.transform.localScale += new Vector3(0, 1.25f, 0);
                 time += Time.deltaTime;
                 yield return null;
             }
