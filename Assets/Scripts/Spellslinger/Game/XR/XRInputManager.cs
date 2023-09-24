@@ -69,6 +69,7 @@ namespace Spellslinger.Game.XR
         public System.Action<float, Controller> OnControllerGrip { get; internal set; }
         public System.Action<Vector2, bool, Controller> OnControllerTouchpad { get; internal set; }
         public System.Action OnControllerMenu { get; internal set; }
+        public System.Action<Controller> OnPreferredControllerChanged { get; internal set; }
 
         private IEnumerator Start() {
             // Create Gradient Colors for Line Visuals
@@ -324,6 +325,8 @@ namespace Spellslinger.Game.XR
                 this.leftControllerRayInteractor.rayOriginTransform = this.leftControllerRayInteractor.gameObject.transform;
                 this.rightControllerRayInteractor.rayOriginTransform = this.drawPointRight.transform;
             }
+
+            this.OnPreferredControllerChanged?.Invoke(controller);
         }
 
         public void SetVisualGradientForActiveSpell(SpellCasting.Spell spell) {
@@ -369,6 +372,18 @@ namespace Spellslinger.Game.XR
                     this.wandMaterial.SetTexture("_EmissionMap", null);
                     this.wandMaterial.SetColor("_EmissionColor", Color.black);
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Returns the currently active ray interactor for the wand.
+        /// </summary>
+        /// <returns>XRRayInteractor of the currently active wand.</returns>
+        public XRRayInteractor GetWandRayInteractor() {
+            if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
+                return this.leftControllerRayInteractor;
+            } else {
+                return this.rightControllerRayInteractor;
             }
         }
     }

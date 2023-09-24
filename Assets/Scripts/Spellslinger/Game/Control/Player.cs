@@ -2,11 +2,14 @@ using System.Collections;
 using Spellslinger.AI;
 using Spellslinger.Game.XR;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Spellslinger.Game.Control
 {
     public class Player : MonoBehaviour {
         private XRInputManager input;
+        private XRRayInteractor wandRayInteractor;
         private Draw drawScript;
         private ModelRunner modelRunner;
         private SpellCasting spellCasting;
@@ -14,6 +17,8 @@ namespace Spellslinger.Game.Control
         private SpriteRenderer runeSpriteRenderer;
 
         private SpellCasting.Spell currentSpell = SpellCasting.Spell.None;
+
+        private GameObject lastSelectedObject;
 
         // Rune Sprites
         [Header("Rune Sprites")]
@@ -39,14 +44,65 @@ namespace Spellslinger.Game.Control
             this.drawScript.OnDrawFinished += this.ChargeSpell;
             this.input.OnControllerTrigger += this.CastSpell;
             this.input.OnControllerTouchpad += this.DrawRune;
+            this.input.OnPreferredControllerChanged += this.PreferredControllerChanged;
             this.modelRunner.OnPredictionReceived += this.PredictionReceived;
 
             // set preferred controller from player prefs (default: right)
             this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
+            this.wandRayInteractor = this.input.GetWandRayInteractor();
+
+            // this.wandRayInteractor.hoverEntered.AddListener(this.OnHoverEnter);
+            // this.wandRayInteractor.hoverExited.AddListener(this.OnHoverExit);
+        }
+
+        private void Update() {
+            if (this.currentSpell == SpellCasting.Spell.Earth) {
+                RaycastHit hit;
+                if (this.wandRayInteractor.TryGetCurrent3DRaycastHit(out hit)) {
+                    if (hit.collider.gameObject.CompareTag("Floor")) {
+                        this.spellCasting.SetSpellCastingTarget(hit.point);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    } else if (hit.collider.gameObject.CompareTag("StonePlatform")) {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(hit.collider.gameObject);
+                        this.SetLastSelectedObject(hit.collider.gameObject);
+                    } else {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    }
+                }
+            } else {
+                this.ResetLastSelectedObject();
+                this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                this.spellCasting.SetSpecialCasting(null);
+            }
+        }
+
+        private void ResetLastSelectedObject() {
+            if (this.lastSelectedObject != null) {
+                Outline outline = this.lastSelectedObject.GetComponent<Outline>();
+                this.lastSelectedObject = null;
+
+                if (outline != null) {
+                    outline.enabled = false;
+                }
+            }
+        }
+
+        private void SetLastSelectedObject(GameObject gameObject) {
+            this.ResetLastSelectedObject();
+            this.lastSelectedObject = gameObject;
+            Outline outline = this.lastSelectedObject.GetComponent<Outline>();
+
+            if (outline != null) {
+                outline.enabled = true;
+            }
         }
 
         private void PredictionReceived(int runeClass) {
-            Debug.Log(runeClass);
+            //Debug.Log(runeClass);
             
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
             switch (runeClass) {
@@ -100,47 +156,6 @@ namespace Spellslinger.Game.Control
             }
 
             this.modelRunner.IdentifyRune(drawingPoints);
-            // int runeClass = this.modelRunner.IdentifyRune(drawingPoints);
-            //
-            // // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
-            // switch (runeClass)
-            // {
-            //     case 0:
-            //         // Time Spell
-            //         this.currentSpell = SpellCasting.Spell.Time;
-            //         break;
-            //     case 1:
-            //         // Air Spell
-            //         this.currentSpell = SpellCasting.Spell.Air;
-            //         break;
-            //     case 2:
-            //         // Earth Spell
-            //         this.currentSpell = SpellCasting.Spell.Earth;
-            //         break;
-            //     case 3:
-            //         // Fire Spell
-            //         this.currentSpell = SpellCasting.Spell.Fire;
-            //         break;
-            //     case 4:
-            //         // Lightning Spell
-            //         this.currentSpell = SpellCasting.Spell.Lightning;
-            //         break;
-            //     case 5:
-            //         // Water Spell
-            //         this.currentSpell = SpellCasting.Spell.Water;
-            //         break;
-            //     default:
-            //         // Unknown Rune
-            //         this.currentSpell = SpellCasting.Spell.None;
-            //         break;
-            // }
-            //
-            // if (this.currentSpell != SpellCasting.Spell.None)
-            // {
-            //     this.StartCoroutine(this.ShowRune());
-            //     GameManager.Instance.PlaySound("RuneRecognized");
-            //     this.input.SetVisualGradientForActiveSpell(this.currentSpell);
-            // }
         }
 
         // IEnumerator to show the rune for a short time with fade out and scale up animation
@@ -192,6 +207,8 @@ namespace Spellslinger.Game.Control
                     this.input.SetVisualGradientForActiveSpell(this.currentSpell);
                     this.spellCasting.ChargeSpell(this.currentSpell, controller);
                 }
+            } else {
+                this.spellCasting.InterruptCasting();
             }
         }
 
@@ -206,5 +223,39 @@ namespace Spellslinger.Game.Control
                 this.drawScript.StopDrawing(controller);
             }
         }
+
+        private void PreferredControllerChanged(XRInputManager.Controller controller) {
+            this.PreferredController = controller;
+
+            // this.wandRayInteractor.hoverEntered.RemoveListener(this.OnHoverEnter);
+            // this.wandRayInteractor.hoverExited.RemoveListener(this.OnHoverExit);
+
+            this.wandRayInteractor = this.input.GetWandRayInteractor();
+
+            // this.wandRayInteractor.hoverEntered.AddListener(this.OnHoverEnter);
+            // this.wandRayInteractor.hoverExited.AddListener(this.OnHoverExit);
+        }
+
+        // private void OnHoverEnter(HoverEnterEventArgs args) {
+        //     IXRHoverInteractable interactable = args.interactableObject;
+        //     Outline outline = interactable.transform.gameObject.GetComponent<Outline>();
+        //     Debug.Log("On Hover Enter");
+
+        //     if (outline != null) {
+        //         Debug.Log("outline found");
+        //         outline.enabled = true;
+        //     }
+        // }
+
+        // private void OnHoverExit(HoverExitEventArgs args) {
+        //     IXRHoverInteractable interactable = args.interactableObject;
+        //     Outline outline = interactable.transform.gameObject.GetComponent<Outline>();
+        //     Debug.Log("On Hover Exit");
+
+        //     if (outline != null) {
+        //         Debug.Log("outline found");
+        //         outline.enabled = false;
+        //     }
+        // }
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Inflammable
   - Fire
   - Book
+  - StonePlatform
+  - Floor
   layers:
   - Default
   - TransparentFX

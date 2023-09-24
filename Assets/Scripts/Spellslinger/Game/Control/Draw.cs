@@ -7,6 +7,7 @@ namespace Spellslinger.Game.Control
     public class Draw : MonoBehaviour {
         private const float MIN_DISTANCE = 0.01f;
         private const int MAX_POINTS = 20;
+        private const int MIN_POINTS = 8;
 
         [SerializeField] private GameObject drawEffectPrefab;
 
@@ -95,7 +96,7 @@ namespace Spellslinger.Game.Control
         /// <returns></returns>
         private Vector3[] GenerateNormalizedList(List<Vector3> originalPoints) {
             // return empty list if originalPoints is smaller than MAX_POINTS/2. If the list is too small, the interpolation will not work properly and the result will be very inaccurate/random.
-            if (originalPoints.Count < MAX_POINTS/2) {
+            if (originalPoints.Count < MIN_POINTS) {
                 return new Vector3[0];
             }
 
