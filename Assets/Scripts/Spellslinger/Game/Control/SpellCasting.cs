@@ -72,6 +72,11 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Prepares a spell. Charges the wand with the spell.
+        /// </summary>
+        /// <param name="spell">The spell to charge.</param>
+        /// <param name="controller">The controller/hand with the wand.</param>
         public void ChargeSpell(SpellCasting.Spell spell, XRInputManager.Controller controller) {
             var target = controller == XRInputManager.Controller.Right ? this.spellCastingRight : this.spellCastingLeft;
             // Remove all children of the target
@@ -93,7 +98,11 @@ namespace Spellslinger.Game.Control
             charge.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
 
-        private void CastFireSpell1(GameObject spellOrigin) {
+        /// <summary>
+        /// Casts the Fire spell (projectile).
+        /// </summary>
+        /// <param name="spellOrigin">The origin of the spell.</param>
+        private void CastFireSpell(GameObject spellOrigin) {
             GameObject fireball = Instantiate(this.fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
             fireball.transform.LookAt(spellOrigin.transform.parent.transform.position);
 
@@ -101,19 +110,26 @@ namespace Spellslinger.Game.Control
             spell.SpellDirection = spellOrigin.transform.forward;
         }
 
+        /// <summary>
+        /// Instantiates an earth pillar and calls the coroutine for growing it.
+        /// </summary>
         private void CastEarthSpell() {
             GameObject earthSpell = Instantiate(this.earthSpellPrefab, this.spellCastingTarget, Quaternion.identity);
             
             StartCoroutine(this.EarthSpellCoroutine(earthSpell));
         }
 
+        /// <summary>
+        /// Coroutine for casting the earth spell. Creates a pillar of earth at the target position.
+        /// </summary>
+        /// <param name="earth">The earth gameobject.</param>
         private IEnumerator EarthSpellCoroutine(GameObject earth) {
             this.isCasting = true;
 
             // grow earth gameobject in y direction for 2 seconds or until interrupted
             float time = 0;
             while (time < 1.5f && this.isCasting) {
-                earth.transform.localScale += new Vector3(0, 0.5f, 0);
+                earth.transform.localScale += new Vector3(0, 0.75f, 0);
                 time += Time.deltaTime;
                 yield return null;
             }
@@ -122,6 +138,11 @@ namespace Spellslinger.Game.Control
             earth.GetComponent<AudioSource>().Stop();
         }
 
+        /// <summary>
+        /// Casts a generic spell.
+        /// </summary>
+        /// <param name="origin">The origin of the spell.</param>
+        /// <param name="misslePrefab">The missle prefab.</param>
         private void CastGenericSpell(GameObject origin, GameObject misslePrefab) {
             var missle = Instantiate(misslePrefab, origin.transform.position, Quaternion.identity);
             // scale to 0.7
@@ -153,7 +174,7 @@ namespace Spellslinger.Game.Control
 
             switch (spell) {
                 case Spell.Fire:
-                    this.CastFireSpell1(spellOrigin);
+                    this.CastFireSpell(spellOrigin);
                     break;
                 case Spell.Earth:
                     if (this.castOnObject != null) {
@@ -170,6 +191,10 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Instantiates a blast prefab at the position of the object that will be destroyed.
+        /// </summary>
+        /// <param name="spell">The spell that is cast.</param>
         private IEnumerator BlastGenericObject(Spell spell) {
             GameObject blastPillar = Instantiate(this.spellBlastDictionary[spell], this.castOnObject.transform.position, Quaternion.identity);
             blastPillar.transform.Rotate(new Vector3(-90, 0, 0));
@@ -197,6 +222,10 @@ namespace Spellslinger.Game.Control
             this.isCasting = false;
         }
 
+        /// <summary>
+        /// Sets the object on which the spell will be cast.
+        /// </summary>
+        /// <param name="objectToCastMagicOn">The object on which the spell will be cast.</param>
         public void SetSpecialCasting(GameObject objectToCastMagicOn) {
             this.castOnObject = objectToCastMagicOn;
         }

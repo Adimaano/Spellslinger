@@ -50,9 +50,6 @@ namespace Spellslinger.Game.Control
             // set preferred controller from player prefs (default: right)
             this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
             this.wandRayInteractor = this.input.GetWandRayInteractor();
-
-            // this.wandRayInteractor.hoverEntered.AddListener(this.OnHoverEnter);
-            // this.wandRayInteractor.hoverExited.AddListener(this.OnHoverExit);
         }
 
         private void Update() {
@@ -80,6 +77,9 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Resets the last selected object when the Rayinteractor is no longer hovering over it.
+        /// </summary>
         private void ResetLastSelectedObject() {
             if (this.lastSelectedObject != null) {
                 Outline outline = this.lastSelectedObject.GetComponent<Outline>();
@@ -91,6 +91,10 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Sets the last selected/hovered object and enables the outline if available.
+        /// </summary>
+        /// <param name="gameObject">GameObject that was selected.</param>
         private void SetLastSelectedObject(GameObject gameObject) {
             this.ResetLastSelectedObject();
             this.lastSelectedObject = gameObject;
@@ -101,9 +105,11 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Called when the AI Model has finished predicting a rune.
+        /// </summary>
+        /// <param name="runeClass">Class of the predicted rune.</param>
         private void PredictionReceived(int runeClass) {
-            //Debug.Log(runeClass);
-            
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
             switch (runeClass) {
                 case 0:
@@ -158,7 +164,9 @@ namespace Spellslinger.Game.Control
             this.modelRunner.IdentifyRune(drawingPoints);
         }
 
-        // IEnumerator to show the rune for a short time with fade out and scale up animation
+        /// <summary>
+        /// IEnumerator to show the rune for a short time with fade out and scale up animation.
+        /// </summary>
         private IEnumerator ShowRune() {
             switch (this.currentSpell) {
                 case SpellCasting.Spell.Water:
@@ -194,6 +202,11 @@ namespace Spellslinger.Game.Control
             this.runeSpriteRenderer.sprite = null;
         }
 
+        /// <summary>
+        /// Casts the spell if the trigger is pressed or interrupts the casting if the trigger is released.
+        /// </summary>
+        /// <param name="triggerPressed">Whether the trigger is pressed (or released).</param>
+        /// <param name="controller">Controller that was used to cast.</param>
         private void CastSpell(bool triggerPressed, XRInputManager.Controller controller) {
             if (controller != this.PreferredController) {
                 return;
@@ -212,6 +225,12 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Initiates drawing of a rune. Calls StartDrawing/StopDrawing on the DrawScript.
+        /// </summary>
+        /// <param name="axis">Axis of the controller.</param>
+        /// <param name="clicked">Whether the trigger is pressed (or released).</param>
+        /// <param name="controller">Controller that was used to draw.</param>
         private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller) {
             if (controller != this.PreferredController) {
                 return;
@@ -224,38 +243,13 @@ namespace Spellslinger.Game.Control
             }
         }
 
+        /// <summary>
+        /// Called when the preferred controller is changed. Updates the wand ray interactor.
+        /// </summary>
+        /// <param name="controller">The new preferred controller.</param>
         private void PreferredControllerChanged(XRInputManager.Controller controller) {
             this.PreferredController = controller;
-
-            // this.wandRayInteractor.hoverEntered.RemoveListener(this.OnHoverEnter);
-            // this.wandRayInteractor.hoverExited.RemoveListener(this.OnHoverExit);
-
             this.wandRayInteractor = this.input.GetWandRayInteractor();
-
-            // this.wandRayInteractor.hoverEntered.AddListener(this.OnHoverEnter);
-            // this.wandRayInteractor.hoverExited.AddListener(this.OnHoverExit);
         }
-
-        // private void OnHoverEnter(HoverEnterEventArgs args) {
-        //     IXRHoverInteractable interactable = args.interactableObject;
-        //     Outline outline = interactable.transform.gameObject.GetComponent<Outline>();
-        //     Debug.Log("On Hover Enter");
-
-        //     if (outline != null) {
-        //         Debug.Log("outline found");
-        //         outline.enabled = true;
-        //     }
-        // }
-
-        // private void OnHoverExit(HoverExitEventArgs args) {
-        //     IXRHoverInteractable interactable = args.interactableObject;
-        //     Outline outline = interactable.transform.gameObject.GetComponent<Outline>();
-        //     Debug.Log("On Hover Exit");
-
-        //     if (outline != null) {
-        //         Debug.Log("outline found");
-        //         outline.enabled = false;
-        //     }
-        // }
     }
 }
