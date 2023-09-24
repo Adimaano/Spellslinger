@@ -65,6 +65,7 @@ namespace Spellslinger.Game {
         [SerializeField] private AudioSource wizardVoiceAudioSource;
         [SerializeField] private AudioClip wizardVoiceIntro;
         [SerializeField] private AudioClip wizardVoiceTeleportHint;
+        [SerializeField] private AudioClip wizardVoicePedestal;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintOne;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintTwo;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintThree;
@@ -302,7 +303,7 @@ namespace Spellslinger.Game {
                         torch.ExtinguishTorch();
                     }
 
-                    if (this.failedSecondPuzzle) {
+                    if (!this.failedSecondPuzzle) {
                         this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintOne);
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     } else {
@@ -358,6 +359,7 @@ namespace Spellslinger.Game {
 
         private void OnTriggerEnter(Collider other) {
             if (!this.bookTriggered && other.CompareTag("Player")) {
+                this.PlayWizardVoice(this.wizardVoicePedestal);
                 this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
                 StartCoroutine(SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
                 this.bookTriggered = true;
