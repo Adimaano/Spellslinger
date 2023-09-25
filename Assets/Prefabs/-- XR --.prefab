@@ -2673,7 +2673,7 @@ GameObject:
   - component: {fileID: 7749992873398913313}
   - component: {fileID: 8368553975006159005}
   - component: {fileID: 8425462757622585153}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FadeToWhiteSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
