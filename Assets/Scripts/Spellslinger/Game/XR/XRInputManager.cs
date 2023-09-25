@@ -332,6 +332,11 @@ namespace Spellslinger.Game.XR
             this.OnPreferredControllerChanged?.Invoke(controller);
         }
 
+        /// <summary>
+        /// Set the visual gradient for the active spell.
+        /// </summary>
+        /// <param name="spell">The active spell.</param>
+        /// <param name="controller">The wand controller.</param>
         public void SetVisualGradientForActiveSpell(SpellCasting.Spell spell, Controller controller) {
             if (controller == Controller.Left) {
                 this.leftControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
@@ -392,6 +397,29 @@ namespace Spellslinger.Game.XR
             }
 
             return hit;
+        }
+
+        /// <summary>
+        /// Set UI Mode (e.g. for Main Menu). Hides off hand and shows main hand with line visual.
+        /// </summary>
+        /// <param name="controller">Main hand controller.</param>
+        public void SetUIMode(Controller controller) {
+            Debug.Log("Set UI Mode" + controller.ToString());
+            if (controller == Controller.Left) {
+                this.rightControllerRayInteractor.gameObject.SetActive(false);
+                this.rightGrabRayInteractor.gameObject.SetActive(false);
+                this.leftControllerRayInteractor.gameObject.SetActive(true);
+                this.leftGrabRayInteractor.gameObject.SetActive(true);
+
+                this.leftControllerLineVisual.invalidColorGradient = this.spellActiveGradient;
+            } else {
+                this.rightControllerRayInteractor.gameObject.SetActive(true);
+                this.rightGrabRayInteractor.gameObject.SetActive(true);
+                this.leftControllerRayInteractor.gameObject.SetActive(false);
+                this.leftGrabRayInteractor.gameObject.SetActive(false);
+
+                this.rightControllerLineVisual.invalidColorGradient = this.spellActiveGradient;
+            }
         }
     }
 }

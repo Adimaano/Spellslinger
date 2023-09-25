@@ -74,5 +74,13 @@ namespace Spellslinger.Game.Manager
         public SaveData GetSaveData() {
             return this.gameData;
         }
+
+        /// <summary>
+        /// Returns wether a save file exists.
+        /// </summary>
+        /// <returns>True if a save file exists, false otherwise.</returns>
+        public static bool SaveFileExists() {
+            return File.Exists(saveFileName);
+        }
     }
 }

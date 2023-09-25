@@ -16,7 +16,7 @@ public class SaveData {
     // A constructor for the save data
     public SaveData() {
         // Set the default values for the save data
-        this.currentLevel = 0;
+        this.currentLevel = 1;
         this.availableSpells = new List<SpellCasting.Spell>();
         this.preferredHand = XRInputManager.Controller.Right;
     }
