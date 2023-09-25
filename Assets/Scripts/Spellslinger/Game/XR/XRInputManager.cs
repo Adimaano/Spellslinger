@@ -404,7 +404,6 @@ namespace Spellslinger.Game.XR
         /// </summary>
         /// <param name="controller">Main hand controller.</param>
         public void SetUIMode(Controller controller) {
-            Debug.Log("Set UI Mode" + controller.ToString());
             if (controller == Controller.Left) {
                 this.rightControllerRayInteractor.gameObject.SetActive(false);
                 this.rightGrabRayInteractor.gameObject.SetActive(false);
