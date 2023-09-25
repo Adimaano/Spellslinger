@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] private AudioClip selectSound;
 
     private GameObject selectedObject;
+    private bool hasSavedGame = false;
 
     private void Start() {
         // find dependencies in scene
@@ -34,7 +35,8 @@ public class MainMenu : MonoBehaviour {
         this.input.OnPreferredControllerChanged += this.input.SetUIMode;
 
         // Check if there is a save file
-        if (!SaveGameManager.SaveFileExists()) {
+        this.hasSavedGame = SaveGameManager.SaveFileExists();
+        if (!hasSavedGame) {
             this.startGamePanel.transform.Find("Continue").gameObject.GetComponent<Button>().interactable = false;
         }
     }
@@ -178,7 +180,7 @@ public class MainMenu : MonoBehaviour {
     public void StartNewGame(bool confirmation = false) {
         GameManager.Instance.PlayAudioClip(this.selectSound);
 
-        if (!SaveGameManager.SaveFileExists() || confirmation) {
+        if (!this.hasSavedGame || confirmation) {
             GameManager.Instance.LoadLevel(1);
         } else {
             this.startGamePanel.SetActive(false);

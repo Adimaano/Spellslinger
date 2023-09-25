@@ -184,7 +184,7 @@ namespace Spellslinger.Game {
         /// </summary>
         /// <param name="clip">The audioclip to play.</param>
         private IEnumerator PlayWizardVoiceDelayed(AudioClip clip) {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.0f);
             this.PlayWizardVoice(clip);
             this.wizardVoiceHintTimer = Time.time + 25.0f;
         }
