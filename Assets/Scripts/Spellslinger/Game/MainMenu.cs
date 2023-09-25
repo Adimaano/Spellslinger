@@ -183,7 +183,6 @@ public class MainMenu : MonoBehaviour {
         if (!this.hasSavedGame || confirmation) {
             GameManager.Instance.LoadLevel(1);
         } else {
-            this.startGamePanel.SetActive(false);
             this.confirmNewGamePanel.SetActive(true);
         }
     }
