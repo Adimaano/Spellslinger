@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 58dd2d1ef3ff6c64e946fce3cc0ff47b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -147,6 +147,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportationTransitionParticles
       objectReference: {fileID: 0}
+    - target: {fileID: 402298, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 402298, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 402298, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53154
+      objectReference: {fileID: 0}
     - target: {fileID: 410444, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -202,6 +214,30 @@ PrefabInstance:
     - target: {fileID: 410444, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469070, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 469070, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 469070, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 492114, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 492114, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53154
+      objectReference: {fileID: 0}
+    - target: {fileID: 492114, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53154
       objectReference: {fileID: 0}
     - target: {fileID: 19818146, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: looping
