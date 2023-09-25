@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using Spellslinger.Game.Environment;
-
 namespace Spellslinger.Game {
+    using System.Collections;
+    using System.Linq;
+    using Spellslinger.Game.Environment;
+    using Spellslinger.Game.Manager;
+    using UnityEngine;
+
     public class IntroManager : MonoBehaviour {
         [Header("Initially Disabled Objects")]
         [SerializeField] private GameObject[] initiallyDisabledObjects;

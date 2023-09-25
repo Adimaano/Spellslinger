@@ -1,12 +1,12 @@
-using Spellslinger.Game.Control;
-using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
-using System.Collections;
-
-
 namespace Spellslinger.Game.XR
 {
+    using System.Collections;
+    using Spellslinger.Game.Control;
+    using Spellslinger.Game.Manager;
+    using UnityEngine;
+    using UnityEngine.XR;
+    using UnityEngine.XR.Interaction.Toolkit;
+
     public class XRInputManager : MonoBehaviour {
         // XR Nodes
         private XRNode xrNodeRight = XRNode.RightHand;
@@ -89,7 +89,8 @@ namespace Spellslinger.Game.XR
             }
 
             // Initialize Preferred Controller
-            this.SetPreferredController((Controller)PlayerPrefs.GetInt("preferredController", 1));
+            SaveData saveData = SaveGameManager.Instance.GetSaveData();
+            this.SetPreferredController(saveData.preferredHand);
 
             // remove emission map from wand material
             this.wandMaterial.SetTexture("_EmissionMap", null);
@@ -329,8 +330,8 @@ namespace Spellslinger.Game.XR
             this.OnPreferredControllerChanged?.Invoke(controller);
         }
 
-        public void SetVisualGradientForActiveSpell(SpellCasting.Spell spell) {
-            if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
+        public void SetVisualGradientForActiveSpell(SpellCasting.Spell spell, Controller controller) {
+            if (controller == Controller.Left) {
                 this.leftControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
             } else {
                 this.rightControllerLineVisual.invalidColorGradient = spell != SpellCasting.Spell.None ? this.spellActiveGradient : this.invisibleGradient;
@@ -394,7 +395,7 @@ namespace Spellslinger.Game.XR
         public RaycastHit GetWandSelection() {
             RaycastHit hit;
 
-            if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
+            if (SaveGameManager.Instance.GetSaveData().preferredHand == Controller.Left) {
                 this.leftControllerRayInteractor.TryGetCurrent3DRaycastHit(out hit);
             } else {
                 this.rightControllerRayInteractor.TryGetCurrent3DRaycastHit(out hit);

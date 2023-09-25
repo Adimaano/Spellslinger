@@ -1,12 +1,12 @@
-using System.Collections;
-using Spellslinger.AI;
-using Spellslinger.Game.XR;
-using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
-
 namespace Spellslinger.Game.Control
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using Spellslinger.AI;
+    using Spellslinger.Game.Manager;
+    using Spellslinger.Game.XR;
+    using UnityEngine;
+
     public class Player : MonoBehaviour {
         private XRInputManager input;
         private Draw drawScript;
@@ -46,8 +46,9 @@ namespace Spellslinger.Game.Control
             this.input.OnPreferredControllerChanged += this.PreferredControllerChanged;
             this.modelRunner.OnPredictionReceived += this.PredictionReceived;
 
-            // set preferred controller from player prefs (default: right)
-            this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
+            // set preferred controller from save Data (default: right)
+            SaveData saveData = SaveGameManager.Instance.GetSaveData();
+            this.PreferredController = saveData.preferredHand;
         }
 
         private void Update() {
@@ -144,9 +145,9 @@ namespace Spellslinger.Game.Control
             if (this.currentSpell != SpellCasting.Spell.None) {
                 this.StartCoroutine(this.ShowRune());
                 GameManager.Instance.PlaySound("RuneRecognized");
-                this.input.SetVisualGradientForActiveSpell(this.currentSpell);
+                this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
             }
-            
+
             this.spellCasting.ChargeSpell(this.currentSpell, this.PreferredController);
         }
 
@@ -216,7 +217,7 @@ namespace Spellslinger.Game.Control
                     // cast spell
                     this.spellCasting.CastSpell(this.currentSpell, controller);
                     this.currentSpell = SpellCasting.Spell.None;
-                    this.input.SetVisualGradientForActiveSpell(this.currentSpell);
+                    this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
                     this.spellCasting.ChargeSpell(this.currentSpell, controller);
                 }
             } else {

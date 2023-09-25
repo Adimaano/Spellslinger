@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using Spellslinger.Game.Control;
-using Spellslinger.Game.XR;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-namespace Spellslinger.Game
+namespace Spellslinger.Game.Manager
 {
+    using System.Collections.Generic;
+    using Spellslinger.Game.Control;
+    using Spellslinger.Game.XR;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+
     public class GameManager : MonoBehaviour {
         private AudioSource soundEffectSource;
         private AudioSource musicSource;
@@ -18,7 +18,6 @@ namespace Spellslinger.Game
         [SerializeField] private GameObject pauseMenuPrefab;
 
         // TODO: Maybe move the audio stuff to a separate class? Maybe a SoundManager?
-
         [Header("Audio")]
         [SerializeField] private AudioClip[] soundEffects;
 
@@ -78,11 +77,15 @@ namespace Spellslinger.Game
 
         public void SwitchPreferredController(string controller) {
             if (controller == "left") {
-                PlayerPrefs.SetInt("preferredController", 0);
+                SaveData saveData = SaveGameManager.Instance.GetSaveData();
+                saveData.preferredHand = XRInputManager.Controller.Left;
+                SaveGameManager.Save(saveData);
 
                 this.input.SetPreferredController(XRInputManager.Controller.Left);
             } else if (controller == "right") {
-                PlayerPrefs.SetInt("preferredController", 1);
+                SaveData saveData = SaveGameManager.Instance.GetSaveData();
+                saveData.preferredHand = XRInputManager.Controller.Right;
+                SaveGameManager.Save(saveData);
 
                 this.input.SetPreferredController(XRInputManager.Controller.Right);
             }
@@ -116,6 +119,10 @@ namespace Spellslinger.Game
         /// <param name="levelIndex">The index of the level to load.</param>
         public void LoadLevel(int levelIndex) {
             SceneManager.LoadScene(levelIndex);
+        }
+
+        public int GetNextLevel() {
+            return SceneManager.GetActiveScene().buildIndex + 1;
         }
 
         /// <summary>
