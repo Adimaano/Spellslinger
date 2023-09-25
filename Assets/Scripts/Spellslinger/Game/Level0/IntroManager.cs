@@ -133,6 +133,7 @@ namespace Spellslinger.Game {
             }
 
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro));
+            this.wizardVoiceHintTimer = Time.time + 20.0f;
             GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
         }
 
@@ -184,9 +185,9 @@ namespace Spellslinger.Game {
         /// </summary>
         /// <param name="clip">The audioclip to play.</param>
         private IEnumerator PlayWizardVoiceDelayed(AudioClip clip) {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(3.5f);
             this.PlayWizardVoice(clip);
-            this.wizardVoiceHintTimer = Time.time + 25.0f;
+            this.wizardVoiceHintTimer = Time.time + 20.0f;
         }
 
         /// <summary>
