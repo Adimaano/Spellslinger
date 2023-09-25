@@ -316,10 +316,10 @@ namespace Spellslinger.Game {
                     }
 
                     if (!this.failedSecondPuzzle) {
-                        this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintOne, 1.5f);
+                        this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintOne, 1.5f));
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     } else {
-                        this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintTwo, 1.5f);
+                        this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintTwo, 1.5f));
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     }
 
