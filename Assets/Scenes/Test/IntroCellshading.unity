@@ -20878,8 +20878,8 @@ MonoBehaviour:
   - {fileID: 1213510960}
   - {fileID: 1018949297}
   wizardVoiceAudioSource: {fileID: 68679545}
-  wizardVoiceIntro: {fileID: 8300000, guid: 2ea6fada0ff34164ebbb3a89573fb13a, type: 3}
-  wizardVoiceTeleportHint: {fileID: 8300000, guid: 0f015171aba42514ca6a6e275e6d87c8,
+  wizardVoiceIntro: {fileID: 8300000, guid: 1e514ea0e53e992448703e1b17a17296, type: 3}
+  wizardVoiceTeleportHint: {fileID: 8300000, guid: de7155c16a79b214bbd97ec1568846c7,
     type: 3}
   wizardVoicePedestal: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240, type: 3}
   wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
