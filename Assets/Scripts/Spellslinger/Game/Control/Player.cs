@@ -16,6 +16,7 @@ namespace Spellslinger.Game.Control
         private SpriteRenderer runeSpriteRenderer;
 
         private SpellCasting.Spell currentSpell = SpellCasting.Spell.None;
+        private List<SpellCasting.Spell> availableSpells;
 
         private GameObject lastSelectedObject;
 
@@ -49,6 +50,7 @@ namespace Spellslinger.Game.Control
             // set preferred controller from save Data (default: right)
             SaveData saveData = SaveGameManager.Instance.GetSaveData();
             this.PreferredController = saveData.preferredHand;
+            this.availableSpells = saveData.availableSpells;
         }
 
         private void Update() {
@@ -69,7 +71,6 @@ namespace Spellslinger.Game.Control
                     this.spellCasting.SetSpecialCasting(null);
                     this.ResetLastSelectedObject();
                 }
-                
             } else {
                 this.ResetLastSelectedObject();
                 this.spellCasting.SetSpellCastingTarget(Vector3.zero);
@@ -142,11 +143,13 @@ namespace Spellslinger.Game.Control
                     break;
             }
 
-            if (this.currentSpell != SpellCasting.Spell.None) {
-                this.StartCoroutine(this.ShowRune());
-                GameManager.Instance.PlaySound("RuneRecognized");
-                this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
+            if (!this.availableSpells.Contains(this.currentSpell)) {
+                return;
             }
+
+            this.StartCoroutine(this.ShowRune());
+            GameManager.Instance.PlaySound("RuneRecognized");
+            this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
 
             this.spellCasting.ChargeSpell(this.currentSpell, this.PreferredController);
         }
@@ -249,6 +252,30 @@ namespace Spellslinger.Game.Control
         /// <param name="controller">The new preferred controller.</param>
         private void PreferredControllerChanged(XRInputManager.Controller controller) {
             this.PreferredController = controller;
+        }
+
+        /// <summary>
+        /// Set what Spells are available to the player.
+        /// </summary>
+        /// <param name="spells">List of available spells.</param>
+        public void SetAvailableSpells(List<SpellCasting.Spell> spells) {
+            this.availableSpells = spells;
+        }
+
+        /// <summary>
+        /// Learn a new spell. Adds Spell to availableSpells and saves it to the SaveData.
+        /// </summary>
+        /// <param name="spell">Spell to learn/add.</param>
+        public void LearnNewSpell(SpellCasting.Spell spell) {
+            // check if spell is already known
+            if (this.availableSpells.Contains(spell)) {
+                return;
+            }
+
+            this.availableSpells.Add(spell);
+            SaveData saveData = SaveGameManager.Instance.GetSaveData();
+            saveData.availableSpells = this.availableSpells;
+            SaveGameManager.Save(saveData);
         }
     }
 }

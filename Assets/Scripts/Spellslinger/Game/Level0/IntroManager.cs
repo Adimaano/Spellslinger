@@ -1,6 +1,7 @@
 namespace Spellslinger.Game {
     using System.Collections;
     using System.Linq;
+    using Spellslinger.Game.Control;
     using Spellslinger.Game.Environment;
     using Spellslinger.Game.Manager;
     using UnityEngine;
@@ -132,6 +133,7 @@ namespace Spellslinger.Game {
             }
 
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro));
+            GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
         }
 
         private void Update() {
@@ -177,13 +179,22 @@ namespace Spellslinger.Game {
             }
         }
 
+        /// <summary>
+        /// Coroutine that plays an audioclip for the wizard after a delay.
+        /// </summary>
+        /// <param name="clip">The audioclip to play.</param>
         private IEnumerator PlayWizardVoiceDelayed(AudioClip clip) {
             yield return new WaitForSeconds(1.5f);
             this.PlayWizardVoice(clip);
             this.wizardVoiceHintTimer = Time.time + 25.0f;
         }
 
+        /// <summary>
+        /// Plays an audioclip for the wizard.
+        /// </summary>
+        /// <param name="clip">The audioclip to play.</param>
         private void PlayWizardVoice(AudioClip clip) {
+            this.wizardVoiceAudioSource.Stop();
             this.wizardVoiceAudioSource.PlayOneShot(clip);
         }
 
