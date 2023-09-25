@@ -11512,6 +11512,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookOpen6
       objectReference: {fileID: 0}
+    - target: {fileID: 182180635480875916, guid: cf97e29513b10114a9e3c9e0b8595fc7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2955968855061659304, guid: cf97e29513b10114a9e3c9e0b8595fc7,
         type: 3}
       propertyPath: m_RootOrder
@@ -13940,7 +13945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &858143198
 Transform:
   m_ObjectHideFlags: 0
@@ -14018,6 +14023,20 @@ MonoBehaviour:
   - {fileID: 1389312466}
   - {fileID: 402411632}
   exitDoorAnimator: {fileID: 0}
+  exitDoorOpenSound: {fileID: 0}
+  portal: {fileID: 0}
+  portalMaterial: {fileID: 0}
+  portalMaterialDefault: {fileID: 0}
+  portalRoomTorches: []
+  wizardVoiceAudioSource: {fileID: 0}
+  wizardVoiceIntro: {fileID: 0}
+  wizardVoiceTeleportHint: {fileID: 0}
+  wizardVoiceFirstPuzzleHintOne: {fileID: 0}
+  wizardVoiceFirstPuzzleHintTwo: {fileID: 0}
+  wizardVoiceFirstPuzzleHintThree: {fileID: 0}
+  wizardVoiceSecondPuzzleHint: {fileID: 0}
+  wizardVoiceSecondPuzzleFailedHintOne: {fileID: 0}
+  wizardVoiceSecondPuzzleFailedHintTwo: {fileID: 0}
 --- !u!1001 &900863847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14203,7 +14222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &915094546
 Transform:
   m_ObjectHideFlags: 0
@@ -14828,6 +14847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ENVIRONMENTStartRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3994037610031036920, guid: 6bd181c60bc0b8a4f8369239fca2a9cf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3994037610104903825, guid: 6bd181c60bc0b8a4f8369239fca2a9cf,
         type: 3}
@@ -16465,7 +16489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &970109325
 Transform:
   m_ObjectHideFlags: 0
@@ -16823,7 +16847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &995264659
 Transform:
   m_ObjectHideFlags: 0
@@ -17474,7 +17498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1067002696
 Transform:
   m_ObjectHideFlags: 0
@@ -24271,7 +24295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1598964504
 Transform:
   m_ObjectHideFlags: 0
@@ -26902,7 +26926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1814258694
 Transform:
   m_ObjectHideFlags: 0
@@ -27725,7 +27749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1936788592
 Transform:
   m_ObjectHideFlags: 0
@@ -29395,7 +29419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 64
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2097417714
 Transform:
   m_ObjectHideFlags: 0
