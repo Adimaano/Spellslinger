@@ -3265,6 +3265,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 72995140200250197}
     m_Modifications:
+    - target: {fileID: 175609404496220847, guid: c338e8688cea1db4eb8ca9b2f698b33d,
+        type: 3}
+      propertyPath: teleportationParticles
+      value: 
+      objectReference: {fileID: 5635313668477252165}
+    - target: {fileID: 175609404496220847, guid: c338e8688cea1db4eb8ca9b2f698b33d,
+        type: 3}
+      propertyPath: fadeToWhiteCylinderMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1357364b6f80e0d4b977055f878516b7, type: 2}
     - target: {fileID: 1607226345896811127, guid: c338e8688cea1db4eb8ca9b2f698b33d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3425,6 +3435,12 @@ PrefabInstance:
 --- !u!4 &5635313668476909033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3604100868382696591, guid: 084f38c72af95fa4093a9230a70f9856,
+    type: 3}
+  m_PrefabInstance: {fileID: 8948917752833806694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5635313668477252165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3604100868383040291, guid: 084f38c72af95fa4093a9230a70f9856,
     type: 3}
   m_PrefabInstance: {fileID: 8948917752833806694}
   m_PrefabAsset: {fileID: 0}
