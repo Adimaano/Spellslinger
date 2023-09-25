@@ -386,5 +386,21 @@ namespace Spellslinger.Game.XR
                 return this.rightControllerRayInteractor;
             }
         }
+
+        /// <summary>
+        /// Returns RaycastHit of the wand ray interactor.
+        /// </summary>
+        /// <returns>RaycastHit of the wand ray interactor.</returns>
+        public RaycastHit GetWandSelection() {
+            RaycastHit hit;
+
+            if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
+                this.leftControllerRayInteractor.TryGetCurrent3DRaycastHit(out hit);
+            } else {
+                this.rightControllerRayInteractor.TryGetCurrent3DRaycastHit(out hit);
+            }
+
+            return hit;
+        }
     }
 }

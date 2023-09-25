@@ -9,7 +9,6 @@ namespace Spellslinger.Game.Control
 {
     public class Player : MonoBehaviour {
         private XRInputManager input;
-        private XRRayInteractor wandRayInteractor;
         private Draw drawScript;
         private ModelRunner modelRunner;
         private SpellCasting spellCasting;
@@ -49,27 +48,27 @@ namespace Spellslinger.Game.Control
 
             // set preferred controller from player prefs (default: right)
             this.PreferredController = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredController", 1);
-            this.wandRayInteractor = this.input.GetWandRayInteractor();
         }
 
         private void Update() {
             if (this.currentSpell == SpellCasting.Spell.Earth) {
-                RaycastHit hit;
-                if (this.wandRayInteractor.TryGetCurrent3DRaycastHit(out hit)) {
-                    if (hit.collider.gameObject.CompareTag("Floor")) {
-                        this.spellCasting.SetSpellCastingTarget(hit.point);
-                        this.spellCasting.SetSpecialCasting(null);
-                        this.ResetLastSelectedObject();
-                    } else if (hit.collider.gameObject.CompareTag("StonePlatform")) {
-                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                        this.spellCasting.SetSpecialCasting(hit.collider.gameObject);
-                        this.SetLastSelectedObject(hit.collider.gameObject);
-                    } else {
-                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                        this.spellCasting.SetSpecialCasting(null);
-                        this.ResetLastSelectedObject();
-                    }
+                RaycastHit hit = this.input.GetWandSelection();
+                GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
+
+                if (selectedObject != null && selectedObject.CompareTag("Floor")) {
+                    this.spellCasting.SetSpellCastingTarget(hit.point);
+                    this.spellCasting.SetSpecialCasting(null);
+                    this.ResetLastSelectedObject();
+                } else if (selectedObject != null && selectedObject.CompareTag("StonePlatform")) {
+                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                    this.spellCasting.SetSpecialCasting(selectedObject);
+                    this.SetLastSelectedObject(selectedObject);
+                } else {
+                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                    this.spellCasting.SetSpecialCasting(null);
+                    this.ResetLastSelectedObject();
                 }
+                
             } else {
                 this.ResetLastSelectedObject();
                 this.spellCasting.SetSpellCastingTarget(Vector3.zero);
@@ -249,7 +248,6 @@ namespace Spellslinger.Game.Control
         /// <param name="controller">The new preferred controller.</param>
         private void PreferredControllerChanged(XRInputManager.Controller controller) {
             this.PreferredController = controller;
-            this.wandRayInteractor = this.input.GetWandRayInteractor();
         }
     }
 }
