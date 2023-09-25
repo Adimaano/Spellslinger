@@ -135,6 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 163074, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 186974, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -199,6 +203,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19818146, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19844090, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19844090, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19844090, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: looping
       value: 0
@@ -257,11 +277,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: VelocityModule.radial.scalar
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 2000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: RotationBySpeedModule.enabled
@@ -285,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 3000
+      value: 4000
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
@@ -305,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: VelocityModule.orbitalOffsetY.scalar
-      value: -80
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 19890248, guid: 06505f94c0951934cb51ac9979ac9b79, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar

@@ -295,6 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3241583614653008968}
   - {fileID: 72995139969779979}
   m_Father: {fileID: 72995140200250197}
   m_RootOrder: 0
@@ -1328,7 +1329,7 @@ Transform:
   - {fileID: 72995139049869567}
   - {fileID: 1921226154820719273}
   m_Father: {fileID: 72995139035631593}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &72995139970915339
 GameObject:
@@ -2122,7 +2123,6 @@ Transform:
   - {fileID: 72995139411355381}
   - {fileID: 72995139970915338}
   - {fileID: 6711272882713328119}
-  - {fileID: 3241583614653008968}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2781,15 +2781,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4039554897544221743}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5635313668476909033}
   - {fileID: 7920715996918757108}
-  m_Father: {fileID: 72995140200250197}
-  m_RootOrder: 4
+  m_Father: {fileID: 72995139035631593}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7002874853148977828
 GameObject:
@@ -3399,6 +3399,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeleportationTransitionParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604100868397949409, guid: 084f38c72af95fa4093a9230a70f9856,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604100868397949409, guid: 084f38c72af95fa4093a9230a70f9856,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604100868397949409, guid: 084f38c72af95fa4093a9230a70f9856,
+        type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3604100868397949409, guid: 084f38c72af95fa4093a9230a70f9856,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084f38c72af95fa4093a9230a70f9856, type: 3}
