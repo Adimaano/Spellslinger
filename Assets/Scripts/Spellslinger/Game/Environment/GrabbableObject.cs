@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-
 namespace Spellslinger.Game.Environment
 {
+    using Spellslinger.Game.Manager;
+    using UnityEngine;
+    using UnityEngine.XR.Interaction.Toolkit;
+
     public class GrabbableObject : MonoBehaviour {
         private XRGrabInteractable grabInteractable;
         private Rigidbody rigidbodyComponent;
@@ -85,7 +84,6 @@ namespace Spellslinger.Game.Environment
                         this.PlaySound("Hard01");
                         break;
                 }
-                
             }
         }
 

@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Spellslinger.Game.Spell;
-using Spellslinger.Game.XR;
-using UnityEngine;
-using UnityEngine.Serialization;
-
 namespace Spellslinger.Game.Control
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using Spellslinger.Game.Spell;
+    using Spellslinger.Game.XR;
+    using UnityEngine;
+
     public class SpellCasting : MonoBehaviour {
         // Spells / Particle Effects
         [SerializeField] private GameObject fireballPrefab;
@@ -22,6 +21,13 @@ namespace Spellslinger.Game.Control
         private Spell currentSpell = Spell.None;
         private GameObject spellReticle;
 
+        [SerializeField] private SpellSettings[] spellSettings;
+
+        private Dictionary<Spell, GameObject> spellChargeDictionary = new Dictionary<Spell, GameObject>();
+        private Dictionary<Spell, GameObject> spellMissleDictionary = new Dictionary<Spell, GameObject>();
+        private Dictionary<Spell, GameObject> spellAuraDictionary = new Dictionary<Spell, GameObject>();
+        private Dictionary<Spell, GameObject> spellBlastDictionary = new Dictionary<Spell, GameObject>();
+
         // enum with all possible Spells
         public enum Spell {
             Water,
@@ -35,27 +41,21 @@ namespace Spellslinger.Game.Control
 
         [Serializable]
         public struct SpellSettings {
-            public Spell spell;
-            public GameObject chargePrefab;
-            public GameObject misslePrefab;
-            public GameObject auraPrefab;
-            public GameObject blastPrefab;
+            public Spell Spell;
+            public GameObject ChargePrefab;
+            public GameObject MisslePrefab;
+            public GameObject AuraPrefab;
+            public GameObject BlastPrefab;
         }
-
-        public SpellSettings[] spellSettings;
-        private Dictionary<Spell, GameObject> spellChargeDictionary = new Dictionary<Spell, GameObject>();
-        private Dictionary<Spell, GameObject> spellMissleDictionary = new Dictionary<Spell, GameObject>();
-        private Dictionary<Spell, GameObject> spellAuraDictionary = new Dictionary<Spell, GameObject>();
-        private Dictionary<Spell, GameObject> spellBlastDictionary = new Dictionary<Spell, GameObject>();
 
         private void Start() {
             this.spellCastingRight = GameObject.Find("WandTipRight");
             this.spellCastingLeft = GameObject.Find("WandTipLeft");
             for (int i = 0; i < this.spellSettings.Length; i++) {
-                this.spellChargeDictionary.Add(this.spellSettings[i].spell, this.spellSettings[i].chargePrefab);
-                this.spellMissleDictionary.Add(this.spellSettings[i].spell, this.spellSettings[i].misslePrefab);
-                this.spellAuraDictionary.Add(this.spellSettings[i].spell, this.spellSettings[i].auraPrefab);
-                this.spellBlastDictionary.Add(this.spellSettings[i].spell, this.spellSettings[i].blastPrefab);
+                this.spellChargeDictionary.Add(this.spellSettings[i].Spell, this.spellSettings[i].ChargePrefab);
+                this.spellMissleDictionary.Add(this.spellSettings[i].Spell, this.spellSettings[i].MisslePrefab);
+                this.spellAuraDictionary.Add(this.spellSettings[i].Spell, this.spellSettings[i].AuraPrefab);
+                this.spellBlastDictionary.Add(this.spellSettings[i].Spell, this.spellSettings[i].BlastPrefab);
             }
         }
 
@@ -66,6 +66,7 @@ namespace Spellslinger.Game.Control
                     this.spellReticle = Instantiate(this.spellAuraDictionary[this.currentSpell], this.spellCastingTarget, Quaternion.identity);
                     this.spellReticle.transform.Rotate(new Vector3(-90, 0, 0));
                 }
+
                 this.spellReticle.transform.position = this.spellCastingTarget;
             } else if (this.spellReticle != null) {
                 Destroy(this.spellReticle);
@@ -79,6 +80,7 @@ namespace Spellslinger.Game.Control
         /// <param name="controller">The controller/hand with the wand.</param>
         public void ChargeSpell(SpellCasting.Spell spell, XRInputManager.Controller controller) {
             var target = controller == XRInputManager.Controller.Right ? this.spellCastingRight : this.spellCastingLeft;
+
             // Remove all children of the target
             foreach (Transform child in target.transform) {
                 Destroy(child.gameObject);
@@ -94,6 +96,7 @@ namespace Spellslinger.Game.Control
             GameObject charge = Instantiate(this.spellChargeDictionary[spell], target.transform);
             charge.transform.localPosition = Vector3.zero;
             charge.transform.localRotation = Quaternion.identity;
+
             // set size to 0.1
             charge.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
@@ -115,8 +118,8 @@ namespace Spellslinger.Game.Control
         /// </summary>
         private void CastEarthSpell() {
             GameObject earthSpell = Instantiate(this.earthSpellPrefab, this.spellCastingTarget, Quaternion.identity);
-            
-            StartCoroutine(this.EarthSpellCoroutine(earthSpell));
+
+            this.StartCoroutine(this.EarthSpellCoroutine(earthSpell));
         }
 
         /// <summary>
@@ -145,19 +148,20 @@ namespace Spellslinger.Game.Control
         /// <param name="misslePrefab">The missle prefab.</param>
         private void CastGenericSpell(GameObject origin, GameObject misslePrefab) {
             var missle = Instantiate(misslePrefab, origin.transform.position, Quaternion.identity);
+
             // scale to 0.7
             missle.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             missle.transform.LookAt(origin.transform.parent.transform.position);
-            
+
             // add GenericSpell script to missle
             var spell = missle.AddComponent<GenericSpell>();
             spell.SpellDirection = origin.transform.forward;
-            
+
             // add rigidbody with no gravity and sphere collider to missle
             var rigidbody = missle.AddComponent<Rigidbody>();
             rigidbody.useGravity = false;
             rigidbody.mass = 0.1f;
-            
+
             var collider = missle.AddComponent<SphereCollider>();
             collider.radius = 0.1f;
         }
@@ -178,12 +182,13 @@ namespace Spellslinger.Game.Control
                     break;
                 case Spell.Earth:
                     if (this.castOnObject != null) {
-                        StartCoroutine(this.BlastGenericObject(spell));
+                        this.StartCoroutine(this.BlastGenericObject(spell));
                     } else if (this.spellCastingTarget == Vector3.zero) {
                         this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     } else {
                         this.CastEarthSpell();
                     }
+
                     break;
                 default:
                     this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);

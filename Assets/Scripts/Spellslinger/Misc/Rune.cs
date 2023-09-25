@@ -1,8 +1,8 @@
-using System.Collections;
-using UnityEngine;
-
 namespace Spellslinger.Misc
 {
+    using System.Collections;
+    using UnityEngine;
+
     public class Rune : MonoBehaviour {
         private float timeAlive = 5.0f;
 

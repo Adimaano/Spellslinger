@@ -1,8 +1,7 @@
-using UnityEngine;
-using UnityEngine.VFX;
-
 namespace Spellslinger.Game.Spell
 {
+    using UnityEngine;
+
     public class GenericSpell : MonoBehaviour {
         private float speed = 8.0f;
         private float lifeTime = 5.0f;
@@ -16,7 +15,7 @@ namespace Spellslinger.Game.Spell
 
         private void Update() {
             this.transform.position += this.SpellDirection * this.speed * Time.deltaTime;
-            
+
             this.lifeTimer += Time.deltaTime;
             if (this.lifeTimer >= this.lifeTime) {
                 Destroy(this.gameObject);

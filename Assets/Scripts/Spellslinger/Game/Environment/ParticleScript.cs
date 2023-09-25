@@ -1,18 +1,18 @@
-using System.Collections;
-using UnityEngine;
-
 namespace Spellslinger.Game.Environment
 {
-    public class ParticleScript : MonoBehaviour {
-        public float lifetime = 1.5f;
+    using System.Collections;
+    using UnityEngine;
 
-        void Awake() {
-            StartCoroutine(DestroyParticle());
+    public class ParticleScript : MonoBehaviour {
+        [SerializeField] private float lifetime = 1.5f;
+
+        private void Awake() {
+            this.StartCoroutine(this.DestroyParticle());
         }
 
-        IEnumerator DestroyParticle() {
-            yield return new WaitForSeconds(lifetime);
-            Destroy(gameObject);
+        private IEnumerator DestroyParticle() {
+            yield return new WaitForSeconds(this.lifetime);
+            Destroy(this.gameObject);
         }
     }
 }

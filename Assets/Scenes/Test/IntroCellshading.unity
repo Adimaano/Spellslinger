@@ -20881,7 +20881,7 @@ MonoBehaviour:
   wizardVoiceIntro: {fileID: 8300000, guid: 2ea6fada0ff34164ebbb3a89573fb13a, type: 3}
   wizardVoiceTeleportHint: {fileID: 8300000, guid: 0f015171aba42514ca6a6e275e6d87c8,
     type: 3}
-  wizardVoicePedestal: {fileID: 0}
+  wizardVoicePedestal: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240, type: 3}
   wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
     type: 3}
   wizardVoiceFirstPuzzleHintTwo: {fileID: 8300000, guid: a5551ca32be249645b03604d88483506,

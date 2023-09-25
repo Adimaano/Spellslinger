@@ -1,12 +1,12 @@
-using System.Collections.Generic;
-using System.Linq;
-using Spellslinger.AI;
-using Spellslinger.Game.Spell;
-using UnityEngine;
-using UnityEngine.XR;
-
 namespace Spellslinger.Misc
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Spellslinger.AI;
+    using Spellslinger.Game.Spell;
+    using UnityEngine;
+    using UnityEngine.XR;
+
     public class SaveRunes : MonoBehaviour {
         private const int MAX_POINTS = 20;
         private const string FILEPATH = "Runes.txt";

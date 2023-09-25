@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DoorAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator animatorL, animatorR;
+    [SerializeField] private Animator animatorL;
+    [SerializeField] private Animator animatorR;
     [SerializeField] private bool open = false;
     [SerializeField] private bool close = false;
 
@@ -12,15 +13,16 @@ public class DoorAnimator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(open)
+            if (this.open)
             {
-                animatorR.Play("SwingDoorR", 0, 0.0f);
-                animatorL.Play("SwingDoorL", 0, 0.0f);
+                this.animatorR.Play("SwingDoorR", 0, 0.0f);
+                this.animatorL.Play("SwingDoorL", 0, 0.0f);
             }
-            if(close)
+
+            if (this.close)
             {
-                animatorL.Play("SwingDoorLback", 0, 0.0f);
-                animatorR.Play("SwingDoorRback", 0, 0.0f);
+                this.animatorL.Play("SwingDoorLback", 0, 0.0f);
+                this.animatorR.Play("SwingDoorRback", 0, 0.0f);
             }
         }
     }

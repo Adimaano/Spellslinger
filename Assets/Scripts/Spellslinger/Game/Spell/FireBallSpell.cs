@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.VFX;
-
 namespace Spellslinger.Game.Spell
 {
+    using UnityEngine;
+    using UnityEngine.VFX;
+
     public class FireBallSpell : GenericSpell {
         [SerializeField] private ParticleSystem onCollisionParticleSystem;
 

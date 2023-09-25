@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.VFX;
-using UnityEngine;
-
 namespace Spellslinger.Game.Environment
 {
+    using System.Collections;
+    using UnityEngine;
+    using UnityEngine.VFX;
+
     public class Torch : MonoBehaviour {
         [SerializeField] private AudioClip[] fireInginiteSounds;
         [SerializeField] private bool initiallyLit = false;
@@ -93,7 +92,7 @@ namespace Spellslinger.Game.Environment
             this.IsLit = true;
             this.OnTorchLit?.Invoke();
 
-            StartCoroutine(this.LightTorchCoroutine());
+            this.StartCoroutine(this.LightTorchCoroutine());
         }
     }
 }

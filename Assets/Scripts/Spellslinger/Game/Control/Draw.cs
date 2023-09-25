@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using Spellslinger.Game.XR;
-using UnityEngine;
-
 namespace Spellslinger.Game.Control
 {
+    using System.Collections.Generic;
+    using Spellslinger.Game.XR;
+    using UnityEngine;
+
     public class Draw : MonoBehaviour {
         private const float MIN_DISTANCE = 0.01f;
         private const int MAX_POINTS = 20;

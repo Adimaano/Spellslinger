@@ -283,6 +283,7 @@ namespace Spellslinger.Game.XR
 
                     // Add Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Right Controller
                     this.rightGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Grabbable");
+
                     // Remove Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Left Controller
                     this.leftGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
                 }
@@ -319,6 +320,7 @@ namespace Spellslinger.Game.XR
 
                     // Add Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Left Controller
                     this.leftGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Grabbable");
+
                     // Remove Interaction Layer Mask 'Grabbable' for XR Ray Interactor of the Right Controller
                     this.rightGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
                 }
@@ -373,18 +375,6 @@ namespace Spellslinger.Game.XR
                     this.wandMaterial.SetTexture("_EmissionMap", null);
                     this.wandMaterial.SetColor("_EmissionColor", Color.black);
                     break;
-            }
-        }
-
-        /// <summary>
-        /// Returns the currently active ray interactor for the wand.
-        /// </summary>
-        /// <returns>XRRayInteractor of the currently active wand.</returns>
-        public XRRayInteractor GetWandRayInteractor() {
-            if ((Controller)PlayerPrefs.GetInt("preferredController", 1) == Controller.Left) {
-                return this.leftControllerRayInteractor;
-            } else {
-                return this.rightControllerRayInteractor;
             }
         }
 

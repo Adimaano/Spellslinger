@@ -73,7 +73,7 @@ namespace Spellslinger.Game {
         [SerializeField] private AudioClip wizardVoiceSecondPuzzleFailedHintOne;
         [SerializeField] private AudioClip wizardVoiceSecondPuzzleFailedHintTwo;
         private float wizardVoiceHintTimer = 15.0f;
-        private int PuzzleHintsPlayed = 0;
+        private int puzzleHintsPlayed = 0;
         private bool failedSecondPuzzle = false;
 
         private bool bookTriggered = false;
@@ -102,17 +102,17 @@ namespace Spellslinger.Game {
 
             // Event Listeners
             this.firstTorch.OnTorchLit = () => {
-                StartCoroutine(OnFirstTorchLit());
+                this.StartCoroutine(this.OnFirstTorchLit());
             };
-            
+
             // Eventlisteners First Puzzle (lit both standing torches)
-            foreach(Torch torch in this.floorTorches) {
+            foreach (Torch torch in this.floorTorches) {
                 torch.OnTorchLit = () => {
                     this.numberOfFloorTorchesLit++;
                     this.wizardVoiceHintTimer = Time.time + 60.0f;
                     if (this.numberOfFloorTorchesLit == this.floorTorches.Length) {
-                        StartCoroutine(this.OpenDoor());
-                        this.PuzzleHintsPlayed = 0;
+                        this.StartCoroutine(this.OpenDoor());
+                        this.puzzleHintsPlayed = 0;
                     }
                 };
             }
@@ -124,14 +124,14 @@ namespace Spellslinger.Game {
             this.puzzleTorchesLitOrder = new int[this.puzzleTorches.Length];
 
             // Eventlisteners Second Puzzle (lit torches in correct order)
-            for(int i = 0; i < this.puzzleTorches.Length; i++) {
+            for (int i = 0; i < this.puzzleTorches.Length; i++) {
                 int index = i;
                 this.puzzleTorches[i].OnTorchLit = () => {
                     this.PuzzleTorchLit(index);
                 };
             }
 
-            StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro));
+            this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro));
         }
 
         private void Update() {
@@ -140,16 +140,16 @@ namespace Spellslinger.Game {
                     this.PlayWizardVoice(this.wizardVoiceTeleportHint);
                     this.wizardVoiceHintTimer = Time.time + 30.0f;
                 } else if (this.numberOfFloorTorchesLit != this.floorTorches.Length) {
-                    switch (this.PuzzleHintsPlayed) {
+                    switch (this.puzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
                             this.wizardVoiceHintTimer = Time.time + 60.0f;
-                            this.PuzzleHintsPlayed++;
+                            this.puzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
                             this.wizardVoiceHintTimer = Time.time + 45.0f;
-                            this.PuzzleHintsPlayed++;
+                            this.puzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintThree);
@@ -157,16 +157,16 @@ namespace Spellslinger.Game {
                             break;
                     }
                 } else if (!this.failedSecondPuzzle) {
-                    switch (this.PuzzleHintsPlayed) {
+                    switch (this.puzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceSecondPuzzleHint);
                             this.wizardVoiceHintTimer = Time.time + 50.0f;
-                            this.PuzzleHintsPlayed++;
+                            this.puzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
                             this.wizardVoiceHintTimer = Time.time + 60.0f;
-                            this.PuzzleHintsPlayed++;
+                            this.puzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
@@ -191,7 +191,7 @@ namespace Spellslinger.Game {
         /// Coroutine that reveals the room. Light Fade Effect and Enabling of Game Objects.
         /// </summary>
         private IEnumerator OnFirstTorchLit() {
-            StartCoroutine(this.LightDomeFadeEffect());
+            this.StartCoroutine(this.LightDomeFadeEffect());
             GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
 
             yield return new WaitForSeconds(this.sceneFadeDuration + 0.5f);
@@ -199,12 +199,12 @@ namespace Spellslinger.Game {
             this.torches[0].LightTorch();
             GameManager.Instance.PlayAudioClip(this.igniteSound);
 
-            for(int i = 1; i < torches.Length; i += 2) {
+            for (int i = 1; i < this.torches.Length; i += 2) {
                 yield return new WaitForSeconds(this.timeBetweenTorches);
                 this.torches[i].LightTorch();
                 this.torches[i].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
-                this.torches[i+1].LightTorch();
-                this.torches[i+1].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
+                this.torches[i + 1].LightTorch();
+                this.torches[i + 1].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
             }
         }
 
@@ -218,7 +218,7 @@ namespace Spellslinger.Game {
             while (elapsedTime < this.sceneFadeDuration) {
                 // fade out volumetric light (cone in the middle of the room)
                 this.volumetricLightInitialMaterial.SetFloat("_Alpha", Mathf.Lerp(this.volumetricLightInitialMaterialAlpha, 0.0f, elapsedTime / this.sceneFadeDuration));
-                
+
                 // fade in cylinder (shortly blacken everything around the player)
                 float fadeInCylinderAlpha = Mathf.Lerp(this.fadeInCylinderIntialMaterialAlpha, 1.0f, elapsedTime / this.sceneFadeDuration);
                 this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
@@ -274,7 +274,7 @@ namespace Spellslinger.Game {
         /// </summary>
         private IEnumerator SpotlightFirstTorch(Light spotlight, float maxIntensity) {
             while (spotlight.intensity < maxIntensity) {
-                spotlight.intensity += maxIntensity/100;
+                spotlight.intensity += maxIntensity / 100;
                 yield return new WaitForSeconds(0.05f);
             }
         }
@@ -292,7 +292,7 @@ namespace Spellslinger.Game {
                     this.exitDoorAnimator.SetBool("isFenceDown", true);
                     this.exitDoorAnimator.gameObject.GetComponent<AudioSource>().PlayOneShot(this.exitDoorOpenSound);
                     GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
-                    StartCoroutine(this.ActivatePortal());
+                    this.StartCoroutine(this.ActivatePortal());
                 } else {
                     // Reset puzzle and play sound
                     this.puzzleTorchesLit = 0;
@@ -310,13 +310,14 @@ namespace Spellslinger.Game {
                         this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintTwo);
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     }
+
                     this.failedSecondPuzzle = true;
                 }
             }
         }
 
         /// <summary>
-        /// Coroutine that activates the portal. Enables the portal GameObject, fades the emission 
+        /// Coroutine that activates the portal. Enables the portal GameObject, fades the emission
         /// intensity of the portal material to 7 and lights all torches.
         /// </summary>
         private IEnumerator ActivatePortal() {
@@ -324,6 +325,7 @@ namespace Spellslinger.Game {
             foreach (GameObject torch in this.portalRoomTorches) {
                 torch.SetActive(true);
             }
+
             yield return new WaitForSeconds(1.5f);
             this.portal.SetActive(true);
             this.portal.transform.parent.gameObject.GetComponent<Portal>().IsActive = true;
@@ -344,8 +346,6 @@ namespace Spellslinger.Game {
             // Set the final intensity value
             Color finalEmissionColor = baseEmissionColor * 60.0f;
             this.portalMaterial.SetColor("_EmissionColor", finalEmissionColor);
-
-            
         }
 
         /// <summary>
@@ -354,14 +354,14 @@ namespace Spellslinger.Game {
         private IEnumerator OpenDoor() {
             this.doorAnimator.SetTrigger("openDoor");
             yield return new WaitForSeconds(0.15f);
-            doorAudioSource.Play();
+            this.doorAudioSource.Play();
         }
 
         private void OnTriggerEnter(Collider other) {
             if (!this.bookTriggered && other.CompareTag("Player")) {
                 this.PlayWizardVoice(this.wizardVoicePedestal);
                 this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
-                StartCoroutine(SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
+                this.StartCoroutine(this.SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
                 this.bookTriggered = true;
                 this.wizardVoiceHintTimer = Time.time + 60.0f;
             }
