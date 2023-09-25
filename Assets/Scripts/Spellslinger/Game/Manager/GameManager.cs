@@ -1,5 +1,6 @@
 namespace Spellslinger.Game.Manager
 {
+    using System.Collections;
     using System.Collections.Generic;
     using Spellslinger.Game.Control;
     using Spellslinger.Game.XR;
@@ -23,6 +24,12 @@ namespace Spellslinger.Game.Manager
 
         // A dictionary to map sound effect names to audio clips
         private Dictionary<string, AudioClip> soundEffectDictionary;
+
+        [Header("Level Loading Effect")]
+        [SerializeField] private Material fadeToWhiteCylinderMaterial;
+        [SerializeField] private GameObject teleportationParticles;
+        private Color fadeInCylinderMaterialColor;
+        private float sceneFadeDuration = 2.0f;
 
         public static GameManager Instance { get; private set; }
 
@@ -48,6 +55,9 @@ namespace Spellslinger.Game.Manager
             for (int i = 0; i < this.soundEffects.Length; i++) {
                 this.soundEffectDictionary.Add(this.soundEffects[i].name, this.soundEffects[i]);
             }
+
+            this.fadeInCylinderMaterialColor = this.fadeToWhiteCylinderMaterial.GetColor("_BaseColor");
+            this.StartCoroutine(this.RemoveFadeCylinderOnStart());
 
             // Initialize event listeners
             this.input.OnControllerMenu += this.PauseGame;
@@ -118,7 +128,56 @@ namespace Spellslinger.Game.Manager
         /// </summary>
         /// <param name="levelIndex">The index of the level to load.</param>
         public void LoadLevel(int levelIndex) {
+            this.StartCoroutine(this.TeleportToNextLevel(levelIndex));
+        }
+
+        private IEnumerator TeleportToNextLevel(int levelIndex) {
+            float elapsedTime = 0f;
+
+            this.teleportationParticles.SetActive(true);
+
+            // Fade in cylinder (shortly darken everything around the player before scene transition)
+            while (elapsedTime < this.sceneFadeDuration) {
+                //this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", Mathf.Lerp(0.0f, 255.0f, elapsedTime / this.sceneFadeDuration));
+
+                float fadeInCylinderAlpha = Mathf.Lerp(0.0f, 1.0f, elapsedTime / this.sceneFadeDuration);
+                this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
+                this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, 1.0f);
+            this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
+
             SceneManager.LoadScene(levelIndex);
+        }
+
+        private IEnumerator RemoveFadeCylinderOnStart() {
+            float elapsedTime = 0f;
+
+            this.teleportationParticles.SetActive(true);
+
+            // Fade in cylinder (shortly darken everything around the player before scene transition)
+            while (elapsedTime < this.sceneFadeDuration) {
+                // this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", Mathf.Lerp(255.0f, 0.0f, elapsedTime / this.sceneFadeDuration));
+
+                float fadeInCylinderAlpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / this.sceneFadeDuration);
+                this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
+                this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            this.teleportationParticles.SetActive(false);
+
+            this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, 0.0f);
+            this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
+
+
+            // this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", 0.0f);
         }
 
         public int GetNextLevel() {

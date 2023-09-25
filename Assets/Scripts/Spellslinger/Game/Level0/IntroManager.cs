@@ -132,7 +132,8 @@ namespace Spellslinger.Game {
                 };
             }
 
-            this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro));
+            this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro, 3.5f));
+            this.wizardVoiceHintTimer = Time.time + 20.0f;
             GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
         }
 
@@ -183,10 +184,10 @@ namespace Spellslinger.Game {
         /// Coroutine that plays an audioclip for the wizard after a delay.
         /// </summary>
         /// <param name="clip">The audioclip to play.</param>
-        private IEnumerator PlayWizardVoiceDelayed(AudioClip clip) {
-            yield return new WaitForSeconds(3.0f);
+        private IEnumerator PlayWizardVoiceDelayed(AudioClip clip, float delay) {
+            yield return new WaitForSeconds(delay);
             this.PlayWizardVoice(clip);
-            this.wizardVoiceHintTimer = Time.time + 25.0f;
+            this.wizardVoiceHintTimer = Time.time + 20.0f;
         }
 
         /// <summary>
@@ -315,10 +316,10 @@ namespace Spellslinger.Game {
                     }
 
                     if (!this.failedSecondPuzzle) {
-                        this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintOne);
+                        this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintOne, 1.5f);
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     } else {
-                        this.PlayWizardVoice(this.wizardVoiceSecondPuzzleFailedHintTwo);
+                        this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintTwo, 1.5f);
                         this.wizardVoiceHintTimer = Time.time + 60.0f;
                     }
 
