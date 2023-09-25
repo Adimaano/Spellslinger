@@ -138,8 +138,6 @@ namespace Spellslinger.Game.Manager
 
             // Fade in cylinder (shortly darken everything around the player before scene transition)
             while (elapsedTime < this.sceneFadeDuration) {
-                //this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", Mathf.Lerp(0.0f, 255.0f, elapsedTime / this.sceneFadeDuration));
-
                 float fadeInCylinderAlpha = Mathf.Lerp(0.0f, 1.0f, elapsedTime / this.sceneFadeDuration);
                 this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
                 this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
@@ -161,8 +159,6 @@ namespace Spellslinger.Game.Manager
 
             // Fade in cylinder (shortly darken everything around the player before scene transition)
             while (elapsedTime < this.sceneFadeDuration) {
-                // this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", Mathf.Lerp(255.0f, 0.0f, elapsedTime / this.sceneFadeDuration));
-
                 float fadeInCylinderAlpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / this.sceneFadeDuration);
                 this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
                 this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
@@ -171,13 +167,12 @@ namespace Spellslinger.Game.Manager
                 yield return null;
             }
 
-            this.teleportationParticles.SetActive(false);
 
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, 0.0f);
             this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
-
-            // this.fadeToWhiteCylinderMaterial.SetFloat("_Alpha", 0.0f);
+            yield return new WaitForSeconds(3.0f);
+            this.teleportationParticles.SetActive(false);
         }
 
         public int GetNextLevel() {
