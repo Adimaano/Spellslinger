@@ -463,7 +463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Game
+  m_text: Confirm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d0a16038979f534e9fa3cddc1bf19e9, type: 2}
   m_sharedMaterial: {fileID: -2508067237024693855, guid: 4d0a16038979f534e9fa3cddc1bf19e9,
@@ -8714,7 +8714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Cancel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d0a16038979f534e9fa3cddc1bf19e9, type: 2}
   m_sharedMaterial: {fileID: -2508067237024693855, guid: 4d0a16038979f534e9fa3cddc1bf19e9,
@@ -9643,7 +9643,7 @@ RectTransform:
   m_GameObject: {fileID: 1870050647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 3.01125, y: 3.01125, z: 3.01125}
+  m_LocalScale: {x: 2.8516705, y: 2.8516705, z: 2.8516705}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 132084552}
@@ -9724,7 +9724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.656732, g: 0.61035955, b: 0.764151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10704,7 +10704,7 @@ RectTransform:
   m_GameObject: {fileID: 1982107626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 3.01125, y: 3.01125, z: 3.01125}
+  m_LocalScale: {x: 2.0796897, y: 2.0796897, z: 2.0796897}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1660749740}
@@ -10798,7 +10798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.656732, g: 0.61035955, b: 0.764151, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
