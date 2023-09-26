@@ -1,12 +1,15 @@
 namespace Spellslinger.Game {
     using System.Collections;
     using System.Linq;
+    using Spellslinger.AI;
     using Spellslinger.Game.Control;
     using Spellslinger.Game.Environment;
     using Spellslinger.Game.Manager;
     using UnityEngine;
 
     public class IntroManager : MonoBehaviour {
+        private ModelRunner modelRunner;
+
         [Header("Initially Disabled Objects")]
         [SerializeField] private GameObject[] initiallyDisabledObjects;
 
@@ -20,14 +23,15 @@ namespace Spellslinger.Game {
         private float volumetricLightInitialMaterialAlpha;
         private float fadeInCylinderIntialMaterialAlpha;
 
-        [Header("First Torch")]
+        [Header("First Spell")]
         [SerializeField] private Torch firstTorch;
         [SerializeField] private Light spotlightFirstTorch;
+        [SerializeField] private GameObject drawRuneExample;
         private Light firstTorchPointLight;
         private float initialfirstTorchSpotlightIntensity;
         private float firstTorchPointLightInitialIntensity;
 
-        [Header("Torches")]
+        [Header("First Puzzle")]
         [SerializeField] private Torch[] torches;
         [SerializeField] private Torch[] floorTorches;
         private int numberOfFloorTorchesLit = 0;
@@ -67,6 +71,7 @@ namespace Spellslinger.Game {
         [SerializeField] private AudioClip wizardVoiceIntro;
         [SerializeField] private AudioClip wizardVoiceTeleportHint;
         [SerializeField] private AudioClip wizardVoicePedestal;
+        [SerializeField] private AudioClip wizardVoiceExplainCasting;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintOne;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintTwo;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintThree;
@@ -80,6 +85,9 @@ namespace Spellslinger.Game {
         private bool bookTriggered = false;
 
         private void Start() {
+            // find dependencies in scene
+            this.modelRunner = GameObject.Find("-- XR --").GetComponent<ModelRunner>();
+
             // Disable all initially disabled objects
             for (int i = 0; i < this.initiallyDisabledObjects.Length; i++) {
                 this.initiallyDisabledObjects[i].SetActive(false);
@@ -135,6 +143,9 @@ namespace Spellslinger.Game {
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro, 3.5f));
             this.wizardVoiceHintTimer = Time.time + 20.0f;
             GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
+
+            // Eventlistener
+            this.modelRunner.OnPredictionReceived += this.SpellCasted;
         }
 
         private void Update() {
@@ -369,11 +380,25 @@ namespace Spellslinger.Game {
             this.doorAudioSource.Play();
         }
 
+        /// <summary>
+        /// Called when the AI Model has finished predicting a rune.
+        /// </summary>
+        /// <param name="runeClass">Class of the predicted rune.</param>
+        private void SpellCasted(int runeClass) {
+            if (runeClass == 2) {
+                this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
+                this.StartCoroutine(this.SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
+                this.PlayWizardVoice(this.wizardVoiceExplainCasting);
+                this.wizardVoiceHintTimer = Time.time + 60.0f;
+                this.modelRunner.OnPredictionReceived -= this.SpellCasted;
+                this.drawRuneExample.SetActive(false);
+            }
+        }
+
         private void OnTriggerEnter(Collider other) {
             if (!this.bookTriggered && other.CompareTag("Player")) {
                 this.PlayWizardVoice(this.wizardVoicePedestal);
-                this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
-                this.StartCoroutine(this.SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
+                this.drawRuneExample.SetActive(true);
                 this.bookTriggered = true;
                 this.wizardVoiceHintTimer = Time.time + 60.0f;
             }

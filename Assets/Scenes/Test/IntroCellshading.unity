@@ -21185,6 +21185,7 @@ MonoBehaviour:
     type: 2}
   firstTorch: {fileID: 381869491}
   spotlightFirstTorch: {fileID: 1324658907}
+  drawRuneExample: {fileID: 767336135}
   torches:
   - {fileID: 1317881271}
   - {fileID: 351930263}
@@ -21226,6 +21227,8 @@ MonoBehaviour:
   wizardVoiceTeleportHint: {fileID: 8300000, guid: de7155c16a79b214bbd97ec1568846c7,
     type: 3}
   wizardVoicePedestal: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240, type: 3}
+  wizardVoiceExplainCasting: {fileID: 8300000, guid: e065640ca2bf570439c3a5c7a93fe3d9,
+    type: 3}
   wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
     type: 3}
   wizardVoiceFirstPuzzleHintTwo: {fileID: 8300000, guid: a5551ca32be249645b03604d88483506,
