@@ -131,6 +131,13 @@ namespace Spellslinger.Game.Manager
             this.StartCoroutine(this.TeleportToNextLevel(levelIndex));
         }
 
+        /// <summary>
+        /// Restart the current level.
+        /// </summary>
+        public void RestartLevel() {
+            this.StartCoroutine(this.TeleportToNextLevel(SceneManager.GetActiveScene().buildIndex));
+        }
+
         private IEnumerator TeleportToNextLevel(int levelIndex) {
             float elapsedTime = 0f;
 
@@ -166,7 +173,6 @@ namespace Spellslinger.Game.Manager
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-
 
             this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, 0.0f);
             this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
