@@ -30,6 +30,7 @@ namespace Spellslinger.Game.Manager
         [SerializeField] private GameObject teleportationParticles;
         private Color fadeInCylinderMaterialColor;
         private float sceneFadeDuration = 2.0f;
+        private float playerDeathFadeDuration = .5f;
 
         public static GameManager Instance { get; private set; }
 
@@ -151,11 +152,11 @@ namespace Spellslinger.Game.Manager
         }
 
         private IEnumerator ResetPlayerToSpawnPosition() {
-            yield return this.StartCoroutine(this.FadeInTransitionCylinder());
+            yield return this.StartCoroutine(this.FadeInTransitionCylinder(this.playerDeathFadeDuration));
 
             this.player.ResetPlayerToSpawnPosition();
 
-            yield return this.StartCoroutine(this.FadeOutTransitionCylinder());
+            yield return this.StartCoroutine(this.FadeOutTransitionCylinder(this.sceneFadeDuration));
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace Spellslinger.Game.Manager
         private IEnumerator TeleportToNextLevel(int levelIndex) {
             this.teleportationParticles.SetActive(true);
 
-            yield return this.StartCoroutine(this.FadeInTransitionCylinder());
+            yield return this.StartCoroutine(this.FadeInTransitionCylinder(this.sceneFadeDuration));
 
             SceneManager.LoadScene(levelIndex);
         }
@@ -176,7 +177,7 @@ namespace Spellslinger.Game.Manager
         private IEnumerator RemoveFadeCylinderOnStart() {
             this.teleportationParticles.SetActive(true);
 
-            yield return this.StartCoroutine(this.FadeOutTransitionCylinder());
+            yield return this.StartCoroutine(this.FadeOutTransitionCylinder(this.sceneFadeDuration));
 
             yield return new WaitForSeconds(3.0f);
             this.teleportationParticles.SetActive(false);
@@ -186,12 +187,12 @@ namespace Spellslinger.Game.Manager
         /// Ienumerator that fades in the cylinder. Gives the player a feel of teleportation.
         /// This happens before the next level is loaded.
         /// </summary>
-        private IEnumerator FadeInTransitionCylinder() {
+        private IEnumerator FadeInTransitionCylinder(float duration) {
             float elapsedTime = 0f;
 
             // Fade in cylinder (shortly darken everything around the player before scene transition)
-            while (elapsedTime < this.sceneFadeDuration) {
-                float fadeInCylinderAlpha = Mathf.Lerp(0.0f, 1.0f, elapsedTime / this.sceneFadeDuration);
+            while (elapsedTime < duration) {
+                float fadeInCylinderAlpha = Mathf.Lerp(0.0f, 1.0f, elapsedTime / duration);
                 this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
                 this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
@@ -207,12 +208,12 @@ namespace Spellslinger.Game.Manager
         /// Ienumerator that fades out the cylinder. Gives the player a feel of teleportation.
         /// This happens after the next level is loaded. Basically on the start of every level.
         /// </summary>
-        private IEnumerator FadeOutTransitionCylinder() {
+        private IEnumerator FadeOutTransitionCylinder(float duration) {
             float elapsedTime = 0f;
 
             // Fade out cylinder
-            while (elapsedTime < this.sceneFadeDuration) {
-                float fadeInCylinderAlpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / this.sceneFadeDuration);
+            while (elapsedTime < duration) {
+                float fadeInCylinderAlpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / duration);
                 this.fadeInCylinderMaterialColor = new Color(this.fadeInCylinderMaterialColor.r, this.fadeInCylinderMaterialColor.g, this.fadeInCylinderMaterialColor.b, fadeInCylinderAlpha);
                 this.fadeToWhiteCylinderMaterial.SetColor("_BaseColor", this.fadeInCylinderMaterialColor);
 
