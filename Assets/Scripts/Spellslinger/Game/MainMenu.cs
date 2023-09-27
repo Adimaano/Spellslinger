@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     private XRInputManager input;
+    private SpellCasting spellCasting;
 
     [Header("Menu Panels")]
     [SerializeField] private GameObject startGamePanel;
@@ -29,10 +30,12 @@ public class MainMenu : MonoBehaviour {
     private void Start() {
         // find dependencies in scene
         this.input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
+        this.spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
 
         // initialize eventlisteners
         this.input.OnControllerTrigger += this.SelectMenuItem;
         this.input.OnPreferredControllerChanged += this.input.SetUIMode;
+        this.spellCasting.OnSpellCast += this.OnSpellCast;
 
         // Check if there is a save file
         this.hasSavedGame = SaveGameManager.SaveFileExists();
@@ -187,6 +190,10 @@ public class MainMenu : MonoBehaviour {
         } else {
             this.confirmNewGamePanel.SetActive(true);
         }
+    }
+
+    private void OnSpellCast(SpellCasting.Spell spell) {
+        this.input.SetUIMode(SaveGameManager.Instance.GetSaveData().preferredHand);
     }
 
     /// <summary>

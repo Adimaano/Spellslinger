@@ -159,6 +159,7 @@ namespace Spellslinger.Game.Control
             }
 
             if (!this.availableSpells.Contains(this.currentSpell)) {
+                this.currentSpell = SpellCasting.Spell.None;
                 return;
             }
 

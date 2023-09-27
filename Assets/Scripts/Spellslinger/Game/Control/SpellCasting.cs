@@ -48,6 +48,8 @@ namespace Spellslinger.Game.Control
             public GameObject BlastPrefab;
         }
 
+        public System.Action<Spell> OnSpellCast { get; internal set; }
+
         private void Start() {
             this.spellCastingRight = GameObject.Find("WandTipRight");
             this.spellCastingLeft = GameObject.Find("WandTipLeft");
@@ -194,6 +196,8 @@ namespace Spellslinger.Game.Control
                     this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     break;
             }
+
+            this.OnSpellCast?.Invoke(spell);
         }
 
         /// <summary>
