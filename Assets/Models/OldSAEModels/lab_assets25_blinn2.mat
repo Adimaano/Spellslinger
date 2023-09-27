@@ -8,22 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: lab_assets25_blinn2
-  m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
-  m_ValidKeywords:
-  - _HALFTONESHAPE_DOT
-  - _OUTLINE
-  - _TOON_SHADING_ON
-  m_InvalidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  m_Shader: {fileID: -6465566751694194690, guid: 6f733c1d6a19b3d4fb04d18c34507782,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3050
-  stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
-  - SHADOWCASTER
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -79,6 +73,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Main_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -118,6 +116,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _Amplitude: 0
     - _Blend: 0
     - _BrushLowerCut: 0
     - _BrushSize: 0.8
@@ -137,6 +136,9 @@ Material:
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
+    - _FoamWidth: 0.04
+    - _Foam_Smoothness: 0
+    - _Frequency: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.25123277
     - _GlossyReflections: 1
@@ -168,12 +170,14 @@ Material:
     - _OutlineMode: 0
     - _OutlineWidth: 12
     - _Parallax: 0.02
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 0
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
+    - _Rim_Power: 2
     - _SizeFalloff: 0
     - _Smoothness: 0.25123277
     - _SmoothnessTextureChannel: 0
@@ -197,19 +201,23 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 0.86795866, g: 0.5143919, b: 0.5143919, a: 0.6324712}
+    - _BottomColor: {r: 0.8490566, g: 0.6381274, b: 0.6723246, a: 1}
     - _Color: {r: 0.86795866, g: 0.51439184, b: 0.51439184, a: 0.6324712}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _FoamColor: {r: 0.99215686, g: 0.28627458, b: 0.54185313, a: 1}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Rim_Color: {r: 0.3490566, g: 0.25635713, b: 0.13720775, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _TopColor: {r: 0.7647059, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5219595732531274066
 MonoBehaviour:
