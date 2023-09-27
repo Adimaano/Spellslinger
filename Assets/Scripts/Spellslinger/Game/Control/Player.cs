@@ -18,7 +18,13 @@ namespace Spellslinger.Game.Control
         private SpellCasting.Spell currentSpell = SpellCasting.Spell.None;
         private List<SpellCasting.Spell> availableSpells;
 
+        // selected/highlighted gameobject
         private GameObject lastSelectedObject;
+
+        // start position and rotation of the player
+        private GameObject playerXR;
+        private Vector3 spawnPosition;
+        private Quaternion spawnRotation;
 
         // Rune Sprites
         [Header("Rune Sprites")]
@@ -34,11 +40,15 @@ namespace Spellslinger.Game.Control
         // Start is called before the first frame update
         private void Start() {
             // find dependencies in scene
-            this.input = GameObject.Find("-- XR --").GetComponent<XRInputManager>();
-            this.drawScript = GameObject.Find("-- XR --").GetComponent<Draw>();
-            this.modelRunner = GameObject.Find("-- XR --").GetComponent<ModelRunner>();
-            this.spellCasting = GameObject.Find("-- XR --").GetComponent<SpellCasting>();
+            this.playerXR = GameObject.Find("-- XR --");
+            this.input = this.playerXR.GetComponent<XRInputManager>();
+            this.drawScript = this.playerXR.GetComponent<Draw>();
+            this.modelRunner = this.playerXR.GetComponent<ModelRunner>();
+            this.spellCasting = this.playerXR.GetComponent<SpellCasting>();
             this.runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
+
+            this.spawnPosition = this.playerXR.transform.position;
+            this.spawnRotation = this.playerXR.transform.rotation;
 
             // initialize eventlisteners
             this.drawScript.OnDrawFinished += this.ChargeSpell;
@@ -276,6 +286,14 @@ namespace Spellslinger.Game.Control
             SaveData saveData = SaveGameManager.Instance.GetSaveData();
             saveData.availableSpells = this.availableSpells;
             SaveGameManager.Save(saveData);
+        }
+
+        /// <summary>
+        /// Resets the player to the spawn position and rotation.
+        /// </summary>
+        public void ResetPlayerToSpawnPosition() {
+            this.playerXR.transform.position = this.spawnPosition;
+            this.playerXR.transform.rotation = this.spawnRotation;
         }
     }
 }

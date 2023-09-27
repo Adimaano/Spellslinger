@@ -21299,8 +21299,11 @@ MonoBehaviour:
   wizardVoiceIntro: {fileID: 8300000, guid: 1e514ea0e53e992448703e1b17a17296, type: 3}
   wizardVoiceTeleportHint: {fileID: 8300000, guid: de7155c16a79b214bbd97ec1568846c7,
     type: 3}
-  wizardVoicePedestal: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240, type: 3}
+  wizardVoiceExplainCharging: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240,
+    type: 3}
   wizardVoiceExplainCasting: {fileID: 8300000, guid: e065640ca2bf570439c3a5c7a93fe3d9,
+    type: 3}
+  wizardVoiceLightsOnSpeech: {fileID: 8300000, guid: 4ab4383149ad16248bf91ad818ab9e24,
     type: 3}
   wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
     type: 3}

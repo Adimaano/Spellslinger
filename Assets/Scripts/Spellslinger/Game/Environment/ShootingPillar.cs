@@ -9,13 +9,21 @@ namespace Spellslinger.Game.Environment
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] private Transform projectileOrigin;
 
-        private void Start() {
+        private bool isShooting = false;
+
+        private void OnEnable() {
             // Start shooting projectiles in intervals
+            this.isShooting = true;
             this.StartCoroutine(this.ShootProjectiles());
         }
 
+        private void OnDisable() {
+            // Stop shooting projectiles
+            this.isShooting = false;
+        }
+
         private IEnumerator ShootProjectiles() {
-            while (true) {
+            while (true && this.isShooting) {
                 yield return new WaitForSeconds(this.shootInterval);
 
                 // Instantiate a projectile and shoot it

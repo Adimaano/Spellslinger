@@ -70,8 +70,9 @@ namespace Spellslinger.Game {
         [SerializeField] private AudioSource wizardVoiceAudioSource;
         [SerializeField] private AudioClip wizardVoiceIntro;
         [SerializeField] private AudioClip wizardVoiceTeleportHint;
-        [SerializeField] private AudioClip wizardVoicePedestal;
+        [SerializeField] private AudioClip wizardVoiceExplainCharging;
         [SerializeField] private AudioClip wizardVoiceExplainCasting;
+        [SerializeField] private AudioClip wizardVoiceLightsOnSpeech;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintOne;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintTwo;
         [SerializeField] private AudioClip wizardVoiceFirstPuzzleHintThree;
@@ -83,6 +84,7 @@ namespace Spellslinger.Game {
         private bool failedSecondPuzzle = false;
 
         private bool bookTriggered = false;
+        private bool isFirstTorchesLit = false;
 
         private void Start() {
             // find dependencies in scene
@@ -141,7 +143,7 @@ namespace Spellslinger.Game {
             }
 
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro, 3.5f));
-            this.wizardVoiceHintTimer = Time.time + 20.0f;
+            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceIntro.length + 20.0f;
             GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
 
             // Eventlistener
@@ -152,39 +154,39 @@ namespace Spellslinger.Game {
             if (Time.time > this.wizardVoiceHintTimer) {
                 if (!this.bookTriggered) {
                     this.PlayWizardVoice(this.wizardVoiceTeleportHint);
-                    this.wizardVoiceHintTimer = Time.time + 30.0f;
-                } else if (this.numberOfFloorTorchesLit != this.floorTorches.Length) {
+                    this.wizardVoiceHintTimer = Time.time + this.wizardVoiceTeleportHint.length + 30.0f;
+                } else if (this.isFirstTorchesLit && this.numberOfFloorTorchesLit != this.floorTorches.Length) {
                     switch (this.puzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
-                            this.wizardVoiceHintTimer = Time.time + 60.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceFirstPuzzleHintOne.length + 60.0f;
                             this.puzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
-                            this.wizardVoiceHintTimer = Time.time + 45.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceFirstPuzzleHintTwo.length + 45.0f;
                             this.puzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintThree);
-                            this.wizardVoiceHintTimer = Time.time + 45.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceFirstPuzzleHintThree.length + 45.0f;
                             break;
                     }
-                } else if (!this.failedSecondPuzzle) {
+                } else if (this.isFirstTorchesLit && !this.failedSecondPuzzle) {
                     switch (this.puzzleHintsPlayed) {
                         case 0:
                             this.PlayWizardVoice(this.wizardVoiceSecondPuzzleHint);
-                            this.wizardVoiceHintTimer = Time.time + 50.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceSecondPuzzleHint.length + 50.0f;
                             this.puzzleHintsPlayed++;
                             break;
                         case 1:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintOne);
-                            this.wizardVoiceHintTimer = Time.time + 60.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceFirstPuzzleHintOne.length + 60.0f;
                             this.puzzleHintsPlayed++;
                             break;
                         case 2:
                             this.PlayWizardVoice(this.wizardVoiceFirstPuzzleHintTwo);
-                            this.wizardVoiceHintTimer = Time.time + 60.0f;
+                            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceFirstPuzzleHintTwo.length + 60.0f;
                             break;
                     }
                 }
@@ -198,7 +200,6 @@ namespace Spellslinger.Game {
         private IEnumerator PlayWizardVoiceDelayed(AudioClip clip, float delay) {
             yield return new WaitForSeconds(delay);
             this.PlayWizardVoice(clip);
-            this.wizardVoiceHintTimer = Time.time + 20.0f;
         }
 
         /// <summary>
@@ -215,19 +216,23 @@ namespace Spellslinger.Game {
         /// </summary>
         private IEnumerator OnFirstTorchLit() {
             this.StartCoroutine(this.LightDomeFadeEffect());
+            this.wizardVoiceAudioSource.Stop();
             GameManager.Instance.PlayAudioClip(this.puzzleSolvedSound);
 
-            yield return new WaitForSeconds(this.sceneFadeDuration + 0.5f);
+            yield return new WaitForSeconds(this.sceneFadeDuration + 0.75f);
 
             this.torches[0].LightTorch();
-            GameManager.Instance.PlayAudioClip(this.igniteSound);
+            this.isFirstTorchesLit = true;
+            GameManager.Instance.PlayAudioClip(this.igniteSound, .7f);
+            this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceLightsOnSpeech, .5f));
+            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceLightsOnSpeech.length + 60.0f;
 
             for (int i = 1; i < this.torches.Length; i += 2) {
                 yield return new WaitForSeconds(this.timeBetweenTorches);
                 this.torches[i].LightTorch();
-                this.torches[i].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
+                this.torches[i].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound, .7f);
                 this.torches[i + 1].LightTorch();
-                this.torches[i + 1].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound);
+                this.torches[i + 1].gameObject.GetComponent<AudioSource>().PlayOneShot(this.igniteSound, .7f);
             }
         }
 
@@ -328,10 +333,10 @@ namespace Spellslinger.Game {
 
                     if (!this.failedSecondPuzzle) {
                         this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintOne, 1.5f));
-                        this.wizardVoiceHintTimer = Time.time + 60.0f;
+                        this.wizardVoiceHintTimer = Time.time + this.wizardVoiceSecondPuzzleFailedHintOne.length + 60.0f;
                     } else {
                         this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceSecondPuzzleFailedHintTwo, 1.5f));
-                        this.wizardVoiceHintTimer = Time.time + 60.0f;
+                        this.wizardVoiceHintTimer = Time.time + this.wizardVoiceSecondPuzzleFailedHintTwo.length + 60.0f;
                     }
 
                     this.failedSecondPuzzle = true;
@@ -389,7 +394,7 @@ namespace Spellslinger.Game {
                 this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
                 this.StartCoroutine(this.SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
                 this.PlayWizardVoice(this.wizardVoiceExplainCasting);
-                this.wizardVoiceHintTimer = Time.time + 60.0f;
+                this.wizardVoiceHintTimer = Time.time + this.wizardVoiceExplainCasting.length + 60.0f;
                 this.modelRunner.OnPredictionReceived -= this.SpellCasted;
                 this.drawRuneExample.SetActive(false);
             }
@@ -397,7 +402,8 @@ namespace Spellslinger.Game {
 
         private void OnTriggerEnter(Collider other) {
             if (!this.bookTriggered && other.CompareTag("Player")) {
-                this.PlayWizardVoice(this.wizardVoicePedestal);
+                this.PlayWizardVoice(this.wizardVoiceExplainCharging);
+                this.wizardVoiceHintTimer = Time.time + this.wizardVoiceExplainCharging.length + 60.0f;
                 this.drawRuneExample.SetActive(true);
                 this.bookTriggered = true;
                 this.wizardVoiceHintTimer = Time.time + 60.0f;
