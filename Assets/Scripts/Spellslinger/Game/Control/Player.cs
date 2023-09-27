@@ -21,11 +21,6 @@ namespace Spellslinger.Game.Control
         // selected/highlighted gameobject
         private GameObject lastSelectedObject;
 
-        // start position and rotation of the player
-        private GameObject playerXR;
-        private Vector3 spawnPosition;
-        private Quaternion spawnRotation;
-
         // Rune Sprites
         [Header("Rune Sprites")]
         [SerializeField] private Sprite waterRune;
@@ -35,9 +30,17 @@ namespace Spellslinger.Game.Control
         [SerializeField] private Sprite lightningRune;
         [SerializeField] private Sprite timeRune;
 
+        [Header("XR Objects for recentring")]
+        [SerializeField] private Transform head;
+        [SerializeField] private Transform origin;
+        private GameObject playerXR;
+        private Vector3 spawnPositionOrigin;
+        private Quaternion spawnRotationOrigin;
+        private Vector3 spawnPositionHead;
+        private Quaternion spawnRotationHead;
+
         public XRInputManager.Controller PreferredController { get; set; }
 
-        // Start is called before the first frame update
         private void Start() {
             // find dependencies in scene
             this.playerXR = GameObject.Find("-- XR --");
@@ -47,8 +50,10 @@ namespace Spellslinger.Game.Control
             this.spellCasting = this.playerXR.GetComponent<SpellCasting>();
             this.runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
 
-            this.spawnPosition = this.playerXR.transform.position;
-            this.spawnRotation = this.playerXR.transform.rotation;
+            this.spawnPositionOrigin = this.origin.transform.position;
+            this.spawnRotationOrigin = this.origin.transform.rotation;
+            this.spawnPositionHead = this.head.transform.position;
+            this.spawnRotationHead = this.head.transform.rotation;
 
             // initialize eventlisteners
             this.drawScript.OnDrawFinished += this.ChargeSpell;
@@ -292,8 +297,10 @@ namespace Spellslinger.Game.Control
         /// Resets the player to the spawn position and rotation.
         /// </summary>
         public void ResetPlayerToSpawnPosition() {
-            this.playerXR.transform.position = this.spawnPosition;
-            this.playerXR.transform.rotation = this.spawnRotation;
+            this.origin.position = this.spawnPositionOrigin;
+            this.origin.rotation = this.spawnRotationOrigin;
+            this.head.position = this.spawnPositionHead;
+            this.head.rotation = this.spawnRotationHead;
         }
     }
 }
