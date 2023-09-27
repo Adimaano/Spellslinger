@@ -144,7 +144,6 @@ namespace Spellslinger.Game {
 
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro, 3.5f));
             this.wizardVoiceHintTimer = Time.time + this.wizardVoiceIntro.length + 20.0f;
-            GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
 
             // Eventlistener
             this.modelRunner.OnPredictionReceived += this.SpellCasted;
@@ -402,6 +401,7 @@ namespace Spellslinger.Game {
 
         private void OnTriggerEnter(Collider other) {
             if (!this.bookTriggered && other.CompareTag("Player")) {
+                GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Fire);
                 this.PlayWizardVoice(this.wizardVoiceExplainCharging);
                 this.wizardVoiceHintTimer = Time.time + this.wizardVoiceExplainCharging.length + 60.0f;
                 this.drawRuneExample.SetActive(true);
