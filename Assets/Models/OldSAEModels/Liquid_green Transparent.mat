@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2503140160565993877
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,17 +7,17 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: nodulareszeug_haus49_Tube_cable
+  m_Name: Liquid_green Transparent
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
+  - _EMISSION
   - _HALFTONESHAPE_DOT
-  - _OUTLINE
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2050
+  m_CustomRenderQueue: 2073
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -89,6 +76,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Main_Texture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -128,6 +119,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _Amplitude: -4.31
     - _Blend: 0
     - _BrushLowerCut: 0
     - _BrushSize: 0.8
@@ -147,6 +139,9 @@ Material:
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
+    - _FoamWidth: 0.34
+    - _Foam_Smoothness: 11.57
+    - _Frequency: -2.32
     - _GlossMapScale: 1
     - _Glossiness: 0.25123277
     - _GlossyReflections: 1
@@ -169,21 +164,23 @@ Material:
     - _HatchingEnabled: 0
     - _HatchingRotation: 0
     - _HatchingSmoothness: 0.1
-    - _Metallic: 0.471
+    - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 1
+    - _OutlineEnabled: 0
     - _OutlineMode: 0
-    - _OutlineWidth: 12
+    - _OutlineWidth: 0
     - _Parallax: 0.02
-    - _QueueOffset: 0
+    - _QueueControl: 1
+    - _QueueOffset: -23
     - _ReceiveShadows: 1
     - _RimEnabled: 0
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
+    - _Rim_Power: 2
     - _SizeFalloff: 0
     - _Smoothness: 0.25123277
     - _SmoothnessTextureChannel: 0
@@ -206,18 +203,35 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
-    - _Color: {r: 0.35584968, g: 0.35584968, b: 0.35584968, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _BaseColor: {r: 0.2861635, g: 0.5, b: 0.30976886, a: 1}
+    - _BottomColor: {r: 0, g: 0.025490196, b: 0.009803922, a: 0.41568628}
+    - _Color: {r: 0.59348804, g: 0.8042171, b: 0.61484456, a: 1}
+    - _EmissionColor: {r: 0.0024509805, g: 0.022058824, b: 0.0034313726, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _FoamColor: {r: 0.25, g: 0.25, b: 0.25, a: 0.14901961}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -20.994465, g: 60.773464, b: 0, a: 0}
+    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Rim_Color: {r: 0.36615333, g: 1, b: 0.3254902, a: 0.105882354}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
+    - _TopColor: {r: 0.17888924, g: 0.4245283, b: 0.20832585, a: 0.31764707}
   m_BuildTextureStacks: []
+--- !u!114 &2955275130362340610
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
