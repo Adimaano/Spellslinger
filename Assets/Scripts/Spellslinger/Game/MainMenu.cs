@@ -181,6 +181,8 @@ public class MainMenu : MonoBehaviour {
         GameManager.Instance.PlayAudioClip(this.selectSound);
 
         if (!this.hasSavedGame || confirmation) {
+            SaveData saveData = new SaveData();
+            SaveGameManager.Save(saveData);
             GameManager.Instance.LoadLevel(1);
         } else {
             this.confirmNewGamePanel.SetActive(true);

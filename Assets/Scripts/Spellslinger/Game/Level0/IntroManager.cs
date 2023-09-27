@@ -389,7 +389,7 @@ namespace Spellslinger.Game {
         /// </summary>
         /// <param name="runeClass">Class of the predicted rune.</param>
         private void SpellCasted(int runeClass) {
-            if (runeClass == 2) {
+            if (this.bookTriggered && runeClass == 2) {
                 this.firstTorch.gameObject.transform.parent.gameObject.SetActive(true);
                 this.StartCoroutine(this.SpotlightFirstTorch(this.spotlightFirstTorch, this.initialfirstTorchSpotlightIntensity));
                 this.PlayWizardVoice(this.wizardVoiceExplainCasting);
