@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9008867617980969767
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Liquid_orange
+  m_Name: LiquidPetrol 1
   m_Shader: {fileID: -6465566751694194690, guid: 6f733c1d6a19b3d4fb04d18c34507782,
     type: 3}
   m_ValidKeywords: []
@@ -130,14 +143,14 @@ Material:
     - _DiffuseStep: 0
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnabledHairSpec: 0
     - _EnvironmentReflections: 1
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
-    - _FoamWidth: 0.199
-    - _Foam_Smoothness: 2
+    - _FoamWidth: 0.04
+    - _Foam_Smoothness: 0
     - _Frequency: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.25123277
@@ -162,13 +175,13 @@ Material:
     - _HatchingRotation: 0
     - _HatchingSmoothness: 0.1
     - _Metallic: 0
-    - _Mode: 0
+    - _Mode: 3
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
     - _OcclusionStrength: 1
-    - _OutlineEnabled: 0
+    - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 12
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -177,7 +190,7 @@ Material:
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0
     - _RimPower: 0.55
-    - _Rim_Power: 2.44
+    - _Rim_Power: 2
     - _SizeFalloff: 0
     - _Smoothness: 0.25123277
     - _SmoothnessTextureChannel: 0
@@ -188,47 +201,34 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularSize: 1
     - _SpherizeNormalEnabled: 0
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _StencilComp: 0
     - _StencilRef: 0
     - _StepViaRampTexture: 0
-    - _Surface: 0
+    - _Surface: 1
     - _ToonBlending: 1
-    - _ToonEnabled: 0
+    - _ToonEnabled: 1
     - _UVSec: 0
     - _UseRampColor: 0
     - _WorkflowMode: 1
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.5934881, g: 0.8042171, b: 0.61484456, a: 1}
-    - _BottomColor: {r: 0.0029411765, g: 0, b: 0, a: 0.8627451}
-    - _Color: {r: 0.59348804, g: 0.8042171, b: 0.61484456, a: 1}
+    - _BaseColor: {r: 0.72404027, g: 0.56711173, b: 0.7353569, a: 0.77778286}
+    - _BottomColor: {r: 0, g: 0.3137255, b: 0.72156864, a: 1}
+    - _Color: {r: 0.72404027, g: 0.56711173, b: 0.7353569, a: 0.77778286}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _FoamColor: {r: 0.07450981, g: 0.1882353, b: 0.007843138, a: 1}
+    - _FoamColor: {r: 0.035125166, g: 0.043285146, b: 0.3490566, a: 1}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Rim_Color: {r: 1, g: 0.6787149, b: 0.056224883, a: 1}
+    - _Rim_Color: {r: 0.29488546, g: 0.37751228, b: 0.6698113, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}
-    - _TopColor: {r: 0.05882353, g: 0.004901961, b: 0.0009803922, a: 1}
+    - _TopColor: {r: 0, g: 0.02358319, b: 0.06666667, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &2955275130362340610
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5

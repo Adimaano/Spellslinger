@@ -136,8 +136,8 @@ Material:
     - _FaceShadowMapEnabled: 0
     - _FaceShadowMapPow: 0.2
     - _FaceShadowSmoothness: 0.1
-    - _FoamWidth: 0.199
-    - _Foam_Smoothness: 2
+    - _FoamWidth: 0
+    - _Foam_Smoothness: 1
     - _Frequency: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.25123277
@@ -201,19 +201,19 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.5934881, g: 0.8042171, b: 0.61484456, a: 1}
-    - _BottomColor: {r: 0.7924528, g: 0, b: 0.039242275, a: 1}
+    - _BottomColor: {r: 0.3490566, g: 0, b: 0.017280128, a: 1}
     - _Color: {r: 0.59348804, g: 0.8042171, b: 0.61484456, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
     - _FaceRightDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _FoamColor: {r: 0.3018868, g: 0.076525666, b: 0.053162433, a: 1}
+    - _FoamColor: {r: 0.79129815, g: 0, b: 0.039546248, a: 1}
     - _HairSpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Rim_Color: {r: 0.976, g: 0.05314853, b: 0.72475266, a: 1}
+    - _Rim_Color: {r: 1, g: 0.1525048, b: 0, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}

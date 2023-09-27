@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lab_assets25_blinn3
+  m_Name: LiquidPetrol
   m_Shader: {fileID: -6465566751694194690, guid: 6f733c1d6a19b3d4fb04d18c34507782,
     type: 3}
   m_ValidKeywords: []
