@@ -23,10 +23,10 @@ TagManager:
   - InitialFloor
   - ExcludeFromLight1
   - ExcludeFromLight2
-  - 
-  - 
-  - 
-  - 
+  - ReflectionLayer1
+  - ReflectionLayer2
+  - ReflectionLayer3
+  - ReflectionLayer4
   - 
   - 
   - 
