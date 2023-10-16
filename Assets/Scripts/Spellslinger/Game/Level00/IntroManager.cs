@@ -143,7 +143,7 @@ namespace Spellslinger.Game {
             }
 
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizardVoiceIntro, 3.5f));
-            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceIntro.length + 20.0f;
+            this.wizardVoiceHintTimer = Time.time + this.wizardVoiceIntro.length + 5.0f;
 
             // Eventlistener
             this.modelRunner.OnPredictionReceived += this.SpellCasted;
