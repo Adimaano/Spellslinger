@@ -3,11 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.ML.OnnxRuntime;
-using Microsoft.ML.OnnxRuntime.Tensors;
-using Newtonsoft.Json;
+using Unity.Sentis;
 using UnityEngine;
-using WebSocketSharp;
 using Application = UnityEngine.Device.Application;
 
 namespace Spellslinger.AI
@@ -16,44 +13,45 @@ namespace Spellslinger.AI
     {
         public Action<int> OnPredictionReceived { get; internal set; }
 
-        private InferenceSession session;
-        private Tensor<float> input = new DenseTensor<float>(new[] { 1, 20, 3});
+        public ModelAsset modelAsset;
+        private Model _model;
+        private IWorker _worker;
 
         private void Start()
         {
-            session = new InferenceSession(Path.Join(Application.streamingAssetsPath, "model_3d_with_other.onnx"));
+            _model = ModelLoader.Load(modelAsset);
+            _worker = WorkerFactory.CreateWorker(BackendType.GPUCompute, _model, verbose: true);
         }
 
         private void OnDestroy()
         {
-            session.Dispose();
+            _worker?.Dispose();
         }
-        
+
         public void IdentifyRune(Vector3[] pointCloud)
         {
-            for (var i = 0; i < pointCloud.Length; i++)
+            var tensor = TensorFloat.Zeros(new TensorShape(1, 20, 3));
+
+            for (int i = 0; i < pointCloud.Length; i++)
             {
-                input[0, i, 0] = pointCloud[i].x;
-                input[0, i, 1] = pointCloud[i].y;
-                input[0, i, 2] = pointCloud[i].z;
+                tensor[0, i, 0] = pointCloud[i].x;
+                tensor[0, i, 1] = pointCloud[i].y;
+                tensor[0, i, 2] = pointCloud[i].z;
             }
-            var inputs = new List<NamedOnnxValue>
-            {
-                NamedOnnxValue.CreateFromTensor("input_4", input)
-            };
-            using var results = session.Run(inputs);
-            var output = results.First().AsEnumerable<float>().ToList();
-            var maxIndex = 0;
-            var maxValue = float.NegativeInfinity;
-            for (var i = 0; i < output.Count(); i++)
-            {
-                if (!(output[i] > maxValue)) continue;
-                maxIndex = i;
-                maxValue = output[i];
-            }
-            results.Dispose();
-            Debug.Log(maxValue);
-            OnPredictionReceived?.Invoke(maxIndex);
+
+            _worker.Execute(tensor);
+
+            var output = _worker.PeekOutput() as TensorFloat;
+            output.MakeReadable();
+
+            var pred = output.ToReadOnlyArray();
+            // get max
+            var max = pred.Max();
+            // get index of max
+            var index = pred.ToList().IndexOf(max);
+            OnPredictionReceived?.Invoke(index);
+            output.Dispose();
+            tensor.Dispose();
         }
     }
 }
