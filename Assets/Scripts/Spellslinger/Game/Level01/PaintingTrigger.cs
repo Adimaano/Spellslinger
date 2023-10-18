@@ -8,11 +8,11 @@ namespace Spellslinger.Game {
         private Level01Manager levelManager;
 
         // one of three paintingnames as string
-        [Header("Painting Name")]
+        [Header("Painting Info")]
         [Tooltip("Available painting names: oldPetunia, haplessPercival, lucius")]
         [SerializeField] private string paintingName = "oldPetunia";
+        [SerializeField] private Transform paintingPosition;
 
-        private bool isTriggered = false;
 
         private void Start() {
             this.levelManager = GameObject.FindObjectOfType<Level01Manager>();
@@ -23,9 +23,8 @@ namespace Spellslinger.Game {
         }
 
         private void OnTriggerEnter(Collider other) {
-            if (!this.isTriggered && other.CompareTag("Player")) {
-                this.isTriggered = true;
-                this.levelManager.TriggerPaintingSpeech(this.paintingName);
+            if (other.CompareTag("Player")) {
+                this.levelManager.TriggerPaintingSpeech(this.paintingName, paintingPosition);
             }
         }
     }

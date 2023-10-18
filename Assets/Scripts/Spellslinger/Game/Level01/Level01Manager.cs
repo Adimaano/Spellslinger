@@ -32,15 +32,27 @@ namespace Spellslinger.Game {
         [Header("Wizard Voice")]
         [SerializeField] private AudioSource wizardVoiceAudioSource;
         [SerializeField] private AudioClip thatsNotRight;
+        [SerializeField] private AudioClip mirrorPuzzleHint01;
+        [SerializeField] private AudioClip mirrorPuzzleHint02;
+        [SerializeField] private AudioClip mirrorPuzzleHint03;
+        [SerializeField] private AudioClip mirrorPuzzleHint04;
         [SerializeField] private AudioClip mirrorPuzzleSolved;
         [SerializeField] private AudioClip walkedInCircles1;
         [SerializeField] private AudioClip walkedInCircles2;
         [SerializeField] private AudioClip walkedInCircles3;
+        [SerializeField] private AudioClip walkedInCircles100;
         [SerializeField] private AudioClip paintingOldPetunia;
         [SerializeField] private AudioClip paintingHaplessPercival;
         [SerializeField] private AudioClip paintingLucius;
+        [SerializeField] private AudioClip paintingCedric;
+        private float wizardVoiceHintTimer = 15.0f;
 
-        void Start() {
+        private bool paintingOldPetuniaTriggered = false;
+        private bool paintingHaplessPercivalTriggered = false;
+        private bool paintingLuciusTriggered = false;
+        private bool paintingCedricTriggered = false;
+
+        private void Start() {
             this.fenceTorch.OnTorchLit = () => {
                 this.OnFenceTorchLit();
             };
@@ -54,6 +66,14 @@ namespace Spellslinger.Game {
                     this.OnMirrorTorchLit();
                 };
             }
+        }
+
+        private void Update() {
+            if (this.isMirrorPuzzleSolved) {
+                return;
+            }
+
+
         }
 
         /// <summary>
@@ -134,21 +154,38 @@ namespace Spellslinger.Game {
                 this.PlayWizardVoice(this.walkedInCircles1);
             } else if (this.walkedInCircles == 2) {
                 this.PlayWizardVoice(this.walkedInCircles2);
-            } else if (this.walkedInCircles > 2) {
+            } else if (this.walkedInCircles == 3) {
                 this.PlayWizardVoice(this.walkedInCircles3);
+            } else if (this.walkedInCircles == 100) {
+                this.PlayWizardVoice(this.walkedInCircles100);
             }
         }
 
         /// <summary>
         /// Triggers the wizard to say something about a painting.
         /// </summary>
-        public void TriggerPaintingSpeech(string paintingName) {
-            if (paintingName == "oldPetunia") {
+        public void TriggerPaintingSpeech(string paintingName, Transform paintingPosition) {
+            // check if the player is looking in the direction of the painting
+            Vector3 playerDirection = this.playerHead.forward;
+            Vector3 playerToPainting = paintingPosition.position - this.playerHead.position;
+            float angle = Vector3.Angle(playerDirection, playerToPainting);
+
+            if (angle > 45f) {
+                return;
+            }
+
+            if (paintingName == "oldPetunia" && !this.paintingOldPetuniaTriggered) {
+                this.paintingOldPetuniaTriggered = true;
                 this.PlayWizardVoice(this.paintingOldPetunia);
-            } else if (paintingName == "haplessPercival") {
+            } else if (paintingName == "haplessPercival" && !this.paintingHaplessPercivalTriggered) {
+                this.paintingHaplessPercivalTriggered = true;
                 this.PlayWizardVoice(this.paintingHaplessPercival);
-            } else if (paintingName == "lucius") {
+            } else if (paintingName == "lucius" && !this.paintingLuciusTriggered) {
+                this.paintingLuciusTriggered = true;
                 this.PlayWizardVoice(this.paintingLucius);
+            } else if (paintingName == "cedric" && !this.paintingCedricTriggered) {
+                this.paintingCedricTriggered = true;
+                this.PlayWizardVoice(this.paintingCedric);
             }
         }
 

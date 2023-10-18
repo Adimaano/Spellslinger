@@ -10132,14 +10132,20 @@ MonoBehaviour:
   puzzleFailSound: {fileID: 8300000, guid: e270d65e5782fd9468d94325ade4e0d8, type: 3}
   wizardVoiceAudioSource: {fileID: 68679545}
   thatsNotRight: {fileID: 8300000, guid: 0ef4938ec96f0df4b8dd4130c0452bc9, type: 3}
-  mirrorPuzzleSolved: {fileID: 0}
-  walkedInCircles1: {fileID: 0}
-  walkedInCircles2: {fileID: 0}
-  walkedInCircles3: {fileID: 0}
+  mirrorPuzzleHint01: {fileID: 8300000, guid: 45f4f76531b6eda4cacd8995a350a5d7, type: 3}
+  mirrorPuzzleHint02: {fileID: 8300000, guid: 6716198cfcefe6946840101d4828ee00, type: 3}
+  mirrorPuzzleHint03: {fileID: 8300000, guid: 53cb04b14e717474c8b9cc2c61c44961, type: 3}
+  mirrorPuzzleHint04: {fileID: 8300000, guid: 3eb1f7a199f586b4d981060eaa3b391f, type: 3}
+  mirrorPuzzleSolved: {fileID: 8300000, guid: 824468664d33b8746a67a02ad17ddbc9, type: 3}
+  walkedInCircles1: {fileID: 8300000, guid: df3a82faa5fcac14983290c76500bd02, type: 3}
+  walkedInCircles2: {fileID: 8300000, guid: 465b7de13a7e15743b6b4e92b11a080d, type: 3}
+  walkedInCircles3: {fileID: 8300000, guid: 0ce2757e24ea54141805399321bb99f8, type: 3}
+  walkedInCircles100: {fileID: 8300000, guid: c72e20bdd4227be469f6399025966493, type: 3}
   paintingOldPetunia: {fileID: 8300000, guid: 61dd74ec69ab82d4195b92650a11368c, type: 3}
   paintingHaplessPercival: {fileID: 8300000, guid: 56178c2596de63f4aa75067294dfb786,
     type: 3}
   paintingLucius: {fileID: 8300000, guid: e1fe08e1d5b49af489f8d460beb84d86, type: 3}
+  paintingCedric: {fileID: 8300000, guid: 787f60d68e7f7c34aa62cd89def5ae31, type: 3}
 --- !u!65 &545707998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14303,7 +14309,7 @@ GameObject:
   - component: {fileID: 781602432}
   - component: {fileID: 781602431}
   m_Layer: 0
-  m_Name: PaintingTrigger (2)
+  m_Name: PaintingTrigger_Lucius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14317,12 +14323,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781602429}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.578, y: -1.3829098, z: 2.6691606}
+  m_LocalPosition: {x: 6.578, y: -1.3829098, z: 3.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2069630524}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &781602431
 MonoBehaviour:
@@ -14337,6 +14343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintingName: lucius
+  paintingPosition: {fileID: 0}
 --- !u!65 &781602432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14348,7 +14355,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 2}
+  m_Size: {x: 2.69, y: 3, z: 2.5}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1001 &782625090
 PrefabInstance:
@@ -23662,6 +23669,66 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1302681469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1302681470}
+  - component: {fileID: 1302681472}
+  - component: {fileID: 1302681471}
+  m_Layer: 0
+  m_Name: PaintingTrigger_Cedric
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1302681470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302681469}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.839, y: -1.3829098, z: 3.182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2069630524}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1302681471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302681469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817d546a3fa81f041ad88bef461e55c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintingName: cedric
+  paintingPosition: {fileID: 0}
+--- !u!65 &1302681472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302681469}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.69, y: 3, z: 2.5}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1001 &1307662245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29531,7 +29598,7 @@ GameObject:
   - component: {fileID: 1634141456}
   - component: {fileID: 1634141455}
   m_Layer: 0
-  m_Name: PaintingTrigger (1)
+  m_Name: PaintingTrigger_Petunia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29545,12 +29612,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634141453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.94, y: -1.3829098, z: 2.6691606}
+  m_LocalPosition: {x: 3.94, y: -1.3829098, z: 3.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2069630524}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1634141455
 MonoBehaviour:
@@ -29565,6 +29632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintingName: oldPetunia
+  paintingPosition: {fileID: 0}
 --- !u!65 &1634141456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29576,7 +29644,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 2}
+  m_Size: {x: 2.69, y: 3, z: 2.5}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1001 &1634301609
 PrefabInstance:
@@ -34602,7 +34670,7 @@ GameObject:
   - component: {fileID: 1965689913}
   - component: {fileID: 1965689912}
   m_Layer: 0
-  m_Name: PaintingTrigger
+  m_Name: PaintingTrigger_Percival
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34616,7 +34684,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965689910}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.289425, y: -1.3829098, z: 2.6691606}
+  m_LocalPosition: {x: -2.289425, y: -1.3829098, z: 3.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34636,6 +34704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintingName: haplessPercival
+  paintingPosition: {fileID: 0}
 --- !u!65 &1965689913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34647,7 +34716,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 2}
+  m_Size: {x: 2.69, y: 3, z: 2.5}
   m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1001 &1974731560
 PrefabInstance:
@@ -36463,6 +36532,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1965689911}
+  - {fileID: 1302681470}
   - {fileID: 1634141454}
   - {fileID: 781602430}
   m_Father: {fileID: 0}
