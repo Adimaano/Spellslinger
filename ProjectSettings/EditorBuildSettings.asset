@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Test/IntroCellshading.unity
     guid: be74d38145f573a438f1dcda0cf05c1c
   - enabled: 1
+    path: Assets/Scenes/Test/FireLevel01.unity
+    guid: c0c996177c8c6f74c97a9bc224ddfdd2
+  - enabled: 1
+    path: Assets/Scenes/Test/EarthLevel1.unity
+    guid: 189c97defea0ed14088f84e6d093a830
+  - enabled: 1
     path: Assets/Scenes/Test/Intro.unity
     guid: 9fa8f521cbf99154283947ba885128ab
-  - enabled: 1
-    path: Assets/Scenes/Test/Runes_Test.unity
-    guid: 5bfa02867e6804d46a7ca0feae186783
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

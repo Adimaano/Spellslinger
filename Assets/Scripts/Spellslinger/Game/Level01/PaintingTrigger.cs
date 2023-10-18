@@ -22,7 +22,7 @@ namespace Spellslinger.Game {
             }
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerStay(Collider other) {
             if (other.CompareTag("Player")) {
                 this.levelManager.TriggerPaintingSpeech(this.paintingName, paintingPosition);
             }
