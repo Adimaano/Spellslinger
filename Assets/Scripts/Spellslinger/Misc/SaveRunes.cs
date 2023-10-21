@@ -32,7 +32,7 @@ namespace Spellslinger.Misc
 
         private int numberOfRunesSaved = 0;
 
-        private ONNXModelRunner modelRunner;
+        private ModelRunner modelRunner;
 
         private void GetDevice() {
             InputDevices.GetDevicesAtXRNode(this.xrNode, this.devices);
@@ -58,7 +58,7 @@ namespace Spellslinger.Misc
 
             // TODO
             if (!this.saveRunes) {
-                this.modelRunner = GameObject.Find("ModelRunner").GetComponent<ONNXModelRunner>();
+                this.modelRunner = GameObject.Find("ModelRunner").GetComponent<ModelRunner>();
             }
         }
 
@@ -87,7 +87,7 @@ namespace Spellslinger.Misc
 
                         Vector3[] savedPoints = this.GenerateNormalizedList(globalPoints, this.lineRendererParent.transform);
 
-                        int spellClass = this.modelRunner.IdentifyRune(savedPoints);
+                        // int spellClass = this.modelRunner.IdentifyRune(savedPoints);
 
                         // spawn fireball particles from drawpoint in the direction of the controller
                         GameObject fireball = Instantiate(this.fireballParticles, this.drawPoint.transform.position, Quaternion.identity);
