@@ -11,6 +11,7 @@ TagManager:
   - StonePlatform
   - Floor
   - Water
+  - Obstacle
   layers:
   - Default
   - TransparentFX
