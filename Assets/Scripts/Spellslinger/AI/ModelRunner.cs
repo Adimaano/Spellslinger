@@ -49,6 +49,7 @@ namespace Spellslinger.AI
             var max = pred.Max();
             // get index of max
             var index = pred.ToList().IndexOf(max);
+            Debug.Log($"Prediction: {index}"); // this should be a unit test
             OnPredictionReceived?.Invoke(index);
             output.Dispose();
             tensor.Dispose();

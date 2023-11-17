@@ -24,19 +24,19 @@ namespace Spellslinger.Game.Control
         [SerializeField] private SpellSettings[] spellSettings;
 
         private Dictionary<Spell, GameObject> spellChargeDictionary = new Dictionary<Spell, GameObject>();
-        private Dictionary<Spell, GameObject> spellMissleDictionary = new Dictionary<Spell, GameObject>();
+        private Dictionary<Spell, GameObject> spellMissleDictionary = new Dictionary<Spell, GameObject>();  
         private Dictionary<Spell, GameObject> spellAuraDictionary = new Dictionary<Spell, GameObject>();
         private Dictionary<Spell, GameObject> spellBlastDictionary = new Dictionary<Spell, GameObject>();
 
         // enum with all possible Spells
         public enum Spell {
-            Water,
-            Fire,
-            Earth,
-            Air,
-            Lightning,
-            Time,
-            None,
+            Time = 0,
+            Air = 1,
+            Fire = 2,
+            Earth = 3,
+            Water = 4,
+            Lightning = 5,
+            None = 6,
         }
 
         [Serializable]
@@ -91,6 +91,7 @@ namespace Spellslinger.Game.Control
             this.currentSpell = spell;
 
             if (spell == Spell.None) {
+                Debug.Log("No spell selected");
                 return;
             }
 
@@ -124,6 +125,18 @@ namespace Spellslinger.Game.Control
             this.StartCoroutine(this.EarthSpellCoroutine(earthSpell));
         }
 
+
+        /// <summary>
+        /// Triggers VFX and Audio for the time spell once on trigger.
+        /// Instantiates the animation target and sets the playback mode.
+        /// Calls the coroutine for controlling the target animation playback speed.
+        /// </summary>
+        private void CastTimeSpell(GameObject movingObject) {
+            Animator objectAnim = movingObject.GetComponent<Animator>();
+            // ToDo: VFX and Audio ques here
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim));
+        }
+
         /// <summary>
         /// Coroutine for casting the earth spell. Creates a pillar of earth at the target position.
         /// </summary>
@@ -141,6 +154,30 @@ namespace Spellslinger.Game.Control
 
             this.isCasting = false;
             earth.GetComponent<AudioSource>().Stop();
+        }
+
+        /// <summary>
+        /// Coroutine for casting the time spell. Controls the animation playback speed of target gameobject to simulatre "scrubbing" through time.
+        /// </summary>
+        /// <param name="objectAnim">Manipulatable animation of target gameobject</param>
+        private IEnumerator TimeSpellCoroutine(Animator objectAnim) {
+            this.isCasting = true;
+            while(this.isCasting) {
+                if(Input.GetButton("Jump")){
+                    if(Input.GetButton("Fire3")){
+                        objectAnim.speed = -0.5F; // value shall changed depending on delta (geschwindigkeit) movement of the controller toward <-- of center(position of when trigger was pressed)
+                    } else if(Input.GetButton("Fire2")) {
+                        objectAnim.speed = 0.5F; // value shall changed depending on delta (geschwindigkeit) movement of the controller toward --> of center(position of when trigger was pressed)
+                    } else {
+                        objectAnim.speed = 0.0F; // value shall be 0 when trigger is held without moving the controller (0 geschwindigkeit)
+                    }
+                } else {
+                    objectAnim.speed = 1.0F;
+                    this.isCasting = false;
+                }
+                
+                yield return null;
+            }
         }
 
         /// <summary>
@@ -193,8 +230,14 @@ namespace Spellslinger.Game.Control
 
                     break;
                 case Spell.Time:
-                    // placeholder for Time mechanic
-                    this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                    if (this.castOnObject != null){
+                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                    } else if (this.spellCastingTarget == Vector3.zero) {
+                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                    } else {
+                        this.CastTimeSpell(castOnObject);
+                    }
+
                     break;
                 default:
                     this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);

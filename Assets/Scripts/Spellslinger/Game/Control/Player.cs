@@ -147,6 +147,8 @@ namespace Spellslinger.Game.Control
         /// <param name="runeClass">Class of the predicted rune.</param>
         private void PredictionReceived(int runeClass) {
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
+
+            Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
             switch (runeClass) {
                 case 0:
                     // Time Spell
@@ -172,16 +174,20 @@ namespace Spellslinger.Game.Control
                     // Lightning Spell
                     this.currentSpell = SpellCasting.Spell.Lightning;
                     break;
+                
                 default:
                     // Unknown Rune
                     this.currentSpell = SpellCasting.Spell.None;
                     break;
             }
 
-            if (!this.availableSpells.Contains(this.currentSpell)) {
-                this.currentSpell = SpellCasting.Spell.None;
-                return;
-            }
+            // Dont have the SaveData for the available Spellss, so I'm just gonna comment it out for now
+            // if (!this.availableSpells.Contains(this.currentSpell)) {
+            //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
+                
+            //     this.currentSpell = SpellCasting.Spell.None;
+            //     return;
+            // }
 
             this.StartCoroutine(this.ShowRune());
             GameManager.Instance.PlaySound("RuneRecognized");
@@ -295,6 +301,7 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="spells">List of available spells.</param>
         public void SetAvailableSpells(List<SpellCasting.Spell> spells) {
+            // ToDo: "Freischalten pro level" implementieren
             this.availableSpells = spells;
         }
 
