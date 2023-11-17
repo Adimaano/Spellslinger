@@ -192,6 +192,10 @@ namespace Spellslinger.Game.Control
                     }
 
                     break;
+                case Spell.Time:
+                    // placeholder for Time mechanic
+                    this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                    break;
                 default:
                     this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     break;

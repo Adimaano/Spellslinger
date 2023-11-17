@@ -91,6 +91,26 @@ namespace Spellslinger.Game.Control
                 this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                 this.spellCasting.SetSpecialCasting(null);
             }
+
+            // Select object for Time Spell
+            if (this.currentSpell == SpellCasting.Spell.Time) {
+                RaycastHit hit = this.input.GetWandSelection();
+                GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
+
+                if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
+                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                    this.spellCasting.SetSpecialCasting(selectedObject);
+                    this.SetLastSelectedObject(selectedObject);
+                } else {
+                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                    this.spellCasting.SetSpecialCasting(null);
+                    this.ResetLastSelectedObject();
+                }
+            } else {
+                this.ResetLastSelectedObject();
+                this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                this.spellCasting.SetSpecialCasting(null);
+            }
         }
 
         /// <summary>

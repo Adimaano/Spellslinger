@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - Water
   - Obstacle
+  - TimeTarget
   layers:
   - Default
   - TransparentFX
