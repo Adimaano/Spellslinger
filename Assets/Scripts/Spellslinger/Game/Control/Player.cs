@@ -98,6 +98,7 @@ namespace Spellslinger.Game.Control
                 GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
                 if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
+                    Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
                     this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                     this.spellCasting.SetSpecialCasting(selectedObject);
                     this.SetLastSelectedObject(selectedObject);

@@ -15,6 +15,7 @@ namespace Spellslinger.Game.Control
         private GameObject spellCastingRight;
         private GameObject spellCastingLeft;
         private Vector3 spellCastingTarget = Vector3.zero;
+        private Vector3 wandPosition = Vector3.zero;
 
         private bool isCasting = false;
         private GameObject castOnObject; // e.g. for reverting a spell (e.g. let earth pillar explode)
@@ -91,7 +92,6 @@ namespace Spellslinger.Game.Control
             this.currentSpell = spell;
 
             if (spell == Spell.None) {
-                Debug.Log("No spell selected");
                 return;
             }
 
@@ -131,10 +131,13 @@ namespace Spellslinger.Game.Control
         /// Instantiates the animation target and sets the playback mode.
         /// Calls the coroutine for controlling the target animation playback speed.
         /// </summary>
-        private void CastTimeSpell(GameObject movingObject) {
+        private void CastTimeSpell(GameObject movingObject, GameObject wand) {
+            bool refRight = (wand == this.spellCastingRight);
+            Debug.Log("CastTimeSpell");
             Animator objectAnim = movingObject.GetComponent<Animator>();
+            objectAnim.StartPlayback();
             // ToDo: VFX and Audio ques here
-            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim));
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, startPosOfWand: wand.transform.parent.transform.localPosition, refRight));
         }
 
         /// <summary>
@@ -160,24 +163,28 @@ namespace Spellslinger.Game.Control
         /// Coroutine for casting the time spell. Controls the animation playback speed of target gameobject to simulatre "scrubbing" through time.
         /// </summary>
         /// <param name="objectAnim">Manipulatable animation of target gameobject</param>
-        private IEnumerator TimeSpellCoroutine(Animator objectAnim) {
+        /// <param name="startPosOfWand">Position of wand at initial cast</param>
+        private IEnumerator TimeSpellCoroutine(Animator objectAnim, Vector3 startPosOfWand, bool refRight) { //wand needs to either be a pointer or set as classmember which can be called
             this.isCasting = true;
+            
             while(this.isCasting) {
-                if(Input.GetButton("Jump")){
-                    if(Input.GetButton("Fire3")){
-                        objectAnim.speed = -0.5F; // value shall changed depending on delta (geschwindigkeit) movement of the controller toward <-- of center(position of when trigger was pressed)
-                    } else if(Input.GetButton("Fire2")) {
-                        objectAnim.speed = 0.5F; // value shall changed depending on delta (geschwindigkeit) movement of the controller toward --> of center(position of when trigger was pressed)
-                    } else {
-                        objectAnim.speed = 0.0F; // value shall be 0 when trigger is held without moving the controller (0 geschwindigkeit)
-                    }
+                Debug.Log("TimeSpellCoroutine: Stop it");
+                if(deltaControllerPos(startPosOfWand, refRight) > 0.1f) {
+                    Debug.Log("TimeSpellCoroutine: +++++ ");
+                    objectAnim.speed = -0.5F;
+                } else if(deltaControllerPos(startPosOfWand, refRight) < -0.1f) {
+                    Debug.Log("TimeSpellCoroutine: -----");
+                    objectAnim.speed = 0.5F;
                 } else {
-                    objectAnim.speed = 1.0F;
-                    this.isCasting = false;
+                    objectAnim.speed = 0.0F;
                 }
-                
                 yield return null;
             }
+
+            Debug.Log("TimeSpellCoroutine: Continue");
+            objectAnim.StopPlayback();
+            objectAnim.speed = 1.0F;
+            this.isCasting = false;
         }
 
         /// <summary>
@@ -231,11 +238,9 @@ namespace Spellslinger.Game.Control
                     break;
                 case Spell.Time:
                     if (this.castOnObject != null){
-                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
-                    } else if (this.spellCastingTarget == Vector3.zero) {
-                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                        this.CastTimeSpell(castOnObject, spellOrigin);
                     } else {
-                        this.CastTimeSpell(castOnObject);
+                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     }
 
                     break;
@@ -284,6 +289,22 @@ namespace Spellslinger.Game.Control
         /// <param name="objectToCastMagicOn">The object on which the spell will be cast.</param>
         public void SetSpecialCasting(GameObject objectToCastMagicOn) {
             this.castOnObject = objectToCastMagicOn;
+        }
+
+        /// <summary>
+        /// Calculates delta movement of controller in x direction.
+        /// </summary>
+        /// <param name="startPosOfWand">The target position for the spell. This is where the spell will be instantiated.</param>
+        public float deltaControllerPos(Vector3 startPosOfWand, bool refRight) {
+            float delta = 0.0f;
+            
+            if (refRight) {
+                delta = startPosOfWand.x - this.spellCastingRight.transform.parent.transform.localPosition.x;
+            } else {
+                delta = startPosOfWand.x - this.spellCastingLeft.transform.parent.transform.localPosition.x;
+            }
+            Debug.Log("deltaControllerPos: " + delta);
+            return delta;
         }
     }
 }
