@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &6013714
 AudioListener:
   m_ObjectHideFlags: 0
@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 72995140200250198, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
@@ -796,6 +796,7 @@ GameObject:
   - component: {fileID: 1817178176}
   - component: {fileID: 1817178180}
   - component: {fileID: 1817178181}
+  - component: {fileID: 1817178182}
   m_Layer: 0
   m_Name: Cube
   m_TagString: TimeTarget
@@ -919,3 +920,16 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1817178182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817178175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9524bfdaa66734688340944b82de19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1817178180}

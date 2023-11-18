@@ -9,8 +9,9 @@ public class testContr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim.StartPlayback();
+        
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +19,6 @@ public class testContr : MonoBehaviour
         {
             if(Input.GetButton("Fire3"))
             {
-
                 anim.speed = -0.5F; // value shall changed depending on delta (geschwindigkeit) movement of the controller toward <-- of center(position of when trigger was pressed)
             }
             else if(Input.GetButton("Fire2"))
@@ -29,10 +29,6 @@ public class testContr : MonoBehaviour
             {
                 anim.speed = 0.0F; // value shall be 0 when trigger is held without moving the controller (0 geschwindigkeit)
             }
-        }
-        else
-        {
-            anim.speed = 1.0F;
         }
     }
 }

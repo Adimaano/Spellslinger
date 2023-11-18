@@ -168,20 +168,17 @@ namespace Spellslinger.Game.Control
             this.isCasting = true;
             
             while(this.isCasting) {
-                Debug.Log("TimeSpellCoroutine: Stop it");
-                if(deltaControllerPos(startPosOfWand, refRight) > 0.1f) {
-                    Debug.Log("TimeSpellCoroutine: +++++ ");
-                    objectAnim.speed = -0.5F;
-                } else if(deltaControllerPos(startPosOfWand, refRight) < -0.1f) {
-                    Debug.Log("TimeSpellCoroutine: -----");
-                    objectAnim.speed = 0.5F;
+                float delta = deltaControllerPos(startPosOfWand, refRight);
+                float offset = 0.1f;
+                if(delta > offset) {
+                    objectAnim.speed = delta*2-offset;
+                } else if(delta < -offset) {
+                    objectAnim.speed = delta*2+offset;
                 } else {
                     objectAnim.speed = 0.0F;
                 }
                 yield return null;
             }
-
-            Debug.Log("TimeSpellCoroutine: Continue");
             objectAnim.StopPlayback();
             objectAnim.speed = 1.0F;
             this.isCasting = false;
@@ -239,6 +236,7 @@ namespace Spellslinger.Game.Control
                 case Spell.Time:
                     if (this.castOnObject != null){
                         this.CastTimeSpell(castOnObject, spellOrigin);
+                        Debug.Log(this.castOnObject.name);
                     } else {
                         this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     }
