@@ -6,11 +6,11 @@ namespace Spellslinger.Game {
     public class StickToDynamicArea : MonoBehaviour
     {
         public bool stick = true;
-        private void OnTriggerStay(Collider other)
+        void OnCollisionStay(Collision collision)
         {
-            if (other.gameObject.tag == "TimeTarget" && stick)
+            if (collision.gameObject.tag == "TimeTarget" && stick)
             {
-                this.transform.position = other.transform.position;
+                this.transform.position = collision.transform.position;
             }
         }
     }

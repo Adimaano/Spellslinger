@@ -137,7 +137,7 @@ namespace Spellslinger.Game.Control
             Animator objectAnim = movingObject.GetComponent<Animator>();
             objectAnim.StartPlayback();
             // ToDo: VFX and Audio ques here
-            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, startPosOfWand: wand.transform.parent.transform.localPosition, refRight));
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.localPosition, refRight));
         }
 
         /// <summary>
@@ -169,11 +169,15 @@ namespace Spellslinger.Game.Control
             
             while(this.isCasting) {
                 float delta = deltaControllerPos(startPosOfWand, refRight);
+                Debug.Log(startPosOfWand);
+                Debug.Log(this.spellCastingRight.transform.parent.transform.localPosition);
                 float offset = 0.1f;
                 if(delta > offset) {
-                    objectAnim.speed = delta*2-offset;
-                } else if(delta < -offset) {
-                    objectAnim.speed = delta*2+offset;
+                    objectAnim.speed = -delta*2;
+                    Debug.Log("Forward in time.");
+                } else if(delta < -(offset/2)) {
+                    objectAnim.speed = -delta*2;
+                    Debug.Log("Back in time.");
                 } else {
                     objectAnim.speed = 0.0F;
                 }

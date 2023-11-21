@@ -6,11 +6,11 @@ namespace Spellslinger.Game {
     public class SuspednInAnimation : MonoBehaviour
     {
         [SerializeField] public Animator anim;
-        public void Suspend()
+
+        public void Rewind()
         {
-            Debug.Log("Suspend");
-            anim.StartPlayback();
-            anim.Play("Default", -1, 0.98F);
+            Debug.Log("Rewind");
+            anim.PlayInFixedTime("Default", -1, 2.0F);
         }
     }
 }
