@@ -10,10 +10,10 @@ Material:
   m_Name: ClockGlassTS
   m_Shader: {fileID: 4800000, guid: 933f24cde1e3f6a41818f56d729421ab, type: 3}
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
   - _HALFTONESHAPE_DOT
   - _OUTLINE
   - _RIMLIGHTING_ON
+  - _SPECULAR_SETUP
   - _TOON_SHADING_ON
   m_InvalidKeywords:
   - _HAFTONESHAPES_DOT
@@ -139,7 +139,7 @@ Material:
     - Vector1_e5b6f1488dec4326bd8bbd0e05156810: 0
     - _AllToon_OverrideShadowColor: 0
     - _AlphaClip: 0
-    - _Blend: 1
+    - _Blend: 2
     - _BrushLowerCut: 0
     - _BrushSize: 0.8
     - _BumpScale: 1
@@ -149,10 +149,10 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseStep: 0.07
+    - _DiffuseStep: 0.051
     - _DitherTexelSize: 8.9
     - _DitherThreshold: 1
-    - _DstBlend: 10
+    - _DstBlend: 1
     - _EnabledHairSpec: 0
     - _EnvironmentReflections: 1
     - _FaceShadowMapEnabled: 0
@@ -204,10 +204,10 @@ Material:
     - _RIMLIGHTING: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 1
-    - _RimLightAlign: 0
-    - _RimLightSmoothness: 0.342
+    - _RimLightAlign: 0.209
+    - _RimLightSmoothness: 0.19
     - _RimLightSmootness: 0
-    - _RimPower: 0.382
+    - _RimPower: 0.61
     - _SPECULARHIGHLIGHTS: 1
     - _ShadowPatternSize: 0.3
     - _Shininess: 0
@@ -224,7 +224,7 @@ Material:
     - _SpecularClipStrength: 0
     - _SpecularFalloff: 1
     - _SpecularHighlights: 1
-    - _SpecularSize: 0.698
+    - _SpecularSize: 0.584
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
@@ -238,10 +238,10 @@ Material:
     - _UseClipPattern: 0
     - _UseNormalMap: 0
     - _UseRampColor: 0
-    - _WorkflowMode: 1
+    - _WorkflowMode: 0
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.71009845, g: 0.8263955, b: 0.8301887, a: 0.48235294}
+    - _BaseColor: {r: 0.71009845, g: 0.8263956, b: 0.8301887, a: 0.67058825}
     - _Color: {r: 0.7353569, g: 0.7353569, b: 0.7353569, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
@@ -251,9 +251,9 @@ Material:
     - _HalftoneColor: {r: 0.517647, g: 0.517647, b: 0.517647, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingScale: {r: 15, g: 1, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.26100624, g: 0.92573106, b: 1, a: 1}
     - _OutlineDistancFade: {r: -200, g: 200, b: 0, a: 0}
-    - _RimColor: {r: 0.10237923, g: 0.2735849, b: 0.2565573, a: 1}
+    - _RimColor: {r: 0.10237923, g: 0.2735849, b: 0.2565573, a: 0.516}
     - _ShadowColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 0.651}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}

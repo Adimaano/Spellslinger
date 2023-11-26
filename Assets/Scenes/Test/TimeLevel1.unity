@@ -2739,6 +2739,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1016391532}
     m_Modifications:
+    - target: {fileID: 1860887187804618224, guid: e7e78c41b553c4f4fa76f99b6378d733,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1893455835710739017, guid: e7e78c41b553c4f4fa76f99b6378d733,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
@@ -2757,6 +2762,16 @@ PrefabInstance:
     - target: {fileID: 1982414094769183871, guid: e7e78c41b553c4f4fa76f99b6378d733,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125120207472286938, guid: e7e78c41b553c4f4fa76f99b6378d733,
+        type: 3}
+      propertyPath: initiallyLit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745253752840795714, guid: e7e78c41b553c4f4fa76f99b6378d733,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4711461163709119777, guid: e7e78c41b553c4f4fa76f99b6378d733,
@@ -2818,6 +2833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torch_Wall Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583297944000870282, guid: e7e78c41b553c4f4fa76f99b6378d733,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7e78c41b553c4f4fa76f99b6378d733, type: 3}
@@ -9809,7 +9829,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2209e552147ac0c4dae00d1038984c32, type: 2}
+  - {fileID: 2100000, guid: 083013299519c7c439e310a08b5a2b55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -51133,8 +51153,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2770996896808271558, guid: dd1ae2b49107e20469fbc609b80cf16f,
         type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770996896808271558, guid: dd1ae2b49107e20469fbc609b80cf16f,
+        type: 3}
       propertyPath: magnitudeScalar
-      value: 0.04
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770996896808271558, guid: dd1ae2b49107e20469fbc609b80cf16f,
+        type: 3}
+      propertyPath: frequencyVector.y
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2770996896808271561, guid: dd1ae2b49107e20469fbc609b80cf16f,
         type: 3}
