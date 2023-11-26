@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.4528302, g: 0.40494645, b: 0.37379852, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -16597,7 +16597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &657363434
 Transform:
   m_ObjectHideFlags: 0
@@ -18947,7 +18947,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: db2b8bc4f1ca85b40acd17a9a58c8936, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.745
   m_Pitch: 0.36
   Loop: 1
   Mute: 0
@@ -18955,7 +18955,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 30.810413
+  MinDistance: 27.392035
   MaxDistance: 1000
   Pan2D: 0
   rolloffMode: 0
