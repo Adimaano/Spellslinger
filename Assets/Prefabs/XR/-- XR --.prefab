@@ -2217,6 +2217,10 @@ MonoBehaviour:
     type: 3}
   earthSpellPrefab: {fileID: 4210222460663844129, guid: 0e8fa9228e4afda44878d2b2523e030d,
     type: 3}
+  airSpellPrefab: {fileID: 9143935275129014152, guid: 7186c54db7bfbc5409a49fb01a98ec83,
+    type: 3}
+  airSpellFromWandPrefab: {fileID: 9143935275129014152, guid: 56747556948d6eb48a70c8147dc5f8bf,
+    type: 3}
   spellSettings:
   - Spell: 0
     ChargePrefab: {fileID: 159362, guid: 0d9b0e27a2944614abe85db3c25b3d74, type: 3}
@@ -2274,7 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2436275ef36f4bc29e0de89d075c1760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: e4f2786cba7fe294fb03280368bf7651,
+  modelAsset: {fileID: 5022602860645237092, guid: 435d8702e3514f647a77bacf94b2d634,
     type: 3}
 --- !u!1 &2620979018476517471
 GameObject:

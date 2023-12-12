@@ -26,13 +26,13 @@ namespace Spellslinger.Game.AirLevel01
         private void Activated()
         {
             // Check if all pedestals are activated
-            // foreach (var ped in pedestals)
-            // {
-            //     if (!ped.Active)
-            //     {
-            //         return;
-            //     }
-            // }
+            foreach (var ped in pedestals)
+            {
+                if (!ped.Active)
+                {
+                    return;
+                }
+            }
             if (!finalPedestal.Active)
             {
                 return;
