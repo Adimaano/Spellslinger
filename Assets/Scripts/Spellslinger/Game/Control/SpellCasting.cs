@@ -11,6 +11,8 @@ namespace Spellslinger.Game.Control
         // Spells / Particle Effects
         [SerializeField] private GameObject fireballPrefab;
         [SerializeField] private GameObject earthSpellPrefab;
+        [SerializeField] private GameObject airSpellPrefab;
+        [SerializeField] private GameObject airSpellFromWandPrefab;
 
         private GameObject spellCastingRight;
         private GameObject spellCastingLeft;
@@ -64,7 +66,7 @@ namespace Spellslinger.Game.Control
 
         private void Update() {
             if (this.spellCastingTarget != Vector3.zero) {
-                if (this.spellReticle == null) {
+                if (this.spellReticle == null && this.currentSpell != Spell.None) {
                     // Instantiate the reticle prefab at the target position and rotate it to be horizontal
                     this.spellReticle = Instantiate(this.spellAuraDictionary[this.currentSpell], this.spellCastingTarget, Quaternion.identity);
                     this.spellReticle.transform.Rotate(new Vector3(-90, 0, 0));
@@ -86,7 +88,10 @@ namespace Spellslinger.Game.Control
 
             // Remove all children of the target
             foreach (Transform child in target.transform) {
-                Destroy(child.gameObject);
+                // destroy all children NOT tagged "SpellManaged"
+                if (!child.CompareTag("SpellManaged")) {
+                    Destroy(child.gameObject);
+                }
             }
 
             this.currentSpell = spell;
@@ -121,7 +126,6 @@ namespace Spellslinger.Game.Control
         /// </summary>
         private void CastEarthSpell() {
             GameObject earthSpell = Instantiate(this.earthSpellPrefab, this.spellCastingTarget, Quaternion.identity);
-
             this.StartCoroutine(this.EarthSpellCoroutine(earthSpell));
         }
 
@@ -157,6 +161,63 @@ namespace Spellslinger.Game.Control
 
             this.isCasting = false;
             earth.GetComponent<AudioSource>().Stop();
+        }
+
+        /// <summary>
+        /// Cast the air spell, creating a air current at the target position.
+        /// </summary>#
+        private void CastAirSpell(GameObject wand)
+        {
+            GameObject airSpell = Instantiate(this.airSpellPrefab, this.spellCastingTarget, Quaternion.identity);
+            this.StartCoroutine(this.AirSpellCoroutine(airSpell, wand.transform.parent.transform.position));
+        }
+        
+        private void CastAirSpellFromWand(GameObject wand)
+        {
+            var airSpell = Instantiate(this.airSpellFromWandPrefab, wand.transform);
+            airSpell.transform.localPosition = Vector3.zero;
+            // rotate 90 degrees around x axis
+            airSpell.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            // set "SpellManaged" tag to air current
+            airSpell.tag = "SpellManaged";
+            this.StartCoroutine(this.AirSpellFromWandCoroutine(airSpell));
+        }
+        
+        private IEnumerator AirSpellFromWandCoroutine(GameObject airCurrent)
+        {
+            this.isCasting = true;
+            
+            // Get the AirCurrentSpell from the air current
+            var airCurrentSpell = airCurrent.GetComponent<AirCurrentSpell>();
+            airCurrentSpell.UpdateCurrent(Vector3.up, 0.3f, true);
+            airCurrentSpell.StartCurrent();
+
+            while (this.isCasting)
+            {
+                yield return null;
+            }
+            isCasting = false;
+            // Destroy air current
+            Destroy(airCurrent);
+        }
+        
+        private IEnumerator AirSpellCoroutine(GameObject airCurrent, Vector3 startPositionOfWand)
+        {
+            this.isCasting = true;
+            
+            // Get the AirCurrentSpell from the air current
+            var airCurrentSpell = airCurrent.GetComponent<AirCurrentSpell>();
+
+            while (this.isCasting)
+            {
+                // Get complete vector delta of wand movement
+                Vector3 delta = this.spellCastingRight.transform.parent.transform.position - startPositionOfWand;
+                // Scale magnitude a little to make controlling easier
+                airCurrentSpell.UpdateCurrent(delta.normalized, delta.magnitude * 1.5f);
+                yield return null;
+            }
+            isCasting = false;
+            airCurrentSpell.StartCurrent();
         }
 
         /// <summary>
@@ -245,6 +306,18 @@ namespace Spellslinger.Game.Control
                         this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     }
 
+                    break;
+                case Spell.Air:
+                    // Create air current at target position
+                    if (this.spellCastingTarget == Vector3.zero)
+                    {
+                        CastAirSpellFromWand(spellOrigin);
+                    }
+                    // Start casting air current from wand
+                    else
+                    {
+                        CastAirSpell(spellOrigin);
+                    }
                     break;
                 default:
                     this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);

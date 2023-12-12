@@ -20,7 +20,7 @@ namespace Spellslinger.AI
         private void Start()
         {
             _model = ModelLoader.Load(modelAsset);
-            _worker = WorkerFactory.CreateWorker(BackendType.GPUCompute, _model, verbose: true);
+            _worker = WorkerFactory.CreateWorker(BackendType.GPUCompute, _model);
         }
 
         private void OnDestroy()

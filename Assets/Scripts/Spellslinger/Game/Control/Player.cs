@@ -69,48 +69,62 @@ namespace Spellslinger.Game.Control
         }
 
         private void Update() {
-            if (this.currentSpell == SpellCasting.Spell.Earth) {
-                RaycastHit hit = this.input.GetWandSelection();
-                GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
+            switch (this.currentSpell)
+            {
+                case SpellCasting.Spell.Earth:
+                    RaycastHit hit = this.input.GetWandSelection();
+                    GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
-                if (selectedObject != null && selectedObject.CompareTag("Floor")) {
-                    this.spellCasting.SetSpellCastingTarget(hit.point);
-                    this.spellCasting.SetSpecialCasting(null);
-                    this.ResetLastSelectedObject();
-                } else if (selectedObject != null && selectedObject.CompareTag("StonePlatform")) {
-                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                    this.spellCasting.SetSpecialCasting(selectedObject);
-                    this.SetLastSelectedObject(selectedObject);
-                } else {
-                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                    this.spellCasting.SetSpecialCasting(null);
-                    this.ResetLastSelectedObject();
-                }
-            } else {
-                this.ResetLastSelectedObject();
-                this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                this.spellCasting.SetSpecialCasting(null);
-            }
+                    if (selectedObject != null && selectedObject.CompareTag("Floor")) {
+                        this.spellCasting.SetSpellCastingTarget(hit.point);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    } else if (selectedObject != null && selectedObject.CompareTag("StonePlatform")) {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(selectedObject);
+                        this.SetLastSelectedObject(selectedObject);
+                    } else {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    }
+                    break;
+                case SpellCasting.Spell.Time:
+                    // Select object for Time Spell
+                    hit = this.input.GetWandSelection();
+                    selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
-            // Select object for Time Spell
-            if (this.currentSpell == SpellCasting.Spell.Time) {
-                RaycastHit hit = this.input.GetWandSelection();
-                GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
+                    if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
+                        Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(selectedObject);
+                        this.SetLastSelectedObject(selectedObject);
+                    } else {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    }
 
-                if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
-                    Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
-                    this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                    this.spellCasting.SetSpecialCasting(selectedObject);
-                    this.SetLastSelectedObject(selectedObject);
-                } else {
+                    break;
+                case SpellCasting.Spell.Air:
+                    hit = this.input.GetWandSelection();
+                    selectedObject = hit.collider != null ? hit.collider.gameObject : null;
+
+                    if (selectedObject != null && selectedObject.CompareTag("Floor")) {
+                        this.spellCasting.SetSpellCastingTarget(hit.point);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    } else {
+                        this.spellCasting.SetSpellCastingTarget(Vector3.zero);
+                        this.spellCasting.SetSpecialCasting(null);
+                        this.ResetLastSelectedObject();
+                    }
+                    break;
+                default:
+                    this.ResetLastSelectedObject();
                     this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                     this.spellCasting.SetSpecialCasting(null);
-                    this.ResetLastSelectedObject();
-                }
-            } else {
-                this.ResetLastSelectedObject();
-                this.spellCasting.SetSpellCastingTarget(Vector3.zero);
-                this.spellCasting.SetSpecialCasting(null);
+                    break;
             }
         }
 
