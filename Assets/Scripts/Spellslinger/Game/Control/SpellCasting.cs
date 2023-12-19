@@ -140,6 +140,7 @@ namespace Spellslinger.Game.Control
             Debug.Log("CastTimeSpell");
             Animator objectAnim = movingObject.GetComponent<Animator>();
             objectAnim.StartPlayback();
+            movingObject.GetComponent<AudioSource>().Play(0);
             // ToDo: VFX and Audio ques here
             this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.localPosition, refRight));
         }

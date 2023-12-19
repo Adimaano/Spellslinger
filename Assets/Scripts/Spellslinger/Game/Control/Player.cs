@@ -196,7 +196,7 @@ namespace Spellslinger.Game.Control
                     break;
             }
 
-            // Dont have the SaveData for the available Spellss, so I'm just gonna comment it out for now
+            // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now
             // if (!this.availableSpells.Contains(this.currentSpell)) {
             //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
                 

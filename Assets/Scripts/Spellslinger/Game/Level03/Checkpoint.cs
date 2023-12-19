@@ -6,11 +6,14 @@ namespace Spellslinger.Game {
     public class Checkpoint : MonoBehaviour
     {
         [SerializeField] private GameObject hazard;
+        private bool firstTime = true;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player" && firstTime)
             {
                 hazard.GetComponent<QuickReset>().ReachNextCheckpoint(this.gameObject);
+                this.GetComponent<AudioSource>().Play(0);
+                firstTime = false;
             }
         }
     }
