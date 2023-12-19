@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0012583634, g: 0.007069444, b: 0.028851058, a: 1}
+  m_IndirectSpecularColor: {r: 0.00082994165, g: 0.004169961, b: 0.0200299, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10640,6 +10640,7 @@ MonoBehaviour:
   portalMaterial: {fileID: 2100000, guid: fa2e792f372ca414dafc2f1cc07cc979, type: 2}
   portalMaterialDefault: {fileID: 2100000, guid: de4f47963ea602949900efe311dee013,
     type: 2}
+  isActive: 1
 --- !u!1001 &390722092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41341,7 +41342,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541928148}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6a92f587f37bbc14ab6c05c6b6aaf3a8, type: 3}
@@ -45361,7 +45362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1851695765}
   m_LocalRotation: {x: 0, y: 0.23734677, z: 0, w: 0.97142506}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalPosition: {x: 0, y: 2.01, z: 0}
   m_LocalScale: {x: -0.59, y: -0.59, z: -0.59}
   m_ConstrainProportionsScale: 1
   m_Children: []
