@@ -137,7 +137,6 @@ namespace Spellslinger.Game.Control
         /// </summary>
         private void CastTimeSpell(GameObject movingObject, GameObject wand) {
             bool refRight = (wand == this.spellCastingRight);
-            Debug.Log("CastTimeSpell");
             Animator objectAnim = movingObject.GetComponent<Animator>();
             objectAnim.StartPlayback();
             movingObject.GetComponent<AudioSource>().Play(0);
@@ -231,15 +230,11 @@ namespace Spellslinger.Game.Control
             
             while(this.isCasting) {
                 float delta = deltaControllerPos(startPosOfWand, refRight);
-                Debug.Log(startPosOfWand);
-                Debug.Log(this.spellCastingRight.transform.parent.transform.localPosition);
                 float offset = 0.1f;
                 if(delta > offset) {
                     objectAnim.speed = -delta*2;
-                    Debug.Log("Forward in time.");
                 } else if(delta < -(offset/2)) {
                     objectAnim.speed = -delta*2;
-                    Debug.Log("Back in time.");
                 } else {
                     objectAnim.speed = 0.0F;
                 }
@@ -302,7 +297,6 @@ namespace Spellslinger.Game.Control
                 case Spell.Time:
                     if (this.castOnObject != null){
                         this.CastTimeSpell(castOnObject, spellOrigin);
-                        Debug.Log(this.castOnObject.name);
                     } else {
                         this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
                     }
@@ -379,7 +373,6 @@ namespace Spellslinger.Game.Control
             } else {
                 delta = startPosOfWand.x - this.spellCastingLeft.transform.parent.transform.localPosition.x;
             }
-            Debug.Log("deltaControllerPos: " + delta);
             return delta;
         }
     }

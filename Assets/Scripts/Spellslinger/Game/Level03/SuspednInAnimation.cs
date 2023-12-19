@@ -9,7 +9,7 @@ namespace Spellslinger.Game {
 
         public void Rewind()
         {
-            Debug.Log("Rewind");
+            //Debug.Log("Rewind");
             anim.PlayInFixedTime("Default", -1, 2.0F);
         }
     }
