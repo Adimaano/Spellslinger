@@ -1,4 +1,5 @@
 using System;
+using Spellslinger.Game.Control;
 using Spellslinger.Game.Environment;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Spellslinger.Game.AirLevel01
 
         private void Start()
         {
+            GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Air);
+            
             foreach (var ped in pedestals)
             {
                 ped.IsActivated.AddListener(Activated);
