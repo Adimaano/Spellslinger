@@ -185,7 +185,7 @@ public class MainMenu : MonoBehaviour {
 
         if (!this.hasSavedGame || confirmation) {
             SaveData saveData = new SaveData();
-            SaveGameManager.Save(saveData);
+            //SaveGameManager.Save(saveData);
             GameManager.Instance.LoadLevel(1);
         } else {
             this.confirmNewGamePanel.SetActive(true);
