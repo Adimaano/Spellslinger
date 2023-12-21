@@ -7,7 +7,7 @@ namespace Spellslinger.Game.Environment
     public class Portal : MonoBehaviour {
         [SerializeField] private Material portalMaterial;
         [SerializeField] private Material portalMaterialDefault;
-        private bool isActive = false;
+        [SerializeField] private bool isActive = false;
         private int levelToLoad = 0;
 
         public int LevelToLoad { get => this.levelToLoad; set => this.levelToLoad = value; }
