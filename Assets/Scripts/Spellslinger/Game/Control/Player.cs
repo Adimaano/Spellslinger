@@ -197,12 +197,12 @@ namespace Spellslinger.Game.Control
             }
 
             // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now
-            // if (!this.availableSpells.Contains(this.currentSpell)) {
-            //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
+            if (!this.availableSpells.Contains(this.currentSpell)) {
+                Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
                 
-            //     this.currentSpell = SpellCasting.Spell.None;
-            //     return;
-            // }
+                this.currentSpell = SpellCasting.Spell.None;
+                return;
+            }
 
             this.StartCoroutine(this.ShowRune());
             GameManager.Instance.PlaySound("RuneRecognized");
