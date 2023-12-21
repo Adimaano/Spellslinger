@@ -142,7 +142,7 @@ namespace Spellslinger.Game.Control
             movingObject.GetComponent<AudioSource>().Play(0);
 
             
-            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.localPosition, refRight));
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.position, refRight));
         }
 
         /// <summary>
@@ -231,11 +231,11 @@ namespace Spellslinger.Game.Control
             
             while(this.isCasting) {
                 float delta = deltaControllerPos(startPosOfWand, refRight);
-                float offset = 0.1f;
+                float offset = 0.02f;
                 if(delta > offset) {
-                    objectAnim.speed = -delta*2;
+                    objectAnim.speed = -delta*7;
                 } else if(delta < -(offset/2)) {
-                    objectAnim.speed = -delta*2;
+                    objectAnim.speed = -delta*7;
                 } else {
                     objectAnim.speed = 0.0F;
                 }
@@ -370,10 +370,13 @@ namespace Spellslinger.Game.Control
             float delta = 0.0f;
 
             if (refRight) {
-                delta = startPosOfWand.x - this.spellCastingRight.transform.parent.transform.localPosition.x;
+                delta = Camera.main.WorldToViewportPoint(startPosOfWand).x - Camera.main.WorldToViewportPoint(this.spellCastingRight.transform.parent.transform.position).x;
             } else {
-                delta = startPosOfWand.x - this.spellCastingLeft.transform.parent.transform.localPosition.x;
+                delta = Camera.main.WorldToViewportPoint(startPosOfWand).x - Camera.main.WorldToViewportPoint(this.spellCastingLeft.transform.parent.transform.position).x;
             }
+            Debug.Log(Camera.main.WorldToViewportPoint(startPosOfWand));
+            Debug.Log(Camera.main.WorldToViewportPoint(this.spellCastingRight.transform.parent.transform.position));
+            Debug.Log(delta);
             return delta;
         }
     }

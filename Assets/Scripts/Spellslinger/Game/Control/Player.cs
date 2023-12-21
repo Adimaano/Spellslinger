@@ -95,7 +95,7 @@ namespace Spellslinger.Game.Control
                     selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
                     if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
-                        Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
+                        // Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(selectedObject);
                         this.SetLastSelectedObject(selectedObject);
@@ -163,7 +163,7 @@ namespace Spellslinger.Game.Control
         private void PredictionReceived(int runeClass) {
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
 
-            Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
+            // Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
             switch (runeClass) {
                 case 0:
                     // Time Spell
@@ -197,12 +197,12 @@ namespace Spellslinger.Game.Control
             }
 
             // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now
-            if (!this.availableSpells.Contains(this.currentSpell)) {
-                Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
+            // if (!this.availableSpells.Contains(this.currentSpell)) {
+            //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
                 
-                this.currentSpell = SpellCasting.Spell.None;
-                return;
-            }
+            //     this.currentSpell = SpellCasting.Spell.None;
+            //     return;
+            // }
 
             this.StartCoroutine(this.ShowRune());
             GameManager.Instance.PlaySound("RuneRecognized");
