@@ -15,6 +15,7 @@ TagManager:
   - TimeTarget
   - PhysicsObject
   - SpellManaged
+  - LightningCrystal
   layers:
   - Default
   - TransparentFX

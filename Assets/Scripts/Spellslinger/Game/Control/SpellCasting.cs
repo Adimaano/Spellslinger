@@ -140,7 +140,8 @@ namespace Spellslinger.Game.Control
             Animator objectAnim = movingObject.GetComponent<Animator>();
             objectAnim.StartPlayback();
             movingObject.GetComponent<AudioSource>().Play(0);
-            // ToDo: VFX and Audio ques here
+
+            
             this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.localPosition, refRight));
         }
 
@@ -367,7 +368,7 @@ namespace Spellslinger.Game.Control
         /// <param name="startPosOfWand">The target position for the spell. This is where the spell will be instantiated.</param>
         public float deltaControllerPos(Vector3 startPosOfWand, bool refRight) {
             float delta = 0.0f;
-            
+
             if (refRight) {
                 delta = startPosOfWand.x - this.spellCastingRight.transform.parent.transform.localPosition.x;
             } else {
