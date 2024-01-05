@@ -1,5 +1,7 @@
 namespace Spellslinger.Game.Manager
 {
+    using Spellslinger.Game.Control;
+    using Spellslinger.Game.XR;
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;
     using UnityEngine;
@@ -8,6 +10,7 @@ namespace Spellslinger.Game.Manager
         // The name of the save file
         private static string saveFileName = "save.dat";
         private SaveData gameData;
+        private static bool canSaveAndLoad = false;
 
         public static SaveGameManager Instance { get; private set; }
 
@@ -19,6 +22,9 @@ namespace Spellslinger.Game.Manager
             }
 
             DontDestroyOnLoad(this.gameObject);
+
+            // Check if the application has read and write access to the save file
+            CheckReadWriteAccess();
             this.gameData = SaveGameManager.Load();
         }
 
@@ -27,17 +33,28 @@ namespace Spellslinger.Game.Manager
         /// </summary>
         /// <param name="saveData">The save data to save.</param>
         public static void Save(SaveData saveData) {
-            // Create a binary formatter
-            BinaryFormatter formatter = new BinaryFormatter();
+            if (!SaveGameManager.canSaveAndLoad) {
+                // Use PlayerPrefs to save the data
+                PlayerPrefs.SetInt("currentLevel", saveData.currentLevel);
+                PlayerPrefs.SetInt("preferredHand", (int)saveData.preferredHand);
+                PlayerPrefs.SetInt("availableSpellsCount", saveData.availableSpells.Count);
 
-            // Create a file stream to write the save data
-            FileStream stream = new FileStream(saveFileName, FileMode.Create);
+                for (int i = 0; i < saveData.availableSpells.Count; i++) {
+                    PlayerPrefs.SetInt("availableSpells" + i, (int)saveData.availableSpells[i]);
+                }
+            } else {
+                // Create a binary formatter
+                BinaryFormatter formatter = new BinaryFormatter();
 
-            // Serialize the save data and write it to the file stream
-            formatter.Serialize(stream, saveData);
+                // Create a file stream to write the save data
+                FileStream stream = new FileStream(saveFileName, FileMode.Create);
 
-            // Close the file stream
-            stream.Close();
+                // Serialize the save data and write it to the file stream
+                formatter.Serialize(stream, saveData);
+
+                // Close the file stream
+                stream.Close();
+            }
         }
 
         /// <summary>
@@ -45,25 +62,54 @@ namespace Spellslinger.Game.Manager
         /// </summary>
         /// <returns>Returns SaveData of the savegame.</returns>
         public static SaveData Load() {
-            // Check if the save file exists
-            if (File.Exists(saveFileName)) {
-                // Create a binary formatter
-                BinaryFormatter formatter = new BinaryFormatter();
+            if (!SaveGameManager.canSaveAndLoad) {
+                // Use PlayerPrefs to load the data
+                SaveData saveData = new SaveData();
+                saveData.currentLevel = PlayerPrefs.GetInt("currentLevel", 1);
+                saveData.preferredHand = (XRInputManager.Controller)PlayerPrefs.GetInt("preferredHand", 0);
+                int availableSpellsCount = PlayerPrefs.GetInt("availableSpellsCount", 0);
 
-                // Create a file stream to read the save data
-                FileStream stream = new FileStream(saveFileName, FileMode.Open);
+                for (int i = 0; i < availableSpellsCount; i++) {
+                    saveData.availableSpells.Add((SpellCasting.Spell)PlayerPrefs.GetInt("availableSpells" + i, 0));
+                }
 
-                // Deserialize the save data from the file stream
-                SaveData saveData = formatter.Deserialize(stream) as SaveData;
+                return saveData;
+            } else {
+                // Check if the save file exists
+                if (File.Exists(saveFileName)) {
+                    // Create a binary formatter
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    // Create a file stream to read the save data
+                    FileStream stream = new FileStream(saveFileName, FileMode.Open);
+
+                    // Deserialize the save data from the file stream
+                    SaveData saveData = formatter.Deserialize(stream) as SaveData;
+
+                    // Close the file stream
+                    stream.Close();
+
+                    // Return the save data
+                    return saveData;
+                } else {
+                    // Return a new instance of the save data if the save file does not exist
+                    return new SaveData();
+                }
+            }
+        }
+
+        private static void CheckReadWriteAccess() {
+            // Check if the application has read and write access to the save file, set the canSaveAndLoad flag accordingly
+            SaveGameManager.canSaveAndLoad = true;
+
+            try {
+                // Create a file stream to check if the application has read and write access to the save file
+                FileStream stream = new FileStream(saveFileName, FileMode.OpenOrCreate);
 
                 // Close the file stream
                 stream.Close();
-
-                // Return the save data
-                return saveData;
-            } else {
-                // Return a new instance of the save data if the save file does not exist
-                return new SaveData();
+            } catch (System.Exception) {
+                SaveGameManager.canSaveAndLoad = false;
             }
         }
 
