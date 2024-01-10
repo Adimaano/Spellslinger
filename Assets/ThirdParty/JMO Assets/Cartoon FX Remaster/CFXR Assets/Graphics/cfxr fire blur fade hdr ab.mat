@@ -11,12 +11,11 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 1a29b4d27eb8b04479ef89c00dea533d,
     type: 3}
   m_ValidKeywords:
-  - _ALPHABLEND_ON
   - _ALPHATEST_ON
+  - _CFXR_ADDITIVE
   - _CFXR_EDGE_FADING
   - _CFXR_SINGLE_CHANNEL
   - _CFXR_UV_DISTORTION
-  - _FADING_ON
   m_InvalidKeywords:
   - _
   - _CFXR_DITHERED_SHADOWS_OFF
@@ -66,7 +65,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BacklightTransmittance: 1
-    - _BlendingType: 0
+    - _BlendingType: 3
     - _BumpScale: 1
     - _CFXR_DITHERED_SHADOWS: 0
     - _CFXR_OVERLAYBLEND: 0
@@ -108,7 +107,7 @@ Material:
     - _UseLighting: 0
     - _UseLightingWorldPosOffset: 0
     - _UseNormalMap: 0
-    - _UseSP: 1
+    - _UseSP: 0
     - _UseSecondColor: 0
     - _UseUV2Distortion: 0
     - _UseUVDistortion: 1
