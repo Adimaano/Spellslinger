@@ -14,7 +14,6 @@ Material:
   - _ALPHABLEND_ON
   - _ALPHATEST_ON
   - _CFXR_EDGE_FADING
-  - _CFXR_HDR_BOOST
   - _CFXR_SINGLE_CHANNEL
   - _CFXR_UV_DISTORTION
   - _FADING_ON
@@ -82,7 +81,7 @@ Material:
     - _DstBlend: 10
     - _EdgeFadePow: 1
     - _FadeAlongU: 1
-    - _HdrBoost: 1
+    - _HdrBoost: 0
     - _HdrMultiply: 8
     - _IndirectLightingMix: 0.5
     - _InvertDissolveTex: 0
