@@ -17121,6 +17121,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2871467694433440704}
     m_Modifications:
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 620381117582115409, guid: 3062d73262591f742a1c2ab36dcb1b15,
         type: 3}
       propertyPath: m_RootOrder
@@ -20885,6 +20895,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2871467694433440704}
     m_Modifications:
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 620381117582115409, guid: 3062d73262591f742a1c2ab36dcb1b15,
         type: 3}
       propertyPath: m_RootOrder
@@ -34932,6 +34952,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2871467694433440704}
     m_Modifications:
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 620381117582115409, guid: 3062d73262591f742a1c2ab36dcb1b15,
         type: 3}
       propertyPath: m_RootOrder
@@ -43484,6 +43514,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2871467694433440704}
     m_Modifications:
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 479005299666255929, guid: 3062d73262591f742a1c2ab36dcb1b15,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1527
+      objectReference: {fileID: 0}
     - target: {fileID: 620381117582115409, guid: 3062d73262591f742a1c2ab36dcb1b15,
         type: 3}
       propertyPath: m_RootOrder
