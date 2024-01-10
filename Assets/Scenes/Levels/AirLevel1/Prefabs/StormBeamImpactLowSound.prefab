@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 19884294}
   - component: {fileID: 8222056}
   m_Layer: 0
-  m_Name: StormBeamImpactNoSound
+  m_Name: StormBeamImpactLowSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4710,12 +4710,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100050}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d9e183303a855347ba49f44a00b2519, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.154
   m_Pitch: 1.4
   Loop: 1
   Mute: 0
@@ -4759,7 +4759,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.194
+      value: 0.632
       inSlope: 0
       outSlope: 0
       tangentMode: 0
