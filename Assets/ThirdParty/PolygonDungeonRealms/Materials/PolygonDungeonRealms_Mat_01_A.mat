@@ -11,15 +11,17 @@ Material:
   m_Shader: {fileID: 4800000, guid: e88aeddd2ef1f934d805981244872e27, type: 3}
   m_ValidKeywords:
   - _EMISSION
-  - _HALFTONESHAPE_DOT
+  - _HALFTONESHAPE_STRIPE
   - _NORMALMAP
+  - _SPECULAR_COLOR
   m_InvalidKeywords:
   - _METALLICGLOSSMAP
   - _METALLICSPECGLOSSMAP
-  m_LightmapFlags: 1
+  - _SPECULARHIGHLIGHTS_OFF
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 2050
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses: []
@@ -146,9 +148,9 @@ Material:
     - _HairSpecularSize: 0.8
     - _HairSpecularSmoothness: 0.1
     - _HalfToneDiffuseStep: 0
-    - _HalfToneEnabled: 0
+    - _HalfToneEnabled: 1
     - _HalfToneIncludeReceivedShadow: 0
-    - _HalfToneShape: 0
+    - _HalfToneShape: 1
     - _HalfToneUvMode: 0
     - _HalftoneFadeDistance: 10
     - _HalftoneFadeToColor: 0
@@ -185,9 +187,9 @@ Material:
     - _SpecShadowStrength: 1
     - _SpecSource: 0
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 0.5
-    - _SpecularHighlights: 1
-    - _SpecularSize: 0.25
+    - _SpecularFalloff: 0.693
+    - _SpecularHighlights: 0
+    - _SpecularSize: 0.328
     - _SpherizeNormalEnabled: 0
     - _SrcBlend: 1
     - _StencilComp: 0
