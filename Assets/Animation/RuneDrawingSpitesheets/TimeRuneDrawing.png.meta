@@ -121,9 +121,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 7200
-        width: 1800
-        height: 1800
+        y: 4320
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: TimeRuneDrawing_1
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 7200
-        width: 1800
-        height: 1800
+        x: 1080
+        y: 4320
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: TimeRuneDrawing_2
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 7200
-        width: 1800
-        height: 1800
+        x: 2160
+        y: 4320
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: TimeRuneDrawing_3
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 7200
-        width: 1800
-        height: 1800
+        x: 3240
+        y: 4320
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: TimeRuneDrawing_4
       rect:
         serializedVersion: 2
-        x: 7200
-        y: 7200
-        width: 1800
-        height: 1800
+        x: 4320
+        y: 4320
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,9 +226,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5400
-        width: 1800
-        height: 1800
+        y: 3240
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,10 +246,10 @@ TextureImporter:
       name: TimeRuneDrawing_6
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 5400
-        width: 1800
-        height: 1800
+        x: 1080
+        y: 3240
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,10 +267,10 @@ TextureImporter:
       name: TimeRuneDrawing_7
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 5400
-        width: 1800
-        height: 1800
+        x: 2160
+        y: 3240
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,10 +288,10 @@ TextureImporter:
       name: TimeRuneDrawing_8
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 5400
-        width: 1800
-        height: 1800
+        x: 3240
+        y: 3240
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,10 +309,10 @@ TextureImporter:
       name: TimeRuneDrawing_9
       rect:
         serializedVersion: 2
-        x: 7200
-        y: 5400
-        width: 1800
-        height: 1800
+        x: 4320
+        y: 3240
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,9 +331,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3600
-        width: 1800
-        height: 1800
+        y: 2160
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -351,10 +351,10 @@ TextureImporter:
       name: TimeRuneDrawing_11
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 3600
-        width: 1800
-        height: 1800
+        x: 1080
+        y: 2160
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -372,10 +372,10 @@ TextureImporter:
       name: TimeRuneDrawing_12
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 3600
-        width: 1800
-        height: 1800
+        x: 2160
+        y: 2160
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -393,10 +393,10 @@ TextureImporter:
       name: TimeRuneDrawing_13
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 3600
-        width: 1800
-        height: 1800
+        x: 3240
+        y: 2160
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -414,10 +414,10 @@ TextureImporter:
       name: TimeRuneDrawing_14
       rect:
         serializedVersion: 2
-        x: 7200
-        y: 3600
-        width: 1800
-        height: 1800
+        x: 4320
+        y: 2160
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,9 +436,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1800
-        width: 1800
-        height: 1800
+        y: 1080
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,10 +456,10 @@ TextureImporter:
       name: TimeRuneDrawing_16
       rect:
         serializedVersion: 2
-        x: 1800
-        y: 1800
-        width: 1800
-        height: 1800
+        x: 1080
+        y: 1080
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -477,10 +477,10 @@ TextureImporter:
       name: TimeRuneDrawing_17
       rect:
         serializedVersion: 2
-        x: 3600
-        y: 1800
-        width: 1800
-        height: 1800
+        x: 2160
+        y: 1080
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -498,10 +498,10 @@ TextureImporter:
       name: TimeRuneDrawing_18
       rect:
         serializedVersion: 2
-        x: 5400
-        y: 1800
-        width: 1800
-        height: 1800
+        x: 3240
+        y: 1080
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -519,10 +519,10 @@ TextureImporter:
       name: TimeRuneDrawing_19
       rect:
         serializedVersion: 2
-        x: 7200
-        y: 1800
-        width: 1800
-        height: 1800
+        x: 4320
+        y: 1080
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -542,8 +542,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1800
-        height: 1800
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -561,10 +561,10 @@ TextureImporter:
       name: TimeRuneDrawing_21
       rect:
         serializedVersion: 2
-        x: 1800
+        x: 1080
         y: 0
-        width: 1800
-        height: 1800
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -582,10 +582,10 @@ TextureImporter:
       name: TimeRuneDrawing_22
       rect:
         serializedVersion: 2
-        x: 3600
+        x: 2160
         y: 0
-        width: 1800
-        height: 1800
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -603,10 +603,10 @@ TextureImporter:
       name: TimeRuneDrawing_23
       rect:
         serializedVersion: 2
-        x: 5400
+        x: 3240
         y: 0
-        width: 1800
-        height: 1800
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -624,10 +624,10 @@ TextureImporter:
       name: TimeRuneDrawing_24
       rect:
         serializedVersion: 2
-        x: 7200
+        x: 4320
         y: 0
-        width: 1800
-        height: 1800
+        width: 1080
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
