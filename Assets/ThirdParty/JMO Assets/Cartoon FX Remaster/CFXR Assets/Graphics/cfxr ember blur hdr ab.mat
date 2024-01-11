@@ -12,7 +12,6 @@ Material:
     type: 3}
   m_ValidKeywords:
   - _ALPHABLEND_ON
-  - _CFXR_HDR_BOOST
   - _CFXR_SINGLE_CHANNEL
   - _FADING_ON
   m_InvalidKeywords:
@@ -113,7 +112,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HdrBoost: 1
+    - _HdrBoost: 0
     - _HdrMultiply: 10
     - _IndirectLightingMix: 0.5
     - _InvertDissolveTex: 0

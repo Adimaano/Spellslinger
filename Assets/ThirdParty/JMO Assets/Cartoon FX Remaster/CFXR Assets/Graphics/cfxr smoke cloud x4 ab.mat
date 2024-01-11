@@ -13,10 +13,9 @@ Material:
   m_ValidKeywords:
   - _ALPHABLEND_ON
   - _CFXR_DISSOLVE
-  - _CFXR_DITHERED_SHADOWS_ON
-  - _FADING_ON
   m_InvalidKeywords:
   - _
+  - _CFXR_DITHERED_SHADOWS_OFF
   - _CFXR_OVERLAYBLEND_RGBA
   - _CFXR_OVERLAYTEX_OFF
   m_LightmapFlags: 0
@@ -65,7 +64,7 @@ Material:
     - _BacklightTransmittance: 1
     - _BlendingType: 0
     - _BumpScale: 1
-    - _CFXR_DITHERED_SHADOWS: 1
+    - _CFXR_DITHERED_SHADOWS: 0
     - _CFXR_OVERLAYBLEND: 0
     - _CFXR_OVERLAYTEX: 0
     - _Cutoff: 0.1
@@ -105,7 +104,7 @@ Material:
     - _UseLighting: 0
     - _UseLightingWorldPosOffset: 0
     - _UseNormalMap: 0
-    - _UseSP: 1
+    - _UseSP: 0
     - _UseSecondColor: 0
     - _UseUV2Distortion: 0
     - _UseUVDistortion: 0
