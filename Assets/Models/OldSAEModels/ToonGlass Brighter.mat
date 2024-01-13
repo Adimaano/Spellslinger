@@ -174,7 +174,7 @@ Material:
     - _HatchingEnabled: 0
     - _HatchingRotation: 0
     - _HatchingSmoothness: 0.1
-    - _Metallic: 0.765
+    - _Metallic: 0.334
     - _Mode: 3
     - _NoiseScale: 1
     - _NoiseStrength: 0.1
@@ -190,7 +190,7 @@ Material:
     - _RimLightSmoothness: 0.581
     - _RimPower: 0.909
     - _SizeFalloff: 0
-    - _Smoothness: 0.485
+    - _Smoothness: 0.592
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
@@ -211,7 +211,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.66669625, g: 0.89166874, b: 0.9339623, a: 0.5019608}
+    - _BaseColor: {r: 0.66669625, g: 0.89166874, b: 0.9339623, a: 0.4117647}
     - _Color: {r: 0.97314817, g: 0.97314817, b: 0.97314817, a: 0.25641263}
     - _EmissionColor: {r: 0.013235294, g: 0.050490197, b: 0.03529412, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
