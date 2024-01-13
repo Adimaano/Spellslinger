@@ -13,7 +13,11 @@ namespace Spellslinger.Game.AirLevel01
         [SerializeField] private Transform crystalBallStartTransform;
         [SerializeField] private Transform currentCheckpoint;
         
-        [SerializeField] private Portal portal;
+        [SerializeField] private GameObject portal;
+        [SerializeField] private Material portalMaterial;
+        [SerializeField] private Material portalMaterialDefault;
+        private Color portalMaterialColor;
+        private float portalActivationDuration = 1.0f;
 
         [SerializeField] private PedestalController[] pedestals = new PedestalController[3];
         [SerializeField] private PedestalController finalPedestal;
@@ -48,6 +52,9 @@ namespace Spellslinger.Game.AirLevel01
             
             this.StartCoroutine(this.PlayWizardVoiceDelayed(this.wizIntro, 3.5f));
             currentCheckpoint = crystalBallStartTransform;
+
+            Color baseEmissionColor = this.portalMaterialDefault.GetColor("_EmissionColor");
+            this.portalMaterial.SetColor("_EmissionColor", baseEmissionColor);
         }
         
         /// <summary>
@@ -105,9 +112,11 @@ namespace Spellslinger.Game.AirLevel01
                 return;
             }
 
-            portal.IsActive = true;
+            this.StartCoroutine(this.ActivatePortal());
+
+            // portal.IsActive = true;
             // enable first child of portal
-            portal.transform.GetChild(0).gameObject.SetActive(true);
+            // portal.transform.GetChild(0).gameObject.SetActive(true);
             // play solved sound
             this.PlayWizardVoice(this.wizSolved);
         }
@@ -125,6 +134,34 @@ namespace Spellslinger.Game.AirLevel01
                 // Reset crystal ball angular velocity
                 obj.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             }
+        }
+
+        /// <summary>
+        /// Coroutine that activates the portal. Enables the portal GameObject, fades the emission
+        /// intensity of the portal material to 7 and lights all torches.
+        /// </summary>
+        private IEnumerator ActivatePortal() {
+            yield return new WaitForSeconds(1.5f);
+
+            this.portal.SetActive(true);
+            this.portal.transform.parent.gameObject.GetComponent<Portal>().IsActive = true;
+
+            float elapsedTime = 0.0f;
+            Color baseEmissionColor = this.portalMaterial.GetColor("_EmissionColor");
+
+            while (elapsedTime < this.portalActivationDuration) {
+                elapsedTime += Time.deltaTime;
+                float currentIntensity = Mathf.Lerp(0.0f, 60.0f, elapsedTime / this.portalActivationDuration);
+
+                this.portalMaterialColor = baseEmissionColor * currentIntensity;
+                this.portalMaterial.SetColor("_EmissionColor", this.portalMaterialColor);
+
+                yield return null;
+            }
+
+            // Set the final intensity value
+            Color finalEmissionColor = baseEmissionColor * 60.0f;
+            this.portalMaterial.SetColor("_EmissionColor", finalEmissionColor);
         }
 
         private void FixedUpdate()

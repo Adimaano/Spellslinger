@@ -3433,7 +3433,10 @@ MonoBehaviour:
   crystalBall: {fileID: 315156220}
   crystalBallStartTransform: {fileID: 1734890966}
   currentCheckpoint: {fileID: 1734890966}
-  portal: {fileID: 2045762522}
+  portal: {fileID: 1740572989}
+  portalMaterial: {fileID: 2100000, guid: fa2e792f372ca414dafc2f1cc07cc979, type: 2}
+  portalMaterialDefault: {fileID: 2100000, guid: de4f47963ea602949900efe311dee013,
+    type: 2}
   pedestals:
   - {fileID: 1655189623118648299}
   - {fileID: 1309182621}
@@ -3784,7 +3787,7 @@ PrefabInstance:
     - target: {fileID: 3704221297464363490, guid: a8b3dbe731b540d48a0a8d3746453f64,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8744391543253859205, guid: a8b3dbe731b540d48a0a8d3746453f64,
         type: 3}
@@ -8455,6 +8458,12 @@ Transform:
   m_Father: {fileID: 2110525002}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1740572989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3704221297464363490, guid: a8b3dbe731b540d48a0a8d3746453f64,
+    type: 3}
+  m_PrefabInstance: {fileID: 734381672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1775295993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9712,18 +9721,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30be264d3ca2f6943a1ca72fc766a6bf, type: 3}
---- !u!114 &2045762522 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4012757235301176543, guid: a8b3dbe731b540d48a0a8d3746453f64,
-    type: 3}
-  m_PrefabInstance: {fileID: 734381672}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5772a99117b04a4b852d3edc1429e47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2052743809
 PrefabInstance:
   m_ObjectHideFlags: 0
