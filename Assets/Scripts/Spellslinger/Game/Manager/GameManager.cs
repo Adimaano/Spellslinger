@@ -137,6 +137,13 @@ namespace Spellslinger.Game.Manager
         }
 
         /// <summary>
+        /// Restart the current level.
+        /// </summary>
+        public void ReloadLevel() {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        /// <summary>
         /// Load Level by index. Starts a coroutine that fades in the cylinder and then loads the level with the given index.
         /// </summary>
         /// <param name="levelIndex">The index of the level to load.</param>
