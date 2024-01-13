@@ -31,7 +31,7 @@ namespace Spellslinger.Game.AirLevel01
 
         private void Start()
         {
-            GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Air);
+            // GameObject.Find("-- XR --").GetComponent<Player>().LearnNewSpell(SpellCasting.Spell.Air);
 
             foreach (var ped in pedestals)
             {
@@ -116,7 +116,7 @@ namespace Spellslinger.Game.AirLevel01
         private void CheckBelow(GameObject obj, Transform startTransform)
         {
             // Check if crystal ball is below 30 units from the start position y
-            if (obj.transform.position.y < startTransform.position.y - 30)
+            if (obj.transform.position.y < startTransform.position.y - 3)
             {
                 // Reset crystal ball position
                 obj.transform.position = startTransform.position;

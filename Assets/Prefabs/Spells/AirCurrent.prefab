@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93934195627a450180dd91f868dea130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
+  lifeTime: 3
   speedMultiplier: 15
   currentTransform: {fileID: 9143935275449773055}
   enableOnStart:
