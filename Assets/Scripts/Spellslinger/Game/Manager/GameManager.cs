@@ -140,11 +140,16 @@ namespace Spellslinger.Game.Manager
         /// Restart the current level.
         /// </summary>
         public void ReloadLevel() {
+            this.PauseGame();
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             this.StartCoroutine(this.TeleportToNextLevel(currentSceneIndex));
         }
 
+        /// <summary>
+        /// Load the main menu.
+        /// </summary>
         public void BackToMainMenu() {
+            this.PauseGame();
             this.StartCoroutine(this.TeleportToNextLevel(0));
         }
 
