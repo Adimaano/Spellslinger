@@ -231,11 +231,25 @@ namespace Spellslinger.Game.Control
             
             while(this.isCasting) {
                 float delta = deltaControllerPos(startPosOfWand, refRight);
-                float offset = 0.02f;
+                float offset = 0.075f;
                 if(delta > offset) {
-                    objectAnim.speed = -delta*7;
+                    if(delta*4 > 1.0f)
+                    {
+                        objectAnim.speed = -1.0F;
+                    }
+                    else
+                    {
+                        objectAnim.speed = -delta*4;
+                    }
                 } else if(delta < -(offset/2)) {
-                    objectAnim.speed = -delta*7;
+                    if(delta*4 < -1.0f)
+                    {
+                        objectAnim.speed = 1.0F;
+                    }
+                    else
+                    {
+                        objectAnim.speed = -delta*4;
+                    }
                 } else {
                     objectAnim.speed = 0.0F;
                 }
