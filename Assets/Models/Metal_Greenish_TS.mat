@@ -201,7 +201,7 @@ Material:
     - _ReceiveShadows: 1
     - _RimEnabled: 1
     - _RimLightAlign: -0.241
-    - _RimLightSmoothness: 0.45
+    - _RimLightSmoothness: 0.779
     - _RimLightSmootness: 0
     - _RimPower: 0.275
     - _SPECULARHIGHLIGHTS: 1
