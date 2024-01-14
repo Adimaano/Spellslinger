@@ -194,12 +194,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e5d40cc139b598409684567ae10e03c, type: 3}
---- !u!82 &68679545 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8595401304802272217, guid: 0e5d40cc139b598409684567ae10e03c,
-    type: 3}
-  m_PrefabInstance: {fileID: 68679544}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &70930840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4791193403283090, guid: 9ac4913c244bc114480507b9706a37fd,
@@ -1620,7 +1614,7 @@ RectTransform:
   m_Children:
   - {fileID: 1668019188}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2943,7 +2937,7 @@ Transform:
   - {fileID: 1881872059}
   - {fileID: 481132206}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437141878
 GameObject:
@@ -4088,6 +4082,16 @@ PrefabInstance:
       propertyPath: initiallyLit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2652497781794639928, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793656082364640358, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5426392101834565388, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4108,6 +4112,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6047274502630466722, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384945234318225252, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Range
@@ -4116,12 +4130,12 @@ PrefabInstance:
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.37
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea4db077d17b31c4296df6f4cb191326, type: 3}
@@ -4203,6 +4217,16 @@ PrefabInstance:
       propertyPath: initiallyLit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2652497781794639928, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793656082364640358, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5426392101834565388, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4223,6 +4247,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6047274502630466722, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384945234318225252, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Range
@@ -4231,7 +4265,7 @@ PrefabInstance:
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.37
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
@@ -4241,7 +4275,7 @@ PrefabInstance:
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
@@ -4609,7 +4643,7 @@ Transform:
   - {fileID: 1737259802}
   - {fileID: 1735135325}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &759450043 stripped
 Transform:
@@ -5268,133 +5302,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &858143197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 858143198}
-  - component: {fileID: 858143199}
-  - component: {fileID: 858143201}
-  m_Layer: 0
-  m_Name: StageManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &858143198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858143197}
-  m_LocalRotation: {x: -0, y: 0.16776432, z: -0, w: 0.98582715}
-  m_LocalPosition: {x: -0.030846305, y: 0.58379966, z: 0.72632754}
-  m_LocalScale: {x: 0.70000005, y: 1.2249998, z: 0.70000005}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 19.316, z: 0}
---- !u!65 &858143199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858143197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.1157045, y: 1, z: 1.6019744}
-  m_Center: {x: 0.31251624, y: 0, z: -0.535422}
---- !u!114 &858143201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858143197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0214101523d07564aacaf2f333f13836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initiallyDisabledObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  initiallyEnabledObjects:
-  - {fileID: 0}
-  volumetricLightInitialMaterial: {fileID: 2100000, guid: 6cddf1190d4f25b4ca1f73c211035610,
-    type: 2}
-  fadeInCylinderMaterial: {fileID: 2100000, guid: 2665ec49137d3394ca7a4fc1e57f763a,
-    type: 2}
-  firstTorch: {fileID: 0}
-  spotlightFirstTorch: {fileID: 0}
-  drawRuneExample: {fileID: 0}
-  torches:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  floorTorches:
-  - {fileID: 0}
-  - {fileID: 0}
-  doorAnimator: {fileID: 0}
-  doorAudioSource: {fileID: 0}
-  igniteSound: {fileID: 8300000, guid: 6a05882d4f4630c41b4b40c0e8ce8d84, type: 3}
-  puzzleSolvedSound: {fileID: 8300000, guid: d0a11bf5b919ec9449a18d59631c1c93, type: 3}
-  puzzleFailSound: {fileID: 8300000, guid: e270d65e5782fd9468d94325ade4e0d8, type: 3}
-  sceneFadeDuration: 1.5
-  timeBetweenTorches: 1.5
-  puzzleTorches:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  exitDoorAnimator: {fileID: 0}
-  exitDoorOpenSound: {fileID: 8300000, guid: 41ca327f6c6424e439329a411976640e, type: 3}
-  portal: {fileID: 0}
-  portalMaterial: {fileID: 2100000, guid: fa2e792f372ca414dafc2f1cc07cc979, type: 2}
-  portalMaterialDefault: {fileID: 2100000, guid: de4f47963ea602949900efe311dee013,
-    type: 2}
-  portalRoomTorches:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  wizardVoiceAudioSource: {fileID: 68679545}
-  wizardVoiceIntro: {fileID: 8300000, guid: 1e514ea0e53e992448703e1b17a17296, type: 3}
-  wizardVoiceTeleportHint: {fileID: 0}
-  wizardVoiceExplainCharging: {fileID: 8300000, guid: b74b409bf4d055c42a4bd34705a40240,
-    type: 3}
-  wizardVoiceExplainCasting: {fileID: 8300000, guid: e065640ca2bf570439c3a5c7a93fe3d9,
-    type: 3}
-  wizardVoiceLightsOnSpeech: {fileID: 8300000, guid: 4ab4383149ad16248bf91ad818ab9e24,
-    type: 3}
-  wizardVoiceFirstPuzzleHintOne: {fileID: 8300000, guid: 768b0317fd55bd04d921bf386f913c82,
-    type: 3}
-  wizardVoiceFirstPuzzleHintTwo: {fileID: 8300000, guid: a5551ca32be249645b03604d88483506,
-    type: 3}
-  wizardVoiceFirstPuzzleHintThree: {fileID: 8300000, guid: b29c7f8e13780ed4bbd08292d5610b10,
-    type: 3}
-  wizardVoiceSecondPuzzleHint: {fileID: 8300000, guid: 35f39960151946d45b3630da67fdd79d,
-    type: 3}
-  wizardVoiceSecondPuzzleFailedHintOne: {fileID: 8300000, guid: 0ef4938ec96f0df4b8dd4130c0452bc9,
-    type: 3}
-  wizardVoiceSecondPuzzleFailedHintTwo: {fileID: 8300000, guid: 997cae4c31aef7b4b8888a12918c6ec8,
-    type: 3}
 --- !u!4 &860856569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4791193403283090, guid: 9ac4913c244bc114480507b9706a37fd,
@@ -7011,7 +6918,7 @@ PrefabInstance:
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5
+      value: 5.429
       objectReference: {fileID: 0}
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
@@ -7021,7 +6928,7 @@ PrefabInstance:
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.6800003
+      value: 4.626
       objectReference: {fileID: 0}
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
@@ -7063,6 +6970,16 @@ PrefabInstance:
       propertyPath: initiallyLit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2652497781794639928, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793656082364640358, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5426392101834565388, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7083,6 +7000,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6047274502630466722, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384945234318225252, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Range
@@ -7091,12 +7018,12 @@ PrefabInstance:
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.37
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea4db077d17b31c4296df6f4cb191326, type: 3}
@@ -10379,7 +10306,7 @@ PrefabInstance:
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.96
+      value: -3.788
       objectReference: {fileID: 0}
     - target: {fileID: 1594303398951081035, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
@@ -10426,6 +10353,16 @@ PrefabInstance:
       propertyPath: initiallyLit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2652497781794639928, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793656082364640358, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5426392101834565388, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10446,6 +10383,16 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6047274502630466722, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384945234318225252, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Range
@@ -10454,12 +10401,17 @@ PrefabInstance:
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.37
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
+        type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6920166348083988325, guid: ea4db077d17b31c4296df6f4cb191326,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea4db077d17b31c4296df6f4cb191326, type: 3}
@@ -10723,7 +10675,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.6158216, g: 1, b: 0.61006284, a: 1}
   m_Intensity: 0.3
-  m_Range: 17.471626
+  m_Range: 26.60897
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -10764,7 +10716,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -10780,7 +10732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735135322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14211683, y: 5.505, z: 0.317}
+  m_LocalPosition: {x: 0.14211683, y: 4.75, z: 0.317}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

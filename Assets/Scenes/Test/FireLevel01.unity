@@ -17153,6 +17153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9204413556860059307, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204413556860059307, guid: 33744ad1b703e314a8ef5b7aeb1186d6,
+        type: 3}
       propertyPath: m_Center.x
       value: -2.911472
       objectReference: {fileID: 0}
@@ -17166,7 +17171,9 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -12.500244
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5354651877572085885, guid: 33744ad1b703e314a8ef5b7aeb1186d6, type: 3}
+    - {fileID: 8071142400178616176, guid: 33744ad1b703e314a8ef5b7aeb1186d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 33744ad1b703e314a8ef5b7aeb1186d6, type: 3}
 --- !u!95 &872988371 stripped
 Animator:
