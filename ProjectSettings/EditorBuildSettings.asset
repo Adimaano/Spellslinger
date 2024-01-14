@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/AirLevel1.unity
     guid: b22fedd1cdd9c77499e06a9f209b1b51
   - enabled: 1
-    path: Assets/Scenes/Test/Intro.unity
-    guid: 9fa8f521cbf99154283947ba885128ab
+    path: Assets/Scenes/Test/Ende.unity
+    guid: 94f05dc9f3719204fb27419f34cc19a1
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
