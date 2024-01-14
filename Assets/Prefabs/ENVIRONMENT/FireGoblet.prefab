@@ -97,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9468914, y: 3.435727, z: 3.0003161}
-  m_Center: {x: 0.68039227, y: 0.00000024658144, z: -0.2049506}
+  m_Size: {x: 0.74816847, y: 3.435727, z: 0.6766585}
+  m_Center: {x: 0.00110094, y: 0.00000024658144, z: 0.0054351785}
 --- !u!1001 &7927788804010540916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081153601275395711, guid: 043176b6a68be2b43b073aaaa4782c7d,
+        type: 3}
+      propertyPath: m_UsePipelineSettings
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3199283261846579216, guid: 043176b6a68be2b43b073aaaa4782c7d,
         type: 3}
@@ -270,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539286505454239565, guid: 043176b6a68be2b43b073aaaa4782c7d,
+        type: 3}
+      propertyPath: m_Shadows.m_Bias
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7539286505454239565, guid: 043176b6a68be2b43b073aaaa4782c7d,
         type: 3}
