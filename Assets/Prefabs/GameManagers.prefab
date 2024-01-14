@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7096907051056243011}
   - component: {fileID: 7830918208591058337}
   - component: {fileID: 6988082887712815929}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 2867356228095764067}
   - component: {fileID: 1173260268655839218}
   - component: {fileID: 8529803342293047204}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 7357968377124235829}
   - component: {fileID: 9069876082998726795}
   - component: {fileID: 4856436746702962854}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,8 +300,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 6938425189398573159}
   - component: {fileID: 3948527697891094731}
   - component: {fileID: 6019902886609261977}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,8 +436,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 6084883187837264577}
   - component: {fileID: 4242022489939228506}
   - component: {fileID: 6947058538511487305}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,8 +572,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 8932023199617751308}
   - component: {fileID: 3640833668783737598}
   - component: {fileID: 6220995729950806680}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -710,8 +710,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 7096277115751558034}
   - component: {fileID: 6917013436161254215}
   - component: {fileID: 4245858305015380758}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Pause Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 6292473445873527339}
   - component: {fileID: 8567836257530341972}
   - component: {fileID: 4758679335574133820}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BackToMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 3600684741690746212}
   - component: {fileID: 3867482993385224197}
   - component: {fileID: 6594091631772121911}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 5025116135678534425}
   - component: {fileID: 2315225952706904588}
   - component: {fileID: 7396967755999429149}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 7161889404236687014}
   - component: {fileID: 5092685943129010629}
   - component: {fileID: 5967735926246533278}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Options Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,8 +1399,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4291348680
+  m_fontColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1472,7 +1472,7 @@ GameObject:
   - component: {fileID: 4045337494142079096}
   - component: {fileID: 2838663995896518873}
   - component: {fileID: 8031843464814600469}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RestartLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1949,7 +1949,7 @@ GameObject:
   - component: {fileID: 141675097957857918}
   - component: {fileID: 8018407090163492290}
   - component: {fileID: 6539574532942443855}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2014,8 +2014,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290361785
+  m_fontColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2085,7 +2085,7 @@ GameObject:
   - component: {fileID: 1626016593554360985}
   - component: {fileID: 8612876035667764823}
   - component: {fileID: 637271676240391862}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Options Panel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2168,7 +2168,7 @@ GameObject:
   - component: {fileID: 1431815257240039634}
   - component: {fileID: 4251842862046179751}
   - component: {fileID: 3175681131794820121}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2244,7 +2244,7 @@ GameObject:
   - component: {fileID: 1242940462293308258}
   - component: {fileID: 7840190464106969566}
   - component: {fileID: 5705686733031676318}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Pref Controller Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2309,8 +2309,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290690750
+  m_fontColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
