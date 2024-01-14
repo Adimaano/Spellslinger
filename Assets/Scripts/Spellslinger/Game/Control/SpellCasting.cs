@@ -140,7 +140,6 @@ namespace Spellslinger.Game.Control
             Animator objectAnim = movingObject.GetComponent<Animator>();
             objectAnim.StartPlayback();
             movingObject.GetComponent<AudioSource>().Play(0);
-
             
             this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.position, refRight));
         }
@@ -228,29 +227,23 @@ namespace Spellslinger.Game.Control
         /// <param name="startPosOfWand">Position of wand at initial cast</param>
         private IEnumerator TimeSpellCoroutine(Animator objectAnim, Vector3 startPosOfWand, bool refRight) { //wand needs to either be a pointer or set as classmember which can be called
             this.isCasting = true;
-            
+
             while(this.isCasting) {
-                float delta = deltaControllerPos(startPosOfWand, refRight);
-                float offset = 0.075f;
-                if(delta > offset) {
-                    if(delta*4 > 1.0f)
-                    {
-                        objectAnim.speed = -1.0F;
-                    }
-                    else
-                    {
-                        objectAnim.speed = -delta*4;
-                    }
-                } else if(delta < -(offset/2)) {
-                    if(delta*4 < -1.0f)
-                    {
-                        objectAnim.speed = 1.0F;
-                    }
-                    else
-                    {
-                        objectAnim.speed = -delta*4;
-                    }
-                } else {
+                //For easier controls, we use the thumbstick for controlling the speed of the animation
+                //float delta = deltaControllerPos(startPosOfWand, refRight);
+                float offset = 0.1f;
+                float delta = refRight == true ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal") : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
+
+                if(delta > offset) 
+                {
+                    objectAnim.speed = delta;
+                } 
+                else if(delta < -offset) 
+                {
+                    objectAnim.speed = delta;
+                } 
+                else 
+                {
                     objectAnim.speed = 0.0F;
                 }
                 yield return null;
