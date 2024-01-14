@@ -118,6 +118,9 @@ namespace Spellslinger.Game.Manager
         /// </summary>
         /// <returns>The loaded save data.</returns>
         public SaveData GetSaveData() {
+            if (this.gameData == null) {
+                this.gameData = SaveGameManager.Load();
+            }
             return this.gameData;
         }
 
