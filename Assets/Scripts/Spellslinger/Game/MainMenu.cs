@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour {
         this.spellCasting.OnSpellCast += this.OnSpellCast;
 
         // Check if there is a save file
-        this.hasSavedGame = SaveGameManager.SaveFileExists();
+        this.hasSavedGame = SaveGameManager.Instance.GetSaveData().currentLevel > 1;
         if (!hasSavedGame) {
             this.startGamePanel.transform.Find("Continue").gameObject.GetComponent<Button>().interactable = false;
         }
