@@ -83,6 +83,12 @@ namespace Spellslinger.Game.Manager
                     // Create a file stream to read the save data
                     FileStream stream = new FileStream(saveFileName, FileMode.Open);
 
+                    // check if stream is empty
+                    if (stream.Length == 0) {
+                        stream.Close();
+                        return new SaveData();
+                    }
+
                     // Deserialize the save data from the file stream
                     SaveData saveData = formatter.Deserialize(stream) as SaveData;
 
