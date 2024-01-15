@@ -16507,15 +16507,65 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 1191729995437629231, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4e97eb8a02f59804cb1187552b0d8ef9, type: 3}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884868434064803110, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3824327542554009355, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705839431106985891, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8706678729283691395, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}

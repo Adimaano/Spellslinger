@@ -55111,6 +55111,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 307250978426583582, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 1191729995437629231, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_Volume
@@ -55125,6 +55145,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854516357874322206, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884868434064803110, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884868434064803110, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
@@ -55159,6 +55209,11 @@ PrefabInstance:
     - target: {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705839431106985891, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
