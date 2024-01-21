@@ -16,6 +16,8 @@ TagManager:
   - PhysicsObject
   - SpellManaged
   - LightningCrystal
+  - Balloon
+  - AirCurrent
   layers:
   - Default
   - TransparentFX

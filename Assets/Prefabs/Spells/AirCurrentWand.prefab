@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 1894441455042590796}
   m_Layer: 0
   m_Name: AirCurrentZone
-  m_TagString: Untagged
+  m_TagString: AirCurrent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 1161461083576614772}
   m_Layer: 0
   m_Name: AirCurrentWand
-  m_TagString: Untagged
+  m_TagString: AirCurrent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,9 +308,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800006, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800006, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 19800006, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800008, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800008, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19800008, guid: 7f1b241ecefb2374fbb0e4ead91522e6, type: 3}
       propertyPath: InitialModule.gravityModifier.scalar

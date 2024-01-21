@@ -18,10 +18,14 @@ namespace Spellslinger.Game.Spell
                 }
             }
         }
-
-        private new void OnCollisionEnter(Collision collision) {
+        
+        public void Explode() {
             Instantiate(this.onCollisionParticleSystem, this.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+        }
+        
+        private new void OnCollisionEnter(Collision collision) {
+            this.Explode();
         }
     }
 }
