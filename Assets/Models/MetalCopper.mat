@@ -140,7 +140,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DiffuseStep: 0
+    - _DiffuseStep: -0.067
     - _DitherTexelSize: 1
     - _DitherThreshold: 1
     - _DstBlend: 0
@@ -184,14 +184,14 @@ Material:
     - _RimEnabled: 1
     - _RimLightAlign: 0
     - _RimLightSmoothness: 0.213
-    - _RimPower: 0.337
+    - _RimPower: 0.771
     - _SizeFalloff: 0
     - _Smoothness: 0.644
     - _SmoothnessTextureChannel: 0
     - _SpecClipMaskScale: 1
     - _SpecShadowStrength: 1
     - _SpecularClipStrength: 0
-    - _SpecularFalloff: 1
+    - _SpecularFalloff: 0.785
     - _SpecularHighlights: 1
     - _SpecularSize: 1
     - _SpherizeNormalEnabled: 0
@@ -206,7 +206,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6509434, g: 0.5000122, b: 0.36027053, a: 1}
+    - _BaseColor: {r: 0.6603774, g: 0.5583966, b: 0.49632135, a: 1}
     - _Color: {r: 0.6320754, g: 0.4351619, b: 0.39753166, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceFrontDirection: {r: 0, g: 0, b: 1, a: 0}
@@ -215,8 +215,8 @@ Material:
     - _HalfToneColor: {r: 0, g: 0, b: 0, a: 1}
     - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineDistancFade: {r: -25, g: 50, b: 0, a: 0}
-    - _RimColor: {r: 0.4811321, g: 0.12773198, b: 0.10288354, a: 0.492}
+    - _OutlineDistancFade: {r: -43.75, g: 14.0625, b: 0, a: 0}
+    - _RimColor: {r: 0.4811321, g: 0.12773198, b: 0.10288354, a: 0.564}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpherizeNormalOrigin: {r: 0, g: 0, b: 0, a: 0}

@@ -9,11 +9,13 @@ namespace Spellslinger.Game.AirLevel01
     {
         [SerializeField] private GameObject beam;
         [SerializeField] private bool final;
-        [SerializeField] private UnityEvent isActivated = new();
+        [SerializeField] private Transform checkpoint;
+        [SerializeField] private UnityEvent<PedestalController> isActivated = new();
         private Coroutine _runningCoroutine;
         private bool _active = false;
 
-        public UnityEvent IsActivated => isActivated;
+        public UnityEvent<PedestalController> IsActivated => isActivated;
+        public Transform Checkpoint => checkpoint;
 
         public bool Active => _active;
 
@@ -85,7 +87,7 @@ namespace Spellslinger.Game.AirLevel01
             }
 
             _active = true;
-            isActivated.Invoke();
+            isActivated.Invoke(this);
             // Enable beam
             beam.SetActive(true);
             // Enable physics

@@ -2,13 +2,18 @@ namespace Spellslinger.Game.Environment
 {
     using System.Collections;
     using UnityEngine;
-    using UnityEngine.VFX;
+    // using UnityEngine.VFX;
 
     public class Torch : MonoBehaviour {
         [SerializeField] private AudioClip[] fireInginiteSounds;
         [SerializeField] private bool initiallyLit = false;
 
-        private VisualEffect fire;
+        private ParticleSystem fire;
+        private ParticleSystem ember;
+        private ParticleSystem smoke;
+        private ParticleSystem.EmissionModule fireEmission;
+        private ParticleSystem.EmissionModule emberEmission;
+        private ParticleSystem.EmissionModule smokeEmission;
         private AudioSource audioSource;
         private Light lightSource;
         private float lightIntensity;
@@ -19,17 +24,28 @@ namespace Spellslinger.Game.Environment
         public System.Action OnTorchLit { get; internal set; }
 
         private void Awake() {
-            this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
+            // this.fire = this.transform.Find("Fire").GetComponent<VisualEffect>();
+            // NOTE: switched to common particle system instead of VFX for performance reasons
+            this.fire = this.transform.Find("Fire").GetComponent<ParticleSystem>();
+            this.ember = this.transform.Find("Fire").Find("Ember").GetComponent<ParticleSystem>();
+            this.smoke = this.transform.Find("Fire").Find("Smoke").GetComponent<ParticleSystem>();
+            this.fireEmission = this.fire.emission;
+            this.emberEmission = this.ember.emission;
+            this.smokeEmission = this.smoke.emission;
             this.lightSource = this.transform.Find("Fire").Find("Point Light").GetComponent<Light>();
             this.lightIntensity = this.lightSource.intensity;
             this.audioSource = this.GetComponent<AudioSource>();
 
             if (this.initiallyLit) {
-                this.fire.Play();
+                this.fireEmission.enabled = true;
+                this.emberEmission.enabled = true;
+                this.smokeEmission.enabled = true;
                 this.lightSource.intensity = this.lightIntensity;
                 this.IsLit = true;
             } else {
-                this.fire.Stop();
+                this.fireEmission.enabled = false;
+                this.emberEmission.enabled = false;
+                this.smokeEmission.enabled = false;
                 this.lightSource.intensity = 0f;
                 this.IsLit = false;
             }
@@ -75,8 +91,9 @@ namespace Spellslinger.Game.Environment
         /// Extinguish the torch.
         /// </summary>
         public void ExtinguishTorch() {
-            this.fire.Stop();
-            this.fire.enabled = false;
+            this.fireEmission.enabled = false;
+            this.emberEmission.enabled = false;
+            this.smokeEmission.enabled = false;
 
             this.IsLit = false;
             this.lightSource.intensity = 0f;
@@ -87,8 +104,9 @@ namespace Spellslinger.Game.Environment
         /// </summary>
         public void LightTorch() {
             this.PlayRandomFireIgniteSound();
-            this.fire.enabled = true;
-            this.fire.Play();
+            this.fireEmission.enabled = true;
+            this.emberEmission.enabled = true;
+            this.smokeEmission.enabled = true;
             this.IsLit = true;
             this.OnTorchLit?.Invoke();
 

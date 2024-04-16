@@ -13,6 +13,8 @@ namespace Spellslinger.Game.Control
 
         private GameObject drawPointRight;
         private GameObject drawPointLeft;
+        
+        private GameObject xrRig;
 
         private bool isDrawingRight = false;
         private bool isDrawingLeft = false;
@@ -26,21 +28,25 @@ namespace Spellslinger.Game.Control
         private void Start() {
             this.drawPointRight = GameObject.Find("DrawPointRight");
             this.drawPointLeft = GameObject.Find("DrawPointLeft");
+            this.xrRig = GameObject.Find("XRRig");
         }
 
         // Update is called once per frame
         private void Update() {
             if (this.isDrawingRight) {
+                var point = drawPointRight.transform.position - xrRig.transform.position;
                 // add current position to drawing points if distance to last point is greater than minDistance
-                if (this.drawingPointsRight.Count == 0 || Vector3.Distance(this.drawingPointsRight[this.drawingPointsRight.Count - 1], this.drawPointRight.transform.position) > MIN_DISTANCE) {
-                    this.drawingPointsRight.Add(this.drawPointRight.transform.position);
+                if (this.drawingPointsRight.Count == 0 || Vector3.Distance(this.drawingPointsRight[this.drawingPointsRight.Count - 1], point) > MIN_DISTANCE) {
+                    this.drawingPointsRight.Add(point);
                 }
             }
 
             if (this.isDrawingLeft) {
+                
+                var point = drawPointLeft.transform.position - xrRig.transform.position;
                 // add current position to drawing points if distance to last point is greater than minDistance
-                if (this.drawingPointsLeft.Count == 0 || Vector3.Distance(this.drawingPointsLeft[this.drawingPointsLeft.Count - 1], this.drawPointLeft.transform.position) > MIN_DISTANCE) {
-                    this.drawingPointsLeft.Add(this.drawPointLeft.transform.position);
+                if (this.drawingPointsLeft.Count == 0 || Vector3.Distance(this.drawingPointsLeft[this.drawingPointsLeft.Count - 1], point) > MIN_DISTANCE) {
+                    this.drawingPointsLeft.Add(point);
                 }
             }
         }
@@ -53,10 +59,28 @@ namespace Spellslinger.Game.Control
             if (controller == XRInputManager.Controller.Left && !this.isDrawingLeft) {
                 // attach draw effect to draw point
                 GameObject drawEffect = Instantiate(this.drawEffectPrefab, this.drawPointLeft.transform);
+                // get all particle systems
+                ParticleSystem[] particleSystems = drawEffect.GetComponentsInChildren<ParticleSystem>();
+                // set simulation space of all to current game object
+                foreach (ParticleSystem ps in particleSystems)
+                {
+                    var main = ps.main;
+                    main.simulationSpace = ParticleSystemSimulationSpace.Custom;
+                    main.customSimulationSpace = xrRig.transform;
+                }
                 this.isDrawingLeft = true;
             } else if (controller == XRInputManager.Controller.Right && !this.isDrawingRight) {
                 // attach draw effect to draw point
                 GameObject drawEffect = Instantiate(this.drawEffectPrefab, this.drawPointRight.transform);
+                // get all particle systems
+                ParticleSystem[] particleSystems = drawEffect.GetComponentsInChildren<ParticleSystem>();
+                // set simulation space of all to current game object
+                foreach (ParticleSystem ps in particleSystems)
+                {
+                    var main = ps.main;
+                    main.simulationSpace = ParticleSystemSimulationSpace.Custom;
+                    main.customSimulationSpace = xrRig.transform;
+                }
                 this.isDrawingRight = true;
             }
         }
@@ -103,6 +127,11 @@ namespace Spellslinger.Game.Control
             // interpolate additional points if originalPoints is smaller than MAX_POINTS
             List<Vector3> pointList = originalPoints.Count < MAX_POINTS ? this.InterpoalateMissingPoints(originalPoints) : originalPoints;
 
+            // all points are relative to xrRig, convert back to world space we are currently in
+            for (int i = 0; i < pointList.Count; i++) {
+                pointList[i] += xrRig.transform.position;
+            }
+            
             // create Transform from first point of pointList
             Transform relativeWorldSpace = new GameObject().transform;
             relativeWorldSpace.position = pointList[0];

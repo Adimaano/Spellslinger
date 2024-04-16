@@ -7,7 +7,8 @@ namespace Spellslinger.Game.Control
     using Spellslinger.Game.XR;
     using UnityEngine;
 
-    public class Player : MonoBehaviour {
+    public class Player : MonoBehaviour
+    {
         private XRInputManager input;
         private Draw drawScript;
         private ModelRunner modelRunner;
@@ -22,16 +23,18 @@ namespace Spellslinger.Game.Control
         private GameObject lastSelectedObject;
 
         // Rune Sprites
-        [Header("Rune Sprites")]
-        [SerializeField] private Sprite waterRune;
+        [Header("Rune Sprites")] [SerializeField]
+        private Sprite waterRune;
+
         [SerializeField] private Sprite fireRune;
         [SerializeField] private Sprite earthRune;
         [SerializeField] private Sprite airRune;
         [SerializeField] private Sprite lightningRune;
         [SerializeField] private Sprite timeRune;
 
-        [Header("XR Objects for recentring")]
-        [SerializeField] private Transform head;
+        [Header("XR Objects for recentring")] [SerializeField]
+        private Transform head;
+
         [SerializeField] private Transform origin;
         private GameObject playerXR;
         private Vector3 spawnPositionOrigin;
@@ -39,16 +42,22 @@ namespace Spellslinger.Game.Control
         private Vector3 spawnPositionHead;
         private Quaternion spawnRotationHead;
 
+        // Manual overrides for spells
+        // If casting the air spell on the ground is allowed
+        public bool DisallowAirCastOnGround { get; set; }
+
         public XRInputManager.Controller PreferredController { get; set; }
 
-        private void Start() {
+        private void Start()
+        {
             // find dependencies in scene
             this.playerXR = GameObject.Find("-- XR --");
             this.input = this.playerXR.GetComponent<XRInputManager>();
             this.drawScript = this.playerXR.GetComponent<Draw>();
             this.modelRunner = this.playerXR.GetComponent<ModelRunner>();
             this.spellCasting = this.playerXR.GetComponent<SpellCasting>();
-            this.runeSpriteRenderer = GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
+            this.runeSpriteRenderer =
+                GameObject.Find("HUD-Canvas").transform.Find("Rune").GetComponent<SpriteRenderer>();
 
             this.spawnPositionOrigin = this.origin.transform.position;
             this.spawnRotationOrigin = this.origin.transform.rotation;
@@ -68,38 +77,49 @@ namespace Spellslinger.Game.Control
             this.availableSpells = saveData.availableSpells;
         }
 
-        private void Update() {
+
+        private void Update()
+        {
             switch (this.currentSpell)
             {
                 case SpellCasting.Spell.Earth:
                     RaycastHit hit = this.input.GetWandSelection();
                     GameObject selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
-                    if (selectedObject != null && selectedObject.CompareTag("Floor")) {
+                    if (selectedObject != null && selectedObject.CompareTag("Floor"))
+                    {
                         this.spellCasting.SetSpellCastingTarget(hit.point);
                         this.spellCasting.SetSpecialCasting(null);
                         this.ResetLastSelectedObject();
-                    } else if (selectedObject != null && selectedObject.CompareTag("StonePlatform")) {
+                    }
+                    else if (selectedObject != null && selectedObject.CompareTag("StonePlatform"))
+                    {
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(selectedObject);
                         this.SetLastSelectedObject(selectedObject);
-                    } else {
+                    }
+                    else
+                    {
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(null);
                         this.ResetLastSelectedObject();
                     }
+
                     break;
                 case SpellCasting.Spell.Time:
                     // Select object for Time Spell
                     hit = this.input.GetWandSelection();
                     selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
-                    if (selectedObject != null && selectedObject.CompareTag("TimeTarget")) {
+                    if (selectedObject != null && selectedObject.CompareTag("TimeTarget"))
+                    {
                         // Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(selectedObject);
                         this.SetLastSelectedObject(selectedObject);
-                    } else {
+                    }
+                    else
+                    {
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(null);
                         this.ResetLastSelectedObject();
@@ -110,15 +130,19 @@ namespace Spellslinger.Game.Control
                     hit = this.input.GetWandSelection();
                     selectedObject = hit.collider != null ? hit.collider.gameObject : null;
 
-                    if (selectedObject != null && selectedObject.CompareTag("Floor")) {
+                    if (selectedObject != null && !DisallowAirCastOnGround && selectedObject.CompareTag("Floor"))
+                    {
                         this.spellCasting.SetSpellCastingTarget(hit.point);
                         this.spellCasting.SetSpecialCasting(null);
                         this.ResetLastSelectedObject();
-                    } else {
+                    }
+                    else
+                    {
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(null);
                         this.ResetLastSelectedObject();
                     }
+
                     break;
                 default:
                     this.ResetLastSelectedObject();
@@ -131,12 +155,15 @@ namespace Spellslinger.Game.Control
         /// <summary>
         /// Resets the last selected object when the Rayinteractor is no longer hovering over it.
         /// </summary>
-        private void ResetLastSelectedObject() {
-            if (this.lastSelectedObject != null) {
+        private void ResetLastSelectedObject()
+        {
+            if (this.lastSelectedObject != null)
+            {
                 Outline outline = this.lastSelectedObject.GetComponent<Outline>();
                 this.lastSelectedObject = null;
 
-                if (outline != null) {
+                if (outline != null)
+                {
                     outline.enabled = false;
                 }
             }
@@ -146,12 +173,14 @@ namespace Spellslinger.Game.Control
         /// Sets the last selected/hovered object and enables the outline if available.
         /// </summary>
         /// <param name="gameObject">GameObject that was selected.</param>
-        private void SetLastSelectedObject(GameObject gameObject) {
+        private void SetLastSelectedObject(GameObject gameObject)
+        {
             this.ResetLastSelectedObject();
             this.lastSelectedObject = gameObject;
             Outline outline = this.lastSelectedObject.GetComponent<Outline>();
 
-            if (outline != null) {
+            if (outline != null)
+            {
                 outline.enabled = true;
             }
         }
@@ -160,11 +189,13 @@ namespace Spellslinger.Game.Control
         /// Called when the AI Model has finished predicting a rune.
         /// </summary>
         /// <param name="runeClass">Class of the predicted rune.</param>
-        private void PredictionReceived(int runeClass) {
+        private void PredictionReceived(int runeClass)
+        {
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
 
             // Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
-            switch (runeClass) {
+            switch (runeClass)
+            {
                 case 0:
                     // Time Spell
                     this.currentSpell = SpellCasting.Spell.Time;
@@ -189,7 +220,7 @@ namespace Spellslinger.Game.Control
                     // Lightning Spell
                     this.currentSpell = SpellCasting.Spell.Lightning;
                     break;
-                
+
                 default:
                     // Unknown Rune
                     this.currentSpell = SpellCasting.Spell.None;
@@ -199,7 +230,7 @@ namespace Spellslinger.Game.Control
             // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now
             // if (!this.availableSpells.Contains(this.currentSpell)) {
             //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
-                
+
             //     this.currentSpell = SpellCasting.Spell.None;
             //     return;
             // }
@@ -216,8 +247,10 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="drawingPoints">List of points that were drawn.</param>
         /// <param name="controller">Controller that was used to draw.</param>
-        private void ChargeSpell(Vector3[] drawingPoints, XRInputManager.Controller controller) {
-            if (drawingPoints.Length != 20) {
+        private void ChargeSpell(Vector3[] drawingPoints, XRInputManager.Controller controller)
+        {
+            if (drawingPoints.Length != 20)
+            {
                 return;
             }
 
@@ -227,8 +260,10 @@ namespace Spellslinger.Game.Control
         /// <summary>
         /// IEnumerator to show the rune for a short time with fade out and scale up animation.
         /// </summary>
-        private IEnumerator ShowRune() {
-            switch (this.currentSpell) {
+        private IEnumerator ShowRune()
+        {
+            switch (this.currentSpell)
+            {
                 case SpellCasting.Spell.Water:
                     this.runeSpriteRenderer.sprite = this.waterRune;
                     break;
@@ -253,7 +288,8 @@ namespace Spellslinger.Game.Control
             }
 
             // fade out and scale down animation
-            for (float i = 1, j = 1; i >= 0; i -= 0.03f, j -= 0.01f) {
+            for (float i = 1, j = 1; i >= 0; i -= 0.03f, j -= 0.01f)
+            {
                 this.runeSpriteRenderer.color = new Color(1, 1, 1, i);
                 this.runeSpriteRenderer.transform.localScale = new Vector3(j, j, j);
                 yield return new WaitForSeconds(0.005f);
@@ -267,20 +303,26 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="triggerPressed">Whether the trigger is pressed (or released).</param>
         /// <param name="controller">Controller that was used to cast.</param>
-        private void CastSpell(bool triggerPressed, XRInputManager.Controller controller) {
-            if (controller != this.PreferredController) {
+        private void CastSpell(bool triggerPressed, XRInputManager.Controller controller)
+        {
+            if (controller != this.PreferredController)
+            {
                 return;
             }
 
-            if (triggerPressed) {
-                if (this.currentSpell != SpellCasting.Spell.None) {
+            if (triggerPressed)
+            {
+                if (this.currentSpell != SpellCasting.Spell.None)
+                {
                     // cast spell
                     this.spellCasting.CastSpell(this.currentSpell, controller);
                     this.currentSpell = SpellCasting.Spell.None;
                     this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
                     this.spellCasting.ChargeSpell(this.currentSpell, controller);
                 }
-            } else {
+            }
+            else
+            {
                 this.spellCasting.InterruptCasting();
             }
         }
@@ -291,14 +333,19 @@ namespace Spellslinger.Game.Control
         /// <param name="axis">Axis of the controller.</param>
         /// <param name="clicked">Whether the trigger is pressed (or released).</param>
         /// <param name="controller">Controller that was used to draw.</param>
-        private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller) {
-            if (controller != this.PreferredController) {
+        private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller)
+        {
+            if (controller != this.PreferredController)
+            {
                 return;
             }
 
-            if (clicked) {
+            if (clicked)
+            {
                 this.drawScript.StartDrawing(controller);
-            } else {
+            }
+            else
+            {
                 this.drawScript.StopDrawing(controller);
             }
         }
@@ -307,7 +354,8 @@ namespace Spellslinger.Game.Control
         /// Called when the preferred controller is changed. Updates the wand ray interactor.
         /// </summary>
         /// <param name="controller">The new preferred controller.</param>
-        private void PreferredControllerChanged(XRInputManager.Controller controller) {
+        private void PreferredControllerChanged(XRInputManager.Controller controller)
+        {
             this.PreferredController = controller;
         }
 
@@ -315,7 +363,8 @@ namespace Spellslinger.Game.Control
         /// Set what Spells are available to the player.
         /// </summary>
         /// <param name="spells">List of available spells.</param>
-        public void SetAvailableSpells(List<SpellCasting.Spell> spells) {
+        public void SetAvailableSpells(List<SpellCasting.Spell> spells)
+        {
             // ToDo: "Freischalten pro level" implementieren
             this.availableSpells = spells;
         }
@@ -324,9 +373,11 @@ namespace Spellslinger.Game.Control
         /// Learn a new spell. Adds Spell to availableSpells and saves it to the SaveData.
         /// </summary>
         /// <param name="spell">Spell to learn/add.</param>
-        public void LearnNewSpell(SpellCasting.Spell spell) {
+        public void LearnNewSpell(SpellCasting.Spell spell)
+        {
             // check if spell is already known
-            if (this.availableSpells.Contains(spell)) {
+            if (this.availableSpells.Contains(spell))
+            {
                 return;
             }
 
@@ -339,7 +390,8 @@ namespace Spellslinger.Game.Control
         /// <summary>
         /// Resets the player to the spawn position and rotation.
         /// </summary>
-        public void ResetPlayerToSpawnPosition() {
+        public void ResetPlayerToSpawnPosition()
+        {
             this.origin.position = this.spawnPositionOrigin;
             this.origin.rotation = this.spawnRotationOrigin;
             this.head.position = this.spawnPositionHead;
