@@ -1,4 +1,4 @@
-# ~~SpellSlinger_Prototyping~~ That 1 Wizard Game
+# Spellslinger VR
 Includes some basic setups and experiments for the upcoming VR Project "That 1 Wizard Game"
 ## Saving Runes
 Open the *Scenes/DataCollection/Draw_Prototype_01* scene and hit the play button. 
