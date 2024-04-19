@@ -5260,7 +5260,7 @@ PrefabInstance:
         type: 3}
       propertyPath: modelAsset
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 7cdb21647f7b2564bb37483cee20f014,
+      objectReference: {fileID: 5022602860645237092, guid: 435d8702e3514f647a77bacf94b2d634,
         type: 3}
     m_RemovedComponents:
     - {fileID: 72995140200250154, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
