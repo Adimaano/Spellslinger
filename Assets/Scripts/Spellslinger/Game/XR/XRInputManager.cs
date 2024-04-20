@@ -270,8 +270,8 @@ namespace Spellslinger.Game.XR
                 this.rightControllerLineVisual.invalidColorGradient = this.redGradient;
 
                 // Enable Turning for Left Controller and Disable for right Controller
-                this.snapTurnProvider.leftHandSnapTurnAction = this.emptyAction;
-                this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
+                this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
+                this.snapTurnProvider.rightHandSnapTurnAction = this.emptyAction;
 
                 // Switch Prefabs (Hand with Wand and Hand without Wand)
                 if (this.leftGrabRayInteractor.transform.Find("[LeftGrabController] Model Parent").Find("XRControllerLeft(Clone)").gameObject.activeSelf) {
@@ -307,8 +307,8 @@ namespace Spellslinger.Game.XR
                 this.leftControllerLineVisual.invalidColorGradient = this.redGradient;
 
                 // Enable Turning for Right Controller and Disable for left Controller
-                this.snapTurnProvider.rightHandSnapTurnAction = this.emptyAction;
-                this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
+                this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
+                this.snapTurnProvider.leftHandSnapTurnAction = this.emptyAction;
 
                 // Switch Prefabs (Hand with Wand and Hand without Wand)
                 if (this.rightGrabRayInteractor.transform.Find("[RightGrabController] Model Parent").Find("XRControllerRight(Clone)").gameObject.activeSelf) {

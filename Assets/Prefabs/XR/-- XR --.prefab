@@ -2238,16 +2238,6 @@ MonoBehaviour:
     AuraPrefab: {fileID: 157646, guid: 1bb3fcdf73f5d214183c7d45e78537ee, type: 3}
     BlastPrefab: {fileID: 129134, guid: b6229b3f5ff991243bb0f4da1765509c, type: 3}
   - Spell: 3
-    ChargePrefab: {fileID: 111760, guid: a583915a301f96547af39944bc1ec634, type: 3}
-    MisslePrefab: {fileID: 100008, guid: 5f7cc43d7a58bdf42bdde7cf919b119c, type: 3}
-    AuraPrefab: {fileID: 146746, guid: 5c94feac19313d241a1800c0dae76547, type: 3}
-    BlastPrefab: {fileID: 119514, guid: 8ded489c2efdfd24fb1c95176fc82293, type: 3}
-  - Spell: 4
-    ChargePrefab: {fileID: 125964, guid: 879465c710faf26498c43fec1e4bbbcc, type: 3}
-    MisslePrefab: {fileID: 100004, guid: d4a05ee7962397f458bb28591139673a, type: 3}
-    AuraPrefab: {fileID: 169260, guid: 61536498596a1c145b1d1a71a2d92835, type: 3}
-    BlastPrefab: {fileID: 124858, guid: 8e170d19154121e44bbc55d45e5665d3, type: 3}
-  - Spell: 5
     ChargePrefab: {fileID: 102914, guid: e16bf308d26d55f468d08956c7418aa6, type: 3}
     MisslePrefab: {fileID: 100004, guid: ceecf160bc7d953429cabc63ce65c784, type: 3}
     AuraPrefab: {fileID: 190812, guid: 0fabe48bc6d954c46a98afcc94f00d1c, type: 3}
@@ -2278,7 +2268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2436275ef36f4bc29e0de89d075c1760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAsset: {fileID: 5022602860645237092, guid: 435d8702e3514f647a77bacf94b2d634,
+  modelAsset: {fileID: 5022602860645237092, guid: 7cdb21647f7b2564bb37483cee20f014,
     type: 3}
 --- !u!1 &2620979018476517471
 GameObject:
