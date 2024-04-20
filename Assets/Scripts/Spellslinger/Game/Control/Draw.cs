@@ -180,7 +180,8 @@ namespace Spellslinger.Game.Control
             // translate the generated pointlist into camera space
             Vector3[] cameraPoints = new Vector3[normalizedPoints.Count];
             for (int i = 0; i < normalizedPoints.Count; i++) {
-                cameraPoints[i] = Camera.main.WorldToScreenPoint(relativeWorldSpace.TransformPoint(normalizedPoints[i]));
+                // You can turn with this / You lose Air because its 2d projected --> cameraPoints[i] = Camera.main.WorldToScreenPoint(relativeWorldSpace.TransformPoint(normalizedPoints[i]));
+                cameraPoints[i] = normalizedPoints[i]; // You can use Air but you cant turn
             }
 
             // destroy the relativeWorldSpace object
@@ -220,17 +221,17 @@ namespace Spellslinger.Game.Control
             }
 
             float biggestComponent = -1000;
-            foreach (Vector3 pos in standarizedPositions) {
-                if (Mathf.Abs(pos.x) > biggestComponent) {
-                    biggestComponent = Mathf.Abs(pos.x);
+             foreach (Vector3 pos in standarizedPositions) {
+                if (pos.x > biggestComponent) {
+                    biggestComponent = pos.x;
                 }
 
-                if (Mathf.Abs(pos.y) > biggestComponent) {
-                    biggestComponent = Mathf.Abs(pos.y);
+                if (pos.y > biggestComponent) {
+                    biggestComponent = pos.y;
                 }
 
-                if (Mathf.Abs(pos.z) > biggestComponent) {
-                    biggestComponent = Mathf.Abs(pos.z);
+                if (pos.z > biggestComponent) {
+                    biggestComponent = pos.z;
                 }
             }
 

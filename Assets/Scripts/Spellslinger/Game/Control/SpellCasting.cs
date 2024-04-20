@@ -33,15 +33,25 @@ namespace Spellslinger.Game.Control
         private Dictionary<Spell, GameObject> spellBlastDictionary = new Dictionary<Spell, GameObject>();
 
         // enum with all possible Spells
-        public enum Spell
-        {
+        // public enum Spell
+        // {
+        //     Time = 0,
+        //     Air = 1,
+        //     Fire = 2,
+        //     Earth = 3,
+        //     Water = 4, 
+        //     Lightning = 5,
+        //     None = 6,
+        // }
+        // enum with all possible Spells
+        public enum Spell {
             Time = 0,
             Air = 1,
             Fire = 2,
-            Earth = 3,
-            Water = 4,
-            Lightning = 5,
-            None = 6,
+            Lightning = 3,
+            None = 4,
+            Earth = 5,
+            Water = 6,
         }
 
         [Serializable]

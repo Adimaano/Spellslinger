@@ -5206,6 +5206,91 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[3].Spell
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[4].Spell
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].Spell
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[6].Spell
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[3].AuraPrefab
+      value: 
+      objectReference: {fileID: 190812, guid: 0fabe48bc6d954c46a98afcc94f00d1c, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].AuraPrefab
+      value: 
+      objectReference: {fileID: 190812, guid: 0fabe48bc6d954c46a98afcc94f00d1c, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[6].AuraPrefab
+      value: 
+      objectReference: {fileID: 169260, guid: 61536498596a1c145b1d1a71a2d92835, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[3].BlastPrefab
+      value: 
+      objectReference: {fileID: 193686, guid: 0eeb260324a7d5d4fa9bd8058be463ec, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].BlastPrefab
+      value: 
+      objectReference: {fileID: 193686, guid: 0eeb260324a7d5d4fa9bd8058be463ec, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[6].BlastPrefab
+      value: 
+      objectReference: {fileID: 124858, guid: 8e170d19154121e44bbc55d45e5665d3, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[3].ChargePrefab
+      value: 
+      objectReference: {fileID: 102914, guid: e16bf308d26d55f468d08956c7418aa6, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[3].MisslePrefab
+      value: 
+      objectReference: {fileID: 100004, guid: ceecf160bc7d953429cabc63ce65c784, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].ChargePrefab
+      value: 
+      objectReference: {fileID: 102914, guid: e16bf308d26d55f468d08956c7418aa6, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].MisslePrefab
+      value: 
+      objectReference: {fileID: 100004, guid: ceecf160bc7d953429cabc63ce65c784, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[6].ChargePrefab
+      value: 
+      objectReference: {fileID: 125964, guid: 879465c710faf26498c43fec1e4bbbcc, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[6].MisslePrefab
+      value: 
+      objectReference: {fileID: 100004, guid: d4a05ee7962397f458bb28591139673a, type: 3}
     - target: {fileID: 72995140200250155, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_Enabled
