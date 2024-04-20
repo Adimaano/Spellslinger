@@ -896,6 +896,12 @@ Transform:
   m_Father: {fileID: 881694997}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.701}
+--- !u!1 &251539452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 72995139049869560, guid: 54c7a2d331ff662438a3149a37758b50,
+    type: 3}
+  m_PrefabInstance: {fileID: 72995139536873579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &271591910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,6 +3266,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172357845}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1275414937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 72995140069528074, guid: 54c7a2d331ff662438a3149a37758b50,
+    type: 3}
+  m_PrefabInstance: {fileID: 72995139536873579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1318274948 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5635313668477252165, guid: 54c7a2d331ff662438a3149a37758b50,
@@ -5311,6 +5323,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635313668477252165, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
@@ -5427,7 +5444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 72995139536873582}
-  m_MoveSpeed: 2
+  m_MoveSpeed: 3
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1
@@ -5458,6 +5475,28 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
+--- !u!114 &72995139536873593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72995139536873580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8add81578af3941ba3988ec94d24b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  continuousMoveProvider: {fileID: 72995139536873592}
+  LeftHand: {fileID: 251539452}
+  RightHand: {fileID: 1275414937}
+  PositionPreviousFrameLeftHand: {x: 0, y: 0, z: 0}
+  PositionPreviousFrameRightHand: {x: 0, y: 0, z: 0}
+  PositionCurrentFrameLeftHand: {x: 0, y: 0, z: 0}
+  PositionCurrentFrameRightHand: {x: 0, y: 0, z: 0}
+  PlayerPositionPreviousFrame: {x: 0, y: 0, z: 0}
+  PlayerPositionCurrentFrame: {x: 0, y: 0, z: 0}
+  HandSpeed: 0
 --- !u!1001 &1594303400784528385
 PrefabInstance:
   m_ObjectHideFlags: 0
