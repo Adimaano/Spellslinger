@@ -50,7 +50,6 @@ public class ContinuousMoveArmsAccelerator : MonoBehaviour
 
         // aggregate to get hand speed
         HandSpeed = ((leftHandDistanceMoved - playerDistanceMoved) + (rightHandDistanceMoved - playerDistanceMoved));
-        Debug.Log("handspeed:" + HandSpeed);
         deceleration_debouncecounter++;
         if( HandSpeed > 0.05 )
         {
@@ -79,7 +78,6 @@ public class ContinuousMoveArmsAccelerator : MonoBehaviour
                 deceleration_debouncecounter=90;
             }
         }
-        Debug.Log("movespeed:" + continuousMoveProvider.moveSpeed);
 
         // set previous position of hands for next frame
         PositionPreviousFrameLeftHand = PositionCurrentFrameLeftHand;

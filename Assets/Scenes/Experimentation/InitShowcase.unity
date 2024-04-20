@@ -5218,6 +5218,11 @@ PrefabInstance:
       propertyPath: m_LeftHandSnapTurnAction.m_UseReference
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 72995139049869565, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: spellSettings.Array.size

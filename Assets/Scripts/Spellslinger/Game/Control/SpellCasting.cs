@@ -286,7 +286,9 @@ namespace Spellslinger.Game.Control
             {
                 //For easier controls, we use the thumbstick for controlling the speed of the animation
                 float delta = deltaControllerPos(startPosOfWand, refRight);
-                float offset = 0.1f;
+                Debug.Log(delta);
+                float offset = 0.2f;
+
                 // float delta = refRight == true
                 //     ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
                 //     : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
@@ -452,25 +454,19 @@ namespace Spellslinger.Game.Control
         /// <summary>
         /// Calculates delta movement of controller in x direction.
         /// </summary>
-        /// <param name="startPosOfWand">The target position for the spell. This is where the spell will be instantiated.</param>
+        /// <param name="startPosOfWand">The start position of the focus.</param>
         public float deltaControllerPos(Vector3 startPosOfWand, bool refRight)
         {
             float delta = 0.0f;
 
             if (refRight)
             {
-                delta = Camera.main.WorldToViewportPoint(startPosOfWand).x - Camera.main
-                    .WorldToViewportPoint(this.spellCastingRight.transform.parent.transform.position).x;
+                delta = Camera.main.WorldToViewportPoint(startPosOfWand - this.spellCastingRight.transform.parent.transform.position).x;
             }
             else
             {
-                delta = Camera.main.WorldToViewportPoint(startPosOfWand).x - Camera.main
-                    .WorldToViewportPoint(this.spellCastingLeft.transform.parent.transform.position).x;
+                delta = Camera.main.WorldToViewportPoint(startPosOfWand - this.spellCastingLeft.transform.parent.transform.position).x;
             }
-
-            Debug.Log(Camera.main.WorldToViewportPoint(startPosOfWand));
-            Debug.Log(Camera.main.WorldToViewportPoint(this.spellCastingRight.transform.parent.transform.position));
-            Debug.Log(delta);
             return delta;
         }
     }
