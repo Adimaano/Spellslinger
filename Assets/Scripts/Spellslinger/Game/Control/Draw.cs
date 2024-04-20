@@ -185,7 +185,7 @@ namespace Spellslinger.Game.Control
                 // Subtract the player's position from the point
                 // Rotate the point by the inverse of the player's rotation
                 outPoints[i] = Quaternion.Inverse(Camera.main.transform.rotation) * (relativeWorldSpace.TransformPoint(normalizedPoints[i]) + -Camera.main.transform.position);
-                //Debug.Log("INFO: " + "RotatedQuart:"+ outPoints[i] +" ScreenPoint: " + Camera.main.WorldToScreenPoint(relativeWorldSpace.TransformPoint(normalizedPoints[i])) + " Normalized Point points in local space: " + normalizedPoints[i] + " Relative World Space (DOES NOT TURN): " + relativeWorldSpace.TransformPoint(normalizedPoints[i]));
+                Debug.Log("INFO: " + "RotatedQuart:"+ outPoints[i] +" ScreenPoint: " + Camera.main.WorldToScreenPoint(relativeWorldSpace.TransformPoint(normalizedPoints[i])) + " Normalized Point points in local space: " + normalizedPoints[i] + " Relative World Space (DOES NOT TURN): " + relativeWorldSpace.TransformPoint(normalizedPoints[i]));
             }
             // destroy the relativeWorldSpace object
             Destroy(relativeWorldSpace.gameObject);

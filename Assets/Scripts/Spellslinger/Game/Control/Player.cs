@@ -66,8 +66,9 @@ namespace Spellslinger.Game.Control
 
             // initialize eventlisteners
             this.drawScript.OnDrawFinished += this.ChargeSpell;
-            this.input.OnControllerTrigger += this.CastSpell;
-            this.input.OnControllerTouchpad += this.DrawRune;
+            this.input.OnControllerTrigger += this.DrawRune;
+            //this.input.OnControllerTrigger += this.CastSpell;
+            //this.input.OnControllerTouchpad += this.DrawRune;
             this.input.OnPreferredControllerChanged += this.PreferredControllerChanged;
             this.modelRunner.OnPredictionReceived += this.PredictionReceived;
 
@@ -241,7 +242,7 @@ namespace Spellslinger.Game.Control
                     // Fire Spell
                     this.currentSpell = SpellCasting.Spell.Fire;
                     break;
-                case 3:
+                case 5:
                     // Earth Spell
                     this.currentSpell = SpellCasting.Spell.Earth;
                     break;
@@ -249,7 +250,7 @@ namespace Spellslinger.Game.Control
                     // Water Spell
                     this.currentSpell = SpellCasting.Spell.Water;
                     break;
-                case 5:
+                case 3:
                     // Lightning Spell
                     this.currentSpell = SpellCasting.Spell.Lightning;
                     break;
@@ -362,6 +363,8 @@ namespace Spellslinger.Game.Control
             else
             {
                 this.spellCasting.InterruptCasting();
+                this.input.OnControllerTrigger -= this.CastSpell;
+                this.input.OnControllerTrigger += this.DrawRune;
             }
         }
 
@@ -371,7 +374,8 @@ namespace Spellslinger.Game.Control
         /// <param name="axis">Axis of the controller.</param>
         /// <param name="clicked">Whether the trigger is pressed (or released).</param>
         /// <param name="controller">Controller that was used to draw.</param>
-        private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller)
+        //private void DrawRune(Vector2 axis, bool clicked, XRInputManager.Controller controller)
+        private void DrawRune(bool clicked, XRInputManager.Controller controller)
         {
             if (controller != this.PreferredController)
             {
@@ -385,6 +389,9 @@ namespace Spellslinger.Game.Control
             else
             {
                 this.drawScript.StopDrawing(controller);
+                
+                this.input.OnControllerTrigger -= this.DrawRune;
+                this.input.OnControllerTrigger += this.CastSpell;
             }
         }
 

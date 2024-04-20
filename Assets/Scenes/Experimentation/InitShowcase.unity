@@ -5208,6 +5208,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
+      propertyPath: spellSettings.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[4].Spell
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[5].Spell
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
       propertyPath: spellSettings.Array.data[6].Spell
       value: 6
       objectReference: {fileID: 0}
@@ -5412,7 +5427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 72995139536873582}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 2
   m_EnableStrafe: 1
   m_EnableFly: 0
   m_UseGravity: 1

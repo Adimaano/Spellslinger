@@ -285,11 +285,11 @@ namespace Spellslinger.Game.Control
             while (this.isCasting)
             {
                 //For easier controls, we use the thumbstick for controlling the speed of the animation
-                //float delta = deltaControllerPos(startPosOfWand, refRight);
+                float delta = deltaControllerPos(startPosOfWand, refRight);
                 float offset = 0.1f;
-                float delta = refRight == true
-                    ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
-                    : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
+                // float delta = refRight == true
+                //     ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
+                //     : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
 
                 if (delta > offset)
                 {
