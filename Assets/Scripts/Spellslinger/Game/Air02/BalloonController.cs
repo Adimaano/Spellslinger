@@ -25,7 +25,7 @@ namespace Spellslinger.Game.AirLevel02
         [SerializeField] [ReadOnly] private Vector3 acceleration;
 
         private Rigidbody rb;
-        private ConstantForce constantForce;
+        private new ConstantForce constantForce;
         private SpellCasting spellCasting;
         private FurnaceController furnaceController;
         private KiteController kiteController;

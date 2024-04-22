@@ -7,7 +7,7 @@ public class Torches : MonoBehaviour
 {
     private VisualEffect fire;
     private bool firehit=false;
-    private Light light;
+    private new Light light;
 
     [SerializeField]
     public bool isTarget;
