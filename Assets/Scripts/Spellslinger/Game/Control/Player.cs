@@ -194,42 +194,9 @@ namespace Spellslinger.Game.Control
         {
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
 
-            // Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
-            // switch (runeClass)
-            // {
-            //     case 0:
-            //         // Time Spell
-            //         this.currentSpell = SpellCasting.Spell.Time;
-            //         break;
-            //     case 1:
-            //         // Air Spell
-            //         this.currentSpell = SpellCasting.Spell.Air;
-            //         break;
-            //     case 2:
-            //         // Fire Spell
-            //         this.currentSpell = SpellCasting.Spell.Fire;
-            //         break;
-            //     case 3:
-            //         // Earth Spell
-            //         this.currentSpell = SpellCasting.Spell.Earth;
-            //         break;
-            //     case 4:
-            //         // Water Spell
-            //         this.currentSpell = SpellCasting.Spell.Water;
-            //         break;
-            //     case 5:
-            //         // Lightning Spell
-            //         this.currentSpell = SpellCasting.Spell.Lightning;
-            //         break;
-
-            //     default:
-            //         // Unknown Rune
-            //         this.currentSpell = SpellCasting.Spell.None;
-            //         break;
-            // }
-
-            // 3d master model allocation
-            switch (runeClass) {
+            Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
+            switch (runeClass)
+            {
                 case 0:
                     // Time Spell
                     this.currentSpell = SpellCasting.Spell.Time;
@@ -242,28 +209,26 @@ namespace Spellslinger.Game.Control
                     // Fire Spell
                     this.currentSpell = SpellCasting.Spell.Fire;
                     break;
-                case 5:
+                case 3:
                     // Earth Spell
                     this.currentSpell = SpellCasting.Spell.Earth;
                     break;
-                case 6:
+                case 4:
                     // Water Spell
                     this.currentSpell = SpellCasting.Spell.Water;
                     break;
-                case 3:
+                case 5:
                     // Lightning Spell
                     this.currentSpell = SpellCasting.Spell.Lightning;
                     break;
-                case 4:
-                    // Unknown Rune
-                    this.currentSpell = SpellCasting.Spell.None;
-                    break;
-                
+
                 default:
                     // Unknown Rune
                     this.currentSpell = SpellCasting.Spell.None;
                     break;
             }
+
+            // 3d master model allocation
 
 
             // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now

@@ -5351,21 +5351,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
-      propertyPath: spellSettings.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
-        type: 3}
-      propertyPath: spellSettings.Array.data[4].Spell
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
-        type: 3}
-      propertyPath: spellSettings.Array.data[5].Spell
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
-        type: 3}
       propertyPath: spellSettings.Array.data[6].Spell
       value: 6
       objectReference: {fileID: 0}
@@ -5459,6 +5444,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8406971880909125278, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: modelAsset
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: a7fff6eb0a80f7b47b52c2f2cfe7074f,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
