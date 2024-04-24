@@ -100,10 +100,15 @@ namespace Spellslinger.Game.Control
                 // emit event and reset drawing points
                 Vector3[] normalizedPoints = this.GenerateNormalizedList(this.drawingPointsLeft);
 
-                // flip the points to the other side
-                normalizedPoints = normalizedPoints.Select(p => new Vector3(1-p.x, p.y, p.z)).ToArray(); // need to test this still
+                // mirror the points on the YZ plane for left hand casting
+                Vector3[] normalizedMirroredPoints = new Vector3[normalizedPoints.Length];
 
-                this.OnDrawFinished?.Invoke(normalizedPoints, XRInputManager.Controller.Left);
+                for (int i = 0; i < normalizedPoints.Length; i++) 
+                {
+                    normalizedMirroredPoints[i] = new Vector3(1-normalizedPoints[i].x, normalizedPoints[i].y, normalizedPoints[i].z);
+                }
+
+                this.OnDrawFinished?.Invoke(normalizedMirroredPoints, XRInputManager.Controller.Left);
                 this.drawingPointsLeft = new List<Vector3>();
             } else if (controller == XRInputManager.Controller.Right && this.isDrawingRight) {
                 this.isDrawingRight = false;
