@@ -1,3 +1,4 @@
+
 namespace Spellslinger.Game.Control
 {
     using System;
