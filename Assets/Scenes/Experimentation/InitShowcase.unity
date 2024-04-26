@@ -5431,9 +5431,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
+      propertyPath: beamEndPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: beamStartPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: beamEndPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 110462, guid: 1cf4c9887d4c6874692243f51e44796a, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: beamStartPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 117412, guid: 90b9eccaf45751f4dbef1da136dfb7e2, type: 3}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: beamLineRendererPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
       propertyPath: spellSettings.Array.data[6].Spell
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: beamLineRendererPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 168570, guid: 4cda6df8f00347b4f9a35657fe9374d3, type: 3}
     - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: spellSettings.Array.data[6].AuraPrefab
@@ -5462,17 +5492,17 @@ PrefabInstance:
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}

@@ -105,7 +105,7 @@ public class MagicBeamScript : MonoBehaviour {
             textBeamName.text = beamLineRendererPrefab[currentBeam].name;
     }
 	
-	    public void previousBeam() // Previous beam
+	public void previousBeam() // Previous beam
     {
         if (currentBeam > - 0)
             currentBeam--;

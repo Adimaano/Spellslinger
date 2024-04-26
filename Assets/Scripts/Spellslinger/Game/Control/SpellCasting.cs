@@ -15,6 +15,16 @@ namespace Spellslinger.Game.Control
         [SerializeField] private GameObject earthSpellPrefab;
         [SerializeField] private GameObject airSpellPrefab;
         [SerializeField] private GameObject airSpellFromWandPrefab;
+        public GameObject[] beamLineRendererPrefab;
+        public GameObject[] beamStartPrefab;
+        public GameObject[] beamEndPrefab;
+
+        private int currentBeam = 0;
+
+        private GameObject beamStart;
+        private GameObject beamEnd;
+        private GameObject beam;
+        private LineRenderer line;
 
         private GameObject spellCastingRight;
         private GameObject spellCastingLeft;
@@ -167,23 +177,6 @@ namespace Spellslinger.Game.Control
             this.StartCoroutine(this.EarthSpellCoroutine(earthSpell));
         }
 
-
-        /// <summary>
-        /// Triggers VFX and Audio for the time spell once on trigger.
-        /// Instantiates the animation target and sets the playback mode.
-        /// Calls the coroutine for controlling the target animation playback speed.
-        /// </summary>
-        private void CastTimeSpell(GameObject movingObject, GameObject wand)
-        {
-            bool refRight = (wand == this.spellCastingRight);
-            Animator objectAnim = movingObject.GetComponent<Animator>();
-            objectAnim.StartPlayback();
-            movingObject.GetComponent<AudioSource>().Play(0);
-
-            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.position,
-                refRight));
-        }
-
         /// <summary>
         /// Coroutine for casting the earth spell. Creates a pillar of earth at the target position.
         /// </summary>
@@ -203,6 +196,66 @@ namespace Spellslinger.Game.Control
 
             this.isCasting = false;
             earth.GetComponent<AudioSource>().Stop();
+        }
+
+
+        /// <summary>
+        /// Triggers VFX and Audio for the time spell once on trigger.
+        /// Instantiates the animation target and sets the playback mode.
+        /// Calls the coroutine for controlling the target animation playback speed.
+        /// </summary>
+        private void CastTimeSpell(GameObject movingObject, GameObject wand)
+        {
+            bool refRight = (wand == this.spellCastingRight);
+            Animator objectAnim = movingObject.GetComponent<Animator>();
+            objectAnim.StartPlayback();
+            movingObject.GetComponent<AudioSource>().Play(0);
+
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.position,
+                refRight));
+        }
+
+
+        /// <summary>
+        /// Coroutine for casting the time spell. Controls the animation playback speed of target gameobject to simulatre "scrubbing" through time.
+        /// </summary>
+        /// <param name="objectAnim">Manipulatable animation of target gameobject</param>
+        /// <param name="startPosOfWand">Position of wand at initial cast</param>
+        private IEnumerator TimeSpellCoroutine(Animator objectAnim, Vector3 startPosOfWand, bool refRight)
+        {
+            //wand needs to either be a pointer or set as classmember which can be called
+            this.isCasting = true;
+
+            while (this.isCasting)
+            {
+                //For easier controls, we use the thumbstick for controlling the speed of the animation
+                //float delta = deltaControllerPos(startPosOfWand, refRight);
+                //Debug.Log(delta);
+                float offset = 0.2f;
+
+                float delta = refRight == true
+                     ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
+                     : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
+
+                if (delta > offset)
+                {
+                    objectAnim.speed = delta;
+                }
+                else if (delta < -offset)
+                {
+                    objectAnim.speed = delta;
+                }
+                else
+                {
+                    objectAnim.speed = 0.0F;
+                }
+
+                yield return null;
+            }
+
+            objectAnim.StopPlayback();
+            objectAnim.speed = 1.0F;
+            this.isCasting = false;
         }
 
         /// <summary>
@@ -265,53 +318,109 @@ namespace Spellslinger.Game.Control
         }
 
         /// <summary>
-        /// Coroutine for casting the time spell. Controls the animation playback speed of target gameobject to simulatre "scrubbing" through time.
-        /// </summary>
-        /// <param name="objectAnim">Manipulatable animation of target gameobject</param>
-        /// <param name="startPosOfWand">Position of wand at initial cast</param>
-        private IEnumerator TimeSpellCoroutine(Animator objectAnim, Vector3 startPosOfWand, bool refRight)
-        {
-            //wand needs to either be a pointer or set as classmember which can be called
-            this.isCasting = true;
-
-            while (this.isCasting)
-            {
-                //For easier controls, we use the thumbstick for controlling the speed of the animation
-                float delta = deltaControllerPos(startPosOfWand, refRight);
-                Debug.Log(delta);
-                float offset = 0.2f;
-
-                // float delta = refRight == true
-                //     ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
-                //     : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
-
-                if (delta > offset)
-                {
-                    objectAnim.speed = delta;
-                }
-                else if (delta < -offset)
-                {
-                    objectAnim.speed = delta;
-                }
-                else
-                {
-                    objectAnim.speed = 0.0F;
-                }
-
-                yield return null;
-            }
-
-            objectAnim.StopPlayback();
-            objectAnim.speed = 1.0F;
-            this.isCasting = false;
-        }
-
-        /// <summary>
-        /// Casts a generic spell.
+        /// Casted spell shoots a lightning bolt from the wand to the target.
         /// </summary>
         /// <param name="origin">The origin of the spell.</param>
         /// <param name="misslePrefab">The missle prefab.</param>
-        private void CastGenericSpell(GameObject origin, GameObject misslePrefab)
+        private void CastLightningSpell(GameObject wand)
+        {
+            beamStart = Instantiate(beamStartPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            beamStart.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            beamEnd = Instantiate(beamEndPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            beamEnd.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            beam = Instantiate(beamLineRendererPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            beam.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            line = beam.GetComponent<LineRenderer>();
+            line.startWidth = 0.7f;
+            line.endWidth = 0.7f;
+
+            this.StartCoroutine(this.LightningSpellCoroutine(this.spellCastingRight.transform.position));
+        }
+
+        private IEnumerator LightningSpellCoroutine(Vector3 startPositionOfWand)
+        {
+            this.isCasting = true;
+            RaycastHit hit;
+
+            while (this.isCasting)
+            {
+                if (Physics.Raycast(startPositionOfWand, this.spellCastingRight.transform.forward, out hit))
+                {
+                    Vector3 tdir = hit.point - this.spellCastingRight.transform.position;
+                    ShootBeamInDir(this.spellCastingRight.transform.position, tdir);
+                }
+                yield return null;
+            }
+            Destroy(beamStart);
+            Destroy(beamEnd);
+            Destroy(beam);
+            isCasting = false;
+        }
+        
+        private void ShootBeamInDir(Vector3 start, Vector3 dir)
+        {
+            #if UNITY_5_5_OR_NEWER
+            line.positionCount = 2;
+            #else
+            line.SetVertexCount(2); 
+            #endif
+            line.SetPosition(0, start);
+            beamStart.transform.position = start;
+
+            Vector3 end = Vector3.zero;
+            RaycastHit hit;
+            if (Physics.Raycast(start, dir, out hit))
+                end = hit.point - (dir.normalized * 2);
+            else
+                end = transform.position + (dir * 100);
+
+            beamEnd.transform.position = end;
+            line.SetPosition(1, end);
+
+            beamStart.transform.LookAt(beamEnd.transform.position);
+            beamEnd.transform.LookAt(beamStart.transform.position);
+
+            float distance = Vector3.Distance(start, end);
+            line.sharedMaterial.mainTextureScale = new Vector2(distance / 12, 1);
+            line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * 4, 0);
+        }
+
+        /// <summary>
+        /// Casted spell throws or lobs a projectile in the direction of the wand, which is affected by gravity.
+        /// </summary>
+        /// <param name="origin">The origin of the spell.</param>
+        /// <param name="misslePrefab">The missle prefab.</param>
+        private void CastBallisticProjectile(GameObject origin, GameObject misslePrefab)
+        {
+            var missle = Instantiate(misslePrefab, origin.transform.position, Quaternion.identity);
+
+            // scale to 0.7
+            missle.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            missle.transform.LookAt(origin.transform.parent.transform.position);
+
+            // add GenericSpell script to missle
+            var spell = missle.AddComponent<GenericSpell>();
+            spell.SpellDirection = origin.transform.forward;
+
+            // add rigidbody with no gravity and sphere collider to missle
+            var rigidbody = missle.AddComponent<Rigidbody>();
+            rigidbody.useGravity = true;
+            rigidbody.mass = 0.01f;
+            if (this.velocityReference != null)
+            {
+                rigidbody.velocity = this.velocityReference.velocity*3;
+            }
+
+            var collider = missle.AddComponent<SphereCollider>();
+            collider.radius = 0.1f;
+        }
+
+        /// <summary>
+        /// Casted spell shoots a direct missile toward a direction.
+        /// </summary>
+        /// <param name="origin">The origin of the spell.</param>
+        /// <param name="misslePrefab">The missle prefab.</param>
+        private void CastShootProjectile(GameObject origin, GameObject misslePrefab)
         {
             var missle = Instantiate(misslePrefab, origin.transform.position, Quaternion.identity);
 
@@ -359,7 +468,7 @@ namespace Spellslinger.Game.Control
                     }
                     else if (this.spellCastingTarget == Vector3.zero)
                     {
-                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                        this.CastBallisticProjectile(spellOrigin, this.spellMissleDictionary[spell]);
                     }
                     else
                     {
@@ -374,7 +483,7 @@ namespace Spellslinger.Game.Control
                     }
                     else
                     {
-                        this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                        this.CastShootProjectile(spellOrigin, this.spellMissleDictionary[spell]);
                     }
 
                     break;
@@ -391,8 +500,17 @@ namespace Spellslinger.Game.Control
                     }
 
                     break;
+                case Spell.Water:
+                    this.CastShootProjectile(spellOrigin, this.spellMissleDictionary[spell]);
+
+                    break;
+                
+                case Spell.Lightning:
+                    this.CastLightningSpell(spellOrigin);
+            
+                    break;
                 default:
-                    this.CastGenericSpell(spellOrigin, this.spellMissleDictionary[spell]);
+                    this.CastShootProjectile(spellOrigin, this.spellMissleDictionary[spell]);
                     break;
             }
 
