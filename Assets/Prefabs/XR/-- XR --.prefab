@@ -2221,6 +2221,9 @@ MonoBehaviour:
     type: 3}
   airSpellFromWandPrefab: {fileID: 9143935275129014152, guid: 56747556948d6eb48a70c8147dc5f8bf,
     type: 3}
+  beamLineRendererPrefab: []
+  beamStartPrefab: []
+  beamEndPrefab: []
   spellSettings:
   - Spell: 0
     ChargePrefab: {fileID: 159362, guid: 0d9b0e27a2944614abe85db3c25b3d74, type: 3}
@@ -3248,9 +3251,19 @@ PrefabInstance:
       objectReference: {fileID: 5635313668477252165}
     - target: {fileID: 175609404496220847, guid: c338e8688cea1db4eb8ca9b2f698b33d,
         type: 3}
+      propertyPath: soundEffects.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 175609404496220847, guid: c338e8688cea1db4eb8ca9b2f698b33d,
+        type: 3}
       propertyPath: fadeToWhiteCylinderMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 1357364b6f80e0d4b977055f878516b7, type: 2}
+    - target: {fileID: 175609404496220847, guid: c338e8688cea1db4eb8ca9b2f698b33d,
+        type: 3}
+      propertyPath: soundEffects.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9bf559d3b2fea48a5003ad4b4bb79f, type: 3}
     - target: {fileID: 1607226345896811127, guid: c338e8688cea1db4eb8ca9b2f698b33d,
         type: 3}
       propertyPath: m_RootOrder

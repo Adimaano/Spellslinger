@@ -67,8 +67,6 @@ namespace Spellslinger.Game.Control
             // initialize eventlisteners
             this.drawScript.OnDrawFinished += this.ChargeSpell;
             this.input.OnControllerTrigger += this.DrawRune;
-            //this.input.OnControllerTrigger += this.CastSpell;
-            //this.input.OnControllerTouchpad += this.DrawRune;
             this.input.OnPreferredControllerChanged += this.PreferredControllerChanged;
             this.modelRunner.OnPredictionReceived += this.PredictionReceived;
 
@@ -240,7 +238,6 @@ namespace Spellslinger.Game.Control
             // }
 
             this.StartCoroutine(this.ShowRune());
-            GameManager.Instance.PlaySound("RuneRecognized");
             this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
 
             this.spellCasting.ChargeSpell(this.currentSpell, this.PreferredController);
@@ -270,21 +267,27 @@ namespace Spellslinger.Game.Control
             {
                 case SpellCasting.Spell.Water:
                     this.runeSpriteRenderer.sprite = this.waterRune;
+                    GameManager.Instance.PlaySound("RuneRecognized");
                     break;
                 case SpellCasting.Spell.Fire:
                     this.runeSpriteRenderer.sprite = this.fireRune;
+                    GameManager.Instance.PlaySound("Matchbox");
                     break;
                 case SpellCasting.Spell.Earth:
                     this.runeSpriteRenderer.sprite = this.earthRune;
+                    GameManager.Instance.PlaySound("RuneRecognized");
                     break;
                 case SpellCasting.Spell.Air:
                     this.runeSpriteRenderer.sprite = this.airRune;
+                    GameManager.Instance.PlaySound("RuneRecognized");
                     break;
                 case SpellCasting.Spell.Lightning:
                     this.runeSpriteRenderer.sprite = this.lightningRune;
+                    GameManager.Instance.PlaySound("ElectricCharge");
                     break;
                 case SpellCasting.Spell.Time:
                     this.runeSpriteRenderer.sprite = this.timeRune;
+                    GameManager.Instance.PlaySound("RuneRecognized");
                     break;
                 default:
                     this.runeSpriteRenderer.sprite = null;
