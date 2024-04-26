@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Air01.unity
     guid: b22fedd1cdd9c77499e06a9f209b1b51
   - enabled: 1
+    path: Assets/Scenes/Levels/Workshop.unity
+    guid: 5ed2fc1cec5d84d4187723297ac54e72
+  - enabled: 1
     path: Assets/Scenes/Levels/Outro.unity
     guid: 94f05dc9f3719204fb27419f34cc19a1
   m_configObjects:

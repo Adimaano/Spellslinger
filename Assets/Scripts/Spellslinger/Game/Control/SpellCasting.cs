@@ -229,21 +229,17 @@ namespace Spellslinger.Game.Control
             while (this.isCasting)
             {
                 //For easier controls, we use the thumbstick for controlling the speed of the animation
-                //float delta = deltaControllerPos(startPosOfWand, refRight);
+                float delta = deltaControllerPos(startPosOfWand, refRight);
                 //Debug.Log(delta);
-                float offset = 0.2f;
-
-                float delta = refRight == true
-                     ? Input.GetAxis("XRI_Right_Primary2DAxis_Horizontal")
-                     : Input.GetAxis("XRI_Left_Primary2DAxis_Horizontal");
-
+                float offset = 0.3f;
+                float gradient = 3f;
                 if (delta > offset)
                 {
-                    objectAnim.speed = delta;
+                    objectAnim.speed = -(delta-offset) * gradient;
                 }
                 else if (delta < -offset)
                 {
-                    objectAnim.speed = delta;
+                    objectAnim.speed = -(delta+offset) * gradient;
                 }
                 else
                 {
@@ -256,6 +252,40 @@ namespace Spellslinger.Game.Control
             objectAnim.StopPlayback();
             objectAnim.speed = 1.0F;
             this.isCasting = false;
+        }
+        
+        /// <summary>
+        /// Calculates delta movement of controller in left-right direction.
+        /// </summary>
+        /// <param name="startPosOfWand">The start position of the focus.</param>
+        public float deltaControllerPos(Vector3 startPosOfWand, bool refRight)
+        {
+            Vector3 distanceMoved = Vector3.zero;
+            float delta = 0.0f;
+
+            if (refRight)
+            {
+                distanceMoved = startPosOfWand - this.spellCastingRight.transform.position;
+                // to the left.
+            }
+            else
+            {
+                distanceMoved = startPosOfWand - this.spellCastingLeft.transform.position;
+                // to the right.
+            }
+            
+            delta = distanceMoved.magnitude;
+            Vector3 forwardVector = Camera.main.transform.forward;
+            Vector3 crossProduct = Vector3.Cross(forwardVector, distanceMoved);
+
+            // If the cross product's y-component is negative, it means the movement was to the right (in a left-handed coordinate system).
+            bool movedRight = crossProduct.y < 0;
+            // Distance moved along the left or right side.
+            if (movedRight)
+            {
+                delta = -delta;
+            }
+            return delta;
         }
 
         /// <summary>
@@ -561,23 +591,5 @@ namespace Spellslinger.Game.Control
             this.castOnObject = objectToCastMagicOn;
         }
 
-        /// <summary>
-        /// Calculates delta movement of controller in x direction.
-        /// </summary>
-        /// <param name="startPosOfWand">The start position of the focus.</param>
-        public float deltaControllerPos(Vector3 startPosOfWand, bool refRight)
-        {
-            float delta = 0.0f;
-
-            if (refRight)
-            {
-                delta = Camera.main.WorldToViewportPoint(startPosOfWand - this.spellCastingRight.transform.parent.transform.position).x;
-            }
-            else
-            {
-                delta = Camera.main.WorldToViewportPoint(startPosOfWand - this.spellCastingLeft.transform.parent.transform.position).x;
-            }
-            return delta;
-        }
     }
 }
