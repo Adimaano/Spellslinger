@@ -447,7 +447,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -6407783776791462285, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
-  jumpForce: 3
+  jumpForce: 2
   groundLayers:
     serializedVersion: 2
     m_Bits: 32768
