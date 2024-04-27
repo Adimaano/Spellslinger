@@ -14541,6 +14541,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1016391532}
     m_Modifications:
+    - target: {fileID: 2144376616228404227, guid: 31bc490b0baf40a418fea1d9d6013aa0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4869465295155266931, guid: 31bc490b0baf40a418fea1d9d6013aa0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -14550,6 +14555,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Runes_02_prefab (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542065237935015960, guid: 31bc490b0baf40a418fea1d9d6013aa0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7923062332968027068, guid: 31bc490b0baf40a418fea1d9d6013aa0,
         type: 3}
@@ -22630,6 +22640,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1016391532}
     m_Modifications:
+    - target: {fileID: 2144376616228404227, guid: 31bc490b0baf40a418fea1d9d6013aa0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4869465295155266931, guid: 31bc490b0baf40a418fea1d9d6013aa0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -22639,6 +22654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Runes_02_prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542065237935015960, guid: 31bc490b0baf40a418fea1d9d6013aa0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7923062332968027068, guid: 31bc490b0baf40a418fea1d9d6013aa0,
         type: 3}
@@ -24197,7 +24217,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943343624}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38f6bf3d943ac7945842268c9ef1dca6, type: 3}
   m_Name: 
@@ -45380,25 +45400,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1784376247}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1786570852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 72995139035631595, guid: 54c7a2d331ff662438a3149a37758b50,
-    type: 3}
-  m_PrefabInstance: {fileID: 2118195003}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1786570860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786570852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d171592ceaf5eb341b21fee449410d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stick: 1
 --- !u!1001 &1788748663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55178,6 +55179,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
@@ -55185,6 +55191,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886393610739292283, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886393610739292283, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 32768
       objectReference: {fileID: 0}
     - target: {fileID: 5635313668476909033, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
@@ -55219,6 +55235,11 @@ PrefabInstance:
     - target: {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843483534234553593, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8705839431106985891, guid: 54c7a2d331ff662438a3149a37758b50,

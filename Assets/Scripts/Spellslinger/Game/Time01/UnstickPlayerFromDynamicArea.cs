@@ -6,18 +6,16 @@ namespace Spellslinger.Game {
 
     public class UnstickPlayerFromDynamicArea : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        private Transform XRparent;
+        private void Start()
         {
-            if (other.gameObject.tag == "Player")
-            {
-                other.GetComponent<StickToDynamicArea>().stick = false;
-            }
+            XRparent = GameObject.Find("-- XR --").transform;
         }
-        private void OnTriggerExit(Collider other)
+        void OnTriggerEnter(Collider collision)
         {
-            if (other.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player")
             {
-                other.GetComponent<StickToDynamicArea>().stick = true;
+               collision.transform.SetParent(XRparent);
             }
         }
     }
