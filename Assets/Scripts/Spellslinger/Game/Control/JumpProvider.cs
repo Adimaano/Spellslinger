@@ -4,31 +4,45 @@ namespace Spellslinger.Game.Control
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.InputSystem;
-
+    using Unity.XR.CoreUtils;
+    
     public class JumpProvider : MonoBehaviour
     {
         [SerializeField] private InputActionProperty m_JumpAction;
-        [SerializeField] private float jumpHeight = 3.0f;
-        [SerializeField] private CharacterController m_CharacterController;
+        [SerializeField] private float jumpForce = 500.0f;
         [SerializeField] private LayerMask groundLayers;
+
+        private XROrigin _xrRig;
+        private CapsuleCollider _collider;
+        private Rigidbody _body;
+        private bool _isGrounded => Physics.Raycast( new Vector2(this.transform.position.x, this.transform.position.y + 2.0f), Vector3.down, 3.0f);
 
         private float gravity = Physics.gravity.y;
         private Vector3 movement;
         // Start is called before the first frame update
         // Update is called once per frame
+        private void Start()
+        {
+            _xrRig = GetComponent<XROrigin>();
+            _collider = GetComponent<CapsuleCollider>();
+            _body = GetComponent<Rigidbody>();
+            m_JumpAction.action.performed += OnJump;
+        }
         private void Update()
         {
-            bool _isGrounded = Physics.CheckSphere(m_CharacterController.transform.position, m_CharacterController.radius, groundLayers);
+            var center = _xrRig.CameraInOriginSpacePos;
+            _collider.height = Mathf.Clamp(_xrRig.CameraInOriginSpaceHeight, 1.0f, 3.0f);
+            _collider.center = new Vector3(center.x, _collider.height / 2, center.z);
+        }
 
-            if(m_JumpAction.action.triggered && _isGrounded)
+        private void OnJump(InputAction.CallbackContext context)
+        {   
+            if(!_isGrounded)
             {
-                movement.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
+                Debug.Log("Not Grounded!");
+                return;
             }
-
-            movement.y += gravity * Time.deltaTime;
-
-            m_CharacterController.Move(movement * Time.deltaTime);
+            _body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
-
 }
