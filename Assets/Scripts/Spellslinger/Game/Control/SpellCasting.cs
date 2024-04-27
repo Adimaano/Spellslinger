@@ -19,7 +19,8 @@ namespace Spellslinger.Game.Control
         public GameObject[] beamStartPrefab;
         public GameObject[] beamEndPrefab;
 
-        private int currentBeam = 0;
+        private int LightningBeam = 0;
+        private int WaterBeam = 1;
 
         private GameObject beamStart;
         private GameObject beamEnd;
@@ -352,7 +353,7 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="origin">The origin of the spell.</param>
         /// <param name="misslePrefab">The missle prefab.</param>
-        private void CastLightningSpell(GameObject wand)
+        private void CastBeamSpell(GameObject wand, private int currentBeam)
         {
             beamStart = Instantiate(beamStartPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             beamStart.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -364,10 +365,10 @@ namespace Spellslinger.Game.Control
             line.startWidth = 0.7f;
             line.endWidth = 0.7f;
 
-            this.StartCoroutine(this.LightningSpellCoroutine(this.spellCastingRight.transform.position));
+            this.StartCoroutine(this.BeamSpellCoroutine(this.spellCastingRight.transform.position));
         }
 
-        private IEnumerator LightningSpellCoroutine(Vector3 startPositionOfWand)
+        private IEnumerator BeamSpellCoroutine(Vector3 startPositionOfWand)
         {
             this.isCasting = true;
             RaycastHit hit;
@@ -531,12 +532,12 @@ namespace Spellslinger.Game.Control
 
                     break;
                 case Spell.Water:
-                    this.CastShootProjectile(spellOrigin, this.spellMissleDictionary[spell]);
+                    this.CastBeamSpell(spellOrigin, WaterBeam);
 
                     break;
                 
                 case Spell.Lightning:
-                    this.CastLightningSpell(spellOrigin);
+                    this.CastBeamSpell(spellOrigin, LightningBeam);
             
                     break;
                 default:
