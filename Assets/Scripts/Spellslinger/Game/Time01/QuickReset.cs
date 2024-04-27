@@ -5,6 +5,8 @@ namespace Spellslinger.Game {
 
     public class QuickReset : MonoBehaviour
     {   
+        [SerializeField]
+        public CharacterController charController;
         Vector3 checkpoint;
         void Start()
         {
@@ -21,7 +23,9 @@ namespace Spellslinger.Game {
         {
             if (other.gameObject.tag == "Player")
             {
+                charController.enabled = false;
                 other.gameObject.transform.position = checkpoint;
+                charController.enabled = true;
             }
         }
     }
