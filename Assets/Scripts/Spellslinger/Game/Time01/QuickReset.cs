@@ -23,9 +23,7 @@ namespace Spellslinger.Game {
         {
             if (other.gameObject.tag == "Player")
             {
-                charController.enabled = false;
                 other.gameObject.transform.position = checkpoint;
-                charController.enabled = true;
             }
         }
     }
