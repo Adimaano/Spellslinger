@@ -28,7 +28,6 @@ namespace Spellslinger.Game.Control
         private void Update()
         {
             //Debug.DrawRay(new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down * 1.8f, Color.red, duration: 0, depthTest: true);
-            Debug.Log(transform.position);
             var center = _xrRig.CameraInOriginSpacePos;
             _collider.height = Mathf.Clamp(_xrRig.CameraInOriginSpaceHeight, 1.0f, 3.0f);
             _collider.center = new Vector3(center.x, _collider.height / 2, center.z);

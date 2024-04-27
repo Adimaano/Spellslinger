@@ -11,11 +11,11 @@ namespace Spellslinger.Game {
         {
             XRparent = GameObject.Find("-- XR --").transform;
         }
-        void OnTriggerEnter(Collider collision)
+        void OnCollisionEnter(Collision other)
         {
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
-               collision.transform.SetParent(XRparent);
+               other.transform.SetParent(XRparent);
             }
         }
     }

@@ -10,21 +10,20 @@ namespace Spellslinger.Game {
         {
             XRparent = GameObject.Find("-- XR --").transform;
         }
-        void OnTriggerEnter(Collider collision)
+        void OnCollisionEnter(Collision other)
         {
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
-               collision.GetComponent<Collider>().transform.SetParent(this.transform);
+               other.transform.SetParent(this.transform);
                Debug.Log("Player is now a child of " + this.gameObject.name);
             }
         }
         
-
-         void OnTriggerExit(Collider collision)
+        void OnCollisionExit(Collision other)
         {
-            if (collision.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
-                collision.GetComponent<Collider>().transform.SetParent(XRparent);
+                other.transform.SetParent(XRparent);
             }
         }
     }
