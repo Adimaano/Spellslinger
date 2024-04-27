@@ -9,18 +9,15 @@ namespace Spellslinger.Game.Control
     public class JumpProvider : MonoBehaviour
     {
         [SerializeField] private InputActionProperty m_JumpAction;
-        [SerializeField] private float jumpForce = 500.0f;
+        [SerializeField] private float jumpForce = 0.01f;
         [SerializeField] private LayerMask groundLayers;
+        [SerializeField] private Transform groundCheckPoint;
 
         private XROrigin _xrRig;
         private CapsuleCollider _collider;
         private Rigidbody _body;
-        private bool _isGrounded => Physics.Raycast( new Vector2(this.transform.position.x, this.transform.position.y + 2.0f), Vector3.down, 3.0f);
-
-        private float gravity = Physics.gravity.y;
-        private Vector3 movement;
-        // Start is called before the first frame update
-        // Update is called once per frame
+        //private bool _isGrounded => Physics.Raycast( new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down, 1.8f);
+        private bool _isGrounded => Physics.OverlapSphere(groundCheckPoint.position, .25f, groundLayers).Length > 0;
         private void Start()
         {
             _xrRig = GetComponent<XROrigin>();
@@ -30,6 +27,8 @@ namespace Spellslinger.Game.Control
         }
         private void Update()
         {
+            //Debug.DrawRay(new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down * 1.8f, Color.red, duration: 0, depthTest: true);
+            Debug.Log(transform.position);
             var center = _xrRig.CameraInOriginSpacePos;
             _collider.height = Mathf.Clamp(_xrRig.CameraInOriginSpaceHeight, 1.0f, 3.0f);
             _collider.center = new Vector3(center.x, _collider.height / 2, center.z);
