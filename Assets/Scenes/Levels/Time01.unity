@@ -4687,7 +4687,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b13c4ce46a6e27a438ba496177d20aa9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.258
+  m_Volume: 0.65
   m_Pitch: 1.25
   Loop: 1
   Mute: 0
@@ -6526,7 +6526,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220264122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38f6bf3d943ac7945842268c9ef1dca6, type: 3}
   m_Name: 
@@ -55178,6 +55178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635394370320195501, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
@@ -55195,6 +55200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6793881203059204121, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
