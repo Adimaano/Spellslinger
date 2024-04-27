@@ -1914,6 +1914,7 @@ MonoBehaviour:
   pauseMenuPrefab: {fileID: 3727962549094358051}
   soundEffects:
   - {fileID: 8300000, guid: bc15ea42dc627424fb0fca57c0663ddd, type: 3}
+  - {fileID: 8300000, guid: 5b55a43a3a33dfc48b254a1c53f93783, type: 3}
   - {fileID: 8300000, guid: b9f2d41f892556c44a731668e630e97d, type: 3}
   - {fileID: 8300000, guid: 4a719e3ac5616f048b572403d5baae70, type: 3}
   - {fileID: 8300000, guid: ea8a9017ee937e34094491ddce856a21, type: 3}
