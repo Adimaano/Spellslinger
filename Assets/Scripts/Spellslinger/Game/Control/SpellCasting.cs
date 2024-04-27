@@ -281,10 +281,12 @@ namespace Spellslinger.Game.Control
 
             // If the cross product's y-component is negative, it means the movement was to the right (in a left-handed coordinate system).
             bool movedRight = crossProduct.y < 0;
+            Debug.Log("X prod: " + crossProduct);
             // Distance moved along the left or right side.
             if (movedRight)
             {
                 delta = -delta;
+                Debug.Log("Moved right! " + delta);
             }
             return delta;
         }
@@ -353,7 +355,7 @@ namespace Spellslinger.Game.Control
         /// </summary>
         /// <param name="origin">The origin of the spell.</param>
         /// <param name="misslePrefab">The missle prefab.</param>
-        private void CastBeamSpell(GameObject wand, private int currentBeam)
+        private void CastBeamSpell(GameObject wand, int currentBeam)
         {
             beamStart = Instantiate(beamStartPrefab[currentBeam], new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
             beamStart.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -366,6 +368,7 @@ namespace Spellslinger.Game.Control
             line.endWidth = 0.7f;
 
             this.StartCoroutine(this.BeamSpellCoroutine(this.spellCastingRight.transform.position));
+
         }
 
         private IEnumerator BeamSpellCoroutine(Vector3 startPositionOfWand)
@@ -531,13 +534,14 @@ namespace Spellslinger.Game.Control
                     }
 
                     break;
+
                 case Spell.Water:
-                    this.CastBeamSpell(spellOrigin, WaterBeam);
+                    CastBeamSpell(spellOrigin, WaterBeam);
 
                     break;
                 
                 case Spell.Lightning:
-                    this.CastBeamSpell(spellOrigin, LightningBeam);
+                    CastBeamSpell(spellOrigin, LightningBeam);
             
                     break;
                 default:

@@ -2240,7 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightControllerRayInteractor: {fileID: 72995140069528079}
-  leftControllerRayInteractor: {fileID: 72995139049869555}
+  leftControllerRayInteractor: {fileID: 0}
   rightGrabRayInteractor: {fileID: 3300399455060448532}
   leftGrabRayInteractor: {fileID: 3770474600903779477}
   leftControllerLineVisual: {fileID: 72995139049869565}

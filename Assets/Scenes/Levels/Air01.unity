@@ -137,6 +137,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_06 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
@@ -310,6 +314,10 @@ PrefabInstance:
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Stairs_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
@@ -517,6 +525,10 @@ PrefabInstance:
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Stairs_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
@@ -902,7 +914,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 144693797}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: StairPart (3)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -936,7 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 157606817}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: StairPart (2)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -1036,6 +1048,10 @@ PrefabInstance:
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Stairs_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
@@ -2482,6 +2498,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_06 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
@@ -2835,6 +2855,10 @@ PrefabInstance:
       value: SM_Env_Hell_Ground_03
       objectReference: {fileID: 0}
     - target: {fileID: 1715385869280054, guid: 2d2f0e23c0daa564eabf5c4feaa85105, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715385869280054, guid: 2d2f0e23c0daa564eabf5c4feaa85105, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -3067,6 +3091,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_04
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -3217,7 +3245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541022841}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: StairPart (1)
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -3303,6 +3331,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -3398,6 +3430,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -3507,6 +3543,10 @@ PrefabInstance:
       value: SM_Env_Hell_Ground_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -3594,6 +3634,10 @@ PrefabInstance:
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Stairs_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
@@ -3687,6 +3731,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -3959,7 +4007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 708374941}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Staircase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3996,6 +4044,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -4471,6 +4523,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Stairs_02 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -4677,6 +4733,10 @@ PrefabInstance:
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_TagString
@@ -5478,6 +5538,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Stairs_02 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -5608,6 +5672,10 @@ PrefabInstance:
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_TagString
@@ -5795,6 +5863,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_06 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
@@ -5968,6 +6040,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -6846,8 +6922,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4886393610739292283, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886393610739292283, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
       propertyPath: groundLayers.m_Bits
-      value: 32769
+      value: 32768
       objectReference: {fileID: 0}
     - target: {fileID: 8705839431106985891, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
@@ -7399,6 +7480,10 @@ PrefabInstance:
     - target: {fileID: 1702689186534820, guid: 597debcc386042a43a7e2b8ec005e26d, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702689186534820, guid: 597debcc386042a43a7e2b8ec005e26d, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1702689186534820, guid: 597debcc386042a43a7e2b8ec005e26d, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8081,6 +8166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4089980463368266, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8301,7 +8390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1543169154}
   - component: {fileID: 1543169155}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Floor
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -8426,6 +8515,10 @@ PrefabInstance:
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Stairs_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
@@ -8628,7 +8721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573454852}
   - component: {fileID: 1573454853}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PlankWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8904,6 +8997,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -9192,6 +9289,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Stairs_02
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -9279,6 +9380,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Stairs_02
       objectReference: {fileID: 0}
     - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1450517522684280, guid: 32f1b52082647e84eaa07ec33458f72c, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -9363,7 +9468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1693470397}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: StairPart
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -9398,6 +9503,10 @@ PrefabInstance:
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9507,6 +9616,10 @@ PrefabInstance:
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_06 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1788090955475010, guid: 2d94fb0e095c1a944aae5f69bb751e23, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9829,7 +9942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827775863}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: StairEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9969,6 +10082,10 @@ PrefabInstance:
       value: SM_Env_Hell_Ground_01
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
@@ -10064,6 +10181,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_05
       objectReference: {fileID: 0}
     - target: {fileID: 1702689186534820, guid: 597debcc386042a43a7e2b8ec005e26d, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702689186534820, guid: 597debcc386042a43a7e2b8ec005e26d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
@@ -10134,6 +10255,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -10272,6 +10397,10 @@ PrefabInstance:
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Hell_Ground_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903257640088410, guid: 63225b1817d58a342ad564b15a425f41, type: 3}
       propertyPath: m_TagString
@@ -10500,6 +10629,10 @@ PrefabInstance:
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_TagString
@@ -11206,6 +11339,10 @@ PrefabInstance:
       value: SM_Prop_Camp_Wood_Floor_04
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
@@ -11276,6 +11413,10 @@ PrefabInstance:
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Camp_Wood_Floor_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1077443601540536, guid: 5c04b147141cd09418660e7d23955e21, type: 3}
       propertyPath: m_TagString
