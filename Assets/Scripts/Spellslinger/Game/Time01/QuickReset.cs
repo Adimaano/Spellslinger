@@ -4,10 +4,7 @@ namespace Spellslinger.Game {
     using UnityEngine;
 
     public class QuickReset : MonoBehaviour
-    {   
-        [SerializeField]
-        public CharacterController charController;
-        Vector3 checkpoint;
+    {    Vector3 checkpoint;
         void Start()
         {
             // First Checkpoint is the player's level entrance position
