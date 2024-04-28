@@ -40,6 +40,7 @@ namespace Spellslinger.Game.Control
                 if (this.drawingPointsRight.Count == 0 || Vector3.Distance(this.drawingPointsRight[this.drawingPointsRight.Count - 1], point) > MIN_DISTANCE) {
                     this.drawingPointsRight.Add(point);
                 }
+
             }
 
             if (this.isDrawingLeft) {

@@ -268,7 +268,7 @@ namespace Spellslinger.Game.Control
             {
                 case SpellCasting.Spell.Water:
                     this.runeSpriteRenderer.sprite = this.waterRune;
-                    GameManager.Instance.PlaySound("RuneRecognized");
+                    GameManager.Instance.PlaySound("WaterSplash");
                     break;
                 case SpellCasting.Spell.Fire:
                     this.runeSpriteRenderer.sprite = this.fireRune;
@@ -276,11 +276,11 @@ namespace Spellslinger.Game.Control
                     break;
                 case SpellCasting.Spell.Earth:
                     this.runeSpriteRenderer.sprite = this.earthRune;
-                    GameManager.Instance.PlaySound("RuneRecognized");
+                    GameManager.Instance.PlaySound("RockFall");
                     break;
                 case SpellCasting.Spell.Air:
                     this.runeSpriteRenderer.sprite = this.airRune;
-                    GameManager.Instance.PlaySound("RuneRecognized");
+                    GameManager.Instance.PlaySound("Windblow");
                     break;
                 case SpellCasting.Spell.Lightning:
                     this.runeSpriteRenderer.sprite = this.lightningRune;
@@ -292,7 +292,7 @@ namespace Spellslinger.Game.Control
                     break;
                 default:
                     this.runeSpriteRenderer.sprite = null;
-                    GameManager.Instance.PlaySound("ElectricCharge");
+                    GameManager.Instance.PlaySound("CrackingGlass");
                     break;
             }
 
