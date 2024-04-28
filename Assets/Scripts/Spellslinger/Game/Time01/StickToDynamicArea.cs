@@ -6,6 +6,7 @@ namespace Spellslinger.Game {
     public class StickToDynamicArea : MonoBehaviour
     {
         private Transform XRparent;
+        [SerializeField] private Transform MovingParent;
         private void Start()
         {
             XRparent = GameObject.Find("-- XR --").transform;
@@ -14,7 +15,7 @@ namespace Spellslinger.Game {
         {
             if (other.gameObject.tag == "Player")
             {
-               other.transform.SetParent(this.transform);
+               other.transform.SetParent(MovingParent, true);
                Debug.Log("Player is now a child of " + this.gameObject.name);
             }
         }

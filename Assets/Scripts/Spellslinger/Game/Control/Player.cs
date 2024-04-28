@@ -224,9 +224,17 @@ namespace Spellslinger.Game.Control
                     break;
             }
 
+            // You may cast the spell
+            this.input.OnControllerTrigger -= this.DrawRune;
+            this.input.OnControllerTrigger += this.CastSpell;
+
             if (!this.availableSpells.Contains(this.currentSpell)) 
             {
                 this.currentSpell = SpellCasting.Spell.None;
+                // Draw again.
+                this.input.OnControllerTrigger -= this.CastSpell;
+                this.input.OnControllerTrigger += this.DrawRune;
+
                 return;
             }
 
@@ -351,9 +359,6 @@ namespace Spellslinger.Game.Control
             else
             {
                 this.drawScript.StopDrawing(controller);
-                
-                this.input.OnControllerTrigger -= this.DrawRune;
-                this.input.OnControllerTrigger += this.CastSpell;
             }
         }
 

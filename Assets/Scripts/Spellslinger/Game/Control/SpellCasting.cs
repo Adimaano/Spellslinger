@@ -247,7 +247,7 @@ namespace Spellslinger.Game.Control
                 float delta = deltaControllerPos(refRight);
 
                 float offset = 0.2f;
-                float gradient = 3.3f;
+                float gradient = 3.75f;
                 
                 if (delta > offset)
                 {
