@@ -5474,20 +5474,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: -- XR --
       objectReference: {fileID: 0}
-    - target: {fileID: 5525381819098011423, guid: 54c7a2d331ff662438a3149a37758b50,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5635313668477252165, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 0}
     - {fileID: 72995139049869555, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
-    - {fileID: 5525381819098011423, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 54c7a2d331ff662438a3149a37758b50, type: 3}
 --- !u!1001 &1594303400784528385
 PrefabInstance:

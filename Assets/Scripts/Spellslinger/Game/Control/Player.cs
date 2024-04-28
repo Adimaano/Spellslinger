@@ -36,6 +36,7 @@ namespace Spellslinger.Game.Control
         private Transform head;
 
         [SerializeField] private Transform origin;
+        [SerializeField] private AudioSource drawSound;
         private GameObject playerXR;
         private Vector3 spawnPositionOrigin;
         private Quaternion spawnRotationOrigin;
@@ -355,10 +356,14 @@ namespace Spellslinger.Game.Control
             if (clicked)
             {
                 this.drawScript.StartDrawing(controller);
+                if(!drawSound.isPlaying){
+                    drawSound.Play();
+                }
             }
             else
             {
                 this.drawScript.StopDrawing(controller);
+                drawSound.Stop();
             }
         }
 
