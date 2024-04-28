@@ -254,21 +254,10 @@ namespace Spellslinger.Game.XR
         /// <param name="controller">The preferred controller.</param>
         public void SetPreferredController(Controller controller) {
             if (controller == Controller.Left) {
-                // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
-                this.rightControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Teleport");
 
-                // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
-                this.leftControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
-
-                // Set Line Type for controllers
+                // Set Line Type for Controller Ray Interactor
                 this.leftControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
-                this.rightControllerRayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
-                this.rightControllerRayInteractor.velocity = 8.0f;
-
-                // Set Invalid Line Visual Gradient for controllers
-                this.leftControllerLineVisual.invalidColorGradient = this.invisibleGradient;
-                this.rightControllerLineVisual.invalidColorGradient = this.redGradient;
-
+            
                 // Enable Turning for Left Controller and Disable for right Controller
                 this.snapTurnProvider.leftHandSnapTurnAction = this.leftHandTurn;
                 this.snapTurnProvider.rightHandSnapTurnAction = this.emptyAction;
@@ -289,22 +278,13 @@ namespace Spellslinger.Game.XR
                 }
 
                 this.leftControllerRayInteractor.rayOriginTransform = this.drawPointLeft.transform;
-                this.rightControllerRayInteractor.rayOriginTransform = this.rightControllerRayInteractor.gameObject.transform;
+                
+                //disable rightcontrollerRayInteractor
+                this.rightControllerRayInteractor.enabled = false;
             } else {
-                // Add Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Left Controller
-                this.leftControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Teleport");
-
-                // Remove Interaction Layer Mask 'Teleport' for XR Ray Interactor of the Right Controller
-                this.rightControllerRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
-
-                // Set Line Type for controllers
+                
+                // Set Line Type for Controller Ray Interactor
                 this.rightControllerRayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
-                this.leftControllerRayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
-                this.leftControllerRayInteractor.velocity = 8.0f;
-
-                // Set Invalid Line Visual Gradient for controllers
-                this.rightControllerLineVisual.invalidColorGradient = this.invisibleGradient;
-                this.leftControllerLineVisual.invalidColorGradient = this.redGradient;
 
                 // Enable Turning for Right Controller and Disable for left Controller
                 this.snapTurnProvider.rightHandSnapTurnAction = this.rightHandTurn;
@@ -325,8 +305,9 @@ namespace Spellslinger.Game.XR
                     this.rightGrabRayInteractor.interactionLayers = InteractionLayerMask.GetMask("Nothing");
                 }
 
-                this.leftControllerRayInteractor.rayOriginTransform = this.leftControllerRayInteractor.gameObject.transform;
                 this.rightControllerRayInteractor.rayOriginTransform = this.drawPointRight.transform;
+                //disable leftcontrollerRayInteractor
+                this.leftControllerRayInteractor.enabled = false;
             }
 
             this.OnPreferredControllerChanged?.Invoke(controller);
