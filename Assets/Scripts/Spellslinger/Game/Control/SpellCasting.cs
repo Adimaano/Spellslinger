@@ -111,6 +111,22 @@ namespace Spellslinger.Game.Control
                 Destroy(this.spellReticle);
             }
         }
+
+        /// <summary>
+        /// Returns a List<Spell> with all available spells for this level.
+        /// </summary>
+
+        public List<Spell> GetAvailableSpells()
+        {
+            List<Spell> availableSpells = new List<Spell>();
+
+            foreach (var spellSetting in this.spellSettings)
+            {
+                availableSpells.Add(spellSetting.Spell);
+            }
+
+            return availableSpells;
+        }
         
         public GameObject GetSpellcastingTarget(XRInputManager.Controller controller)
         {
@@ -231,27 +247,20 @@ namespace Spellslinger.Game.Control
                 float delta = deltaControllerPos(refRight);
 
                 float offset = 0.2f;
-                float gradient = 3.3f;
-
-                Debug.Log("INFO: deltaControllerPos: " + delta);
+                float gradient = 3.75f;
                 
                 if (delta > offset)
                 {
-                    Debug.Log("INFO: CONTROLLER RIGHT SIDE");
                     objectAnim.speed = (delta-offset) * gradient;
                 }
                 else if (delta < -offset)
                 {
-                    Debug.Log("INFO: CONTROLLER LEFT SIDE");
                     objectAnim.speed = (delta+offset) * gradient;
                 }
                 else
                 {
                     objectAnim.speed = 0.0F;
                 }
-
-                Debug.Log("INFO: animSpeed: " + objectAnim.speed);
-
                 yield return null;
             }
 

@@ -4986,6 +4986,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[0].Spell
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[0].AuraPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[0].BlastPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[0].ChargePrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 72995140200250153, guid: 54c7a2d331ff662438a3149a37758b50,
+        type: 3}
+      propertyPath: spellSettings.Array.data[0].MisslePrefab
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 72995140200250197, guid: 54c7a2d331ff662438a3149a37758b50,
         type: 3}
       propertyPath: m_RootOrder
