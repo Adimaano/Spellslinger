@@ -17,7 +17,7 @@ namespace Spellslinger.Game.Control
         private CapsuleCollider _collider;
         private Rigidbody _body;
         //private bool _isGrounded => Physics.Raycast( new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down, 1.8f);
-        private bool _isGrounded => Physics.OverlapSphere(groundCheckPoint.position, .25f, groundLayers).Length > 0;
+        private bool _isGrounded = false;
         private void Start()
         {
             _xrRig = GetComponent<XROrigin>();
@@ -31,16 +31,23 @@ namespace Spellslinger.Game.Control
             var center = _xrRig.CameraInOriginSpacePos;
             _collider.height = Mathf.Clamp(_xrRig.CameraInOriginSpaceHeight, 1.0f, 3.0f);
             _collider.center = new Vector3(center.x, _collider.height / 2, center.z);
+
         }
 
         private void OnJump(InputAction.CallbackContext context)
         {   
+            _isGrounded = (Physics.OverlapSphere(groundCheckPoint.position, .25f, groundLayers).Length > 0);
+            Debug.Log("Jump Triggered!");
             if(!_isGrounded)
             {
                 Debug.Log("Not Grounded!");
-                return;
             }
-            _body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            if(_isGrounded)
+            {
+                Debug.Log("Jump!!");
+                _body.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+            return;
         }
     }
 }
