@@ -2321,6 +2321,7 @@ MonoBehaviour:
     type: 3}
   airSpellFromWandPrefab: {fileID: 9143935275129014152, guid: 56747556948d6eb48a70c8147dc5f8bf,
     type: 3}
+  mainCam: {fileID: 72995139949544730}
   beamLineRendererPrefab:
   - {fileID: 168570, guid: 4cda6df8f00347b4f9a35657fe9374d3, type: 3}
   - {fileID: 168570, guid: cc9af0e16354a3c4aaa2860db34ca4a0, type: 3}

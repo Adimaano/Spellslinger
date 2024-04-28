@@ -15,6 +15,7 @@ namespace Spellslinger.Game.Control
         [SerializeField] private GameObject earthSpellPrefab;
         [SerializeField] private GameObject airSpellPrefab;
         [SerializeField] private GameObject airSpellFromWandPrefab;
+        [SerializeField] private GameObject mainCam;
         public GameObject[] beamLineRendererPrefab;
         public GameObject[] beamStartPrefab;
         public GameObject[] beamEndPrefab;
@@ -212,8 +213,7 @@ namespace Spellslinger.Game.Control
             objectAnim.StartPlayback();
             movingObject.GetComponent<AudioSource>().Play(0);
 
-            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, wand.transform.parent.transform.position,
-                refRight));
+            this.StartCoroutine(this.TimeSpellCoroutine(objectAnim, refRight));
         }
 
 
@@ -221,31 +221,36 @@ namespace Spellslinger.Game.Control
         /// Coroutine for casting the time spell. Controls the animation playback speed of target gameobject to simulatre "scrubbing" through time.
         /// </summary>
         /// <param name="objectAnim">Manipulatable animation of target gameobject</param>
-        /// <param name="startPosOfWand">Position of wand at initial cast</param>
-        private IEnumerator TimeSpellCoroutine(Animator objectAnim, Vector3 startPosOfWand, bool refRight)
+        private IEnumerator TimeSpellCoroutine(Animator objectAnim, bool refRight)
         {
-            //wand needs to either be a pointer or set as classmember which can be called
             this.isCasting = true;
 
             while (this.isCasting)
             {
                 //For easier controls, we use the thumbstick for controlling the speed of the animation
-                float delta = deltaControllerPos(startPosOfWand, refRight);
-                //Debug.Log(delta);
-                float offset = 0.3f;
-                float gradient = 3f;
+                float delta = deltaControllerPos(refRight);
+
+                float offset = 0.2f;
+                float gradient = 3.3f;
+
+                Debug.Log("INFO: deltaControllerPos: " + delta);
+                
                 if (delta > offset)
                 {
-                    objectAnim.speed = -(delta-offset) * gradient;
+                    Debug.Log("INFO: CONTROLLER RIGHT SIDE");
+                    objectAnim.speed = (delta-offset) * gradient;
                 }
                 else if (delta < -offset)
                 {
-                    objectAnim.speed = -(delta+offset) * gradient;
+                    Debug.Log("INFO: CONTROLLER LEFT SIDE");
+                    objectAnim.speed = (delta+offset) * gradient;
                 }
                 else
                 {
                     objectAnim.speed = 0.0F;
                 }
+
+                Debug.Log("INFO: animSpeed: " + objectAnim.speed);
 
                 yield return null;
             }
@@ -259,35 +264,30 @@ namespace Spellslinger.Game.Control
         /// Calculates delta movement of controller in left-right direction.
         /// </summary>
         /// <param name="startPosOfWand">The start position of the focus.</param>
-        public float deltaControllerPos(Vector3 startPosOfWand, bool refRight)
+        public float deltaControllerPos(bool refRight)
         {
             Vector3 distanceMoved = Vector3.zero;
             float delta = 0.0f;
 
             if (refRight)
             {
-                distanceMoved = startPosOfWand - this.spellCastingRight.transform.position;
-                // to the left.
+                distanceMoved = mainCam.transform.position - this.spellCastingRight.transform.position;
+                // righthand
             }
             else
             {
-                distanceMoved = startPosOfWand - this.spellCastingLeft.transform.position;
-                // to the right.
+                distanceMoved = mainCam.transform.position - this.spellCastingLeft.transform.position;
+                // lefthand
             }
-            
-            delta = distanceMoved.magnitude;
-            Vector3 forwardVector = Camera.main.transform.forward;
+            Vector3 forwardVector = mainCam.transform.forward;
+            Debug.DrawLine(mainCam.transform.position, mainCam.transform.position + forwardVector, Color.yellow, 0);
+
             Vector3 crossProduct = Vector3.Cross(forwardVector, distanceMoved);
+            Debug.DrawLine(mainCam.transform.position, mainCam.transform.position + crossProduct, Color.red, 0);
 
             // If the cross product's y-component is negative, it means the movement was to the right (in a left-handed coordinate system).
-            bool movedRight = crossProduct.y < 0;
-            Debug.Log("X prod: " + crossProduct);
-            // Distance moved along the left or right side.
-            if (movedRight)
-            {
-                delta = -delta;
-                Debug.Log("Moved right! " + delta);
-            }
+            delta = -crossProduct.y;
+
             return delta;
         }
 
@@ -525,23 +525,23 @@ namespace Spellslinger.Game.Control
                     // Create air current at target position
                     if (this.spellCastingTarget == Vector3.zero)
                     {
-                        CastAirSpellFromWand(spellOrigin);
+                        this.CastAirSpellFromWand(spellOrigin);
                     }
                     // Start casting air current from wand
                     else
                     {
-                        CastAirSpell(spellOrigin);
+                        this.CastAirSpell(spellOrigin);
                     }
 
                     break;
 
                 case Spell.Water:
-                    CastBeamSpell(spellOrigin, WaterBeam);
+                    this.CastBeamSpell(spellOrigin, WaterBeam);
 
                     break;
                 
                 case Spell.Lightning:
-                    CastBeamSpell(spellOrigin, LightningBeam);
+                    this.CastBeamSpell(spellOrigin, LightningBeam);
             
                     break;
                 default:
