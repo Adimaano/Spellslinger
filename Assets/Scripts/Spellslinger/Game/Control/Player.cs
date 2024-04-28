@@ -73,7 +73,8 @@ namespace Spellslinger.Game.Control
             // set preferred controller from save Data (default: right)
             SaveData saveData = SaveGameManager.Instance.GetSaveData();
             this.PreferredController = saveData.preferredHand;
-            this.availableSpells = saveData.availableSpells;
+            //this.availableSpells = saveData.availableSpells; 
+            this.availableSpells = spellCasting.GetAvailableSpells(); // Taken out the save data
         }
 
 
@@ -112,7 +113,6 @@ namespace Spellslinger.Game.Control
 
                     if (selectedObject != null && selectedObject.CompareTag("TimeTarget"))
                     {
-                        // Debug.Log("Time Spell targetting on: " + selectedObject.name ); // this can be a unit test
                         this.spellCasting.SetSpellCastingTarget(Vector3.zero);
                         this.spellCasting.SetSpecialCasting(selectedObject);
                         this.SetLastSelectedObject(selectedObject);
@@ -192,7 +192,6 @@ namespace Spellslinger.Game.Control
         {
             // Note: Current model as of 07-apr-2023 - 0: Time, 1: Air, 2: Other
 
-            Debug.Log("PredictionReceived Method: RuneClass: " + runeClass); // this should be a unit test
             switch (runeClass)
             {
                 case 0:
@@ -219,23 +218,17 @@ namespace Spellslinger.Game.Control
                     // Lightning Spell
                     this.currentSpell = SpellCasting.Spell.Lightning;
                     break;
-
                 default:
                     // Unknown Rune
                     this.currentSpell = SpellCasting.Spell.None;
                     break;
             }
 
-            // 3d master model allocation
-
-
-            // Dont have the SaveData for the available Spells, so I'm just gonna comment it out for now
-            // if (!this.availableSpells.Contains(this.currentSpell)) {
-            //     Debug.Log("PredictionReceived Method: AvailableSpells does not contain current spell!" + this.availableSpells); // this should be a unit test
-
-            //     this.currentSpell = SpellCasting.Spell.None;
-            //     return;
-            // }
+            if (!this.availableSpells.Contains(this.currentSpell)) 
+            {
+                this.currentSpell = SpellCasting.Spell.None;
+                return;
+            }
 
             this.StartCoroutine(this.ShowRune());
             this.input.SetVisualGradientForActiveSpell(this.currentSpell, this.PreferredController);
@@ -291,6 +284,7 @@ namespace Spellslinger.Game.Control
                     break;
                 default:
                     this.runeSpriteRenderer.sprite = null;
+                    GameManager.Instance.PlaySound("ElectricCharge");
                     break;
             }
 

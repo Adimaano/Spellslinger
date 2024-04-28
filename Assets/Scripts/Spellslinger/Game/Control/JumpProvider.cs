@@ -25,7 +25,7 @@ namespace Spellslinger.Game.Control
             _body = GetComponent<Rigidbody>();
             m_JumpAction.action.performed += OnJump;
         }
-        private void Update()
+        private void FixedUpdate()
         {
             //Debug.DrawRay(new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down * 1.8f, Color.red, duration: 0, depthTest: true);
             var center = _xrRig.CameraInOriginSpacePos;
