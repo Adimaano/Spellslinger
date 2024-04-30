@@ -18,6 +18,11 @@ namespace Spellslinger.Game.Control
         private Rigidbody _body;
         //private bool _isGrounded => Physics.Raycast( new Vector3(this.transform.position.x, this.transform.position.y + 1.8f, this.transform.position.z), Vector3.down, 1.8f);
         private bool _isGrounded = false;
+        
+        private void Awake()
+        {
+            _body.velocity = Vector3.zero;
+        }
         private void Start()
         {
             _xrRig = GetComponent<XROrigin>();
